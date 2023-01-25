@@ -25,7 +25,7 @@ precisionArret = 0.01
 intervalleDeTempsDeCheckingEnSec = 0.1 #temps (en seconde) nécéssaire au robot pour calculer sa nouvelle position
 vitesseVouluKmH = 4
 
-print("Nous allons faire avancer le robot a vitesse constante, il s'arretera lorsqu'il aura atteint la limite de ", distMaxPossibleEnMetre,"km \n")
+print("Nous allons faire avancer le robot a vitesse constante, il s'arretera lorsqu'il aura atteint la limite de ", distMaxPossibleEnMetre,"m \n")
 print("Le robot avancera en vérifiant a chaque ",intervalleDeTempsDeCheckingEnSec,"seconde sa position pour éviter d'aller plus loin")
 print("Avec une précision de déplacement d'environ ",precisionArret,"m\n")
 while robot.pos_x < distMaxPossibleEnMetre :
