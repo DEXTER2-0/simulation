@@ -1,18 +1,11 @@
 from Robot import * # Permet d'utiliser la classe Robot se trouvant dans le meme repertoire
 from Roue import * # Permet d'utiliser la classe Roue se trouvant dans le meme repertoire
 
-# instanciation de deux roues
-r_gauche = Roue(3,7)
-r_droite = Roue(3,7)
-print("\n")
-
-# affichage de chaque roue
-print(r_gauche) # affichage --> Roue de taille 3 cm est à l'arret
-print(r_droite) # affichage --> Roue de taille 3 cm est à l'arret
-print("\n")
+RAYON_DES_ROUES_CM = 1
+VITESSE_MAX_KMH = 3
 
 # instanciation d'un robot, prenant en parametre les deux roue créer précédemment
-robot = Robot(r_gauche,r_droite)
+robot = Robot(RAYON_DES_ROUES_CM, VITESSE_MAX_KMH)
 print("instanciation d'un robot, avec une vitesse max des deux roues à ",robot.roue_droite.vMaxTourParSec , "km/h :")
 
 
