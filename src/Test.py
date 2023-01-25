@@ -3,9 +3,10 @@ from Roue import * # Permet d'utiliser la classe Roue se trouvant dans le meme r
 
 RAYON_DES_ROUES_CM = 1
 VITESSE_MAX_KMH = 3
+RAYON_ROBOT_CM = 8
 
 # instanciation d'un robot, prenant en parametre les deux roue créer précédemment
-robot = Robot(RAYON_DES_ROUES_CM, VITESSE_MAX_KMH)
+robot = Robot(RAYON_DES_ROUES_CM, VITESSE_MAX_KMH, RAYON_ROBOT_CM)
 print("instanciation d'un robot, avec une vitesse max des deux roues à ",robot.roue_droite.vMaxTourParSec , "km/h :")
 
 
