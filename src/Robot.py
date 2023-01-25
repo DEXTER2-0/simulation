@@ -2,15 +2,15 @@ from Roue import * # Permet d'utiliser la classe Roue se trouvant dans le meme r
 import math
 
 class Robot :
-    def __init__ (self, rayonRouesCm, vitesseMaxKmh, rayonDuRobotCm, pos_x = 0, pos_y = 0, estEnTrainDeRouler = False) :
+    def __init__ (self, rayonRouesCm, vMaxTourParSec, rayonDuRobotCm, pos_x = 0, pos_y = 0, estEnTrainDeRouler = False) :
         """
         Le robot instancie ses deux roues de la meme taille et de meme vitesse maximal
         """
         assert(rayonRouesCm > 0) # Ne peut pas avoir un rayon < 0
-        assert(vitesseMaxKmh > 0) # Ne peut pavoir une vitesse max < 0
+        assert(vMaxTourParSec > 0) # Ne peut pavoir une vitesse max < 0
         assert(rayonDuRobotCm > 0) # Ne peut pas avoir un rayon < 0
-        self.roue_gauche = Roue(rayonRouesCm, vitesseMaxKmh)
-        self.roue_droite = Roue(rayonRouesCm, vitesseMaxKmh)
+        self.roue_gauche = Roue(rayonRouesCm, vMaxTourParSec)
+        self.roue_droite = Roue(rayonRouesCm, vMaxTourParSec)
         self.rayonDuRobotCm = rayonDuRobotCm 
         self.pos_x = pos_x
         self.pos_y = pos_y
