@@ -54,8 +54,8 @@ def deplacer():
     dx = ((RAYON_DES_ROUES_CM*0.01)/2) * ( (cos(ROTAT)*ANG_D) + cos(ROTAT)*ANG_G)
     dy = ((RAYON_DES_ROUES_CM*0.01)/2) * ( (sin(ROTAT)*ANG_D) + sin(ROTAT)*ANG_G)   
 
-    print("xmil  : ",xmil,"  ymil  : ",ymil)
-    print("dx  : ",dx,"  dy  : ",dy)
+    #print("xmil  : ",xmil,"  ymil  : ",ymil)
+    #print("dx  : ",dx,"  dy  : ",dy)
 
     canvas.coords(orientation,xmil,ymil, xmil+cos(ROTAT)*15, ymil+sin(ROTAT)*15)
 
@@ -69,8 +69,9 @@ def deplacer():
 
     canvas.coords(robot,x0,y0,x1,y1)
     a = randint(0, 500)
-    if  a < 8 : 
+    if  a < 4 : 
         ROTAT = vonmisesvariate(pi,0)
+        print(ROTAT)
 
     canvas.after(10,deplacer) # en milliseconde : --> 1000millisecondes = 1 sec
     return
