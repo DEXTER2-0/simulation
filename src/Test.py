@@ -46,10 +46,15 @@ robot = canvas.create_oval(x0, y0, x1, y1, width=2, fill="red")
 
 # orientation du robot
 orientation = canvas.create_line(xmil, ymil, xmil+cos(ROTAT)*15, ymil+sin(ROTAT)*15, width=2,fill="black")
+#rgauche = canvas.create_line(x0, y1, xmil+cos(ROTAT)*8, ymil+sin(ROTAT)*8, width=5,fill="blue")
 
 
 def deplacer():
-    global x0,y0,x1,y1,dx,dy,dROTAT,xmil,ymil,ROTAT
+    # variable globale qui vont etre modifié
+    global x0,y0,x1,y1,dx,dy,dROTAT,xmil,ymil,ROTAT#,ANG_G,ANG_D
+
+    #ANG_G = 2*
+
 
     dx = ((RAYON_DES_ROUES_CM*0.01)/2) * ( (cos(ROTAT)*ANG_D) + cos(ROTAT)*ANG_G)
     dy = ((RAYON_DES_ROUES_CM*0.01)/2) * ( (sin(ROTAT)*ANG_D) + sin(ROTAT)*ANG_G)   
@@ -57,7 +62,9 @@ def deplacer():
     #print("xmil  : ",xmil,"  ymil  : ",ymil)
     #print("dx  : ",dx,"  dy  : ",dy)
 
+    #11canvas.coords(orientation,xmil,ymil, xmil+cos(ROTAT)*15, ymil+sin(ROTAT)*15)
     canvas.coords(orientation,xmil,ymil, xmil+cos(ROTAT)*15, ymil+sin(ROTAT)*15)
+
 
     xmil = xmil + dx
     x0 = x0 + dx
@@ -69,7 +76,7 @@ def deplacer():
 
     canvas.coords(robot,x0,y0,x1,y1)
     a = randint(0, 500)
-    if  a < 4 : 
+    if  a < 10 : 
         ROTAT = vonmisesvariate(pi,0)
         print(ROTAT)
 
