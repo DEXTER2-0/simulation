@@ -1,18 +1,13 @@
 from Robot import * # Permet d'utiliser la classe Robot se trouvant dans le meme repertoire
 from Roue import * # Permet d'utiliser la classe Roue se trouvant dans le meme repertoire
 
-# instanciation de deux roues
-r_gauche = Roue(3,7)
-r_droite = Roue(3,7)
-print("\n")
-
-# affichage de chaque roue
-print(r_gauche) # affichage --> Roue de taille 3 cm est à l'arret
-print(r_droite) # affichage --> Roue de taille 3 cm est à l'arret
-print("\n")
+# Initialisation des constantes du robot
+RAYON_DES_ROUES_CM = 3
+VITESSE_MAX_TOUR_PAR_SEC = 5
+RAYON_ROBOT_CM = 8
 
 # instanciation d'un robot, prenant en parametre les deux roue créer précédemment
-robot = Robot(r_gauche,r_droite)
+robot = Robot(RAYON_DES_ROUES_CM, VITESSE_MAX_TOUR_PAR_SEC, RAYON_ROBOT_CM)
 print("instanciation d'un robot, avec une vitesse max des deux roues à ",robot.roue_droite.vMaxTourParSec , "km/h :")
 
 
@@ -23,9 +18,9 @@ print("\n")
 distMaxPossibleEnMetre = 10
 precisionArret = 0.01
 intervalleDeTempsDeCheckingEnSec = 0.1 #temps (en seconde) nécéssaire au robot pour calculer sa nouvelle position
-vitesseVouluKmH = 4
+vitesseVouluKmH = 3
 
-print("Nous allons faire avancer le robot a vitesse constante, il s'arretera lorsqu'il aura atteint la limite de ", distMaxPossibleEnMetre,"km \n")
+print("Nous allons faire avancer le robot a vitesse constante, il s'arretera lorsqu'il aura atteint la limite de ", distMaxPossibleEnMetre,"m \n")
 print("Le robot avancera en vérifiant a chaque ",intervalleDeTempsDeCheckingEnSec,"seconde sa position pour éviter d'aller plus loin")
 print("Avec une précision de déplacement d'environ ",precisionArret,"m\n")
 while robot.pos_x < distMaxPossibleEnMetre :
