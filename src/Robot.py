@@ -18,7 +18,7 @@ class Robot :
     
     def avancer(self,vitesseVoulue_kmh) :
         """
-        Fonction permet le robot à avancer avec la vitesse passée en paramètre
+        Permet au robot d'avancer tout droit avec la vitesse passée en paramètre
         """
         assert(vitesseVoulue_kmh > 0)
         assert(self.roue_droite.vMaxTourParSec == self.roue_gauche.vMaxTourParSec) # Permet de vérifier si les deux roues ont la même vitesse maximale     
