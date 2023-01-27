@@ -13,12 +13,6 @@
 | 3 cm | 7 km/h |
 
 
-## Distance maximal **10 metre**
-## Calcul de position **chaque 0.1 seconde**
-## Précision d'arrêt **0.01 metre**
-## Vitesse du robot **4km/h (constant)**
-## Diametre roue **7cm**
-## Vitesse maximal du robot **7km/h**
 
 
 
