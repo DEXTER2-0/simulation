@@ -20,8 +20,8 @@ RAYON_ROBOT_CM = 8
 DISTANCE_ROUE_CENTRE_CM = 5 # ----->  l
 R_G = 0
 R_D = 0
-ANG_G = ang(0.0005)
-ANG_D = ang(0.0005)
+ANG_G = ang(0.001)
+ANG_D = ang(0.001)
 ##----- Création de la fenetre -----##
 fen = Tk() 
 WIDTH = 600
@@ -30,6 +30,14 @@ canvas = Canvas(fen, width = WIDTH, height = HEIGHT, bg = 'yellow')
 canvas.pack(fill="both", expand=True)
 
 ROTAT = pi/4 #position angulaire/orientation
+
+# formule de la distance
+def distance(xA, yA, p):
+    """
+    p est une paire (x,y)
+    """
+    return sqrt((p[0]-xA)**2 + (p[1]-yA)**2)
+
 
 
 # Les coordonnées (Permet de placer le robot au milieu de la fenetre)
@@ -43,6 +51,22 @@ dROTAT = ((RAYON_DES_ROUES_CM*0.01)/2) * ((ANG_G/DISTANCE_ROUE_CENTRE_CM*0.01) -
 
 # Le robot à déplacer
 robot = canvas.create_oval(x0, y0, x1, y1, width=2, fill="red")
+
+obstacle1 = canvas.create_oval(20, 20, 40, 40,width=2, fill="orange")
+obstacle2 = canvas.create_oval(70, 5, 80, 15, width=2, fill="green")
+obstacle3 = canvas.create_oval(480, 510, 510, 540, width=2, fill="pink")
+obstacle4 = canvas.create_oval(300, 150, 315, 165, width=2, fill="brown")
+obstacle5 = canvas.create_oval(150, 400, 200, 450, width=2, fill="purple")
+obstacle6 = canvas.create_oval(100, 200, 150, 250, width=2, fill="blue")
+obstacle7 = canvas.create_oval(530, 50, 560, 80, width=2, fill="white")
+
+# L = (rayon) = (x1-(x0+x1)/2)
+L = ( (40-(20+40)/2), (80-(70+80)/2), (510-(480+510)/2), (315-(300+315)/2), (200-(150+200)/2), (150-(100+150)/2), (560-(530+560)/2) )
+# F = (xmil,ymil) 
+MIL = ( ((20+40)/2, (20+40)/2), ((70+80)/2, (5+15)/2), ((480+510)/2, (510+540)/2), ((300+315)/2, (150+165)/2), ((150+200)/2, (400+450)/2), ((100+150)/2, (200+250)/2), ((530+560)/2, (50+80)/2) )
+
+print(L)
+print (MIL)
 
 # orientation du robot
 orientation = canvas.create_line(xmil, ymil, xmil+cos(ROTAT)*15, ymil+sin(ROTAT)*15, width=2,fill="black")
@@ -63,7 +87,6 @@ def deplacer():
     #print("dx  : ",dx,"  dy  : ",dy)
 
     #11canvas.coords(orientation,xmil,ymil, xmil+cos(ROTAT)*15, ymil+sin(ROTAT)*15)
-    canvas.coords(orientation,xmil,ymil, xmil+cos(ROTAT)*15, ymil+sin(ROTAT)*15)
 
 
     xmil = xmil + dx
@@ -74,13 +97,31 @@ def deplacer():
     y0 = y0 + dy
     y1 = y1 + dy
 
+    canvas.coords(orientation,xmil,ymil, xmil+cos(ROTAT)*15, ymil+sin(ROTAT)*15)
     canvas.coords(robot,x0,y0,x1,y1)
-    a = randint(0, 500)
-    if  a < 10 : 
-        ROTAT = vonmisesvariate(pi,0)
-        print(ROTAT)
+    # (rayon) = (x1-(x0+x1)/2)
+    for i in range (len(MIL)):
+        if distance(xmil,ymil,MIL[i]) <= L[i]+ (x1-(x0+x1)/2) :
+            print("Collision !!!!!!!")
+            return
+    print("Pas de collision")
+    print("robot -> x : ",xmil)
+    print("robot -> y : ",ymil)
 
-    canvas.after(10,deplacer) # en milliseconde : --> 1000millisecondes = 1 sec
+    a = randint(0, 100)
+    if  a < 18 : 
+        ROTAT = ROTAT + 0.1
+    if a > 87 : 
+         ROTAT = ROTAT - 0.1
+    
+    if ROTAT < 0 :
+        ROTAT = 2*pi
+    if ROTAT > 2*pi :
+        ROTAT = 0
+    
+   # print(ROTAT)
+   # print(a)
+    canvas.after(5,deplacer) # en milliseconde : --> 1000millisecondes = 1 sec
     return
 
 
