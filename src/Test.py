@@ -29,7 +29,7 @@ HEIGHT = 600
 canvas = Canvas(fen, width = WIDTH, height = HEIGHT, bg = 'yellow')
 canvas.pack(fill="both", expand=True)
 
-ROTAT = pi/4 #position angulaire/orientation
+ROTAT = (3*pi)/2 #position angulaire/orientation
 
 # formule de la distance
 def distance(xA, yA, p):
@@ -102,16 +102,19 @@ def deplacer():
     # (rayon) = (x1-(x0+x1)/2)
     for i in range (len(MIL)):
         if distance(xmil,ymil,MIL[i]) <= L[i]+ (x1-(x0+x1)/2) :
-            print("Collision !!!!!!!")
+            print("*************************************\n")
+            print("******** Collision !!!!!!!  *********\n")
+            print("*************************************\n")
+
             return
     print("Pas de collision")
     print("robot -> x : ",xmil)
     print("robot -> y : ",ymil)
 
     a = randint(0, 100)
-    if  a < 18 : 
+    if  a < 21 : 
         ROTAT = ROTAT + 0.1
-    if a > 87 : 
+    if a > 85 : 
          ROTAT = ROTAT - 0.1
     
     if ROTAT < 0 :
