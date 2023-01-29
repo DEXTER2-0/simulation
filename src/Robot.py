@@ -2,7 +2,7 @@ from Roue import * # Permet d'utiliser la classe Roue se trouvant dans le meme r
 import math
 
 class Robot :
-    def __init__ (self, rayonRouesCm, vMaxTourParSec, rayonDuRobotCm, pos_x = 0, pos_y = 0, estEnTrainDeRouler = False) :
+    def __init__ (self, rayonRouesCm,rayonDuRobotCm,vMaxTourParSec, angle = 0, pos_x = 0, pos_y = 0, estEnTrainDeRouler = False) :
         """
         Le robot instancie ses deux roues de la meme taille et de meme vitesse maximal
         """
@@ -11,6 +11,7 @@ class Robot :
         assert(rayonDuRobotCm > 0) # Ne peut pas avoir un rayon < 0
         self.roue_gauche = Roue(rayonRouesCm, vMaxTourParSec)
         self.roue_droite = Roue(rayonRouesCm, vMaxTourParSec)
+        angle = angle
         self.rayonDuRobotCm = rayonDuRobotCm 
         self.pos_x = pos_x
         self.pos_y = pos_y
@@ -45,6 +46,14 @@ class Robot :
         self.estEnTrainDeRouler = False
         print("Le robot est à l'arret")
 
+    def tourner(self,angleEnRad,tempsDonneEnSec):
+        """
+        Modifier les vitesses des deux roues en étant donné l'ongle qu'on souhaite retourner
+        en un certain temps(tempsDonne) en seconde. Si ongle est positive 
+        alors le robot tourne à droite de 'ongle' dégré, on tourne à la gauche sinon
+        """
+
+
     def nouvelle_position(self, vitesse, duree):
         """
         Renvoie la distance parcourue (m), pour une vitesse (km)
@@ -55,7 +64,7 @@ class Robot :
         self.pos_x=self.pos_x+((vitesse/3.6)*duree)
         self.pos_y=self.pos_y
         print("Le robot a avancé tout droit et est maintenant à la position : x=",self.pos_x," y=",self.pos_y)
-        
+
     def __str__ (self) :
         """
         Equivalent methode toString(Java)
