@@ -52,6 +52,9 @@ class Robot :
         en un certain temps(tempsDonne) en seconde. Si ongle est positive 
         alors le robot tourne à droite de 'ongle' dégré, on tourne à la gauche sinon
         """
+        assert(angleEnRad!= 0)
+        vitesseAng = angleEnRad/tempsDonneEnSec
+        vitessekmh = 3.6*self.roue_droite.taille_cm*(10**(-2))*vitesseAng
 
 
     def nouvelle_position(self, vitesse, duree):
