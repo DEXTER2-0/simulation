@@ -23,9 +23,9 @@ class Roue :
 	def setVitesse(self,vitesseVoulue_kmh) :
 		"""
 		Formule de conversion de la vitesse v en km/h en vitesse de rotation n en tr/s :
-		N=(25*v)/(3*60*pi*rayon_en_metre)
+		N=(5*v)/(36*pi*rayon_en_metre)
 		"""
-		vVoulueTourParSec= (25*vitesseVoulue_kmh/(3*pi*self.taille_cm*0.01))/60
+		vVoulueTourParSec= (5*vitesseVoulue_kmh)/(36*pi*self.taille_cm*0.01)
 
 		if (vVoulueTourParSec<=self.vMaxTourParSec):# Si la vitesse est possible pour la roue 
 			self.vTourParSec=vVoulueTourParSec
