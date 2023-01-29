@@ -55,6 +55,14 @@ class Robot :
         assert(angleEnRad!= 0)
         vitesseAng = angleEnRad/tempsDonneEnSec
         vitessekmh = 3.6*self.roue_droite.taille_cm*(10**(-2))*vitesseAng
+        if(angleEnRad<0):
+            self.roue_droite.setVitesse(0)
+            self.roue_gauche.setVitesse(vitessekmh)
+            print("le robot tourne à gauche")
+        if(angleEnRad>0):
+            self.roue_droite.setVitesse(vitessekmh)
+            self.roue_gauche.setVitesse(0)
+            print("le robot tourne à droite")
 
 
     def nouvelle_position(self, vitesse, duree):
