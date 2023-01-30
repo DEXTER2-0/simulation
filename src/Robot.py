@@ -49,13 +49,13 @@ class Robot :
 
     def tourner(self,angleEnRad,tempsDonneEnSec):
         """
-        Modifier les vitesses des deux roues en étant donné l'ongle qu'on souhaite retourner
+        Modifier les vitesses des deux roues en étant donné l'angle qu'on souhaite retourner
         en un certain temps(tempsDonne) en seconde. Si ongle est positive 
-        alors le robot tourne à droite de 'ongle' dégré, on tourne à la gauche sinon
+        alors le robot tourne à droite de 'angle' dégré, on tourne à la gauche sinon
         """
-        self.arreter_urgence()
-        assert(angleEnRad!= 0)
-        vitesseAng = angleEnRad/tempsDonneEnSec
+        self.arreter_urgence() #modifier la vitesse des deux roues à 0 kh/m avant de tourner
+        assert(angleEnRad!= 0) #verifier si la vitesse n'est pas nulle
+        vitesseAng = angleEnRad/tempsDonneEnSec 
         vitessekmh = 3.6*self.roue_droite.taille_cm*(10**(-2))*vitesseAng
         if(angleEnRad<0):
             self.roue_droite.setVitesse(0)
