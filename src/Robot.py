@@ -67,17 +67,26 @@ class Robot :
         self.angle += angleEnRad 
 
 
-    def nouvelle_position(self, vitesse, duree):
+    def conversion_polaire_vers_cartesien(self,r, theta):
+        """
+		Fait la conversion de donnée polaire en donnees cartesienne
+        """
+        x = r * np.cos(theta)
+        y = r * np.sin(theta)
+        return x, y
+
+    def nouvelle_position(self, vitesse,orientation, duree):
         """
         Renvoie la distance parcourue (m), pour une vitesse (km)
         et une durée (s)
         Augmente la distance si vitesse est supérieur a zero
         Diminue la distance sinon
         """
-        self.pos_x=self.pos_x+((vitesse/3.6)*duree)
-        self.pos_y=self.pos_y
+        pol=self.conversion_polaire_vers_cartesien(self.r,orientation)
+        self.pos_x=pol[0]+((vitesse/3.6)*duree)
+        self.pos_y=pol[1]
         print("Le robot a avancé tout droit et est maintenant à la position : x=",self.pos_x," y=",self.pos_y)
-
+        
     def __str__ (self) :
         """
         Equivalent methode toString(Java)
