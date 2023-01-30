@@ -24,19 +24,19 @@ ANG_G = ang(0.001)
 ANG_D = ang(0.001)
 ##----- Création de la fenetre -----##
 fen = Tk() 
-WIDTH = 600
-HEIGHT = 600
+WIDTH = 600 # axe des x
+HEIGHT = 600 # axe des y
 canvas = Canvas(fen, width = WIDTH, height = HEIGHT, bg = 'yellow')
 canvas.pack(fill="both", expand=True)
 
-ROTAT = (3*pi)/2 #position angulaire/orientation
+ROTAT = 0 #position angulaire/orientation
 
 # formule de la distance
-def distance(xA, yA, p):
+def distance(xA, yA, xB, yB):
     """
     p est une paire (x,y)
     """
-    return sqrt((p[0]-xA)**2 + (p[1]-yA)**2)
+    return sqrt((xB-xA)**2 + (yB-yA)**2)
 
 
 
@@ -87,8 +87,9 @@ def deplacer():
     #print("dx  : ",dx,"  dy  : ",dy)
 
     #11canvas.coords(orientation,xmil,ymil, xmil+cos(ROTAT)*15, ymil+sin(ROTAT)*15)
+    
 
-
+    
     xmil = xmil + dx
     x0 = x0 + dx
     x1 = x1 + dx
@@ -96,12 +97,12 @@ def deplacer():
     ymil = ymil + dy
     y0 = y0 + dy
     y1 = y1 + dy
-
+    
     canvas.coords(orientation,xmil,ymil, xmil+cos(ROTAT)*15, ymil+sin(ROTAT)*15)
     canvas.coords(robot,x0,y0,x1,y1)
     # (rayon) = (x1-(x0+x1)/2)
     for i in range (len(MIL)):
-        if distance(xmil,ymil,MIL[i]) <= L[i]+ (x1-(x0+x1)/2) :
+        if distance(xmil,ymil,MIL[i][0],MIL[i][1]) <= L[i]+ (x1-(x0+x1)/2) :
             print("*************************************\n")
             print("******** Collision !!!!!!!  *********\n")
             print("*************************************\n")
@@ -110,7 +111,7 @@ def deplacer():
     print("Pas de collision")
     print("robot -> x : ",xmil)
     print("robot -> y : ",ymil)
-
+    
     a = randint(0, 100)
     if  a < 21 : 
         ROTAT = ROTAT + 0.1
@@ -121,7 +122,19 @@ def deplacer():
         ROTAT = 2*pi
     if ROTAT > 2*pi :
         ROTAT = 0
+     
+
+    #permet de ne pas dépasser les murs du terrain 
+    if (WIDTH - xmil < (x1-(x0+x1)/2) ) or (HEIGHT - ymil < (x1-(x0+x1)/2)) or (xmil < (x1-(x0+x1)/2)) or (ymil < (x1-(x0+x1)/2)):
+        alea = randint(0,1)
+        #while WIDTH - xmil < (x1-(x0+x1)/2) :
+        if alea == 1 :
+            ROTAT += ROTAT +pi/2
+        else :
+            ROTAT += ROTAT - pi/2
     
+
+
    # print(ROTAT)
    # print(a)
     canvas.after(5,deplacer) # en milliseconde : --> 1000millisecondes = 1 sec
@@ -182,30 +195,4 @@ distMaxPossibleEnMetre = 3
 precisionArret = 0.01
 intervalleDeTempsDeCheckingEnSec = 0.1 #temps (en seconde) nécéssaire au robot pour calculer sa nouvelle position
 vitesseVouluKmH = 5
-"""
-print("Nous allons faire avancer le robot a vitesse constante, il s'arretera lorsqu'il aura atteint la limite de ", distMaxPossibleEnMetre,"m \n")
-print("Le robot avancera en vérifiant a chaque ",intervalleDeTempsDeCheckingEnSec,"seconde sa position pour éviter d'aller plus loin")
-print("Avec une précision de déplacement d'environ ",precisionArret,"m\n")
-i = 0
-while robot.pos_x < distMaxPossibleEnMetre :
 
-    #Le robot avance a vitesse constante et verifie sa position toutes 
-    #les 0.1 sec Pour vérifier s'il ne depasse pas la distance voulue
-    
-    robot.avancer(vitesseVouluKmH)
-    robot.nouvelle_position(vitesseVouluKmH,intervalleDeTempsDeCheckingEnSec) 
-    distMaxPossibleEnMetre - (distMaxPossibleEnMetre*precisionArret)
-    
-    if robot.pos_x > distMaxPossibleEnMetre - (distMaxPossibleEnMetre*precisionArret) :
-        robot.arreter_urgence()
-        break
-    i += 1
-
-if robot.pos_x > distMaxPossibleEnMetre :
-    print("\n")
-    print("Le robot a dépasser la distance, il n'a pas eu le temps de checker sa position a temps")
-
-print("Le robot a atteint ", robot.pos_x,"metre en ",i,"vérifications" )
-print("Maintenant ",robot)
-print("\n")
-"""
