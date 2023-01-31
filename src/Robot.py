@@ -11,7 +11,7 @@ class Robot :
         assert(rayonDuRobotCm > 0) # Ne peut pas avoir un rayon < 0
         self.roue_gauche = Roue(rayonRouesCm, vMaxTourParSec)
         self.roue_droite = Roue(rayonRouesCm, vMaxTourParSec)
-	self.r=r
+        self.r=r
         self.angle = angle
         self.rayonDuRobotCm = rayonDuRobotCm 
         self.pos_x = pos_x
@@ -22,7 +22,7 @@ class Robot :
         """
         Fonction permet le robot à avancer avec les projections de la vitesse passées en paramètre
         """
-	vitesseVoulue_kmh=np.sqrt(vitesseVoulue_kmh_er**2+vitesseVoulue_kmh_et**2)
+        vitesseVoulue_kmh=np.sqrt(vitesseVoulue_kmh_er**2+vitesseVoulue_kmh_et**2)
         assert(vitesseVoulue_kmh > 0)
         assert(self.roue_droite.vMaxTourParSec == self.roue_gauche.vMaxTourParSec) # Permet de vérifier si les deux roues ont la même vitesse maximale     
         print("le robot avance à la vitesse ",(self.roue_droite.setVitesse(vitesseVoulue_kmh)),"km/h")
@@ -66,8 +66,6 @@ class Robot :
             self.roue_droite.setVitesse(0)
             self.roue_gauche.setVitesse(vitessekmh)
             print("le robot tourne à droite")
-        self.angle += angleEnRad 
-
 
     def conversion_polaire_vers_cartesienne(self):
         """
@@ -85,7 +83,7 @@ class Robot :
         Diminue la distance sinon
         """
         self.r+=vitesse_er*duree
-	self.angle+=vitesse_et*duree/self.r
+        self.angle+=vitesse_et*duree/self.r
         print("Le robot a avancé et est maintenant à la position : x=",self.conversion_polaire_vers_cartesienne()[0]," y=",self.conversion_polaire_vers_caretsienne()[1])
         
     def __str__ (self) :
