@@ -82,10 +82,9 @@ class Robot :
         Augmente la distance si vitesse est supérieur a zero
         Diminue la distance sinon
         """
-        pol=self.conversion_polaire_vers_cartesien(self.r,orientation)
-        self.pos_x=pol[0]+((vitesse/3.6)*duree)
-        self.pos_y=pol[1]
-        print("Le robot a avancé tout droit et est maintenant à la position : x=",self.pos_x," y=",self.pos_y)
+        self.pos_x+=(self.roue_doite.taille_cm/2)*((self.roue_droite.vTourParSec/2*np.pi)*np.cos(self.angle)+(self.roue_gauche.vTourParSec/2*np.pi)*np.cos(self.angle)
+	self.pos_y+=(self.roue_doite.taille_cm/2)*((self.roue_droite.vTourParSec/2*np.pi)*np.sin(self.angle)+(self.roue_gauche.vTourParSec/2*np.pi)*np.sin(self.angle)
+        print("Le robot a avancé et est maintenant à la position : x=",self.pos_x," y=",self.pos_y)
         
     def __str__ (self) :
         """
