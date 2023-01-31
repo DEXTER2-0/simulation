@@ -49,8 +49,8 @@ class Robot :
     def tourner(self,angleEnRad,tempsDonneEnSec):
         """
         Modifier les vitesses des deux roues en étant donné l'angle qu'on souhaite retourner
-        en un certain temps(tempsDonne) en seconde. Si ongle est positive 
-        alors le robot tourne à droite de 'angle' dégré, on tourne à la gauche sinon
+        en un certain temps(tempsDonne) en seconde. Si l'angle est positive 
+        alors le robot tourne à droite, on tourne à la gauche sinon
         """
         self.arreter_urgence() #modifier la vitesse des deux roues à 0 kh/m avant de tourner
         assert(angleEnRad!= 0) #verifier si la vitesse n'est pas nulle
@@ -82,8 +82,8 @@ class Robot :
         Augmente la distance si vitesse est supérieur a zero
         Diminue la distance sinon
         """
-        self.pos_x+=(self.roue_doite.taille_cm/2)*((self.roue_droite.vTourParSec/2*np.pi)*np.cos(self.angle)+(self.roue_gauche.vTourParSec/2*np.pi)*np.cos(self.angle)
-	self.pos_y+=(self.roue_doite.taille_cm/2)*((self.roue_droite.vTourParSec/2*np.pi)*np.sin(self.angle)+(self.roue_gauche.vTourParSec/2*np.pi)*np.sin(self.angle)
+        self.pos_x+=(self.roue_doite.taille_cm/2)*((self.roue_droite.vTourParSec/2*np.pi)*np.cos(self.angle)+(self.roue_gauche.vTourParSec/2*np.pi)*np.cos(self.angle))
+        self.pos_y+=(self.roue_doite.taille_cm/2)*((self.roue_droite.vTourParSec/2*np.pi)*np.sin(self.angle)+(self.roue_gauche.vTourParSec/2*np.pi)*np.sin(self.angle))
         print("Le robot a avancé et est maintenant à la position : x=",self.pos_x," y=",self.pos_y)
         
     def __str__ (self) :
