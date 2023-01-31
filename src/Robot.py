@@ -2,7 +2,7 @@ from Roue import * # Permet d'utiliser la classe Roue se trouvant dans le meme r
 import math
 import numpy as np
 class Robot :
-    def __init__ (self, rayonRouesCm,rayonDuRobotCm,vMaxTourParSec, angle = 0, pos_x = 0, pos_y = 0, estEnTrainDeRouler = False) :
+    def __init__ (self, rayonRouesCm,rayonDuRobotCm,vMaxTourParSec, r=0,angle = 0, pos_x = 0, pos_y = 0, estEnTrainDeRouler = False) :
         """
         Le robot instancie ses deux roues de la meme taille et de meme vitesse maximal
         """
@@ -11,6 +11,7 @@ class Robot :
         assert(rayonDuRobotCm > 0) # Ne peut pas avoir un rayon < 0
         self.roue_gauche = Roue(rayonRouesCm, vMaxTourParSec)
         self.roue_droite = Roue(rayonRouesCm, vMaxTourParSec)
+	self.r=r
         self.angle = angle
         self.rayonDuRobotCm = rayonDuRobotCm 
         self.pos_x = pos_x
@@ -67,24 +68,24 @@ class Robot :
         self.angle += angleEnRad 
 
 
-    def conversion_polaire_vers_cartesien(self,r, theta):
+    def conversion_polaire_vers_cartesienne(self):
         """
 		Fait la conversion de donnée polaire en donnees cartesienne
         """
-        x = r * np.cos(theta)
-        y = r * np.sin(theta)
+        self.pos_x = self.r * np.cos(self.angle)
+        self.pos_y = self.r * np.sin(self.angle)
         return x, y
 
-    def nouvelle_position(self, vitesse,orientation, duree):
+    def nouvelle_position(self, vitesse_er, vitesse_et,orientation, duree):
         """
         Renvoie la distance parcourue (m), pour une vitesse (km)
         et une durée (s)
         Augmente la distance si vitesse est supérieur a zero
         Diminue la distance sinon
         """
-        self.pos_x+=(self.roue_doite.taille_cm/2)*((self.roue_droite.vTourParSec/2*np.pi)*np.cos(self.angle)+(self.roue_gauche.vTourParSec/2*np.pi)*np.cos(self.angle))
-        self.pos_y+=(self.roue_doite.taille_cm/2)*((self.roue_droite.vTourParSec/2*np.pi)*np.sin(self.angle)+(self.roue_gauche.vTourParSec/2*np.pi)*np.sin(self.angle))
-        print("Le robot a avancé et est maintenant à la position : x=",self.pos_x," y=",self.pos_y)
+        self.r+=vitesse_er*duree
+	self.angle+=vitesse_et*duree/self.r
+        print("Le robot a avancé et est maintenant à la position : x=",self.conversion_polaire_vers_cartesienne()[0]," y=",self.conversion_polaire_vers_caretsienne()[1])
         
     def __str__ (self) :
         """
