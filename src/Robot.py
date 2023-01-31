@@ -18,10 +18,11 @@ class Robot :
         self.pos_y = pos_y
         self.estEnTrainDeRouler = estEnTrainDeRouler # Permet de savoir si le robot est en train de rouler
     
-    def avancer(self,vitesseVoulue_kmh) :
+    def avancer(self,vitesseVoulue_kmh_er,vitesseVoulue_kmh_et) :
         """
-        Fonction permet le robot à avancer avec la vitesse passée en paramètre
+        Fonction permet le robot à avancer avec les projections de la vitesse passées en paramètre
         """
+	vitesseVoulue_kmh=vitesseVoulue_kmh_er+vitesseVoulue_kmh_et
         assert(vitesseVoulue_kmh > 0)
         assert(self.roue_droite.vMaxTourParSec == self.roue_gauche.vMaxTourParSec) # Permet de vérifier si les deux roues ont la même vitesse maximale     
         print("le robot avance à la vitesse ",(self.roue_droite.setVitesse(vitesseVoulue_kmh)),"km/h")
