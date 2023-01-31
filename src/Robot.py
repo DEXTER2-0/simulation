@@ -54,8 +54,8 @@ class Robot :
         en un certain temps(tempsDonne) en seconde. Si l'angle est positive 
         alors le robot tourne à droite, on tourne à la gauche sinon
         """
-        self.arreter_urgence() #modifier la vitesse des deux roues à 0 kh/m avant de tourner
         assert(angleEnRad!= 0) #verifier si la vitesse n'est pas nulle
+        self.arreter_urgence() #modifier la vitesse des deux roues à 0 kh/m avant de tourner
         vitesseAng = angleEnRad/tempsDonneEnSec 
         vitessekmh = 3.6*self.roue_droite.taille_cm*(10**(-2))*vitesseAng
         if(angleEnRad<0):
