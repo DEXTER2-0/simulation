@@ -50,12 +50,12 @@ class Robot :
 
     def tourner(self,angleEnRad,tempsDonneEnSec):
         """
-        Modifier les vitesses des deux roues en étant donné l'angle qu'on souhaite retourner
-        en un certain temps(tempsDonne) en seconde. Si l'angle est positive 
-        alors le robot tourne à droite, on tourne à la gauche sinon
+        Modifier la vitesse des deux roues à 0 kh/m puis calculer la vitesse en km/h afin de faire tourner le robot
+        :tempsDonne: le robot tourne en un certain temps en seconde. 
+        :angleEnRad: Si l'angle est positive alors le robot tourne à droite, on tourne à la gauche sinon.
         """
-        assert(angleEnRad!= 0) #verifier si la vitesse n'est pas nulle
-        self.arreter_urgence() #modifier la vitesse des deux roues à 0 kh/m avant de tourner
+
+        self.arreter_urgence()
         vitesseAng = angleEnRad/tempsDonneEnSec 
         vitessekmh = 3.6*self.roue_droite.taille_cm*(10**(-2))*vitesseAng
         if(angleEnRad<0):
