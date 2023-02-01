@@ -2,7 +2,7 @@ from Roue import * # Permet d'utiliser la classe Roue se trouvant dans le meme r
 import math
 import numpy as np
 class Robot :
-    def __init__ (self, rayonRouesCm,rayonDuRobotCm,vMaxTourParSec, r=0,angle = 0, pos_x = 0, pos_y = 0, estEnTrainDeRouler = False) :
+    def __init__ (self, rayonRouesCm,rayonDuRobotCm,vMaxTourParSec, r=0,angle = 0, pos_x = 0, pos_y = 0) :
         """
         Le robot instancie ses deux roues de la meme taille et de meme vitesse maximal
         """
@@ -16,8 +16,15 @@ class Robot :
         self.rayonDuRobotCm = rayonDuRobotCm 
         self.pos_x = pos_x
         self.pos_y = pos_y
-        self.estEnTrainDeRouler = estEnTrainDeRouler # Permet de savoir si le robot est en train de rouler
-    
+    def est_entrain_de_rouler(self) :
+        """
+        Fonction permet de savoir si le robot est entrain de rouler
+        """
+        if self.roue_droite.getvitessetourparsec()==0 and self.roue_gauche.getvitessetourparsec()==0 :
+            return False
+        else :
+            return True
+
     def avancer(self,vitesseVoulue_kmh_er,vitesseVoulue_kmh_et) :
         """
         Fonction permet le robot à avancer avec les projections de la vitesse passées en paramètre
@@ -27,7 +34,7 @@ class Robot :
         assert(self.roue_droite.vMaxTourParSec == self.roue_gauche.vMaxTourParSec) # Permet de vérifier si les deux roues ont la même vitesse maximale     
         print("le robot avance à la vitesse ",(self.roue_droite.setVitesse(vitesseVoulue_kmh)),"km/h")
         self.roue_gauche.setVitesse(vitesseVoulue_kmh)
-        self.estEnTrainDeRouler = True
+
     
     def reculer(self,vitesseVoulue_kmh) :
         """
@@ -37,15 +44,13 @@ class Robot :
         assert(self.roue_droite.vMaxTourParSec == self.roue_gauche.vMaxTourParSec) # Permet de vérifier si les deux roues ont la même vitesse maximale
         print("le robot recule à la vitesse ",(self.roue_droite.setVitesse(vitesseVoulue_kmh)),"km/h")
         self.roue_gauche.setVitesse(vitesseVoulue_kmh)
-        self.estEnTrainDeRouler = True
-                
+                       
     def arreter_urgence(self):
         """
         Arrete les roues en urgence
         """
         self.roue_gauche.setVitesse(0)
         self.roue_droite.setVitesse(0)
-        self.estEnTrainDeRouler = False
         print("Le robot est à l'arret")
 
     def tourner(self,angleEnRad,tempsDonneEnSec):
@@ -54,7 +59,6 @@ class Robot :
         en un certain temps(tempsDonne) en seconde. Si l'angle est positive 
         alors le robot tourne à droite, on tourne à la gauche sinon
         """
-        assert(angleEnRad!= 0) #verifier si la vitesse n'est pas nulle
         self.arreter_urgence() #modifier la vitesse des deux roues à 0 kh/m avant de tourner
         vitesseAng = angleEnRad/tempsDonneEnSec 
         vitessekmh = 3.6*self.roue_droite.taille_cm*(10**(-2))*vitesseAng
@@ -94,7 +98,7 @@ class Robot :
         """ 
         res = "Le robot en position (" + str(self.pos_x) +","+ str(self.pos_y) + ")"
 	    # Le test suivant permet de faire un affichage du robot selon s'il roule ou pas# 
-        if (self.estEnTrainDeRouler) :
+        if (self.est_entrain_de_rouler()) :
             res += "est en train de rouler"
         else :
             res += " est à l'arret"

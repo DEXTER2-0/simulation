@@ -36,3 +36,5 @@ class Roue :
 
 		return self.vTourParSec
 
+	def getvitessetourparsec(self) :
+		return self.vTourParSec
