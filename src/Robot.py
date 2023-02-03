@@ -27,7 +27,9 @@ class Robot :
 
     def avancer(self,vitesseVoulue_kmh_er,vitesseVoulue_kmh_et) :
         """
-        Fonction permet le robot à avancer avec les projections de la vitesse passées en paramètre
+        Fonction permet le robot à reculer avec la vitesse passée en paramètre  
+        en vérifiant si les deux roues ont la même vitesse maximale et si la vitesse est supérieur à 0
+        :vitesseVouluekm: la vitesse en km/h que l'on souhaite modifier pour les deux roues de robot
         """
         vitesseVoulue_kmh=np.sqrt(vitesseVoulue_kmh_er**2+vitesseVoulue_kmh_et**2)
         assert(vitesseVoulue_kmh > 0)
@@ -38,10 +40,12 @@ class Robot :
     
     def reculer(self,vitesseVoulue_kmh) :
         """
-        Fonction permet le robot à reculer avec la vitesse passée en paramètre
+        Fonction permet le robot à reculer avec la vitesse passée en paramètre  
+        en vérifiant si les deux roues ont la même vitesse maximale et si la vitesse est supérieur à 0
+        :vitesseVouluekm: la vitesse en km/h que l'on souhaite modifier pour les deux roues de robot
         """
         assert(vitesseVoulue_kmh > 0)
-        assert(self.roue_droite.vMaxTourParSec == self.roue_gauche.vMaxTourParSec) # Permet de vérifier si les deux roues ont la même vitesse maximale
+        assert(self.roue_droite.vMaxTourParSec == self.roue_gauche.vMaxTourParSec) 
         print("le robot recule à la vitesse ",(self.roue_droite.setVitesse(vitesseVoulue_kmh)),"km/h")
         self.roue_gauche.setVitesse(vitesseVoulue_kmh)
                        
@@ -59,7 +63,7 @@ class Robot :
         :tempsDonne: le robot tourne en un certain temps en seconde. 
         :angleEnRad: Si l'angle est positive alors le robot tourne à droite, on tourne à la gauche sinon.
         """
-        self.arreter_urgence() #modifier la vitesse des deux roues à 0 kh/m avant de tourner
+        self.arreter_urgence() 
         vitesseAng = angleEnRad/tempsDonneEnSec 
         vitessekmh = 3.6*self.roue_droite.taille_cm*(10**(-2))*vitesseAng
         if(angleEnRad<0):
