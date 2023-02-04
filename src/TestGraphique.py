@@ -106,3 +106,19 @@ def deplacer():
 #    robot.nouvelle_position2(1)
 #    time.sleep(5)
 #    print(robot)
+
+    #canvas.after(100,deplacer) 
+   # en milliseconde : --> 1000millisecondes = 1 sec
+   #return
+
+##----- Création du canevas et affichage de l'image -----##
+fen.title('Simulation graphique')
+
+
+
+##----- Fonctions pour les boutons -----##
+def action_deplacer():
+    deplacer()
+    return
+def action_stop():
+    return
