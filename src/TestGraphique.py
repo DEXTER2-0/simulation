@@ -50,9 +50,10 @@ obstacle5 = canvas.create_oval(150, 400, 200, 450, width=2, fill="purple")
 obstacle6 = canvas.create_oval(100, 200, 150, 250, width=2, fill="blue")
 obstacle7 = canvas.create_oval(530, 50, 560, 80, width=2, fill="white")
 
-# L = (rayon) = (x1-(x0+x1)/2)
+
+# L = (rayon) = (x1-(x0+x1)/2) = liste des rayons de chaque objets
 L = ( (40-(20+40)/2), (80-(70+80)/2), (510-(480+510)/2), (315-(300+315)/2), (200-(150+200)/2), (150-(100+150)/2), (560-(530+560)/2) )
-# F = (xmil,ymil) 
+# MIL  = (xmil,ymil)  = Liste des milieus des obstacles 
 MIL = ( ((20+40)/2, (20+40)/2), ((70+80)/2, (5+15)/2), ((480+510)/2, (510+540)/2), ((300+315)/2, (150+165)/2), ((150+200)/2, (400+450)/2), ((100+150)/2, (200+250)/2), ((530+560)/2, (50+80)/2) )
 
 print(L)
