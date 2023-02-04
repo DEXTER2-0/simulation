@@ -1,8 +1,8 @@
 from Roue import * # Permet d'utiliser la classe Roue se trouvant dans le meme repertoire
 import math
-
+import numpy as np
 class Robot :
-    def __init__ (self, rayonRouesCm, vMaxTourParSec, rayonDuRobotCm, pos_x = 0, pos_y = 0, estEnTrainDeRouler = False) :
+    def __init__ (self, rayonRouesCm,rayonDuRobotCm,vMaxTourParSec, r=0,angle = 0, pos_x = 0, pos_y = 0, estEnTrainDeRouler = False) :
         """
         Le robot instancie ses deux roues de la meme taille et de meme vitesse maximal
         """
@@ -11,15 +11,18 @@ class Robot :
         assert(rayonDuRobotCm > 0) # Ne peut pas avoir un rayon < 0
         self.roue_gauche = Roue(rayonRouesCm, vMaxTourParSec)
         self.roue_droite = Roue(rayonRouesCm, vMaxTourParSec)
+        self.r=r
+        self.angle = angle
         self.rayonDuRobotCm = rayonDuRobotCm 
         self.pos_x = pos_x
         self.pos_y = pos_y
         self.estEnTrainDeRouler = estEnTrainDeRouler # Permet de savoir si le robot est en train de rouler
     
-    def avancer(self,vitesseVoulue_kmh) :
+    def avancer(self,vitesseVoulue_kmh_er,vitesseVoulue_kmh_et) :
         """
-        Fonction permet le robot à avancer avec la vitesse passée en paramètre
+        Fonction permet le robot à avancer avec les projections de la vitesse passées en paramètre
         """
+        vitesseVoulue_kmh=np.sqrt(vitesseVoulue_kmh_er**2+vitesseVoulue_kmh_et**2)
         assert(vitesseVoulue_kmh > 0)
         assert(self.roue_droite.vMaxTourParSec == self.roue_gauche.vMaxTourParSec) # Permet de vérifier si les deux roues ont la même vitesse maximale     
         print("le robot avance à la vitesse ",(self.roue_droite.setVitesse(vitesseVoulue_kmh)),"km/h")
@@ -45,16 +48,44 @@ class Robot :
         self.estEnTrainDeRouler = False
         print("Le robot est à l'arret")
 
-    def nouvelle_position(self, vitesse, duree):
+    def tourner(self,angleEnRad,tempsDonneEnSec):
+        """
+        Modifier la vitesse des deux roues à 0 kh/m puis calculer la vitesse en km/h afin de faire tourner le robot
+        :tempsDonne: le robot tourne en un certain temps en seconde. 
+        :angleEnRad: Si l'angle est positive alors le robot tourne à droite, on tourne à la gauche sinon.
+        """
+
+        self.arreter_urgence()
+        vitesseAng = angleEnRad/tempsDonneEnSec 
+        vitessekmh = 3.6*self.roue_droite.taille_cm*(10**(-2))*vitesseAng
+        if(angleEnRad<0):
+            self.roue_droite.setVitesse(vitessekmh)
+            self.roue_gauche.setVitesse(0)
+            print("le robot tourne à gauche")
+        if(angleEnRad>0):
+            self.roue_droite.setVitesse(0)
+            self.roue_gauche.setVitesse(vitessekmh)
+            print("le robot tourne à droite")
+
+
+    def conversion_polaire_vers_cartesienne(self):
+        """
+		Fait la conversion de donnée polaire en donnees cartesienne
+        """
+        self.pos_x = self.r * np.cos(self.angle)
+        self.pos_y = self.r * np.sin(self.angle)
+        return self.pos_x, self.pos_y
+
+    def nouvelle_position(self, vitesse_er, vitesse_et,orientation, duree):
         """
         Renvoie la distance parcourue (m), pour une vitesse (km)
         et une durée (s)
         Augmente la distance si vitesse est supérieur a zero
         Diminue la distance sinon
         """
-        self.pos_x=self.pos_x+((vitesse/3.6)*duree)
-        self.pos_y=self.pos_y
-        print("Le robot a avancé tout droit et est maintenant à la position : x=",self.pos_x," y=",self.pos_y)
+        self.r+=vitesse_er*duree
+        self.angle+=vitesse_et*duree/self.r
+        print("Le robot a avancé et est maintenant à la position : x=",self.conversion_polaire_vers_cartesienne()[0]," y=",self.conversion_polaire_vers_cartesienne()[1])
         
     def __str__ (self) :
         """
