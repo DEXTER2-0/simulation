@@ -65,8 +65,8 @@ def deplacer():
     global x0,y0,x1,y1,dx,dy,dROTAT,xmil,ymil
 
     
-    robot.tourner(100,100)
-    robot.nouvelle_position(1)
+    robot.tourner2(100,100)
+    robot.nouvelle_position2(1)
     time.sleep(0.25)
 
 
@@ -78,8 +78,8 @@ def deplacer():
         i = 0
         while i < 10  :
             print ("laaaaa")
-            robot.tourner(6,0)
-            robot.nouvelle_position(0.01)
+            robot.tourner2(6,0)
+            robot.nouvelle_position2(0.01)
             i += 1
     canvas.coords(representation_robot,robot.pos_x - robot.rayonDuRobotCm , robot.pos_y - robot.rayonDuRobotCm,robot.pos_x + robot.rayonDuRobotCm, robot.pos_y + robot.rayonDuRobotCm)
     canvas.coords(orientation,robot.pos_x,robot.pos_y, robot.pos_x+cos(robot.angle)*15, robot.pos_y+sin(robot.angle)*15)
