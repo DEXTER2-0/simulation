@@ -21,7 +21,11 @@ class Robot :
         self.pos_x = pos_x
         self.pos_y = pos_y
         self.estEnTrainDeRouler = estEnTrainDeRouler # Permet de savoir si le robot est en train de rouler
-    
+        self.w=w
+        self.v=v
+        self.l=l
+
+
     def avancer(self,vitesseVoulue_kmh_er,vitesseVoulue_kmh_et) :
         """
         Fonction permet le robot à avancer avec les projections de la vitesse passées en paramètre
