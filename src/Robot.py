@@ -78,9 +78,16 @@ class Robot :
         # vitesse moyenn du robot
         self.v = (self.roue_gauche.taille_cm*0.01/2)*(ANG_D + ANG_G)
 
-        #rotation du robot en fonction des vitesse des roues
+        #angle de rotation du robot en fonction des vitesses des roues
         self.angle = (self.roue_gauche.taille_cm*0.01/(self.l*0.01))*(ANG_D - ANG_G)
 
+    def nouvelle_position2(self, duree):
+        """
+        """
+        self.pos_x = self.pos_x + self.v * np.cos(self.angle)
+        self.pos_y = self.pos_y + self.v * np.sin(self.angle)
+        self.angle = self.angle + self.angle
+        
 
 
     def conversion_polaire_vers_cartesienne(self):
