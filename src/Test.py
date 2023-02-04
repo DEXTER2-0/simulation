@@ -1,5 +1,7 @@
 from Robot import * # Permet d'utiliser la classe Robot se trouvant dans le meme repertoire
 from Roue import * # Permet d'utiliser la classe Roue se trouvant dans le meme repertoire
+#Test commit
+
 
 # Initialisation des constantes du robot
 RAYON_DES_ROUES_CM = 3
