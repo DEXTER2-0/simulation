@@ -75,7 +75,8 @@ class Robot :
         # vitesse moyenn du robot
         self.v = (self.roue_gauche.taille_cm*0.01/2)*(ANG_D + ANG_G)
 
-        self.w = (self.roue_gauche.taille_cm*0.01/self.l)
+        #rotation du robot en fonction des vitesse des roues
+        self.w = (self.roue_gauche.taille_cm*0.01/(self.l*0.01))*(ANG_D - ANG_G)
 
 
 
