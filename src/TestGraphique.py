@@ -3,11 +3,20 @@ from Roue import * # Permet d'utiliser la classe Roue se trouvant dans le meme r
 import time #pour pouvoir controler le temps de la boucle while True
 from math import *
 
+##----- Importation des Modules -----##
+from tkinter import * 
+
+##----- Création de la fenetre -----##
+fen = Tk() 
+WIDTH = 600 # axe des x
+HEIGHT = 600 # axe des y
+canvas = Canvas(fen, width = WIDTH, height = HEIGHT, bg = 'yellow') #fentre graphique
+canvas.pack(fill="both", expand=True)
+
 def ang(T_en_sec): # calcul vitesse angulaire
     return (2*pi/T_en_sec)*RAYON_DES_ROUES_CM*0.01
 
-##----- Importation des Modules -----##
-from tkinter import * 
+
 
 # Initialisation des constantes du robot
 RAYON_DES_ROUES_CM = 1 # ---->  r
@@ -16,12 +25,7 @@ RAYON_ROBOT_CM = 10
 DISTANCE_ROUE_CENTRE_CM = 5 # ----->  l
 
 
-##----- Création de la fenetre -----##
-fen = Tk() 
-WIDTH = 600 # axe des x
-HEIGHT = 600 # axe des y
-canvas = Canvas(fen, width = WIDTH, height = HEIGHT, bg = 'yellow') #fentre graphique
-canvas.pack(fill="both", expand=True)
+
 
 # formule de la distance
 def distance(xA, yA, xB, yB):
