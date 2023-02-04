@@ -2,11 +2,12 @@ from Roue import * # Permet d'utiliser la classe Roue se trouvant dans le meme r
 import math
 import numpy as np
 class Robot :
-    def __init__ (self, rayonRouesCm,rayonDuRobotCm,vMaxTourParSec, r=0,angle = 0, pos_x = 0, pos_y = 0,v=0,l=0 estEnTrainDeRouler = False) :
+    def __init__ (self, rayonRouesCm,rayonDuRobotCm,vMaxTourParSec, r=0,angle = 0, pos_x = 0, pos_y = 0,v=0,l=0,w=0 estEnTrainDeRouler = False) :
         """
         Le robot instancie ses deux roues de la meme taille et de meme vitesse maximal
         v est la vitesse moyenne du robot initialisé a zero
         l est la distance entre les deux roues en cm 
+        w est la orientation du robot en fonction des deux roues
         """
 
         assert(rayonRouesCm > 0) # Ne peut pas avoir un rayon < 0
@@ -79,14 +80,14 @@ class Robot :
         self.v = (self.roue_gauche.taille_cm*0.01/2)*(ANG_D + ANG_G)
 
         #angle de rotation du robot en fonction des vitesses des roues
-        self.angle = (self.roue_gauche.taille_cm*0.01/(self.l*0.01))*(ANG_D - ANG_G)
+        self.w = (self.roue_gauche.taille_cm*0.01/(self.l*0.01))*(ANG_D - ANG_G)
 
     def nouvelle_position2(self, duree):
         """
         """
-        self.pos_x = self.pos_x + self.v * np.cos(self.angle)
-        self.pos_y = self.pos_y + self.v * np.sin(self.angle)
-        self.angle = self.angle + self.angle
+        self.pos_x = self.pos_x + self.v * np.cos(self.angle)*duree
+        self.pos_y = self.pos_y + self.v * np.sin(self.angle)*duree
+        self.angle = self.angle + self.w * duree 
         
 
 
