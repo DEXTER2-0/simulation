@@ -3,6 +3,9 @@ from Roue import * # Permet d'utiliser la classe Roue se trouvant dans le meme r
 import time #pour pouvoir controler le temps de la boucle while True
 from math import *
 
+def ang(T_en_sec): # calcul vitesse angulaire
+    return (2*pi/T_en_sec)*RAYON_DES_ROUES_CM*0.01
+
 ##----- Importation des Modules -----##
 from tkinter import * 
 
@@ -12,13 +15,30 @@ VITESSE_MAX_TOUR_PAR_SEC = 30 #pas encore utilisé
 RAYON_ROBOT_CM = 10
 DISTANCE_ROUE_CENTRE_CM = 5 # ----->  l
 
-def ang(T_en_sec): # calcul vitesse angulaire
-    return (2*pi/T_en_sec)*RAYON_DES_ROUES_CM*0.01
 
-# instanciation d'un robot, prenant en parametre les deux roue créer précédemment
-robot = Robot(RAYON_DES_ROUES_CM, VITESSE_MAX_TOUR_PAR_SEC, RAYON_ROBOT_CM)
+##----- Création de la fenetre -----##
+fen = Tk() 
+WIDTH = 600 # axe des x
+HEIGHT = 600 # axe des y
+canvas = Canvas(fen, width = WIDTH, height = HEIGHT, bg = 'yellow') #fentre graphique
+canvas.pack(fill="both", expand=True)
 
-print(robot)
+# formule de la distance
+def distance(xA, yA, xB, yB):
+    return sqrt((xB-xA)**2 + (yB-yA)**2)
+
+# Le robot à déplacer
+robot = Robot(RAYON_DES_ROUES_CM, RAYON_ROBOT_CM, VITESSE_MAX_TOUR_PAR_SEC)
+
+
+print(robot.rayonDuRobotCm)
+
+# Les coordonnées (Permet de placer le robot au milieu de la fenetre)
+robot.pos_x = WIDTH/2
+robot.pos_y = HEIGHT/2
+
+# Permet de représenter le robot sur tkinter
+representation_robot = canvas.create_oval(robot.pos_x - robot.rayonDuRobotCm , robot.pos_y - robot.rayonDuRobotCm,robot.pos_x + robot.rayonDuRobotCm, robot.pos_y + robot.rayonDuRobotCm, width=2, fill="purple")
 
 
 #while True :
