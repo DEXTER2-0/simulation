@@ -13,9 +13,13 @@ HEIGHT = 600 # axe des y
 canvas = Canvas(fen, width = WIDTH, height = HEIGHT, bg = 'yellow') #fentre graphique
 canvas.pack(fill="both", expand=True)
 
-def ang(T_en_sec): # calcul vitesse angulaire
+# calcul vitesse angulaire
+def ang(T_en_sec):
     return (2*pi/T_en_sec)*RAYON_DES_ROUES_CM*0.01
-
+    
+# formule de la distance
+def distance(xA, yA, xB, yB):
+    return sqrt((xB-xA)**2 + (yB-yA)**2)
 
 
 # Initialisation des constantes du robot
@@ -27,9 +31,6 @@ DISTANCE_ROUE_CENTRE_CM = 5 # ----->  l
 
 
 
-# formule de la distance
-def distance(xA, yA, xB, yB):
-    return sqrt((xB-xA)**2 + (yB-yA)**2)
 
 # Le robot à déplacer
 robot = Robot(RAYON_DES_ROUES_CM, RAYON_ROBOT_CM, VITESSE_MAX_TOUR_PAR_SEC)
