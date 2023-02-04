@@ -122,3 +122,17 @@ def action_deplacer():
     return
 def action_stop():
     return
+
+##----- Création des boutons -----##
+bouton_couleur = Button(fen, text="Déplacer", width=20, command=action_deplacer)
+bouton_couleur.pack(pady=10)
+
+bouton_quitter = Button(fen, text='Quitter', command=fen.quit)
+bouton_quitter.pack(side=BOTTOM, pady=10)
+
+##----- Programme principal -----##
+fen.mainloop()                    # Boucle d'attente des événements
+
+## ------------------------------------------------------------------------ ##
+
+
