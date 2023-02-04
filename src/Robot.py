@@ -66,6 +66,11 @@ class Robot :
             self.roue_droite.setVitesse(0)
             self.roue_gauche.setVitesse(vitessekmh)
             print("le robot tourne à droite")
+        
+        def tourner2(self,ANG_G,ANG_D):
+        """
+        """
+        
 
 
     def conversion_polaire_vers_cartesienne(self):
