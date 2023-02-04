@@ -29,7 +29,8 @@ def distance(xA, yA, xB, yB):
 
 # Le robot à déplacer
 robot = Robot(RAYON_DES_ROUES_CM, RAYON_ROBOT_CM, VITESSE_MAX_TOUR_PAR_SEC)
-
+# Permet de représenter le robot sur tkinter
+representation_robot = canvas.create_oval(robot.pos_x - robot.rayonDuRobotCm , robot.pos_y - robot.rayonDuRobotCm,robot.pos_x + robot.rayonDuRobotCm, robot.pos_y + robot.rayonDuRobotCm, width=2, fill="purple")
 
 print(robot.rayonDuRobotCm)
 
@@ -37,8 +38,7 @@ print(robot.rayonDuRobotCm)
 robot.pos_x = WIDTH/2
 robot.pos_y = HEIGHT/2
 
-# Permet de représenter le robot sur tkinter
-representation_robot = canvas.create_oval(robot.pos_x - robot.rayonDuRobotCm , robot.pos_y - robot.rayonDuRobotCm,robot.pos_x + robot.rayonDuRobotCm, robot.pos_y + robot.rayonDuRobotCm, width=2, fill="purple")
+
 
 obstacle1 = canvas.create_oval(20, 20, 40, 40,width=2, fill="orange")
 obstacle2 = canvas.create_oval(70, 5, 80, 15, width=2, fill="green")
