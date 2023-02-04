@@ -6,6 +6,12 @@ from math import *
 ##----- Importation des Modules -----##
 from tkinter import * 
 
+# Initialisation des constantes du robot
+RAYON_DES_ROUES_CM = 1 # ---->  r
+VITESSE_MAX_TOUR_PAR_SEC = 30 #pas encore utilisé
+RAYON_ROBOT_CM = 10
+DISTANCE_ROUE_CENTRE_CM = 5 # ----->  l
+
 def ang(T_en_sec): # calcul vitesse angulaire
     return (2*pi/T_en_sec)*RAYON_DES_ROUES_CM*0.01
 
@@ -15,8 +21,8 @@ robot = Robot(RAYON_DES_ROUES_CM, VITESSE_MAX_TOUR_PAR_SEC, RAYON_ROBOT_CM)
 print(robot)
 
 
-while True :
-    robot.tourner2(3.14,0)
-    robot.nouvelle_position2(1)
-    time.sleep(5)
-    print(robot)
+#while True :
+#    robot.tourner2(3.14,0)
+#    robot.nouvelle_position2(1)
+#    time.sleep(5)
+#    print(robot)
