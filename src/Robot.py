@@ -2,10 +2,13 @@ from Roue import * # Permet d'utiliser la classe Roue se trouvant dans le meme r
 import math
 import numpy as np
 class Robot :
-    def __init__ (self, rayonRouesCm,rayonDuRobotCm,vMaxTourParSec, r=0,angle = 0, pos_x = 0, pos_y = 0,v=0,w=0,l=0 estEnTrainDeRouler = False) :
+    def __init__ (self, rayonRouesCm,rayonDuRobotCm,vMaxTourParSec, r=0,angle = 0, pos_x = 0, pos_y = 0,v=0,l=0 estEnTrainDeRouler = False) :
         """
         Le robot instancie ses deux roues de la meme taille et de meme vitesse maximal
+        v est la vitesse moyenne du robot initialisé a zero
+        l est la distance entre les deux roues en cm 
         """
+
         assert(rayonRouesCm > 0) # Ne peut pas avoir un rayon < 0
         assert(vMaxTourParSec > 0) # Ne peut pavoir une vitesse max < 0
         assert(rayonDuRobotCm > 0) # Ne peut pas avoir un rayon < 0
@@ -76,7 +79,7 @@ class Robot :
         self.v = (self.roue_gauche.taille_cm*0.01/2)*(ANG_D + ANG_G)
 
         #rotation du robot en fonction des vitesse des roues
-        self.w = (self.roue_gauche.taille_cm*0.01/(self.l*0.01))*(ANG_D - ANG_G)
+        self.angle = (self.roue_gauche.taille_cm*0.01/(self.l*0.01))*(ANG_D - ANG_G)
 
 
 
