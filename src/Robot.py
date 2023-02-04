@@ -2,7 +2,7 @@ from Roue import * # Permet d'utiliser la classe Roue se trouvant dans le meme r
 import math
 import numpy as np
 class Robot :
-    def __init__ (self, rayonRouesCm,rayonDuRobotCm,vMaxTourParSec, r=0,angle = 0, pos_x = 0, pos_y = 0,v=0,l=0,w=0 estEnTrainDeRouler = False) :
+    def __init__ (self, rayonRouesCm,rayonDuRobotCm,vMaxTourParSec, r=0,angle = 0, pos_x = 0, pos_y = 0,v=0,l=0,w=0, estEnTrainDeRouler = False) :
         """
         Le robot instancie ses deux roues de la meme taille et de meme vitesse maximal
         v est la vitesse moyenne du robot initialisé a zero
