@@ -13,8 +13,9 @@ robot = Robot(RAYON_DES_ROUES_CM, VITESSE_MAX_TOUR_PAR_SEC, RAYON_ROBOT_CM)
 
 print(robot)
 
+
 while True :
-    robot.tourner2(2,2)
+    robot.tourner2(3.14,0)
     robot.nouvelle_position2(1)
-    time.sleep(1)
+    time.sleep(5)
     print(robot)
