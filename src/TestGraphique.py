@@ -16,7 +16,7 @@ canvas.pack(fill="both", expand=True)
 # calcul vitesse angulaire
 def ang(T_en_sec):
     return (2*pi/T_en_sec)*RAYON_DES_ROUES_CM*0.01
-    
+
 # formule de la distance
 def distance(xA, yA, xB, yB):
     return sqrt((xB-xA)**2 + (yB-yA)**2)
@@ -27,9 +27,6 @@ RAYON_DES_ROUES_CM = 1 # ---->  r
 VITESSE_MAX_TOUR_PAR_SEC = 30 #pas encore utilisé
 RAYON_ROBOT_CM = 10
 DISTANCE_ROUE_CENTRE_CM = 5 # ----->  l
-
-
-
 
 
 # Le robot à déplacer
@@ -44,7 +41,7 @@ robot.pos_x = WIDTH/2
 robot.pos_y = HEIGHT/2
 
 
-
+# Creation des obstacle (Pensez a utliser la classe Obstacle)
 obstacle1 = canvas.create_oval(20, 20, 40, 40,width=2, fill="orange")
 obstacle2 = canvas.create_oval(70, 5, 80, 15, width=2, fill="green")
 obstacle3 = canvas.create_oval(480, 510, 510, 540, width=2, fill="pink")
