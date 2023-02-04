@@ -1,6 +1,8 @@
 from Robot import * # Permet d'utiliser la classe Robot se trouvant dans le meme repertoire
 from Roue import * # Permet d'utiliser la classe Roue se trouvant dans le meme repertoire
 
+
+
 # Initialisation des constantes du robot
 RAYON_DES_ROUES_CM = 3
 VITESSE_MAX_TOUR_PAR_SEC = 5
@@ -14,7 +16,7 @@ print("instanciation d'un robot, avec une vitesse max des deux roues à ",robot.
 # affichage du robot
 print(robot) # affichage --> Le robot en position (0,0) est à l'arret
 print("\n")
-print(robot.est_entrain_de_rouler()) # affichage --> False
+
 distMaxPossibleEnMetre = 10
 precisionArret = 0.01
 intervalleDeTempsDeCheckingEnSec = 0.1 #temps (en seconde) nécéssaire au robot pour calculer sa nouvelle position
@@ -28,7 +30,7 @@ while robot.pos_x < distMaxPossibleEnMetre :
     Le robot avance a vitesse constante et verifie sa position toutes 
     les 0.1 sec Pour vérifier s'il ne depasse pas la distance voulue
     """
-    #robot.avancer(vitesseVouluKmH)
+    robot.avancer(vitesseVouluKmH)
     robot.nouvelle_position(vitesseVouluKmH,intervalleDeTempsDeCheckingEnSec) 
     distMaxPossibleEnMetre - (distMaxPossibleEnMetre*precisionArret)
     
