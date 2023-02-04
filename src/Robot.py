@@ -122,9 +122,9 @@ class Robot :
         res = "Le robot en position (" + str(self.pos_x) +","+ str(self.pos_y) + ")"
 	    # Le test suivant permet de faire un affichage du robot selon s'il roule ou pas# 
         if (self.estEnTrainDeRouler) :
-            res += "est en train de rouler"
+            res += "est en train de rouler \n"
         else :
-            res += " est à l'arret"
+            res += " est à l'arret \n"
         return res
 
 
