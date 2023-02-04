@@ -56,6 +56,33 @@ MIL = ( ((20+40)/2, (20+40)/2), ((70+80)/2, (5+15)/2), ((480+510)/2, (510+540)/2
 print(L)
 print (MIL)
 
+# orientation du robot
+orientation = canvas.create_line(robot.pos_x,robot.pos_y, robot.pos_x+cos(robot.angle)*15, robot.pos_y+sin(robot.angle)*15, width=2,fill="black")
+
+
+def deplacer():
+    # variable globale qui vont etre modifié
+    global x0,y0,x1,y1,dx,dy,dROTAT,xmil,ymil
+
+    
+    robot.tourner(100,100)
+    robot.nouvelle_position(1)
+    time.sleep(0.25)
+
+
+
+    print("robot -> x : ",robot.pos_x)
+    print("robot -> y : ",robot.pos_y)
+
+    if robot.pos_x > 319 and robot.pos_x < 321 :
+        i = 0
+        while i < 10  :
+            print ("laaaaa")
+            robot.tourner(6,0)
+            robot.nouvelle_position(0.01)
+            i += 1
+
+
 #while True :
 #    robot.tourner2(3.14,0)
 #    robot.nouvelle_position2(1)
