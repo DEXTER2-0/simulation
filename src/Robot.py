@@ -2,7 +2,7 @@ from Roue import * # Permet d'utiliser la classe Roue se trouvant dans le meme r
 import math
 import numpy as np
 class Robot :
-    def __init__ (self, rayonRouesCm,rayonDuRobotCm,vMaxTourParSec, r=0,angle = 0, pos_x = 0, pos_y = 0) :
+    def __init__ (self, rayonRouesCm,rayonDuRobotCm, capteurDistance,vMaxTourParSec, r=0,angle = 0, pos_x = 0, pos_y = 0) :
         """
         Le robot instancie ses deux roues de la meme taille et de meme vitesse maximal
         """
@@ -12,6 +12,7 @@ class Robot :
         self.roue_gauche = Roue(rayonRouesCm, vMaxTourParSec)
         self.roue_droite = Roue(rayonRouesCm, vMaxTourParSec)
         self.r=r
+        self.capteurDistance = capteurDistance
         self.angle = angle
         self.rayonDuRobotCm = rayonDuRobotCm 
         self.pos_x = pos_x
@@ -27,7 +28,9 @@ class Robot :
 
     def avancer(self,vitesseVoulue_kmh_er,vitesseVoulue_kmh_et) :
         """
-        Fonction permet le robot à avancer avec les projections de la vitesse passées en paramètre
+        Fonction permet le robot à reculer avec la vitesse passée en paramètre  
+        en vérifiant si les deux roues ont la même vitesse maximale et si la vitesse est supérieur à 0
+        :vitesseVouluekm: la vitesse en km/h que l'on souhaite modifier pour les deux roues de robot
         """
         vitesseVoulue_kmh=np.sqrt(vitesseVoulue_kmh_er**2+vitesseVoulue_kmh_et**2)
         assert(vitesseVoulue_kmh > 0)
@@ -38,10 +41,12 @@ class Robot :
     
     def reculer(self,vitesseVoulue_kmh) :
         """
-        Fonction permet le robot à reculer avec la vitesse passée en paramètre
+        Fonction permet le robot à reculer avec la vitesse passée en paramètre  
+        en vérifiant si les deux roues ont la même vitesse maximale et si la vitesse est supérieur à 0
+        :vitesseVouluekm: la vitesse en km/h que l'on souhaite modifier pour les deux roues de robot
         """
         assert(vitesseVoulue_kmh > 0)
-        assert(self.roue_droite.vMaxTourParSec == self.roue_gauche.vMaxTourParSec) # Permet de vérifier si les deux roues ont la même vitesse maximale
+        assert(self.roue_droite.vMaxTourParSec == self.roue_gauche.vMaxTourParSec) 
         print("le robot recule à la vitesse ",(self.roue_droite.setVitesse(vitesseVoulue_kmh)),"km/h")
         self.roue_gauche.setVitesse(vitesseVoulue_kmh)
                        
@@ -59,7 +64,7 @@ class Robot :
         :tempsDonne: le robot tourne en un certain temps en seconde. 
         :angleEnRad: Si l'angle est positive alors le robot tourne à droite, on tourne à la gauche sinon.
         """
-        self.arreter_urgence() #modifier la vitesse des deux roues à 0 kh/m avant de tourner
+        self.arreter_urgence() 
         vitesseAng = angleEnRad/tempsDonneEnSec 
         vitessekmh = 3.6*self.roue_droite.taille_cm*(10**(-2))*vitesseAng
         if(angleEnRad<0):
@@ -72,6 +77,16 @@ class Robot :
             print("le robot tourne à droite")
 
 
+    def accelerer(vitesseVoule):
+        """
+        """
+        vitesseRoueGauche = self.roue_gauche.vTourParSec * 60 * self.roue_gauche.taille_cm *(10**(-2))*(3/25)
+        vitesseRoueDroite = self.roue_droite.vTourParSec * 60 * self.roue_droite.taille_cm *(10**(-2))*(3/25)
+        while(vitesseRoueGauche < vitesseVoule & vitesseRoueDroite < vitesseVoule):
+            self.roue_gauche.setVitesse(vitesseRoueGauche+0.05)
+            self.roue_gauche.setVitesse(vitesseRoueDroite+0.05)
+
+    
     def conversion_polaire_vers_cartesienne(self):
         """
 		Fait la conversion de donnée polaire en donnees cartesienne
@@ -96,7 +111,12 @@ class Robot :
         self.r+=vitesse_er*duree
         self.angle+=vitesse_et*duree/self.r
         print("Le robot a avancé et est maintenant à la position : x=",self.conversion_polaire_vers_cartesienne()[0]," y=",self.conversion_polaire_vers_cartesienne()[1])
-        
+    
+    #def evite_obstacles(self,capteurDistance,monde):
+        #if(self.pos_x == monde.mur_x |self.pos_y == monde.mur_y ) à modifier, comment peut on faire pour éviter la borne x,y? np.array? 
+        #self.arrete_urgence
+            
+    
     def __str__ (self) :
         """
         Equivalent methode toString(Java)
