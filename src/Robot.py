@@ -2,6 +2,8 @@ from Roue import * # Permet d'utiliser la classe Roue se trouvant dans le meme r
 from Capteur_de_distance import * # Permet d'utiliser la classe Capteur_de_distance se trouvant dans le meme repertoire
 import math
 import numpy as np
+import tkinter as tk
+import time
 class Robot :
     def __init__ (self, rayonRouesCm,rayonDuRobotCm, capteur,vMaxTourParSec, r=0,angle = 0, pos_x = 0, pos_y = 0) :
         """
@@ -124,7 +126,7 @@ class Robot :
         return self.r, self.angle
         
 
-    def nouvelle_position(self, vitesse_er, vitesse_et,orientation, duree):
+    def nouvelle_position(self, vitesse_er, vitesse_et,duree):
         """
         Renvoie la distance parcourue (m), pour une vitesse (km)
         et une durée (s)
@@ -160,4 +162,44 @@ class Robot :
             res += " est à l'arret"
         return res
 
+class RobotGUI:
+    def __init__(self, master, robot):
+        self.robot = robot
 
+        self.label = tk.Label(master, text=self.robot.nouvelle_position(10,20,10))
+        self.label.pack()
+        self.canvas = tk.Canvas(master, width=500, height=500)
+        self.canvas.pack()
+
+        self.circle = self.canvas.create_oval(robot.pos_x, robot.pos_y, robot.pos_x + 50, robot.pos_y + 50, fill="red")
+
+        self.avancer_button = tk.Button(master, text="avancer", command=self.avancer)
+        self.avancer_button.pack()
+        self.obstacle = self.canvas.create_rectangle(100, 100, 150, 150, fill="blue")
+        self.update_position()
+
+    def update_position(self):
+        while True:
+            time.sleep(0.1)
+            self.robot.nouvelle_position(self.robot.roue_droite.getvitessetourparsec(), self.robot.roue_gauche.getvitessetourparsec(), 0.1)
+
+            # Check for collision with obstacle
+            obstacle_coords = self.canvas.coords(self.obstacle)
+            if (self.robot.pos_x + 25 > obstacle_coords[0] and self.robot.pos_x + 25 < obstacle_coords[2]) and (self.robot.pos_y + 25 > obstacle_coords[1] and self.robot.pos_y + 25 < obstacle_coords[3]):
+                self.robot.roue_droite = -self.robot.roue_droite
+                self.robot.roue_gauche = -self.robot.roue_gauche
+
+            self.canvas.coords(self.circle, self.robot.pos_x, self.robot.pos_y, self.robot.pos_x + 50, self.robot.pos_y + 50)
+            self.canvas.update()
+
+    def avancer(self):
+        self.robot.avancer(10, 20)
+        self.label.config(text=self.robot.show_position())
+
+if __name__ == '__main__':
+    root = tk.Tk()
+
+    robot = Robot(10,20,10,50,0,0,50,50)
+    gui = RobotGUI(root, robot)
+
+    root.mainloop()
