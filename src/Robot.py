@@ -88,7 +88,7 @@ class Robot :
         while(vitesse_actuelle < vitesseVoule):
                 self.roue_gauche.setVitesse(vitesse_actuelle+0.1)
                 self.roue_gauche.setVitesse(vitesse_actuelle+0.1)
-                vitesse_actuelle=(36*np.pi*self.roue_gauche.taille_cm)/(5*self.roue_gauche.vTourParSec
+                vitesse_actuelle=(36*np.pi*self.roue_gauche.taille_cm)/(5*self.roue_gauche.vTourParSec)
     
     def decelerer(self,vitesseVoule):
         """
