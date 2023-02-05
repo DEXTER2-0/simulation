@@ -7,8 +7,8 @@ class Simulation :
     def __init__ (self, robotDonne) :
         """
         """
-        self.mur_x = 10
-        self.mur_y = 10
+        self.mur_x = range(10) 
+        self.mur_y = range(10)
         self.robot = robotDonne
         #self.obs1 = Obstacle(6,2,2)
         self.obs2 = Obstacle(3,4,7,6)
