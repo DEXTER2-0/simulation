@@ -99,7 +99,7 @@ class Robot :
         while(vitesseRoueGauche > vitesseVoule & vitesseRoueDroite > vitesseVoule):
             self.roue_gauche.setVitesse(vitesseRoueGauche-0.05)
             self.roue_gauche.setVitesse(vitesseRoueDroite-0.05)
-            
+
     def arreter(self):
         """
         Permet d'arrêter le robot
