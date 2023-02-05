@@ -78,8 +78,10 @@ class Robot :
             print("le robot tourne à droite")
 
 
-    def accelerer(vitesseVoule):
+    def accelerer(self,vitesseVoule):
         """
+        Permet d'accélérer le robot jusqu'à la vitesse voulue
+        :vitesseVoule: la vitesse voulue en km/h
         """
         vitesseRoueGauche = self.roue_gauche.vTourParSec * 60 * self.roue_gauche.taille_cm *(10**(-2))*(3/25)
         vitesseRoueDroite = self.roue_droite.vTourParSec * 60 * self.roue_droite.taille_cm *(10**(-2))*(3/25)
@@ -87,8 +89,10 @@ class Robot :
             self.roue_gauche.setVitesse(vitesseRoueGauche+0.05)
             self.roue_gauche.setVitesse(vitesseRoueDroite+0.05)
 
-    def decelerer(vitesseVoule):
+    def decelerer(self,vitesseVoule):
         """
+        Permet de décélérer le robot
+        :vitesseVoule: la vitesse à laquelle on veut que le robot ralentisse
         """
         vitesseRoueGauche = self.roue_gauche.vTourParSec * 60 * self.roue_gauche.taille_cm *(10**(-2))*(3/25)
         vitesseRoueDroite = self.roue_droite.vTourParSec * 60 * self.roue_droite.taille_cm *(10**(-2))*(3/25)
