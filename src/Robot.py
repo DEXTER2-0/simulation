@@ -1,8 +1,9 @@
 from Roue import * # Permet d'utiliser la classe Roue se trouvant dans le meme repertoire
+from Capteur_de_distance import * # Permet d'utiliser la classe Capteur_de_distance se trouvant dans le meme repertoire
 import math
 import numpy as np
 class Robot :
-    def __init__ (self, rayonRouesCm,rayonDuRobotCm, capteurDistance,vMaxTourParSec, r=0,angle = 0, pos_x = 0, pos_y = 0) :
+    def __init__ (self, rayonRouesCm,rayonDuRobotCm, capteur,vMaxTourParSec, r=0,angle = 0, pos_x = 0, pos_y = 0) :
         """
         Le robot instancie ses deux roues de la meme taille et de meme vitesse maximal
         """
@@ -12,7 +13,7 @@ class Robot :
         self.roue_gauche = Roue(rayonRouesCm, vMaxTourParSec)
         self.roue_droite = Roue(rayonRouesCm, vMaxTourParSec)
         self.r=r
-        self.capteurDistance = capteurDistance
+        self.capteurDistance = Capteur_de_distance(capteur,capteur)
         self.angle = angle
         self.rayonDuRobotCm = rayonDuRobotCm 
         self.pos_x = pos_x
@@ -115,9 +116,12 @@ class Robot :
         self.angle+=vitesse_et*duree/self.r
         print("Le robot a avancé et est maintenant à la position : x=",self.conversion_polaire_vers_cartesienne()[0]," y=",self.conversion_polaire_vers_cartesienne()[1])
     
-    #def evite_obstacles(self,capteurDistance,monde):
+    def evite_obstacles(self,capteur,Obstacle):
         #if(self.pos_x == monde.mur_x |self.pos_y == monde.mur_y ) à modifier, comment peut on faire pour éviter la borne x,y? np.array? 
         #self.arrete_urgence
+        if(capteurDistance.distance(self,Obstacle) < 10):
+            self.tourner(0.5,1)
+    
             
     
     def __str__ (self) :
