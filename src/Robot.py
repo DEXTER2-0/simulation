@@ -171,7 +171,7 @@ class RobotGUI:
         self.canvas = tk.Canvas(master, width=500, height=500)
         self.canvas.pack()
 
-        self.circle = self.canvas.create_oval(robot.pos_x, robot.pos_y, robot.pos_x + 50, robot.pos_y + 50, fill="red")
+        self.circle = self.canvas.create_oval(robot.pos_x, robot.pos_y, robot.rayonDuRobotCm, robot.rayonDuRobotCm + 50, fill="red")
 
         self.avancer_button = tk.Button(master, text="avancer", command=self.avancer)
         self.avancer_button.pack()
