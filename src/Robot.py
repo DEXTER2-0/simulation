@@ -119,8 +119,12 @@ class Robot :
     def evite_obstacles(self,capteur,Obstacle):
         #if(self.pos_x == monde.mur_x |self.pos_y == monde.mur_y ) à modifier, comment peut on faire pour éviter la borne x,y? np.array? 
         #self.arrete_urgence
-        if(capteurDistance.distance(self,Obstacle) < 10):
-            self.tourner(0.5,1)
+        bool=True
+        while(bool):
+            val=np.random.randint(-360,360)
+            if(self.capteurDistance.distance(self,Obstacle) < 10):
+                self.tourner(val,1)
+            
     
             
     
