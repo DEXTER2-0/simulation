@@ -79,6 +79,12 @@ class Robot :
         self.pos_x = self.r * np.cos(self.angle)
         self.pos_y = self.r * np.sin(self.angle)
         return self.pos_x, self.pos_y
+    
+    def conversion_cartesienne_vers_polaire(self):
+        """
+        Fait la conversion de donnée cartesienne en donnees polaire
+        """
+        
 
     def nouvelle_position(self, vitesse_er, vitesse_et,orientation, duree):
         """
