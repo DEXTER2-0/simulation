@@ -100,6 +100,7 @@ class Robot :
         Fait la conversion de donnée cartesienne en donnees polaire
         """
         self.r = np.sqrt(self.pos_x**2 + self.pos_y**2)
+        self.angle= np.arctan(self.pos_y/self.pos_x)
         
         
 
