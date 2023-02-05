@@ -25,4 +25,5 @@ class Obstacle :
 				res+="  est un carré de longueur : "+ str(self.longueur)
 			else : 
 				res+=" est un rectangle de longueur : " + str(self.longueur) + "  et de largeur : " + str(self.largeur) 
+		return res
 
