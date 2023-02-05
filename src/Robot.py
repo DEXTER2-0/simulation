@@ -87,6 +87,16 @@ class Robot :
             self.roue_gauche.setVitesse(vitesseRoueGauche+0.05)
             self.roue_gauche.setVitesse(vitesseRoueDroite+0.05)
 
+    def decelerer(vitesseVoule):
+        """
+        """
+        vitesseRoueGauche = self.roue_gauche.vTourParSec * 60 * self.roue_gauche.taille_cm *(10**(-2))*(3/25)
+        vitesseRoueDroite = self.roue_droite.vTourParSec * 60 * self.roue_droite.taille_cm *(10**(-2))*(3/25)
+        while(vitesseRoueGauche > vitesseVoule & vitesseRoueDroite > vitesseVoule):
+            self.roue_gauche.setVitesse(vitesseRoueGauche-0.05)
+            self.roue_gauche.setVitesse(vitesseRoueDroite-0.05)
+
+
     
     def conversion_polaire_vers_cartesienne(self):
         """
