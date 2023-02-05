@@ -1,8 +1,9 @@
 from Roue import * # Permet d'utiliser la classe Roue se trouvant dans le meme repertoire
+from Capteur_de_distance import * # Permet d'utiliser la classe Capteur_de_distance se trouvant dans le meme repertoire
 import math
 import numpy as np
 class Robot :
-    def __init__ (self, rayonRouesCm,rayonDuRobotCm, capteurDistance,vMaxTourParSec, r=0,angle = 0, pos_x = 0, pos_y = 0) :
+    def __init__ (self, rayonRouesCm,rayonDuRobotCm, capteur,vMaxTourParSec, r=0,angle = 0, pos_x = 0, pos_y = 0) :
         """
         Le robot instancie ses deux roues de la meme taille et de meme vitesse maximal
         """
@@ -12,7 +13,7 @@ class Robot :
         self.roue_gauche = Roue(rayonRouesCm, vMaxTourParSec)
         self.roue_droite = Roue(rayonRouesCm, vMaxTourParSec)
         self.r=r
-        self.capteurDistance = capteurDistance
+        self.capteurDistance = Capteur_de_distance(capteur,capteur)
         self.angle = angle
         self.rayonDuRobotCm = rayonDuRobotCm 
         self.pos_x = pos_x
@@ -77,14 +78,35 @@ class Robot :
             print("le robot tourne à droite")
 
 
-    def accelerer(vitesseVoule):
+    def accelerer(self,vitesseVoule):
         """
+        Permet d'accélérer le robot jusqu'à la vitesse voulue
+        :vitesseVoule: la vitesse voulue en km/h
         """
-        vitesseRoueGauche = self.roue_gauche.vTourParSec * 60 * self.roue_gauche.taille_cm *(10**(-2))*(3/25)
-        vitesseRoueDroite = self.roue_droite.vTourParSec * 60 * self.roue_droite.taille_cm *(10**(-2))*(3/25)
-        while(vitesseRoueGauche < vitesseVoule & vitesseRoueDroite < vitesseVoule):
-            self.roue_gauche.setVitesse(vitesseRoueGauche+0.05)
-            self.roue_gauche.setVitesse(vitesseRoueDroite+0.05)
+        assert(self.roue_gauche.vTourParSec!=self.roue_gauche.vTourParSec)
+        vitesse_actuelle=(36*np.pi*self.roue_gauche.taille_cm)/(5*self.roue_gauche.vTourParSec)
+        while(vitesse_actuelle < vitesseVoule):
+                self.roue_gauche.setVitesse(vitesse_actuelle+0.1)
+                self.roue_gauche.setVitesse(vitesse_actuelle+0.1)
+                vitesse_actuelle=(36*np.pi*self.roue_gauche.taille_cm)/(5*self.roue_gauche.vTourParSec
+    
+    def decelerer(self,vitesseVoule):
+        """
+        Permet de décélérer le robot
+        :vitesseVoule: la vitesse à laquelle on veut que le robot ralentisse
+        """
+        assert(self.roue_gauche.vTourParSec!=self.roue_gauche.vTourParSec)
+        vitesse_actuelle=(36*np.pi*self.roue_gauche.taille_cm)/(5*self.roue_gauche.vTourParSec)
+        while(vitesse_actuelle > vitesseVoule):
+            self.roue_gauche.setVitesse(vitesse_actuelle-0.1)
+            self.roue_gauche.setVitesse(vitesse_actuelle-0.1)
+            vitesse_actuelle=(36*np.pi*self.roue_gauche.taille_cm)/(5*self.roue_gauche.vTourParSec)
+
+    def arreter(self):
+        """
+        Permet d'arrêter le robot
+        """
+        self.decelerer(0)
 
     
     def conversion_polaire_vers_cartesienne(self):
@@ -94,6 +116,15 @@ class Robot :
         self.pos_x = self.r * np.cos(self.angle)
         self.pos_y = self.r * np.sin(self.angle)
         return self.pos_x, self.pos_y
+    
+    def conversion_cartesienne_vers_polaire(self):
+        """
+        Fait la conversion de donnée cartesienne en donnees polaire
+        """
+        self.r = np.sqrt(self.pos_x**2 + self.pos_y**2)
+        self.angle= np.arctan(self.pos_y/self.pos_x)
+        return self.r, self.angle
+        
 
     def nouvelle_position(self, vitesse_er, vitesse_et,orientation, duree):
         """
@@ -106,9 +137,15 @@ class Robot :
         self.angle+=vitesse_et*duree/self.r
         print("Le robot a avancé et est maintenant à la position : x=",self.conversion_polaire_vers_cartesienne()[0]," y=",self.conversion_polaire_vers_cartesienne()[1])
     
-    def evite_obstacles(self,capteurDistance,monde):
-        if(self.pos_x == (monde.mur_x ==0) |self.pos_y == (monde.mur_y == 0) ):
-            self.arrete_urgence()
+
+    def evite_obstacles(self,capteur,Obstacle):
+        #if(self.pos_x == monde.mur_x |self.pos_y == monde.mur_y ) à modifier, comment peut on faire pour éviter la borne x,y? np.array? 
+        #self.arrete_urgence
+        bool=True
+        while(bool):
+            val=np.random.randint(-360,360)
+            if(self.capteurDistance.distance(self,Obstacle) < 10):
+                self.tourner(val,1)
             
     
     def __str__ (self) :

@@ -13,7 +13,10 @@ class Simulation :
         #self.obs1 = Obstacle(6,2,2)
         self.obs2 = Obstacle(3,4,7,6)
 
-    
+    def simulationsansInterface(self):
+        while(True):
+            
+            
 
     
 

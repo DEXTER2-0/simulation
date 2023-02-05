@@ -37,4 +37,7 @@ class Roue :
 		return self.vTourParSec
 
 	def getvitessetourparsec(self) :
+		"""
+		Permet de récupérer la vitesse de rotation de la roue
+		"""
 		return self.vTourParSec
