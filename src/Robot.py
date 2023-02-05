@@ -83,7 +83,7 @@ class Robot :
         Permet d'accélérer le robot jusqu'à la vitesse voulue
         :vitesseVoule: la vitesse voulue en km/h
         """
-	assert(self.roue_gauche.vTourParSec==self.roue_gauche.vTourParSec)
+	assert(self.roue_gauche.vTourParSec!=self.roue_gauche.vTourParSec)
 	vitesse_actuelle=(36*np.pi*self.roue_gauche.taille_cm)/(5*self.roue_gauche.vTourParSec)
         while(vitesse_actuelle < vitesseVoule):
             self.roue_gauche.setVitesse(vitesse_actuelle+0.1)
@@ -95,10 +95,12 @@ class Robot :
         Permet de décélérer le robot
         :vitesseVoule: la vitesse à laquelle on veut que le robot ralentisse
         """
-        while(vitesseRoueGauche > vitesseVoule & vitesseRoueDroite > vitesseVoule):
+	assert(self.roue_gauche.vTourParSec!=self.roue_gauche.vTourParSec)
+	vitesse_actuelle=(36*np.pi*self.roue_gauche.taille_cm)/(5*self.roue_gauche.vTourParSec)
+        while(vitesse_actuelle > vitesseVoule):
             self.roue_gauche.setVitesse(vitesse_actuelle-0.1)
             self.roue_gauche.setVitesse(vitesse_actuelle-0.1)
-	    vitesse_actuelle=
+	    vitesse_actuelle=(36*np.pi*self.roue_gauche.taille_cm)/(5*self.roue_gauche.vTourParSec)
 
     def arreter(self):
         """
