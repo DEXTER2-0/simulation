@@ -106,9 +106,9 @@ class Robot :
         self.angle+=vitesse_et*duree/self.r
         print("Le robot a avancé et est maintenant à la position : x=",self.conversion_polaire_vers_cartesienne()[0]," y=",self.conversion_polaire_vers_cartesienne()[1])
     
-    #def evite_obstacles(self,capteurDistance,monde):
-        #if(self.pos_x == monde.mur_x |self.pos_y == monde.mur_y ) à modifier, comment peut on faire pour éviter la borne x,y? np.array? 
-        #self.arrete_urgence
+    def evite_obstacles(self,capteurDistance,monde):
+        if(self.pos_x == (monde.mur_x ==0) |self.pos_y == (monde.mur_y == 0) ):
+            self.arrete_urgence()
             
     
     def __str__ (self) :
