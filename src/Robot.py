@@ -101,7 +101,7 @@ class Robot :
         """
         self.r = np.sqrt(self.pos_x**2 + self.pos_y**2)
         self.angle= np.arctan(self.pos_y/self.pos_x)
-        
+        return self.r, self.angle
         
 
     def nouvelle_position(self, vitesse_er, vitesse_et,orientation, duree):
