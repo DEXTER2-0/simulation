@@ -18,6 +18,7 @@ class Robot :
         self.rayonDuRobotCm = rayonDuRobotCm 
         self.pos_x = pos_x
         self.pos_y = pos_y
+	
     def est_entrain_de_rouler(self) :
         """
         Fonction permet de savoir si le robot est entrain de rouler
@@ -36,7 +37,6 @@ class Robot :
         vitesseVoulue_kmh=np.sqrt(vitesseVoulue_kmh_er**2+vitesseVoulue_kmh_et**2)
         assert(vitesseVoulue_kmh > 0)
         assert(self.roue_droite.vMaxTourParSec == self.roue_gauche.vMaxTourParSec) # Permet de vérifier si les deux roues ont la même vitesse maximale     
-        print("le robot avance à la vitesse ",(self.roue_droite.setVitesse(vitesseVoulue_kmh)),"km/h")
         self.roue_gauche.setVitesse(vitesseVoulue_kmh)
 
     
