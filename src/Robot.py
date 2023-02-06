@@ -46,7 +46,7 @@ class Robot :
         en vérifiant si les deux roues ont la même vitesse maximale et si la vitesse est supérieur à 0
         :vitesseVouluekm: la vitesse en km/h que l'on souhaite modifier pour les deux roues de robot
         """
-        assert(vitesseVoulue_kmh > 0)
+        assert(vitesseVoulue_kmh < 0)
         assert(self.roue_droite.vMaxTourParSec == self.roue_gauche.vMaxTourParSec) 
         print("le robot recule à la vitesse ",(self.roue_droite.setVitesse(vitesseVoulue_kmh)),"km/h")
         self.roue_gauche.setVitesse(vitesseVoulue_kmh)
