@@ -119,7 +119,6 @@ class Robot :
         self.angle= np.arctan(self.pos_y/self.pos_x)
         return self.r, self.angle
         
-
     def nouvelle_position(self, vitesse_er, vitesse_et,orientation, duree):
         """
         Renvoie la distance parcourue (m), pour une vitesse (km)
@@ -128,9 +127,7 @@ class Robot :
         Diminue la distance sinon
         """
         self.r+=vitesse_er*duree
-        self.angle+=vitesse_et*duree/self.r
-        print("Le robot a avancé et est maintenant à la position : x=",self.conversion_polaire_vers_cartesienne()[0]," y=",self.conversion_polaire_vers_cartesienne()[1])
-    
+        self.angle+=vitesse_et*duree/self.r    
 
     def evite_obstacles(self,capteur,Obstacle):
         #if(self.pos_x == monde.mur_x |self.pos_y == monde.mur_y ) à modifier, comment peut on faire pour éviter la borne x,y? np.array? 
@@ -141,7 +138,6 @@ class Robot :
             if(self.capteurDistance.distance(self,Obstacle) < 10):
                 self.tourner(val,1)
             
-    
     def __str__ (self) :
         """
         Equivalent methode toString(Java)
@@ -154,5 +150,3 @@ class Robot :
         else :
             res += " est à l'arret"
         return res
-
-
