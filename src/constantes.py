@@ -1,0 +1,3 @@
+RAYON_DES_ROUES=3 #en cm
+VITESSE_MAX_TOUR_PAR_SEC=5 #en km/h
+RAYON_ROBOT_CM=8 #en cm
