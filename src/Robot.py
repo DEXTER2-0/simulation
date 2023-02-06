@@ -39,7 +39,6 @@ class Robot :
         assert(self.roue_droite.vMaxTourParSec == self.roue_gauche.vMaxTourParSec) # Permet de vérifier si les deux roues ont la même vitesse maximale     
         self.roue_gauche.setVitesse(vitesseVoulue_kmh)
 
-    
     def reculer(self,vitesseVoulue_kmh) :
         """
         Fonction permet le robot à reculer avec la vitesse passée en paramètre  
@@ -48,7 +47,6 @@ class Robot :
         """
         assert(vitesseVoulue_kmh < 0)
         assert(self.roue_droite.vMaxTourParSec == self.roue_gauche.vMaxTourParSec) 
-        print("le robot recule à la vitesse ",(self.roue_droite.setVitesse(vitesseVoulue_kmh)),"km/h")
         self.roue_gauche.setVitesse(vitesseVoulue_kmh)
                        
     def arreter_urgence(self):
