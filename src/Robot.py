@@ -55,7 +55,6 @@ class Robot :
         """
         self.roue_gauche.setVitesse(0)
         self.roue_droite.setVitesse(0)
-        print("Le robot est à l'arret")
 
     def tourner(self,angleEnRad,tempsDonneEnSec):
         """
