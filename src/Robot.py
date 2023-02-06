@@ -68,12 +68,9 @@ class Robot :
         if(angleEnRad<0):
             self.roue_droite.setVitesse(vitessekmh)
             self.roue_gauche.setVitesse(0)
-            print("le robot tourne à gauche")
         if(angleEnRad>0):
             self.roue_droite.setVitesse(0)
             self.roue_gauche.setVitesse(vitessekmh)
-            print("le robot tourne à droite")
-
 
     def accelerer(self,vitesseVoule):
         """
