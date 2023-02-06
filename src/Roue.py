@@ -12,7 +12,6 @@ class Roue :
 		Permet de redéfinir la methode print(monInstance)
 		""" 
 		res = "Roue de taille " + str(self.taille_cm) + " cm"
-		
 		if self.vTourParSec == 0: # Si la roue est à l'arret
 			res += " est à l'arret" 
 
@@ -26,14 +25,10 @@ class Roue :
 		N=(5*v)/(36*pi*rayon_en_metre)
 		"""
 		vVoulueTourParSec= (5*vitesseVoulue_kmh)/(36*pi*self.taille_cm*0.01)
-
 		if (vVoulueTourParSec<=self.vMaxTourParSec):# Si la vitesse est possible pour la roue 
 			self.vTourParSec=vVoulueTourParSec
-
 		else : # Si la vitesse voulue est plus grande que la vitesse maximale possible
 			self.vTourParSec=self.vMaxTourParSec
-			print("La vitesse voulue est trop grande, les roues tournent à leur vitesse maximale")
-
 		return self.vTourParSec
 
 	def getvitessetourparsec(self) :
