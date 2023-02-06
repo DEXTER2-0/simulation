@@ -14,9 +14,13 @@ class Simulation :
         self.obs2 = Obstacle(3,4,7,6)
 
     def simulationsansInterface(self):
-        while(True):
-            
-            
+        i=0
+        t=
+        while(i<=t):
+            #faire avancer le robot
+            #methode d'evitement
+            i+=0.1
+            sleep(0.5)
 
     
 
