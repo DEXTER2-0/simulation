@@ -89,13 +89,10 @@ class Robot :
 			self.roue_gauche.setVitesse(vitessekmh)
 		print("le robot tourne vers la droite d'un angle de : " ,angleEnRad)
 
-
-
-
 	def accelerer(self,vitesseVoule):
 		"""
-		Permet d'accélérer le robot jusqu'à la vitesse voulue
-		:vitesseVoule: la vitesse voulue en km/h
+		Fonction prenant en paramètre la vitesse à atteindre en km/h
+		puis transmets des vitesses aux roues par pas de 0,1 km/h tant que la vitesse voulue n'est pas atteinte
 		"""
 		assert(self.roue_gauche.vTourParSec!=self.roue_gauche.vTourParSec)
 		vitesse_actuelle=(36*np.pi*self.roue_gauche.taille_cm)/(5*self.roue_gauche.vTourParSec)
