@@ -1,15 +1,14 @@
+#!/usr/bin/python
+# -*- coding: latin-1 -*-
 from Robot import * # Permet d'utiliser la classe Robot se trouvant dans le meme repertoire
 from Roue import * # Permet d'utiliser la classe Roue se trouvant dans le meme repertoire
-
-
+import constantes as cs
 
 # Initialisation des constantes du robot
-RAYON_DES_ROUES_CM = 3
-VITESSE_MAX_TOUR_PAR_SEC = 5
-RAYON_ROBOT_CM = 8
+
 
 # instanciation d'un robot, prenant en parametre les deux roue créer précédemment
-robot = Robot(RAYON_DES_ROUES_CM, VITESSE_MAX_TOUR_PAR_SEC, RAYON_ROBOT_CM)
+robot = Robot(cs.RAYON_DES_ROUES_CM, cs.VITESSE_MAX_TOUR_PAR_SEC, cs.RAYON_ROBOT_CM)
 print("instanciation d'un robot, avec une vitesse max des deux roues à ",robot.roue_droite.vMaxTourParSec , "km/h :")
 
 
