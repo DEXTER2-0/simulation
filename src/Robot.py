@@ -48,7 +48,7 @@ class Robot :
 		vitesseVoulue_kmh=np.sqrt(vitesseVoulue_kmh_er**2+vitesseVoulue_kmh_et**2)
 		self.roue_gauche.setVitesse(vitesseVoulue_kmh)
 		self.roue_droite.setVitesse(vitesseVoulue_kmh)
-		print("le robot avance à une vitesse " , vitesseVoulue_Kmh)
+		#print("le robot avance à une vitesse " , vitesseVoulue_Kmh)
 		assert(vitesseVoulue_kmh_er > 0)
 		assert(vitesseVoulue_kmh_et > 0)
 		self.vitesse_er=vitesseVoulue_er
