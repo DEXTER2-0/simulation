@@ -13,10 +13,8 @@ DISTANCE_ROUE_CENTRE_CM = 100 # ----->  l
 robot = Robot(RAYON_DES_ROUES_CM, RAYON_ROBOT_CM, VITESSE_MAX_TOUR_PAR_SEC)
 
 
-
-
 while True :
 	robot.tourner2(3.14,0)
 	robot.nouvelle_position2(1)
-	time.sleep(5)
+	time.sleep(1)
 	print(robot)
