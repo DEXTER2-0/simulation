@@ -33,6 +33,7 @@ robot.accelerer(5)
 
 robot.decelerer(4)
 
+print("la distance entre le robot et l'obstacle est de : " ,robot.capteurDistance.distance(robot,obstacle))
 #robot.arreter()
 
 #print("les coordonnées polaires du robot : ", robot.conversion_cartesienne_vers_polaire())
