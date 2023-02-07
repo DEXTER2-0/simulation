@@ -1,3 +1,5 @@
+#!/usr/bin/python
+# -*- coding: latin-1 -*-
 from Roue import * # Permet d'utiliser la classe Roue se trouvant dans le meme repertoire
 from Capteur_de_distance import * # Permet d'utiliser la classe Capteur_de_distance se trouvant dans le meme repertoire
 import math
@@ -13,7 +15,7 @@ class Robot :
         self.roue_gauche = Roue(rayonRouesCm, vMaxTourParSec)
         self.roue_droite = Roue(rayonRouesCm, vMaxTourParSec)
         self.r=r
-        self.capteurDistance = Capteur_de_distance(capteur,capteur)
+        self.capteurDistance = Capteur_de_distance(capteur)
         self.angle = angle
         self.rayonDuRobotCm = rayonDuRobotCm 
         self.pos_x = pos_x
@@ -30,17 +32,22 @@ class Robot :
 
     def avancer(self,vitesseVoulue_kmh_er,vitesseVoulue_kmh_et) :
         """
-        Fonction permet le robot à reculer avec la vitesse passée en paramètre  
+        Fonction permet au robot d'avancer à une vitesse passée en paramètre  
         en vérifiant si les deux roues ont la même vitesse maximale et si la vitesse est supérieur à 0
         :vitesseVouluekm: la vitesse en km/h que l'on souhaite modifier pour les deux roues de robot
         """
 	assert(vitesseVoulue_kmh_er > 0)
 	assert(vitesseVoulue_kmh_et > 0)
-	self.vitesse_er=vitesseVoulue_er
-	self.vitesse_et=vitesseVoulue_et
+#	self.vitesse_er=vitesseVoulue_er
+#	self.vitesse_et=vitesseVoulue_et
         vitesseVoulue_kmh=np.sqrt(vitesseVoulue_kmh_er**2+vitesseVoulue_kmh_et**2)     
         self.roue_gauche.setVitesse(vitesseVoulue_kmh)
 	self.roue_droite.setVitesse(vitesseVoulue_kmh)
+	printf("le robot avance à une vitesse " , vitesseVoulue_Kmh)
+
+
+
+
 
     def reculer(self,vitesseVoulue_kmh_er,vitesseVoulue_kmh_et) :
         """
@@ -54,13 +61,15 @@ class Robot :
 	self.vitesse_et=vitesseVoulue_et
         vitesseVoulue_kmh=-(np.sqrt(vitesseVoulue_kmh_er**2+vitesseVoulue_kmh_et**2)) 
 	self.accelerer(vitesseVoulue_kmh)
-                       
+        printf("le robot recule à une vitesse de ",-vitesseVoulue_Kmh)
+
     def arreter_urgence(self):
         """
         Arrete les roues en urgence
         """
         self.roue_gauche.setVitesse(0)
         self.roue_droite.setVitesse(0)
+	printf("le robot est en arret")
 
     def tourner(self,angleEnRad,tempsDonneEnSec):
         """
@@ -74,9 +83,14 @@ class Robot :
         if(angleEnRad<0):
             self.roue_droite.setVitesse(vitessekmh)
             self.roue_gauche.setVitesse(0)
+	    printf("le robot tourne vers la gauche d'un angle de : ", angleEnRad)
         if(angleEnRad>0):
             self.roue_droite.setVitesse(0)
             self.roue_gauche.setVitesse(vitessekmh)
+	    printf("le robot tourne vers la droite d'un angle de : " ,angleEnRad)
+	
+
+
 
     def accelerer(self,vitesseVoule):
         """
@@ -89,6 +103,9 @@ class Robot :
                 self.roue_gauche.setVitesse(vitesse_actuelle+0.1)
                 self.roue_gauche.setVitesse(vitesse_actuelle+0.1)
                 vitesse_actuelle=(36*np.pi*self.roue_gauche.taille_cm)/(5*self.roue_gauche.vTourParSec)
+	
+	printf("le robot roule à la vitesse voulue apres acceleration :  " , vitesse_actuelle)
+
     
     def decelerer(self,vitesseVoule):
         """
@@ -101,29 +118,32 @@ class Robot :
             self.roue_gauche.setVitesse(vitesse_actuelle-0.1)
             self.roue_gauche.setVitesse(vitesse_actuelle-0.1)
             vitesse_actuelle=(36*np.pi*self.roue_gauche.taille_cm)/(5*self.roue_gauche.vTourParSec)
+	
+	printf("le robot roule à la vitesse voulue apres deceleration : ", vitesse_actuelle)
 
     def arreter(self):
         """
         Permet d'arrêter le robot
         """
         self.decelerer(0)
+	printf("le robot s'arrete")
 
     
     def conversion_polaire_vers_cartesienne(self):
         """
 		Fait la conversion de donnée polaire en donnees cartesienne
         """
-        self.pos_x = self.r * np.cos(self.angle)
-        self.pos_y = self.r * np.sin(self.angle)
-        return self.pos_x, self.pos_y
+        pos_x = self.r * np.cos(self.angle)
+        pos_y = self.r * np.sin(self.angle)
+        return pos_x, pos_y
     
     def conversion_cartesienne_vers_polaire(self):
         """
         Fait la conversion de donnée cartesienne en donnees polaire
         """
-        self.r = np.sqrt(self.pos_x**2 + self.pos_y**2)
-        self.angle= np.arctan(self.pos_y/self.pos_x)
-        return self.r, self.angle
+        r = np.sqrt(self.pos_x**2 + self.pos_y**2)
+        angle= np.arctan(self.pos_y/self.pos_x)
+        return r, angle
         
     def nouvelle_position(self,duree):
         """
@@ -139,6 +159,10 @@ class Robot :
         val=np.pi/2
         if(self.capteurDistance.distance(self,Obstacle) < 10):
 		self.tourner(val,1)
+		printf("le robot a évité l'obstacle")
+	else :
+		printf("pas de danger , no worries")
+	
             
     def __str__ (self) :
         """
@@ -152,3 +176,6 @@ class Robot :
         else :
             res += " est à l'arret"
         return res
+
+
+

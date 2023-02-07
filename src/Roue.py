@@ -1,3 +1,5 @@
+#!/usr/bin/python
+# -*- coding: latin-1 -*-
 from math import pi
 
 class Roue :
@@ -24,10 +26,14 @@ class Roue :
 		Formule de conversion de la vitesse v en km/h en vitesse de rotation n en tr/s :
 		N=(5*v)/(36*pi*rayon_en_metre)
 		"""
+		print("la vitesse de la roue était de:  ",self.vTourParSec)
 		vVoulueTourParSec= (5*vitesseVoulue_kmh)/(36*pi*self.taille_cm*0.01)
 		if (vVoulueTourParSec<=self.vMaxTourParSec):# Si la vitesse est possible pour la roue 
 			self.vTourParSec=vVoulueTourParSec
+
 		else : # Si la vitesse voulue est plus grande que la vitesse maximale possible
 			self.vTourParSec=self.vMaxTourParSec
+		print("la nouvelle vitesse de la roue est de:  ",self.vTourParSec)
+
 		return self.vTourParSec
 	
