@@ -52,9 +52,8 @@ class Robot :
 	assert(vitesseVoulue_kmh_et < 0)
         self.vitesse_er=vitesseVoulue_er
 	self.vitesse_et=vitesseVoulue_et
-        vitesseVoulue_kmh=-(np.sqrt(vitesseVoulue_kmh_er**2+vitesseVoulue_kmh_et**2))  
-        self.roue_gauche.setVitesse(vitesseVoulue_kmh)
-        self.roue_droite.setVitesse(vitesseVoulue_kmh)
+        vitesseVoulue_kmh=-(np.sqrt(vitesseVoulue_kmh_er**2+vitesseVoulue_kmh_et**2)) 
+	self.accelerer(vitesseVoulue_kmh)
                        
     def arreter_urgence(self):
         """
@@ -86,7 +85,7 @@ class Robot :
         """
         assert(self.roue_gauche.vTourParSec!=self.roue_gauche.vTourParSec)
         vitesse_actuelle=(36*np.pi*self.roue_gauche.taille_cm)/(5*self.roue_gauche.vTourParSec)
-        while(vitesse_actuelle < vitesseVoule):
+        while(vitesse_actuelle <= vitesseVoule):
                 self.roue_gauche.setVitesse(vitesse_actuelle+0.1)
                 self.roue_gauche.setVitesse(vitesse_actuelle+0.1)
                 vitesse_actuelle=(36*np.pi*self.roue_gauche.taille_cm)/(5*self.roue_gauche.vTourParSec)
@@ -98,7 +97,7 @@ class Robot :
         """
         assert(self.roue_gauche.vTourParSec!=self.roue_gauche.vTourParSec)
         vitesse_actuelle=(36*np.pi*self.roue_gauche.taille_cm)/(5*self.roue_gauche.vTourParSec)
-        while(vitesse_actuelle > vitesseVoule):
+        while(vitesse_actuelle >= vitesseVoule):
             self.roue_gauche.setVitesse(vitesse_actuelle-0.1)
             self.roue_gauche.setVitesse(vitesse_actuelle-0.1)
             vitesse_actuelle=(36*np.pi*self.roue_gauche.taille_cm)/(5*self.roue_gauche.vTourParSec)
