@@ -112,7 +112,7 @@ class Robot :
 				self.roue_gauche.setVitesse(vitesse_actuelle+0.1)
 				vitesse_actuelle=(36*np.pi*self.roue_gauche.taille_cm)/(5*self.roue_gauche.vTourParSec)
 
-	print("le robot roule à la vitesse voulue apres acceleration :  " , vitesse_actuelle)
+		print("le robot roule à la vitesse voulue apres acceleration :  " , vitesse_actuelle)
 
 
 	def decelerer(self,vitesseVoule):
@@ -166,10 +166,10 @@ class Robot :
 	def evite_obstacles(self,Obstacle):
 		val=np.pi/2
 		if(self.capteurDistance.distance(self,Obstacle) < 10):
-		self.tourner(val,1)
-		print("le robot a évité l'obstacle")
-	else :
-		print("pas de danger , no worries")
+			self.tourner(val,1)
+			print("le robot a évité l'obstacle")
+		else :
+			print("pas de danger , no worries")
 
 
 	def __str__ (self) :
