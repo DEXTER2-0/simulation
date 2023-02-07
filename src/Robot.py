@@ -28,7 +28,7 @@ class Robot :
 		"""
 		Fonction testant la vitesse des roues afin de retourner un booléen corresponsant à si le robot roule ou non
 		"""
-		if self.roue_droite.getvitessetourparsec()==0 and self.roue_gauche.getvitessetourparsec()==0 :
+		if self.roue_droite.vTourParSec==0 and self.roue_gauche.vTourParSec==0 :
 			return False
 		else :
 			return True
