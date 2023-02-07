@@ -30,9 +30,4 @@ class Roue :
 		else : # Si la vitesse voulue est plus grande que la vitesse maximale possible
 			self.vTourParSec=self.vMaxTourParSec
 		return self.vTourParSec
-
-	def getvitessetourparsec(self) :
-		"""
-		Permet de récupérer la vitesse de rotation de la roue
-		"""
-		return self.vTourParSec
+	
