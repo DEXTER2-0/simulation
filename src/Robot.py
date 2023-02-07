@@ -94,7 +94,7 @@ class Robot :
 		Fonction prenant en paramètre la vitesse à atteindre en km/h
 		puis transmets des vitesses aux roues par pas de 0,1 km/h tant que la vitesse voulue n'est pas atteinte
 		"""
-		assert(self.roue_gauche.vTourParSec==self.roue_gauche.vTourParSec)
+		assert(self.roue_gauche.vTourParSec!=self.roue_gauche.vTourParSec)
 		vitesse_actuelle=(36*np.pi*self.roue_gauche.taille_cm)/(5*self.roue_gauche.vTourParSec)
 		while(vitesse_actuelle <= vitesseVoule):
 				self.roue_gauche.setVitesse(vitesse_actuelle+0.1)
@@ -126,7 +126,8 @@ class Robot :
 
 	def conversion_polaire_vers_cartesienne(self):
 		"""
-		Fait la conversion de donnée polaire en donnees cartesienne
+		Fonction faisant la conversion des coordonnées polaires en coordonées cartésiennes
+		formules utilisés : x=r*cos(theta) et y=r*sin(theta)
 		"""
 		pos_x = self.r * np.cos(self.angle)
 		pos_y = self.r * np.sin(self.angle)
@@ -134,7 +135,8 @@ class Robot :
 
 	def conversion_cartesienne_vers_polaire(self):
 		"""
-		Fait la conversion de donnée cartesienne en donnees polaire
+		Fonction faisant la conversion des coordonnées cartésiennes en coordonées polaires
+		formules utilisés : r=(x²+y²)^(1/2) et theta=arctan(y/x)
 		"""
 		r = np.sqrt(self.pos_x**2 + self.pos_y**2)
 		angle= np.arctan(self.pos_y/self.pos_x)
