@@ -5,6 +5,7 @@ from math import *
 
 
 
+robot = Robot(RAYON_DES_ROUES_CM, RAYON_ROBOT_CM, VITESSE_MAX_TOUR_PAR_SEC)
 
 
 
