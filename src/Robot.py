@@ -127,7 +127,7 @@ class Robot :
 	def conversion_polaire_vers_cartesienne(self):
 		"""
 		Fonction faisant la conversion des coordonnées polaires en coordonées cartésiennes
-		formules utilisés : x=r*cos(theta) et y=r*sin(theta)
+		formules utilisées : x=r*cos(theta) et y=r*sin(theta)
 		"""
 		pos_x = self.r * np.cos(self.angle)
 		pos_y = self.r * np.sin(self.angle)
@@ -136,7 +136,7 @@ class Robot :
 	def conversion_cartesienne_vers_polaire(self):
 		"""
 		Fonction faisant la conversion des coordonnées cartésiennes en coordonées polaires
-		formules utilisés : r=(x²+y²)^(1/2) et theta=arctan(y/x)
+		formules utilisées : r=(x²+y²)^(1/2) et theta=arctan(y/x)
 		"""
 		r = np.sqrt(self.pos_x**2 + self.pos_y**2)
 		angle= np.arctan(self.pos_y/self.pos_x)
@@ -144,10 +144,9 @@ class Robot :
 
 	def nouvelle_position(self,duree):
 		"""
-		Renvoie la distance parcourue (m), pour une vitesse (km)
-		et une durée (s)
-		Augmente la distance si vitesse est supérieur a zero
-		Diminue la distance sinon
+		Fonction prenant en paramètre la durée en s depuis le calcul de la dernière position
+		puis calcul le nouveau r et le nouvel angle
+		formules utilisées : r+=vitesse projetée sur l'axe er*t et theta+=vitesse projetée sur l'axe et*t/r
 		"""
 		self.r+=self.vitesse_er*duree
 		self.angle+=self.vitesse_et*duree/self.r
