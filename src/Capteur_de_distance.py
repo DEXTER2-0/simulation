@@ -1,8 +1,7 @@
 from math import pi,sqrt
 class Capteur_de_distance :
-    def __init__(self, distanceCaptable,distanceObstacle) :
+    def __init__(self, distanceCaptable) :
        self.distanceCaptable=distanceCaptable
-       self.distanceObstacle=distanceObstacle
     
     def distance(self,robot,obstacle):
         """
