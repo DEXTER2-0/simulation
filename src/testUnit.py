@@ -1,3 +1,5 @@
+#!/usr/bin/python
+# -*- coding: latin-1 -*-
 from Roue import * # Permet d'utiliser la classe Roue se trouvant dans le meme repertoire
 from Robot import *
 from Capteur_de_distance import * # Permet d'utiliser la classe Capteur_de_distance se trouvant dans le meme repertoire
@@ -10,7 +12,7 @@ roue.setVitesse(20)
 
 robot = Robot(5,20,10,50)
 
-printf("l'état du robot : " , robot.est_entrain_de_rouler())
+print("l'état du robot : " , robot.est_entrain_de_rouler())
 
 robot.avancer(0.4,0.5)
 robot.reculer(0.4,0.5)
