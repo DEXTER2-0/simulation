@@ -103,7 +103,6 @@ class Robot :
 
 		print("le robot roule à la vitesse voulue apres acceleration :  " , vitesse_actuelle)
 
-
 	def decelerer(self,vitesseVoule):
 		"""
 		Fonction prenant en paramètre la vitesse à atteindre en km/h
@@ -120,11 +119,10 @@ class Robot :
 
 	def arreter(self):
 		"""
-		Permet d'arrêter le robot
+		Fonction arretant le robot par décélération jusqu'à l'arrêt
 		"""
 		self.decelerer(0)
 	print("le robot s'arrete")
-
 
 	def conversion_polaire_vers_cartesienne(self):
 		"""
