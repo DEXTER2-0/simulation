@@ -59,7 +59,7 @@ class Robot :
 		self.vitesse_et=vitesseVoulue_kmh_et
 		vitesseVoulue_kmh=-(np.sqrt(vitesseVoulue_kmh_er**2+vitesseVoulue_kmh_et**2))
 		self.accelerer(vitesseVoulue_kmh)
-		print("le robot recule à une vitesse de ",-vitesseVoulue_Kmh)
+		print("le robot recule à une vitesse de ",vitesseVoulue_Kmh)
 
 
 	def arreter_urgence(self):
@@ -72,9 +72,10 @@ class Robot :
 
 	def tourner(self,angleEnRad,tempsDonneEnSec):
 		"""
-		Modifier la vitesse des deux roues à 0 kh/m puis calculer la vitesse en km/h afin de faire tourner le robot
-		:tempsDonne: le robot tourne en un certain temps en seconde.
-		:angleEnRad: Si l'angle est positive alors le robot tourne à droite, on tourne à la gauche sinon.
+		Fonction prenant en paramètre l'angle en rad que le robot doit effectuer et le temps qu'il a pour faire cette rotation
+		commençant par arrêter le robot puis calculant la vitesse angulaire et la vitesse en km/h de cette rotation
+		avant de tester si l'angle est positif, dans ce cas la vitesse est transmise à la roue gauche pour tourner à droite, 
+		ou négatif, dans ce cas la vitesse est transmise à la roue droite pour tourner à gauche
 		"""
 		self.arreter_urgence()
 		vitesseAng = angleEnRad/tempsDonneEnSec
@@ -118,15 +119,7 @@ class Robot :
 			self.roue_gauche.setVitesse(vitesse_actuelle-0.1)
 			vitesse_actuelle=(36*np.pi*self.roue_gauche.taille_cm)/(5*self.roue_gauche.vTourParSec)
 
-<<<<<<< HEAD
-
-        	print("le robot roule à la vitesse voulue apres deceleration : ", vitesse_actuelle)
-
 		print("le robot roule à la vitesse voulue apres deceleration : ", vitesse_actuelle)
-
-=======
-		print("le robot roule à la vitesse voulue apres deceleration : ", vitesse_actuelle)
->>>>>>> 5d821f2566dc85edd5d23250c965a9bfe4771ce6
 
 	def arreter(self):
 		"""
