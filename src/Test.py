@@ -70,9 +70,9 @@ if __name__ == '__main__':
     root.mainloop()
 
 #____________________________________________________________________________________________________________________  #
-def __init__(self, master, robot,obstacle):
+def __init__(self, master, robot,lst_obstacle):
         self.robot = robot
-        self.obstacle = obstacle
+        self.lst_obstacle = lst_obstacle
 
         self.label = tk.Label(master, text=self.robot.nouvelle_position(10,20,10))
         self.label.pack()
@@ -83,7 +83,8 @@ def __init__(self, master, robot,obstacle):
 
         self.avancer_button = tk.Button(master, text="avancer", command=self.avancer)
         self.avancer_button.pack()
-        self.obstacle = self.canvas.create_oval(obstacle.x, obstacle.y, obstacle.rayon, obstacle.rayon, fill="blue")
+        for obstacle in lst_obstacle:
+            obstacle = self.canvas.create_oval(obstacle.x, obstacle.y, obstacle.rayon, obstacle.rayon, fill="blue")
         self.update_position()
 canvas = Canvas(fen, width = WIDTH, height = HEIGHT, bg = 'yellow')
 canvas.pack(fill="both", expand=True)
