@@ -7,7 +7,10 @@ import numpy as np
 class Robot :
 	def __init__ (self, rayonRouesCm,rayonDuRobotCm, capteur,vMaxTourParSec, r=0,angle = 0, pos_x = 0, pos_y = 0) :
 		"""
-		Le robot instancie ses deux roues de la meme taille et de meme vitesse maximal
+		Fonction d'initialisation prenant en paramètre le rayon des roues en cm, le rayon du robot en cm,
+		la distance maximale captable par le capteur de distance, la vitesse maximale possible pour les roues,
+		les coordonnées polaires et les coordonnées cartésiennes du robot
+		Cette fonction instancie deux roues de la même taille et de même vitesse maximale, ainsi qu'un capteur de position
 		"""
 		assert(rayonRouesCm > 0)# Ne peut pas avoir un rayon < 0
 		assert(vMaxTourParSec > 0) # Ne peut pavoir une vitesse max < 0
@@ -23,61 +26,49 @@ class Robot :
 
 	def est_entrain_de_rouler(self) :
 		"""
-		Fonction permet de savoir si le robot est entrain de rouler
+		Fonction testant la vitesse des roues afin de retourner un booléen corresponsant à si le robot roule ou non
 		"""
-		if self.roue_droite.getvitessetourparsec()==0 and self.roue_gauche.getvitessetourparsec()==0 :
+		if self.roue_droite.vTourParSec==0 and self.roue_gauche.vTourParSec==0 :
 			return False
 		else :
 			return True
 
 	def avancer(self,vitesseVoulue_kmh_er,vitesseVoulue_kmh_et) :
 		"""
-		Fonction permet au robot d'avancer à une vitesse passée en paramètre
-		en vérifiant si les deux roues ont la même vitesse maximale et si la vitesse est supérieur à 0
-		:vitesseVouluekm: la vitesse en km/h que l'on souhaite modifier pour les deux roues de robot
+		Fonction prenant en paramètre la vitesse voulue en km/h projetée sur l'axe er et la vitesse voulue en km/h projetée sur l'axe et
+		puis vérifiant que les vitesses permettent d'avancer (>0) afin de calculer la vitesse voulue en km/h
+		et de la transmettre aux roues
 		"""
-
 		assert(vitesseVoulue_kmh_er > 0)
 		assert(vitesseVoulue_kmh_et > 0)
-
-#	self.vitesse_er=vitesseVoulue_er
-#	self.vitesse_et=vitesseVoulue_et
+		self.vitesse_er=vitesseVoulue_kmh_er
+		self.vitesse_et=vitesseVoulue_kmh_et
 		vitesseVoulue_kmh=np.sqrt(vitesseVoulue_kmh_er**2+vitesseVoulue_kmh_et**2)
-		self.roue_gauche.setVitesse(vitesseVoulue_kmh)
-		self.roue_droite.setVitesse(vitesseVoulue_kmh)
+		self.accelerer(vitesseVoulue_kmh)
 		print("le robot avance à une vitesse " , vitesseVoulue_Kmh)
-		assert(vitesseVoulue_kmh_er > 0)
-		assert(vitesseVoulue_kmh_et > 0)
-		self.vitesse_er=vitesseVoulue_er
-		self.vitesse_et=vitesseVoulue_et
-		vitesseVoulue_kmh=np.sqrt(vitesseVoulue_kmh_er**2+vitesseVoulue_kmh_et**2)
-		self.roue_gauche.setVitesse(vitesseVoulue_kmh)
-		self.roue_droite.setVitesse(vitesseVoulue_kmh)
-
 
 	def reculer(self,vitesseVoulue_kmh_er,vitesseVoulue_kmh_et) :
 		"""
-		Fonction permet le robot à reculer avec la vitesse passée en paramètre
-		en vérifiant si les deux roues ont la même vitesse maximale et si la vitesse est supérieur à 0
-		:vitesseVouluekm: la vitesse en km/h que l'on souhaite modifier pour les deux roues de robot
+		Fonction prenant en paramètre la vitesse voulue en km/h projetée sur l'axe er et la vitesse voulue en km/h projetée sur l'axe et
+		puis vérifiant que les vitesses permettent d'avancer (<0) afin de calculer la vitesse voulue en km/h
+		et de la transmettre aux roues
 		"""
 		assert(vitesseVoulue_kmh_er < 0)
 		assert(vitesseVoulue_kmh_et < 0)
-		self.vitesse_er=vitesseVoulue_er
-		self.vitesse_et=vitesseVoulue_et
+		self.vitesse_er=vitesseVoulue_kmh_er
+		self.vitesse_et=vitesseVoulue_kmh_et
 		vitesseVoulue_kmh=-(np.sqrt(vitesseVoulue_kmh_er**2+vitesseVoulue_kmh_et**2))
 		self.accelerer(vitesseVoulue_kmh)
 		print("le robot recule à une vitesse de ",-vitesseVoulue_Kmh)
-		self.accelerer(vitesseVoulue_kmh)
 
 
 	def arreter_urgence(self):
 		"""
-		Arrete les roues en urgence
+		Fonction arretant le robot en mettant la vitesses des roues à 0 d'un coup
 		"""
 		self.roue_gauche.setVitesse(0)
 		self.roue_droite.setVitesse(0)
-	        print("le robot est en arret")
+	print("le robot est en arret")
 
 	def tourner(self,angleEnRad,tempsDonneEnSec):
 		"""
@@ -127,18 +118,22 @@ class Robot :
 			self.roue_gauche.setVitesse(vitesse_actuelle-0.1)
 			vitesse_actuelle=(36*np.pi*self.roue_gauche.taille_cm)/(5*self.roue_gauche.vTourParSec)
 
+<<<<<<< HEAD
 
         	print("le robot roule à la vitesse voulue apres deceleration : ", vitesse_actuelle)
 
 		print("le robot roule à la vitesse voulue apres deceleration : ", vitesse_actuelle)
 
+=======
+		print("le robot roule à la vitesse voulue apres deceleration : ", vitesse_actuelle)
+>>>>>>> 5d821f2566dc85edd5d23250c965a9bfe4771ce6
 
 	def arreter(self):
 		"""
 		Permet d'arrêter le robot
 		"""
 		self.decelerer(0)
-         	print("le robot s'arrete")
+	print("le robot s'arrete")
 
 
 	def conversion_polaire_vers_cartesienne(self):
