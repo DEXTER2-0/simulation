@@ -74,7 +74,7 @@ def deplacer():
     
     robot.avancer(20,20)
     robot.nouvelle_position(0.01)
-    robot.conversion_polaire_vers_cartesienne();
+    robot.conversion_polaire_vers_cartesienne()
     time.sleep(0.25)
 
 
