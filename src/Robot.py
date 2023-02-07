@@ -106,8 +106,8 @@ class Robot :
 
 	def decelerer(self,vitesseVoule):
 		"""
-		Permet de décélérer le robot
-		:vitesseVoule: la vitesse à laquelle on veut que le robot ralentisse
+		Fonction prenant en paramètre la vitesse à atteindre en km/h
+		puis transmets des vitesses aux roues par pas de 0,1 km/h tant que la vitesse voulue n'est pas atteinte
 		"""
 		assert(self.roue_gauche.vTourParSec!=self.roue_gauche.vTourParSec)
 		vitesse_actuelle=(36*np.pi*self.roue_gauche.taille_cm)/(5*self.roue_gauche.vTourParSec)
