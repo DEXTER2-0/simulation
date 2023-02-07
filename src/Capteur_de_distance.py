@@ -3,11 +3,15 @@
 from math import pi,sqrt
 class Capteur_de_distance :
     def __init__(self, distanceCaptable) :
+       """
+       Fonction d'initialisation prenant en paramètre la distance maximale captable possible
+       """
        self.distanceCaptable=distanceCaptable
     
     def distance(self,robot,obstacle):
         """
-        Fonction prenant en paramètre le robot et l'obstacle afin de calculer leur distance et la retourner.
+        Fonction prenant en paramètre le robot et l'obstacle afin de calculer leur distance 
+        (racine carré des carré des différences entre les positions selon x et selon y) et la retourner.
         """
         xr = robot.pos_x
         yr = robot.pos_y
