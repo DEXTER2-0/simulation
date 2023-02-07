@@ -59,7 +59,7 @@ class Robot :
 		self.vitesse_et=vitesseVoulue_kmh_et
 		vitesseVoulue_kmh=-(np.sqrt(vitesseVoulue_kmh_er**2+vitesseVoulue_kmh_et**2))
 		self.accelerer(vitesseVoulue_kmh)
-		print("le robot recule à une vitesse de ",-vitesseVoulue_Kmh)
+		print("le robot recule à une vitesse de ",vitesseVoulue_Kmh)
 
 
 	def arreter_urgence(self):
@@ -72,9 +72,10 @@ class Robot :
 
 	def tourner(self,angleEnRad,tempsDonneEnSec):
 		"""
-		Modifier la vitesse des deux roues à 0 kh/m puis calculer la vitesse en km/h afin de faire tourner le robot
-		:tempsDonne: le robot tourne en un certain temps en seconde.
-		:angleEnRad: Si l'angle est positive alors le robot tourne à droite, on tourne à la gauche sinon.
+		Fonction prenant en paramètre l'angle en rad que le robot doit effectuer et le temps qu'il a pour faire cette rotation
+		commençant par arrêter le robot puis calculant la vitesse angulaire et la vitesse en km/h de cette rotation
+		avant de tester si l'angle est positif, dans ce cas la vitesse est transmise à la roue gauche pour tourner à droite, 
+		ou négatif, dans ce cas la vitesse est transmise à la roue droite pour tourner à gauche
 		"""
 		self.arreter_urgence()
 		vitesseAng = angleEnRad/tempsDonneEnSec
@@ -88,13 +89,10 @@ class Robot :
 			self.roue_gauche.setVitesse(vitessekmh)
 		print("le robot tourne vers la droite d'un angle de : " ,angleEnRad)
 
-
-
-
 	def accelerer(self,vitesseVoule):
 		"""
-		Permet d'accélérer le robot jusqu'à la vitesse voulue
-		:vitesseVoule: la vitesse voulue en km/h
+		Fonction prenant en paramètre la vitesse à atteindre en km/h
+		puis transmets des vitesses aux roues par pas de 0,1 km/h tant que la vitesse voulue n'est pas atteinte
 		"""
 		assert(self.roue_gauche.vTourParSec!=self.roue_gauche.vTourParSec)
 		vitesse_actuelle=(36*np.pi*self.roue_gauche.taille_cm)/(5*self.roue_gauche.vTourParSec)
@@ -105,11 +103,10 @@ class Robot :
 
 		print("le robot roule à la vitesse voulue apres acceleration :  " , vitesse_actuelle)
 
-
 	def decelerer(self,vitesseVoule):
 		"""
-		Permet de décélérer le robot
-		:vitesseVoule: la vitesse à laquelle on veut que le robot ralentisse
+		Fonction prenant en paramètre la vitesse à atteindre en km/h
+		puis transmets des vitesses aux roues par pas de 0,1 km/h tant que la vitesse voulue n'est pas atteinte
 		"""
 		assert(self.roue_gauche.vTourParSec!=self.roue_gauche.vTourParSec)
 		vitesse_actuelle=(36*np.pi*self.roue_gauche.taille_cm)/(5*self.roue_gauche.vTourParSec)
@@ -118,6 +115,7 @@ class Robot :
 			self.roue_gauche.setVitesse(vitesse_actuelle-0.1)
 			vitesse_actuelle=(36*np.pi*self.roue_gauche.taille_cm)/(5*self.roue_gauche.vTourParSec)
 
+<<<<<<< HEAD
 
 
         	print("le robot roule à la vitesse voulue apres deceleration : ", vitesse_actuelle)
@@ -127,18 +125,21 @@ class Robot :
 
 		print("le robot roule à la vitesse voulue apres deceleration : ", vitesse_actuelle)
 
+=======
+		print("le robot roule à la vitesse voulue apres deceleration : ", vitesse_actuelle)
+>>>>>>> 2da09915528842fe34a12ba3889956d131da63bb
 
 	def arreter(self):
 		"""
-		Permet d'arrêter le robot
+		Fonction arretant le robot par décélération jusqu'à l'arrêt
 		"""
 		self.decelerer(0)
 	        print("le robot s'arrete")
 
-
 	def conversion_polaire_vers_cartesienne(self):
 		"""
-		Fait la conversion de donnée polaire en donnees cartesienne
+		Fonction faisant la conversion des coordonnées polaires en coordonées cartésiennes
+		formules utilisées : x=r*cos(theta) et y=r*sin(theta)
 		"""
 		pos_x = self.r * np.cos(self.angle)
 		pos_y = self.r * np.sin(self.angle)
@@ -146,7 +147,8 @@ class Robot :
 
 	def conversion_cartesienne_vers_polaire(self):
 		"""
-		Fait la conversion de donnée cartesienne en donnees polaire
+		Fonction faisant la conversion des coordonnées cartésiennes en coordonées polaires
+		formules utilisées : r=(x²+y²)^(1/2) et theta=arctan(y/x)
 		"""
 		r = np.sqrt(self.pos_x**2 + self.pos_y**2)
 		angle= np.arctan(self.pos_y/self.pos_x)
@@ -154,10 +156,9 @@ class Robot :
 
 	def nouvelle_position(self,duree):
 		"""
-		Renvoie la distance parcourue (m), pour une vitesse (km)
-		et une durée (s)
-		Augmente la distance si vitesse est supérieur a zero
-		Diminue la distance sinon
+		Fonction prenant en paramètre la durée en s depuis le calcul de la dernière position
+		puis calcul le nouveau r et le nouvel angle
+		formules utilisées : r+=vitesse projetée sur l'axe er*t et theta+=vitesse projetée sur l'axe et*t/r
 		"""
 		self.r+=self.vitesse_er*duree
 		self.angle+=self.vitesse_et*duree/self.r
@@ -173,8 +174,7 @@ class Robot :
 
 	def __str__ (self) :
 		"""
-		Equivalent methode toString(Java)
-		Permet de redéfinir la methode print(monInstance)
+		Fonction de redéfinition de la methode print(monInstance)
 		"""
 		res = "Le robot en position (" + str(self.pos_x) +","+ str(self.pos_y) + ")"
 		# Le test suivant permet de faire un affichage du robot selon s'il roule ou pas#
