@@ -7,7 +7,7 @@ class Capteur_de_distance :
     
     def distance(self,robot,obstacle):
         """
-        Permet de calculer la distance entre le robot de l'obstable passés en parametre
+        Fonction prenant en paramètre le robot et l'obstacle afin de calculer leur distance et la retourner.
         """
         xr = robot.pos_x
         yr = robot.pos_y
