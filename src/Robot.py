@@ -95,6 +95,7 @@ class Robot :
 		puis transmets des vitesses aux roues par pas de 0,1 km/h tant que la vitesse voulue n'est pas atteinte
 		"""
 		assert(self.roue_gauche.vTourParSec==self.roue_gauche.vTourParSec)
+		print(self.roue_gauche.vTourParSec)
 		vitesse_actuelle=(36*np.pi*self.roue_gauche.taille_cm)/(5*self.roue_gauche.vTourParSec)
 		while(vitesse_actuelle <= vitesseVoule):
 				self.roue_gauche.setVitesse(vitesse_actuelle+0.1)
