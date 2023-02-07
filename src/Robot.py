@@ -1,14 +1,17 @@
+#!/usr/bin/python
+# -*- coding: latin-1 -*-
 from Roue import * # Permet d'utiliser la classe Roue se trouvant dans le meme repertoire
 import math
 import numpy as np
+
 class Robot :
     def __init__ (self, rayonRouesCm,rayonDuRobotCm,vMaxTourParSec, r=0,angle = 0, pos_x = 0, pos_y = 0,v=0,l=8,w=0, estEnTrainDeRouler = False) :
-        """
-        Le robot instancie ses deux roues de la meme taille et de meme vitesse maximal
-        v est la vitesse moyenne du robot initialisé a zero
-        l est la distance entre les deux roues en cm 
-        w est la orientation du robot en fonction des deux roues
-        """
+        #"""
+        #Le robot instancie ses deux roues de la meme taille et de meme vitesse maximal
+       # v est la vitesse moyenne du robot initialisé a zero
+       # l est la distance entre les deux roues en cm 
+       # w est la orientation du robot en fonction des deux roues
+       # """
 
         assert(rayonRouesCm > 0) # Ne peut pas avoir un rayon < 0
         assert(vMaxTourParSec > 0) # Ne peut pavoir une vitesse max < 0
@@ -58,7 +61,7 @@ class Robot :
 
     def tourner(self,angleEnRad,tempsDonneEnSec):
         """
-        Modifier la vitesse des deux roues à 0 kh/m puis calculer la vitesse en km/h afin de faire tourner le robot
+        #Modifier la vitesse des deux roues à 0 kh/m puis calculer la vitesse en km/h afin de faire tourner le robot
         :tempsDonne: le robot tourne en un certain temps en seconde. 
         :angleEnRad: Si l'angle est positive alors le robot tourne à droite, on tourne à la gauche sinon.
         """
@@ -88,7 +91,7 @@ class Robot :
 
     def nouvelle_position2(self, duree):
         """
-        """
+         """
         self.pos_x = self.pos_x + self.v * np.cos(self.angle)*duree
         self.pos_y = self.pos_y + self.v * np.sin(self.angle)*duree
         self.angle = self.angle + self.w * duree 
@@ -98,10 +101,20 @@ class Robot :
     def conversion_polaire_vers_cartesienne(self):
         """
 		Fait la conversion de donnée polaire en donnees cartesienne
-        """
-        self.pos_x = self.r * np.cos(self.angle)
-        self.pos_y = self.r * np.sin(self.angle)
-        return self.pos_x, self.pos_y
+         """
+        pos_x = self.r * np.cos(self.angle)
+        pos_y = self.r * np.sin(self.angle)
+        return pos_x, pos_y
+
+
+
+    def conversion_cartesienne_vers_polaire(self):
+
+	    """ convertit les coordonnées cartesiennes en coordonnées polaires """
+	    r=np.sqrt((self.pos_x * self.pos_x) + (self.pos_y * self.pos_y))
+	    o=2*math.atan(self.pos_y / (self.pos_x + r))
+	    return r,o
+
 
     def nouvelle_position(self, vitesse_er, vitesse_et,orientation, duree):
         """
