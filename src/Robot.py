@@ -45,7 +45,7 @@ class Robot :
 		self.vitesse_et=vitesseVoulue_kmh_et
 		vitesseVoulue_kmh=np.sqrt(vitesseVoulue_kmh_er**2+vitesseVoulue_kmh_et**2)
 		self.accelerer(vitesseVoulue_kmh)
-		print("le robot avance à une vitesse " , vitesseVoulue_Kmh)
+		print("le robot avance à une vitesse ", vitesseVoulue_kmh)
 
 	def reculer(self,vitesseVoulue_kmh_er,vitesseVoulue_kmh_et) :
 		"""
@@ -59,7 +59,7 @@ class Robot :
 		self.vitesse_et=vitesseVoulue_kmh_et
 		vitesseVoulue_kmh=-(np.sqrt(vitesseVoulue_kmh_er**2+vitesseVoulue_kmh_et**2))
 		self.accelerer(vitesseVoulue_kmh)
-		print("le robot recule à une vitesse de ",vitesseVoulue_Kmh)
+		print("le robot recule à une vitesse de ",vitesseVoulue_kmh)
 
 
 	def arreter_urgence(self):
@@ -83,18 +83,19 @@ class Robot :
 		if(angleEnRad<0):
 			self.roue_droite.setVitesse(vitessekmh)
 			self.roue_gauche.setVitesse(0)
-		printf("le robot tourne vers la gauche d'un angle de : ", angleEnRad)
+		print("le robot tourne vers la gauche d'un angle de : ", angleEnRad)
 		if(angleEnRad>0):
 			self.roue_droite.setVitesse(0)
 			self.roue_gauche.setVitesse(vitessekmh)
-		print("le robot tourne vers la droite d'un angle de : " ,angleEnRad)
+		print("le robot tourne vers la droite d'un angle de :  " ,angleEnRad)
 
 	def accelerer(self,vitesseVoule):
 		"""
 		Fonction prenant en paramètre la vitesse à atteindre en km/h
 		puis transmets des vitesses aux roues par pas de 0,1 km/h tant que la vitesse voulue n'est pas atteinte
 		"""
-		assert(self.roue_gauche.vTourParSec!=self.roue_gauche.vTourParSec)
+	#	assert(self.roue_gauche.vTourParSec==self.roue_droite.vTourParSec)
+		assert(self.roue_gauche.vTourParSec != 0)
 		vitesse_actuelle=(36*np.pi*self.roue_gauche.taille_cm)/(5*self.roue_gauche.vTourParSec)
 		while(vitesse_actuelle <= vitesseVoule):
 				self.roue_gauche.setVitesse(vitesse_actuelle+0.1)
@@ -108,14 +109,14 @@ class Robot :
 		Fonction prenant en paramètre la vitesse à atteindre en km/h
 		puis transmets des vitesses aux roues par pas de 0,1 km/h tant que la vitesse voulue n'est pas atteinte
 		"""
-		assert(self.roue_gauche.vTourParSec!=self.roue_gauche.vTourParSec)
+		assert(self.roue_gauche.vTourParSec>0)
 		vitesse_actuelle=(36*np.pi*self.roue_gauche.taille_cm)/(5*self.roue_gauche.vTourParSec)
 		while(vitesse_actuelle >= vitesseVoule):
 			self.roue_gauche.setVitesse(vitesse_actuelle-0.1)
 			self.roue_gauche.setVitesse(vitesse_actuelle-0.1)
 			vitesse_actuelle=(36*np.pi*self.roue_gauche.taille_cm)/(5*self.roue_gauche.vTourParSec)
 
-<<<<<<< HEAD
+
 
 
         	print("le robot roule à la vitesse voulue apres deceleration : ", vitesse_actuelle)
@@ -125,9 +126,8 @@ class Robot :
 
 		print("le robot roule à la vitesse voulue apres deceleration : ", vitesse_actuelle)
 
-=======
 		print("le robot roule à la vitesse voulue apres deceleration : ", vitesse_actuelle)
->>>>>>> 2da09915528842fe34a12ba3889956d131da63bb
+
 
 	def arreter(self):
 		"""
