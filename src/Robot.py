@@ -68,7 +68,7 @@ class Robot :
 		"""
 		self.roue_gauche.setVitesse(0)
 		self.roue_droite.setVitesse(0)
-         	print("le robot est en arret")
+	print("le robot est en arret")
 
 	def tourner(self,angleEnRad,tempsDonneEnSec):
 		"""
@@ -94,8 +94,13 @@ class Robot :
 		Fonction prenant en paramètre la vitesse à atteindre en km/h
 		puis transmets des vitesses aux roues par pas de 0,1 km/h tant que la vitesse voulue n'est pas atteinte
 		"""
+<<<<<<< HEAD
 	#	assert(self.roue_gauche.vTourParSec==self.roue_droite.vTourParSec)
 		assert(self.roue_gauche.vTourParSec != 0)
+=======
+		assert(self.roue_gauche.vTourParSec==self.roue_gauche.vTourParSec)
+		print(self.roue_gauche.vTourParSec)
+>>>>>>> 97ac319b7e999e22a5798f186ec28552272c388b
 		vitesse_actuelle=(36*np.pi*self.roue_gauche.taille_cm)/(5*self.roue_gauche.vTourParSec)
 		while(vitesse_actuelle <= vitesseVoule):
 				self.roue_gauche.setVitesse(vitesse_actuelle+0.1)
@@ -116,6 +121,7 @@ class Robot :
 			self.roue_gauche.setVitesse(vitesse_actuelle-0.1)
 			vitesse_actuelle=(36*np.pi*self.roue_gauche.taille_cm)/(5*self.roue_gauche.vTourParSec)
 
+<<<<<<< HEAD
 
 
 
@@ -129,12 +135,16 @@ class Robot :
 		print("le robot roule à la vitesse voulue apres deceleration : ", vitesse_actuelle)
 
 
+=======
+		print("le robot roule à la vitesse voulue apres deceleration : ", vitesse_actuelle)
+
+>>>>>>> 97ac319b7e999e22a5798f186ec28552272c388b
 	def arreter(self):
 		"""
 		Fonction arretant le robot par décélération jusqu'à l'arrêt
 		"""
 		self.decelerer(0)
-	        print("le robot s'arrete")
+	print("le robot s'arrete")
 
 	def conversion_polaire_vers_cartesienne(self):
 		"""
@@ -164,6 +174,10 @@ class Robot :
 		self.angle+=self.vitesse_et*duree/self.r
 
 	def evite_obstacles(self,Obstacle):
+		"""
+		Fonction prenant en paramètre l'obstacle et si la distance captée par le capteur entre le robot et l'obstacle est 
+		inférieure à 10 cm, alors le robot effectue une rotation d'un quart de tour vers la gauche
+		"""
 		val=np.pi/2
 		if(self.capteurDistance.distance(self,Obstacle) < 10):
 			self.tourner(val,1)
