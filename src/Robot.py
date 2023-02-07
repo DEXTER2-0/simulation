@@ -7,7 +7,10 @@ import numpy as np
 class Robot :
 	def __init__ (self, rayonRouesCm,rayonDuRobotCm, capteur,vMaxTourParSec, r=0,angle = 0, pos_x = 0, pos_y = 0) :
 		"""
-		Le robot instancie ses deux roues de la meme taille et de meme vitesse maximal
+		Fonction d'initialisation prenant en paramètre le rayon des roues en cm, le rayon du robot en cm,
+		la distance maximale captable par le capteur de distance, la vitesse maximale possible pour les roues,
+		les coordonnées polaires et les coordonnées cartésiennes du robot
+		Cette fonction instancie deux roues de la même taille et de même vitesse maximale, ainsi qu'un capteur de position
 		"""
 		assert(rayonRouesCm > 0)# Ne peut pas avoir un rayon < 0
 		assert(vMaxTourParSec > 0) # Ne peut pavoir une vitesse max < 0
@@ -23,7 +26,7 @@ class Robot :
 
 	def est_entrain_de_rouler(self) :
 		"""
-		Fonction permet de savoir si le robot est entrain de rouler
+		Fonction testant la vitesse des roues afin de retourner un booléen corresponsant à si le robot roule ou non
 		"""
 		if self.roue_droite.getvitessetourparsec()==0 and self.roue_gauche.getvitessetourparsec()==0 :
 			return False
@@ -77,7 +80,7 @@ class Robot :
 		"""
 		self.roue_gauche.setVitesse(0)
 		self.roue_droite.setVitesse(0)
-	        print("le robot est en arret")
+	print("le robot est en arret")
 
 	def tourner(self,angleEnRad,tempsDonneEnSec):
 		"""
@@ -127,18 +130,14 @@ class Robot :
 			self.roue_gauche.setVitesse(vitesse_actuelle-0.1)
 			vitesse_actuelle=(36*np.pi*self.roue_gauche.taille_cm)/(5*self.roue_gauche.vTourParSec)
 
-<<<<<<< HEAD
-        	print("le robot roule à la vitesse voulue apres deceleration : ", vitesse_actuelle)
-=======
 		print("le robot roule à la vitesse voulue apres deceleration : ", vitesse_actuelle)
->>>>>>> 1f493fb1c38594558474c74607acc157451f5404
 
 	def arreter(self):
 		"""
 		Permet d'arrêter le robot
 		"""
 		self.decelerer(0)
-         	print("le robot s'arrete")
+	print("le robot s'arrete")
 
 
 	def conversion_polaire_vers_cartesienne(self):
