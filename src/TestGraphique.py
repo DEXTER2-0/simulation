@@ -25,8 +25,8 @@ def distance(xA, yA, xB, yB):
 # Initialisation des constantes du robot
 RAYON_DES_ROUES_CM = 1 # ---->  r
 VITESSE_MAX_TOUR_PAR_SEC = 30 #pas encore utilisé
-RAYON_ROBOT_CM = 10
-DISTANCE_ROUE_CENTRE_CM = 5 # ----->  l
+RAYON_ROBOT_CM = 8
+DISTANCE_ROUE_CENTRE_CM = 100 # ----->  l
 
 
 # Le robot à déplacer
@@ -68,41 +68,22 @@ def deplacer():
     global x0,y0,x1,y1,dx,dy,dROTAT,xmil,ymil
 
     
-    robot.tourner2(100,100)
-    robot.nouvelle_position2(1)
-    time.sleep(0.25)
+    robot.tourner2(200.30,200)
+    robot.nouvelle_position2(0.25)
+    #time.sleep(0.25)
 
 
 
     print("robot -> x : ",robot.pos_x)
     print("robot -> y : ",robot.pos_y)
 
-    if robot.pos_x > 319 and robot.pos_x < 321 :
-        i = 0
-        while i < 10  :
-            print ("laaaaa")
-            robot.tourner2(6,0)
-            robot.nouvelle_position2(0.01)
-            i += 1
+    
     canvas.coords(representation_robot,robot.pos_x - robot.rayonDuRobotCm , robot.pos_y - robot.rayonDuRobotCm,robot.pos_x + robot.rayonDuRobotCm, robot.pos_y + robot.rayonDuRobotCm)
     canvas.coords(orientation,robot.pos_x,robot.pos_y, robot.pos_x+cos(robot.angle)*15, robot.pos_y+sin(robot.angle)*15)
 
-    canvas.after(100,deplacer)
-    #Permet de stopper en cas de collision (rayon) = (x1-(x0+x1)/2)
-  #  for i in range (len(MIL)):
-   #     if distance(xmil,ymil,MIL[i][0],MIL[i][1]) <= L[i]+ (x1-(x0+x1)/2) :
-    #        print("*************************************\n")
-     #       print("******** Collision !!!!!!!  *********\n")
-      #      print("*************************************\n")
-
-       #     return
-    #permet de ne pas dépasser les murs du terrain 
-    #if (WIDTH - xmil < (x1-(x0+x1)/2) ) or (HEIGHT - ymil < (x1-(x0+x1)/2)) or (xmil < (x1-(x0+x1)/2)) or (ymil < (x1-(x0+x1)/2)):
-     #   alea = randint(0,1)
- #       if alea == 1 :
-  #          ROTAT += ROTAT + 0.1
-  #      else :
-  #          ROTAT += ROTAT - 0.1
+    canvas.after(10,deplacer)
+    #Penser a stopper en cas de collision 
+    
 
 #while True :
 #    robot.tourner2(3.14,0)
