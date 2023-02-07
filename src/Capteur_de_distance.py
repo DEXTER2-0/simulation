@@ -8,10 +8,11 @@ class Capteur_de_distance :
        """
        self.distanceCaptable=distanceCaptable
     
+    
     def distance(self,robot,obstacle):
         """
         Fonction prenant en paramètre le robot et l'obstacle afin de calculer leur distance 
-        (racine carré des carré des différences entre les positions selon x et selon y) et la retourner.
+        (racine carrée des carré des différences entre les positions selon x et selon y) et la retourner.
         """
         xr = robot.pos_x
         yr = robot.pos_y
