@@ -1,3 +1,5 @@
+#!/usr/bin/python
+# -*- coding: latin-1 -*-
 from Robot import * # Permet d'utiliser la classe Robot se trouvant dans le meme repertoire
 from Roue import * # Permet d'utiliser la classe Roue se trouvant dans le meme repertoire
 import time #pour pouvoir controler le temps de la boucle while True
@@ -11,9 +13,9 @@ from tkinter import *
 
 ##----- Création de la fenetre -----##
 fen = Tk() 
-WIDTH = 600 # axe des x
-HEIGHT = 600 # axe des y
-canvas = Canvas(fen, width = WIDTH, height = HEIGHT, bg = 'yellow') #fentre graphique
+cs.WIDTH = 600 # axe des x
+cs.HEIGHT = 600 # axe des y
+canvas = Canvas(fen, width = cs.WIDTH, height = cs.HEIGHT, bg = 'yellow') #fentre graphique
 canvas.pack(fill="both", expand=True)
 
 # calcul vitesse angulaire
