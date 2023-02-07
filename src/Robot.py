@@ -163,8 +163,7 @@ class Robot :
 
 	def __str__ (self) :
 		"""
-		Equivalent methode toString(Java)
-		Permet de redéfinir la methode print(monInstance)
+		Fonction de redéfinition de la methode print(monInstance)
 		"""
 		res = "Le robot en position (" + str(self.pos_x) +","+ str(self.pos_y) + ")"
 		# Le test suivant permet de faire un affichage du robot selon s'il roule ou pas#
