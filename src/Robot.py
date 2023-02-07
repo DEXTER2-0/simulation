@@ -9,7 +9,7 @@ class Robot :
         """
         Le robot instancie ses deux roues de la meme taille et de meme vitesse maximal
         """
-        assert(rayonRouesCm > 0) # Ne peut pas avoir un rayon < 0
+        assert(rayonRouesCm > 0)# Ne peut pas avoir un rayon < 0
         assert(vMaxTourParSec > 0) # Ne peut pavoir une vitesse max < 0
         assert(rayonDuRobotCm > 0) # Ne peut pas avoir un rayon < 0
         self.roue_gauche = Roue(rayonRouesCm, vMaxTourParSec)
@@ -36,6 +36,7 @@ class Robot :
         en vérifiant si les deux roues ont la même vitesse maximale et si la vitesse est supérieur à 0
         :vitesseVouluekm: la vitesse en km/h que l'on souhaite modifier pour les deux roues de robot
         """
+<<<<<<< HEAD
 	assert(vitesseVoulue_kmh_er > 0)
 	assert(vitesseVoulue_kmh_et > 0)
 #	self.vitesse_er=vitesseVoulue_er
@@ -48,6 +49,15 @@ class Robot :
 
 
 
+=======
+        assert(vitesseVoulue_kmh_er > 0)
+    	assert(vitesseVoulue_kmh_et > 0)
+    	self.vitesse_er=vitesseVoulue_er
+    	self.vitesse_et=vitesseVoulue_et
+        vitesseVoulue_kmh=np.sqrt(vitesseVoulue_kmh_er**2+vitesseVoulue_kmh_et**2)     
+        self.roue_gauche.setVitesse(vitesseVoulue_kmh)
+    	self.roue_droite.setVitesse(vitesseVoulue_kmh)
+>>>>>>> 17310bbd67c6eb0fb9e89ad00c4dfbd4dcf94d40
 
     def reculer(self,vitesseVoulue_kmh_er,vitesseVoulue_kmh_et) :
         """
@@ -56,13 +66,18 @@ class Robot :
         :vitesseVouluekm: la vitesse en km/h que l'on souhaite modifier pour les deux roues de robot
         """
         assert(vitesseVoulue_kmh_er < 0)
-	assert(vitesseVoulue_kmh_et < 0)
+        assert(vitesseVoulue_kmh_et < 0)
         self.vitesse_er=vitesseVoulue_er
-	self.vitesse_et=vitesseVoulue_et
+        self.vitesse_et=vitesseVoulue_et
         vitesseVoulue_kmh=-(np.sqrt(vitesseVoulue_kmh_er**2+vitesseVoulue_kmh_et**2)) 
+<<<<<<< HEAD
 	self.accelerer(vitesseVoulue_kmh)
         printf("le robot recule à une vitesse de ",-vitesseVoulue_Kmh)
 
+=======
+        self.accelerer(vitesseVoulue_kmh)
+                       
+>>>>>>> 17310bbd67c6eb0fb9e89ad00c4dfbd4dcf94d40
     def arreter_urgence(self):
         """
         Arrete les roues en urgence
