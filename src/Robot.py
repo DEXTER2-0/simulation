@@ -126,15 +126,15 @@ class Robot :
         self.angle= np.arctan(self.pos_y/self.pos_x)
         return self.r, self.angle
         
-    def nouvelle_position(self, vitesse_er, vitesse_et,orientation, duree):
+    def nouvelle_position(self,duree):
         """
         Renvoie la distance parcourue (m), pour une vitesse (km)
         et une durée (s)
         Augmente la distance si vitesse est supérieur a zero
         Diminue la distance sinon
         """
-        self.r+=vitesse_er*duree
-        self.angle+=vitesse_et*duree/self.r    
+        self.r+=self.vitesse_er*duree
+        self.angle+=self.vitesse_et*duree/self.r    
 
     def evite_obstacles(self,capteur,Obstacle):
         #if(self.pos_x == monde.mur_x |self.pos_y == monde.mur_y ) à modifier, comment peut on faire pour éviter la borne x,y? np.array? 
