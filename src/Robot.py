@@ -112,7 +112,7 @@ class Robot :
 				self.roue_gauche.setVitesse(vitesse_actuelle+0.1)
 				vitesse_actuelle=(36*np.pi*self.roue_gauche.taille_cm)/(5*self.roue_gauche.vTourParSec)
 
-	print("le robot roule à la vitesse voulue apres acceleration :  " , vitesse_actuelle)
+		print("le robot roule à la vitesse voulue apres acceleration :  " , vitesse_actuelle)
 
 
 	def decelerer(self,vitesseVoule):
