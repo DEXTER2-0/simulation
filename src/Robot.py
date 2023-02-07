@@ -68,7 +68,7 @@ class Robot :
 		"""
 		self.roue_gauche.setVitesse(0)
 		self.roue_droite.setVitesse(0)
-	print("le robot est en arret")
+		print("le robot est en arret")
 
 	def tourner(self,angleEnRad,tempsDonneEnSec):
 		"""
@@ -102,8 +102,8 @@ class Robot :
 
 		vitesse_actuelle=(36*np.pi*self.roue_gauche.taille_cm)/(5*self.roue_gauche.vTourParSec)
 		while(vitesse_actuelle <= vitesseVoule):
-				self.roue_gauche.setVitesse(vitesse_actuelle+0.1)
-				self.roue_gauche.setVitesse(vitesse_actuelle+0.1)
+				self.roue_gauche.setVitesse(vitesse_actuelle+1)
+				self.roue_gauche.setVitesse(vitesse_actuelle+1)
 				vitesse_actuelle=(36*np.pi*self.roue_gauche.taille_cm)/(5*self.roue_gauche.vTourParSec)
 
 		print("le robot roule à la vitesse voulue apres acceleration :  " , vitesse_actuelle)
@@ -116,22 +116,9 @@ class Robot :
 		assert(self.roue_gauche.vTourParSec>0)
 		vitesse_actuelle=(36*np.pi*self.roue_gauche.taille_cm)/(5*self.roue_gauche.vTourParSec)
 		while(vitesse_actuelle >= vitesseVoule):
-			self.roue_gauche.setVitesse(vitesse_actuelle-0.1)
-			self.roue_gauche.setVitesse(vitesse_actuelle-0.1)
+			self.roue_gauche.setVitesse(vitesse_actuelle-1)
+			self.roue_gauche.setVitesse(vitesse_actuelle-1)
 			vitesse_actuelle=(36*np.pi*self.roue_gauche.taille_cm)/(5*self.roue_gauche.vTourParSec)
-
-
-
-
-
-        	print("le robot roule à la vitesse voulue apres deceleration : ", vitesse_actuelle)
-
-		print("le robot roule à la vitesse voulue apres deceleration : ", vitesse_actuelle)
-
-
-		print("le robot roule à la vitesse voulue apres deceleration : ", vitesse_actuelle)
-
-		print("le robot roule à la vitesse voulue apres deceleration : ", vitesse_actuelle)
 
 
 
@@ -143,7 +130,7 @@ class Robot :
 		Fonction arretant le robot par décélération jusqu'à l'arrêt
 		"""
 		self.decelerer(0)
-	print("le robot s'arrete")
+		print("le robot s'arrete")
 
 	def conversion_polaire_vers_cartesienne(self):
 		"""

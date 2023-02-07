@@ -85,3 +85,17 @@ le robot s'arrete
 ('le robot roule \xc3\xa0 la vitesse voulue apres deceleration : ', 2.261946710584651)
 ('le robot roule \xc3\xa0 la vitesse voulue apres deceleration : ', 2.261946710584651)
 ('le robot roule \xc3\xa0 la vitesse voulue apres deceleration : ', 2.261946710584651)
+("l'\xc3\xa9tat du robot : ", False)
+0.0884194128288
+('le robot roule \xc3\xa0 la vitesse voulue apres acceleration :  ', 1279.1007303811807)
+('le robot avance \xc3\xa0 une vitesse ', 6.4031242374328485)
+0.0884194128288
+('le robot roule \xc3\xa0 la vitesse voulue apres acceleration :  ', 1279.1007303811807)
+('le robot recule \xc3\xa0 une vitesse de ', -6.4031242374328485)
+le robot est en arret
+le robot est en arret
+("le robot tourne vers la gauche d'un angle de : ", 3.141592653589793)
+("le robot tourne vers la droite d'un angle de :  ", 3.141592653589793)
+0.166666666667
+('le robot roule \xc3\xa0 la vitesse voulue apres acceleration :  ', 678.5840131753954)
+('le robot roule \xc3\xa0 la vitesse voulue apres deceleration : ', 2.261946710584651)
