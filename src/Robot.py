@@ -136,14 +136,10 @@ class Robot :
         self.r+=self.vitesse_er*duree
         self.angle+=self.vitesse_et*duree/self.r    
 
-    def evite_obstacles(self,capteur,Obstacle):
-        #if(self.pos_x == monde.mur_x |self.pos_y == monde.mur_y ) à modifier, comment peut on faire pour éviter la borne x,y? np.array? 
-        #self.arrete_urgence
-        bool=True
-        while(bool):
-            val=np.random.randint(-360,360)
-            if(self.capteurDistance.distance(self,Obstacle) < 10):
-                self.tourner(val,1)
+    def evite_obstacles(self,Obstacle):
+        val=np.pi/2
+        if(self.capteurDistance.distance(self,Obstacle) < 10):
+		self.tourner(val,1)
             
     def __str__ (self) :
         """
