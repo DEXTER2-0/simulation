@@ -36,20 +36,16 @@ class Robot :
         en vérifiant si les deux roues ont la même vitesse maximale et si la vitesse est supérieur à 0
         :vitesseVouluekm: la vitesse en km/h que l'on souhaite modifier pour les deux roues de robot
         """
-<<<<<<< HEAD
+
 	assert(vitesseVoulue_kmh_er > 0)
 	assert(vitesseVoulue_kmh_et > 0)
+	
 #	self.vitesse_er=vitesseVoulue_er
 #	self.vitesse_et=vitesseVoulue_et
         vitesseVoulue_kmh=np.sqrt(vitesseVoulue_kmh_er**2+vitesseVoulue_kmh_et**2)     
         self.roue_gauche.setVitesse(vitesseVoulue_kmh)
 	self.roue_droite.setVitesse(vitesseVoulue_kmh)
-	printf("le robot avance à une vitesse " , vitesseVoulue_Kmh)
-
-
-
-
-=======
+	print("le robot avance à une vitesse " , vitesseVoulue_Kmh)
         assert(vitesseVoulue_kmh_er > 0)
     	assert(vitesseVoulue_kmh_et > 0)
     	self.vitesse_er=vitesseVoulue_er
@@ -57,7 +53,7 @@ class Robot :
         vitesseVoulue_kmh=np.sqrt(vitesseVoulue_kmh_er**2+vitesseVoulue_kmh_et**2)     
         self.roue_gauche.setVitesse(vitesseVoulue_kmh)
     	self.roue_droite.setVitesse(vitesseVoulue_kmh)
->>>>>>> 17310bbd67c6eb0fb9e89ad00c4dfbd4dcf94d40
+
 
     def reculer(self,vitesseVoulue_kmh_er,vitesseVoulue_kmh_et) :
         """
@@ -70,21 +66,18 @@ class Robot :
         self.vitesse_er=vitesseVoulue_er
         self.vitesse_et=vitesseVoulue_et
         vitesseVoulue_kmh=-(np.sqrt(vitesseVoulue_kmh_er**2+vitesseVoulue_kmh_et**2)) 
-<<<<<<< HEAD
 	self.accelerer(vitesseVoulue_kmh)
-        printf("le robot recule à une vitesse de ",-vitesseVoulue_Kmh)
-
-=======
+        print("le robot recule à une vitesse de ",-vitesseVoulue_Kmh)
         self.accelerer(vitesseVoulue_kmh)
                        
->>>>>>> 17310bbd67c6eb0fb9e89ad00c4dfbd4dcf94d40
+
     def arreter_urgence(self):
         """
         Arrete les roues en urgence
         """
         self.roue_gauche.setVitesse(0)
         self.roue_droite.setVitesse(0)
-	printf("le robot est en arret")
+	print("le robot est en arret")
 
     def tourner(self,angleEnRad,tempsDonneEnSec):
         """
@@ -102,7 +95,7 @@ class Robot :
         if(angleEnRad>0):
             self.roue_droite.setVitesse(0)
             self.roue_gauche.setVitesse(vitessekmh)
-	    printf("le robot tourne vers la droite d'un angle de : " ,angleEnRad)
+	    print("le robot tourne vers la droite d'un angle de : " ,angleEnRad)
 	
 
 
@@ -119,7 +112,7 @@ class Robot :
                 self.roue_gauche.setVitesse(vitesse_actuelle+0.1)
                 vitesse_actuelle=(36*np.pi*self.roue_gauche.taille_cm)/(5*self.roue_gauche.vTourParSec)
 	
-	printf("le robot roule à la vitesse voulue apres acceleration :  " , vitesse_actuelle)
+	print("le robot roule à la vitesse voulue apres acceleration :  " , vitesse_actuelle)
 
     
     def decelerer(self,vitesseVoule):
@@ -134,14 +127,14 @@ class Robot :
             self.roue_gauche.setVitesse(vitesse_actuelle-0.1)
             vitesse_actuelle=(36*np.pi*self.roue_gauche.taille_cm)/(5*self.roue_gauche.vTourParSec)
 	
-	printf("le robot roule à la vitesse voulue apres deceleration : ", vitesse_actuelle)
+	print("le robot roule à la vitesse voulue apres deceleration : ", vitesse_actuelle)
 
     def arreter(self):
         """
         Permet d'arrêter le robot
         """
         self.decelerer(0)
-	printf("le robot s'arrete")
+	print("le robot s'arrete")
 
     
     def conversion_polaire_vers_cartesienne(self):
@@ -174,9 +167,9 @@ class Robot :
         val=np.pi/2
         if(self.capteurDistance.distance(self,Obstacle) < 10):
 		self.tourner(val,1)
-		printf("le robot a évité l'obstacle")
+		print("le robot a évité l'obstacle")
 	else :
-		printf("pas de danger , no worries")
+		print("pas de danger , no worries")
 	
             
     def __str__ (self) :

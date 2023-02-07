@@ -12,5 +12,7 @@ robot = Robot(5,20,10,50)
 
 printf("l'état du robot : " , robot.est_entrain_de_rouler())
 
+robot.avancer(0.4,0.5)
+
 
 
