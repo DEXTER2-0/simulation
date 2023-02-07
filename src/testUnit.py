@@ -3,6 +3,7 @@
 from Roue import * # Permet d'utiliser la classe Roue se trouvant dans le meme repertoire
 from Robot import *
 from Capteur_de_distance import * # Permet d'utiliser la classe Capteur_de_distance se trouvant dans le meme repertoire
+from Obstacle import * 
 import math
 import numpy as np
 
@@ -12,6 +13,7 @@ roue.setVitesse(20)
 
 robot = Robot(5,20,10,50)
 
+obstacle = Obstacle(2,4,4)
 print("l'état du robot : " , robot.est_entrain_de_rouler())
 robot.roue_gauche.setVitesse(0.1)
 robot.roue_droite.setVitesse(0.1)

@@ -1,14 +1,6 @@
 #coding: utf-8
 class Obstacle :
-	def __init__ (self, rayon,x,y) :
-		""" 
-		Fonction d'initialisation prenant en paramètre le rayon et les coordonnées cartésiennes d'un obstacle circulaire 
-		"""
-		self.rayon=rayon
-		self.x=x
-		self.y=y
 
-	
 	def __init__ (self, longueur , largeur , x , y) :
 		""" 
 		Fonction d'initialisation prenant en paramètre la longuer, la largeur et les coordonnées cartésiennes d'un obstacle rectangulaire
@@ -17,7 +9,14 @@ class Obstacle :
 		self.largeur=largeur
 		self.x=x
 		self.y=y
-
+	
+	def __init__ (self, rayon,x,y) :
+	                 """ 
+			   Fonction d'initialisation prenant en paramètre le rayon et les coordonnées cartésiennes d'un obstacle circulaire 
+			   """
+	                self.rayon=rayon
+		        self.x=x
+		        self.y=y
 	def __str__ (self) : 
 		"""
 		Fonction de redefinition de la méthode print(Instance)
