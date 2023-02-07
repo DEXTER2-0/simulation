@@ -2,6 +2,9 @@ from Robot import * # Permet d'utiliser la classe Robot se trouvant dans le meme
 from Roue import * # Permet d'utiliser la classe Roue se trouvant dans le meme repertoire
 import time #pour pouvoir controler le temps de la boucle while True
 from math import *
+from Obstacle import *
+from Capteur_de_distance import *
+
 
 ##----- Importation des Modules -----##
 from tkinter import * 
@@ -69,7 +72,7 @@ def deplacer():
 
     
     
-    robot.avancer(2,2)
+    robot.avancer(20,20)
     robot.nouvelle_position(0.01)
     robot.conversion_polaire_vers_cartesienne();
     time.sleep(0.25)
