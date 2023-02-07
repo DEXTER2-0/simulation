@@ -44,8 +44,7 @@ class Robot :
 		self.vitesse_er=vitesseVoulue_kmh_er
 		self.vitesse_et=vitesseVoulue_kmh_et
 		vitesseVoulue_kmh=np.sqrt(vitesseVoulue_kmh_er**2+vitesseVoulue_kmh_et**2)
-		self.roue_gauche.setVitesse(vitesseVoulue_kmh)
-		self.roue_droite.setVitesse(vitesseVoulue_kmh)
+		self.accelerer(vitesseVoulue_kmh)
 		print("le robot avance à une vitesse " , vitesseVoulue_Kmh)
 
 	def reculer(self,vitesseVoulue_kmh_er,vitesseVoulue_kmh_et) :
