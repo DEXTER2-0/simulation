@@ -42,15 +42,19 @@ class Robot :
         self.roue_gauche.setVitesse(vitesseVoulue_kmh)
 	self.roue_droite.setVitesse(vitesseVoulue_kmh)
 
-    def reculer(self,vitesseVoulue_kmh) :
+    def reculer(self,vitesseVoulue_kmh_er,vitesseVoulue_kmh_et) :
         """
         Fonction permet le robot à reculer avec la vitesse passée en paramètre  
         en vérifiant si les deux roues ont la même vitesse maximale et si la vitesse est supérieur à 0
         :vitesseVouluekm: la vitesse en km/h que l'on souhaite modifier pour les deux roues de robot
         """
-        assert(vitesseVoulue_kmh < 0)
-        assert(self.roue_droite.vMaxTourParSec == self.roue_gauche.vMaxTourParSec) 
+        assert(vitesseVoulue_kmh_er < 0)
+	assert(vitesseVoulue_kmh_et < 0)
+        self.vitesse_er=vitesseVoulue_er
+	self.vitesse_et=vitesseVoulue_et
+        vitesseVoulue_kmh=-(np.sqrt(vitesseVoulue_kmh_er**2+vitesseVoulue_kmh_et**2))  
         self.roue_gauche.setVitesse(vitesseVoulue_kmh)
+        self.roue_droite.setVitesse(vitesseVoulue_kmh)
                        
     def arreter_urgence(self):
         """
