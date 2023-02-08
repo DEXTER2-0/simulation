@@ -8,8 +8,8 @@ from tkinter import *
 
 ##----- Création de la fenetre -----##
 fen = Tk() 
-WIDTH = 600 # axe des x
-HEIGHT = 600 # axe des y
+WIDTH = 800 # axe des x
+HEIGHT = 800 # axe des y
 canvas = Canvas(fen, width = WIDTH, height = HEIGHT, bg = 'yellow') #fentre graphique
 canvas.pack(fill="both", expand=True)
 
@@ -63,15 +63,14 @@ print (MIL)
 orientation = canvas.create_line(robot.pos_x,robot.pos_y, robot.pos_x+cos(robot.angle)*15, robot.pos_y+sin(robot.angle)*15, width=2,fill="black")
 
 
-def deplacer():
+def afficher():
     # variable globale qui vont etre modifié
     global x0,y0,x1,y1,dx,dy,dROTAT,xmil,ymil
-
     
-    robot.tourner2(200.30,200)
+    
+    robot.tourner2(200.2,200)
     robot.nouvelle_position2(0.25)
     #time.sleep(0.25)
-
 
 
     print("robot -> x : ",robot.pos_x)
@@ -81,42 +80,15 @@ def deplacer():
     canvas.coords(representation_robot,robot.pos_x - robot.rayonDuRobotCm , robot.pos_y - robot.rayonDuRobotCm,robot.pos_x + robot.rayonDuRobotCm, robot.pos_y + robot.rayonDuRobotCm)
     canvas.coords(orientation,robot.pos_x,robot.pos_y, robot.pos_x+cos(robot.angle)*15, robot.pos_y+sin(robot.angle)*15)
 
-    canvas.after(10,deplacer)
-    #Penser a stopper en cas de collision 
-    
-
-#while True :
-#    robot.tourner2(3.14,0)
-#    robot.nouvelle_position2(1)
-#    time.sleep(5)
-#    print(robot)
-
-    #canvas.after(100,deplacer) 
-   # en milliseconde : --> 1000millisecondes = 1 sec
-   #return
-
-##----- Création du canevas et affichage de l'image -----##
-fen.title('Simulation graphique')
+    canvas.after(1,afficher)
 
 
+afficher()
 
-##----- Fonctions pour les boutons -----##
-def action_deplacer():
-    deplacer()
-    return
-def action_stop():
-    return
 
-##----- Création des boutons -----##
-bouton_couleur = Button(fen, text="Déplacer", width=20, command=action_deplacer)
-bouton_couleur.pack(pady=10)
-
-bouton_quitter = Button(fen, text='Quitter', command=fen.quit)
-bouton_quitter.pack(side=BOTTOM, pady=10)
 
 ##----- Programme principal -----##
 fen.mainloop()                    # Boucle d'attente des événements
 
-## ------------------------------------------------------------------------ ##
 
 
