@@ -158,7 +158,9 @@ class Robot :
 		"""
 		self.r+=self.vitesse_er*duree
 		self.angle+=self.vitesse_et*duree/self.r
-		self.conversion_polaire_vers_cartesienne()
+		val = self.conversion_polaire_vers_cartesienne()
+		self.pos_x = val[0]
+		self.pos_y = val[1]
 
 	def evite_obstacles(self,Obstacle):
 		"""
