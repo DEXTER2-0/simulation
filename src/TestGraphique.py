@@ -68,8 +68,8 @@ def afficher():
     global x0,y0,x1,y1,dx,dy,dROTAT,xmil,ymil
     
     
-    robot.tourner2(200.2,200)
-    robot.nouvelle_position2(0.25)
+    robot.tourner2(200.1,200)
+    robot.nouvelle_position2(1)
     #time.sleep(0.25)
 
 
@@ -80,7 +80,7 @@ def afficher():
     canvas.coords(representation_robot,robot.pos_x - robot.rayonDuRobotCm , robot.pos_y - robot.rayonDuRobotCm,robot.pos_x + robot.rayonDuRobotCm, robot.pos_y + robot.rayonDuRobotCm)
     canvas.coords(orientation,robot.pos_x,robot.pos_y, robot.pos_x+cos(robot.angle)*15, robot.pos_y+sin(robot.angle)*15)
 
-    canvas.after(1,afficher)
+    canvas.after(1000,afficher)
 
 
 afficher()
