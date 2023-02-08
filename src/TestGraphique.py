@@ -65,14 +65,15 @@ obstacle7 = canvas.create_oval(530, 50, 560, 80, width=2, fill="white")
 
 # orientation du robot
 orientation = canvas.create_line(robot.pos_x,robot.pos_y, robot.pos_x+cos(robot.angle)*15, robot.pos_y+sin(robot.angle)*15, width=2,fill="black")
-
+robot.roue_droite.setVitesse(0.1)
+robot.roue_gauche.setVitesse(0.1)
 
 def deplacer():
     # variable globale qui vont etre modifié
     global x0,y0,x1,y1,xmil,ymil
 
     
-    
+  
     robot.avancer(20,20)
     robot.nouvelle_position(0.01)
     robot.conversion_polaire_vers_cartesienne()
