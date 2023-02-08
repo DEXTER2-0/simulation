@@ -6,7 +6,7 @@ import time #pour pouvoir controler le temps de la boucle while True
 from math import *
 from Obstacle import *
 from Capteur_de_distance import *
-import constante as cs
+import constantes as cs
 
 
 ##----- Importation des Modules -----##
