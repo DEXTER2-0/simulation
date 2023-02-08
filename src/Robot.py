@@ -158,6 +158,7 @@ class Robot :
 		"""
 		self.r+=self.vitesse_er*duree
 		self.angle+=self.vitesse_et*duree/self.r
+		self.conversion_polaire_vers_cartesienne()
 
 	def evite_obstacles(self,Obstacle):
 		"""
