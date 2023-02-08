@@ -29,22 +29,20 @@ def distance(xA, yA, xB, yB):
 
 
 # Initialisation des constantes du robot
-RAYON_DES_ROUES_CM = 1 # ---->  r
-VITESSE_MAX_TOUR_PAR_SEC = 30 #pas encore utilisé
-RAYON_ROBOT_CM = 8
+
 #DISTANCE_ROUE_CENTRE_CM = 100 # ----->  l
 
 
 # Le robot à déplacer
-robot = Robot(RAYON_DES_ROUES_CM, RAYON_ROBOT_CM, 10, VITESSE_MAX_TOUR_PAR_SEC)
+robot = Robot(cs.RAYON_DES_ROUES_CM, cs.RAYON_ROBOT_CM, 10, cs.VITESSE_MAX_TOUR_PAR_SEC)
 # Permet de représenter le robot sur tkinter
 representation_robot = canvas.create_oval(robot.pos_x - robot.rayonDuRobotCm , robot.pos_y - robot.rayonDuRobotCm,robot.pos_x + robot.rayonDuRobotCm, robot.pos_y + robot.rayonDuRobotCm, width=2, fill="purple")
 
 print(robot.rayonDuRobotCm)
 
 # Les coordonnées (Permet de placer le robot au milieu de la fenetre)
-robot.pos_x = WIDTH/2
-robot.pos_y = HEIGHT/2
+robot.pos_x = cs.WIDTH/2
+robot.pos_y = cs.HEIGHT/2
 
 
 # Creation des obstacle (Pensez a utliser la classe Obstacle)
