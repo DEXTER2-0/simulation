@@ -99,8 +99,10 @@ class Robot :
 		assert(self.roue_gauche.vTourParSec != 0)
 		assert(self.roue_gauche.vTourParSec==self.roue_gauche.vTourParSec)
 		print(self.roue_gauche.vTourParSec)
-
-		vitesse_actuelle=(36*np.pi*self.roue_gauche.taille_cm)/(5*self.roue_gauche.vTourParSec)
+		if (self.roue_gauche.vTourParSec > 0) :
+			vitesse_actuelle=(36*np.pi*self.roue_gauche.taille_cm)/(5*self.roue_gauche.vTourParSec)
+		else :
+			vitesse_actuelle = 0
 		while(vitesse_actuelle <= vitesseVoule):
 				self.roue_gauche.setVitesse(vitesse_actuelle+1)
 				self.roue_gauche.setVitesse(vitesse_actuelle+1)
