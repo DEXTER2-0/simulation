@@ -6,6 +6,7 @@ import time #pour pouvoir controler le temps de la boucle while True
 from math import *
 from Obstacle import *
 from Capteur_de_distance import *
+import constantes as cs
 
 
 ##----- Importation des Modules -----##
@@ -28,22 +29,20 @@ def distance(xA, yA, xB, yB):
 
 
 # Initialisation des constantes du robot
-RAYON_DES_ROUES_CM = 1 # ---->  r
-VITESSE_MAX_TOUR_PAR_SEC = 30 #pas encore utilisé
-RAYON_ROBOT_CM = 8
+
 #DISTANCE_ROUE_CENTRE_CM = 100 # ----->  l
 
 
 # Le robot à déplacer
-robot = Robot(RAYON_DES_ROUES_CM, RAYON_ROBOT_CM, 10, VITESSE_MAX_TOUR_PAR_SEC)
+robot = Robot(cs.RAYON_DES_ROUES_CM, cs.RAYON_ROBOT_CM, 10, cs.VITESSE_MAX_TOUR_PAR_SEC)
 # Permet de représenter le robot sur tkinter
 representation_robot = canvas.create_oval(robot.pos_x - robot.rayonDuRobotCm , robot.pos_y - robot.rayonDuRobotCm,robot.pos_x + robot.rayonDuRobotCm, robot.pos_y + robot.rayonDuRobotCm, width=2, fill="purple")
 
 print(robot.rayonDuRobotCm)
 
 # Les coordonnées (Permet de placer le robot au milieu de la fenetre)
-robot.pos_x = WIDTH/2
-robot.pos_y = HEIGHT/2
+robot.pos_x = cs.WIDTH/2
+robot.pos_y = cs.HEIGHT/2
 
 
 # Creation des obstacle (Pensez a utliser la classe Obstacle)
@@ -66,17 +65,18 @@ obstacle7 = canvas.create_oval(530, 50, 560, 80, width=2, fill="white")
 
 # orientation du robot
 orientation = canvas.create_line(robot.pos_x,robot.pos_y, robot.pos_x+cos(robot.angle)*15, robot.pos_y+sin(robot.angle)*15, width=2,fill="black")
-
+robot.roue_droite.setVitesse(0.1)
+robot.roue_gauche.setVitesse(0.1)
 
 def deplacer():
     # variable globale qui vont etre modifié
     global x0,y0,x1,y1,xmil,ymil
 
     
-    
+  
     robot.avancer(20,20)
     robot.nouvelle_position(0.01)
-    robot.conversion_polaire_vers_cartesienne()
+    #robot.conversion_polaire_vers_cartesienne()
     time.sleep(0.25)
 
 

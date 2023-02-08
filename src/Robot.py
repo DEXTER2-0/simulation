@@ -98,9 +98,17 @@ class Robot :
 	#	assert(self.roue_gauche.vTourParSec==self.roue_droite.vTourParSec)
 		assert(self.roue_gauche.vTourParSec != 0)
 		assert(self.roue_gauche.vTourParSec==self.roue_gauche.vTourParSec)
+<<<<<<< HEAD
 	#	print(self.roue_gauche.vTourParSec)
 
 		vitesse_actuelle=(36*np.pi*self.roue_gauche.taille_cm)/(5*self.roue_gauche.vTourParSec)
+=======
+		print(self.roue_gauche.vTourParSec)
+		if (self.roue_gauche.vTourParSec > 0) :
+			vitesse_actuelle=(36*np.pi*self.roue_gauche.taille_cm)/(5*self.roue_gauche.vTourParSec)
+		else :
+			vitesse_actuelle = 0
+>>>>>>> 3fb04e685be9380960781b7705d142d51b962b6f
 		while(vitesse_actuelle <= vitesseVoule):
 				self.roue_gauche.setVitesse(vitesse_actuelle+1)
 				self.roue_gauche.setVitesse(vitesse_actuelle+1)
@@ -158,6 +166,9 @@ class Robot :
 		"""
 		self.r+=self.vitesse_er*duree
 		self.angle+=self.vitesse_et*duree/self.r
+		val = self.conversion_polaire_vers_cartesienne()
+		self.pos_x = val[0]
+		self.pos_y = val[1]
 
 	def evite_obstacles(self,Obstacle):
 		"""
