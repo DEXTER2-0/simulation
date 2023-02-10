@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: latin-1 -*-
-from math import pi,sqrt,sin,cos,abs
+from math import pi,sqrt,sin,cos
 class Capteur_de_distance :
     def __init__(self, distanceCaptable) :
        """
