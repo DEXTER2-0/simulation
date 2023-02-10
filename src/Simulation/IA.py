@@ -2,6 +2,7 @@ from Robot import *
 from Obstacle import *
 from Roue import *
 from Capteur_de_distance import *
+from math import *
 
 class IA :
 	def __init__ (self, robot,r=0,angle = 0, pos_x = 0, pos_y = 0) :
@@ -85,6 +86,20 @@ class IA :
 		self.robot.roue_gauche.vTourParSec = ANG_G
 		self.robot.roue_droite.vTourParSec = ANG_D
 
+	def nouvelle_position2(self, duree):
+		"""
+		"""
+		self.pos_x = self.pos_x + self.robot.v * np.cos(self.angle)*duree
+		self.pos_y = self.pos_y + self.robot.v * np.sin(self.angle)*duree
+		self.angle = self.angle + self.robot.w * duree 
+
+	def evite(self):
+		"""
+		tourne de pi/2
+		"""
+		self.bouger(0,(pi*self.robot.l*0.01)/(2*self.robot.rayonRouesCm*0.01))
+		
+
 
 	def accelerer(self,vitesseVoule):
 		"""
@@ -125,12 +140,7 @@ class IA :
 		self.decelerer(0)
 	#	print("le robot s'arrete")	
 
-	def nouvelle_position2(self, duree):
-		"""
-		"""
-		self.pos_x = self.pos_x + self.robot.v * np.cos(self.angle)*duree
-		self.pos_y = self.pos_y + self.robot.v * np.sin(self.angle)*duree
-		self.angle = self.angle + self.robot.w * duree 
+	
 	# def conversion_polaire_vers_cartesienne(self):
 		# 	"""
 		# 	Fait la conversion de donnée polaire en donnees cartesienne
