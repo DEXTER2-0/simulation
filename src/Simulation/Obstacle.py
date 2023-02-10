@@ -11,14 +11,12 @@ class Obstacle :
 		self.y=y
 	
 	def __init__ (self, rayon,x,y) :
-		
-
-	        """ 
-			   Fonction d'initialisation prenant en paramètre le rayon et les coordonnées cartésiennes d'un obstacle circulaire   
-	        """
-	        self.rayon=rayon
-	        self.x=x
-	        self.y=y
+		""" 
+		Fonction d'initialisation prenant en paramètre le rayon et les coordonnées cartésiennes d'un obstacle circulaire   
+		"""
+		self.rayon=rayon
+		self.x=x
+		self.y=y
 
 	def __str__ (self) : 
 		"""
