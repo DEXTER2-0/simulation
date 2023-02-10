@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: latin-1 -*-
-from math import pi,sqrt
+from math import pi,sqrt,sin,cos
 class Capteur_de_distance :
     def __init__(self, distanceCaptable) :
        """
@@ -20,13 +20,18 @@ class Capteur_de_distance :
         yo = obstacle.y
         return sqrt((xo-xr)**2+(yo-yr)**2)
 
-    def senseur_de_distance(angle_robot,duree):
+    def senseur_de_distance(ia_pos_x,ia_pos_y,angle_robot,duree,distanceCaptable,le_pas):
         """
         Aide page 16 du td2
         """
-        pos_x = pos_x + robot.v * np.cos(angle_robot)*duree
-        pos_y = pos_y + robot.v * np.sin(angle_robot)*duree
-        angle = angle_robot + robot.w * duree 
+        i=0
+        x=0
+        ia_pos_x
+        y = ia_pos_y
+        while i < distanceCaptable :
+            x = ia_pos_x + le_pas*cos(angle_robot)*duree
+            y = ia_pos_y + le_pas*sin(angle_robot)*duree
+
 
 
       
