@@ -19,7 +19,11 @@ class Robot :
 		self.roue_droite = Roue(rayonRouesCm, vMaxTourParSec)
 		self.capteurDistance = Capteur_de_distance(capteur)
 		self.rayonDuRobotCm = rayonDuRobotCm
-		
+		#self.pos_x = pos_x
+		#self.pos_y = pos_y
+        #self.robot = robot
+		#self.r=r
+        #self.angle = angle
 
 	def est_entrain_de_rouler(self) :
 		"""
