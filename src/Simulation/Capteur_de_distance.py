@@ -20,7 +20,7 @@ class Capteur_de_distance :
         yo = obstacle.y
         return sqrt((xo-xr)**2+(yo-yr)**2)
 
-    def senseur_de_distance(self.ia_pos_x,ia_pos_y,angle_robot,distanceCaptable,le_pas,l_obstacle):
+    def senseur_de_distance(ia_pos_x,ia_pos_y,angle_robot,distanceCaptable,le_pas,l_obstacle):
         """
         Suppose que la liste d'obstacle sont des cercles
         l_obstacle est une liste d'obstacle
