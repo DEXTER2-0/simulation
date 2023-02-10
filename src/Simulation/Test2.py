@@ -13,7 +13,7 @@ RAYON_ROBOT_CM = 1
 DISTANCE_ROUE_CENTRE_CM = 100 # ----->  l
 
 #Initialisation du Robot
-robot = Robot(RAYON_DES_ROUES_CM, RAYON_ROBOT_CM, 10,VITESSE_MAX_TOUR_PAR_SEC)
+robot = Robot(RAYON_DES_ROUES_CM, RAYON_ROBOT_CM, 8,VITESSE_MAX_TOUR_PAR_SEC)
 
 #Initialisation d'un obstacle en (5,0) de rayon 2
 obstacle = Obstacle(2,5,0)
@@ -24,6 +24,7 @@ ia = IA(robot)
 # Les coordonnées (Permet de placer le robot au milieu de la fenetre)
 #ia.pos_x = 800/2
 ia.pos_x=1
+ia.pos_y=1
 #ia.pos_y = 800/2
 
 while True :

@@ -6,7 +6,7 @@ import math
 import numpy as np
 
 class Robot :
-	def __init__ (self, rayonRouesCm,rayonDuRobotCm, capteur,vMaxTourParSec,v=0,l=1,w=0) :
+	def __init__ (self, rayonRouesCm,rayonDuRobotCm, capteur,vMaxTourParSec,l=1) :
 		"""
 		Fonction d'initialisation prenant en paramètre le rayon des roues en cm, le rayon du robot en cm,
 		la distance maximale captable par le capteur de distance, la vitesse maximale possible pour les roues,
@@ -25,8 +25,6 @@ class Robot :
         #self.robot = robot
 		#self.r=r
         #self.angle = angle
-		self.w=w
-		self.v=v
 		# l = 2*rayon du robot
 		self.l=l*2*rayonDuRobotCm	
 

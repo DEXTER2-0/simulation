@@ -5,7 +5,7 @@ from Capteur_de_distance import *
 from math import *
 
 class IA :
-	def __init__ (self, robot,r=0,angle = 0, pos_x = 0, pos_y = 0) :
+	def __init__ (self, robot,r=0,angle = 0, pos_x = 0, pos_y = 0, v=0, w=0) :
 		"""
 		"""
 		self.r=r
@@ -15,6 +15,8 @@ class IA :
 		self.pos_x = pos_x
 		self.pos_y = pos_y
 		self.robot = robot
+		self.v=v
+		self.w=w
 		
 	def est_entrain_de_rouler(self) :
 		"""
@@ -80,18 +82,20 @@ class IA :
 		cette methode suppose que les rdeux roues possede le meme rayon
 		"""	
 		# vitesse moyenn du robot
-		self.robot.v = (self.robot.roue_gauche.taille_cm*0.01/2)*(ANG_D + ANG_G)	
+		self.v = (self.robot.roue_gauche.taille_cm*0.01/2)*(ANG_D + ANG_G)	
 		#angle de rotation du robot en fonction des vitesses des roues
-		self.robot.w = (self.robot.roue_gauche.taille_cm*0.01/(self.robot.l*0.01))*(ANG_D - ANG_G)
+		self.w = (self.robot.roue_gauche.taille_cm*0.01/(self.robot.l*0.01))*(ANG_D - ANG_G)
+		
+		
 		self.robot.roue_gauche.vTourParSec = ANG_G
 		self.robot.roue_droite.vTourParSec = ANG_D
 
 	def nouvelle_position2(self, duree):
 		"""
 		"""
-		self.pos_x = self.pos_x + self.robot.v * np.cos(self.angle)*duree
-		self.pos_y = self.pos_y + self.robot.v * np.sin(self.angle)*duree
-		self.angle = self.angle + self.robot.w * duree 
+		self.pos_x = self.pos_x + self.v * np.cos(self.angle)*duree
+		self.pos_y = self.pos_y + self.v * np.sin(self.angle)*duree
+		self.angle = self.angle + self.w * duree 
 
 	def evite(self):
 		"""

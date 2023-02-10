@@ -20,9 +20,13 @@ class Capteur_de_distance :
         yo = obstacle.y
         return sqrt((xo-xr)**2+(yo-yr)**2)
 
-    def senseur_de_distance(angle_du_robot):
+    def senseur_de_distance(angle_robot,duree):
         """
         Aide page 16 du td2
-        """        
+        """
+        pos_x = pos_x + robot.v * np.cos(angle_robot)*duree
+        pos_y = pos_y + robot.v * np.sin(angle_robot)*duree
+        angle = angle_robot + robot.w * duree 
+
 
       
