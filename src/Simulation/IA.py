@@ -74,7 +74,7 @@ class IA :
 			self.roue_droite.setVitesse(0)
 			self.roue_gauche.setVitesse(vitessekmh)
 		#	print("le robot tourne vers la droite d'un angle de :  " ,angleEnRad)	
-	def tourner2(self, ANG_G, ANG_D):
+	def bouger(self, ANG_G, ANG_D):
 		"""
 		cette methode suppose que les rdeux roues possede le meme rayon
 		"""	

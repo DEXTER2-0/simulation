@@ -20,10 +20,12 @@ ia = IA(robot)
 
 # Les coordonnées (Permet de placer le robot au milieu de la fenetre)
 #ia.pos_x = 800/2
+ia.pos_x=1
 #ia.pos_y = 800/2
+ia.nouvelle_position2(1)
 
 while True :
-	ia.tourner2(0,200.1)
+	ia.bouger(0,200.1)
 	ia.nouvelle_position2(1)
 	time.sleep(1)
 	print(ia)
