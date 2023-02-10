@@ -31,9 +31,10 @@ class Capteur_de_distance :
         y = ia_pos_y
         print("Distance Captable = ",self.distanceCaptable)
         while k*le_pas < self.distanceCaptable :
-            x = ia_pos_x + le_pas*cos(angle_robot)
-            y = ia_pos_y + le_pas*sin(angle_robot)
+            x = ia_pos_x + cos(angle_robot) * le_pas
+            y = ia_pos_y + sin(angle_robot) * le_pas
             print("capteur -> (",x,",",y,")")
+            # Verification si les coordonées du laser se trouve dans un obstacle(cercle)
             for i in range(len(l_obstacle)) :
                 obstacle = l_obstacle[i]
                 if (sqrt((obstacle.x-x)**2+(obstacle.y-y)**2)) < obstacle.rayon:
