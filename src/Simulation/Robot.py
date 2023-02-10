@@ -175,7 +175,7 @@ class Robot :
 	# 	r = np.sqrt(self.pos_x**2 + self.pos_y**2)
 	# 	angle= np.arctan(self.pos_y/self.pos_x)
 	# 	return r, angle
-	def nouvelle_position(self, vitesse_er, vitesse_et,orientation, duree):
+	def nouvelle_position4(self, vitesse_er, vitesse_et,orientation, duree):
 		"""
 	    Renvoie la distance parcourue (m), pour une vitesse (km)
 	    et une durée (s)
@@ -185,7 +185,7 @@ class Robot :
 		self.r+=vitesse_er*duree
 		self.angle+=vitesse_et*duree/self.r
 		print("Le robot a avancé et est maintenant à la position : x=",self.conversion_polaire_vers_cartesienne()[0]," y=",self.conversion_polaire_vers_cartesienne()[1])		
-	def nouvelle_position2(self,duree):
+	def nouvelle_position5(self,duree):
 		"""
 		Fonction prenant en paramètre la durée en s depuis le calcul de la dernière position
 		puis calcul le nouveau r et le nouvel angle
