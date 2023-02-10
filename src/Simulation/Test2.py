@@ -25,21 +25,20 @@ ia = IA(robot)
 #ia.pos_x = 800/2
 ia.pos_x=1
 #ia.pos_y = 800/2
-ia.nouvelle_position2(1)
 
 while True :
 	# Si le capteur detecte un obstacle a 1.5  metre
-	if robot.capteurDistance.distance(ia.pos_x,ia.pos_y,obstacle) < 1.5 :
-		ia.bouger(150,150)
-		ia.nouvelle_position2(1)
-		time.sleep(1)
-		print(ia)
-		print(ia.robot.roue_droite.vTourParSec)
-		print(ia.robot.roue_gauche.vTourParSec)
-	else :
-		ia.evite()
-		ia.nouvelle_position2(1)
-		time.sleep(1)
-		print(ia)
-		print(ia.robot.roue_droite.vTourParSec)
-		print(ia.robot.roue_gauche.vTourParSec)
+	#if robot.capteurDistance.distance(ia.pos_x,ia.pos_y,obstacle) < 1.5 :
+	ia.bouger(150,150)
+	ia.nouvelle_position2(1)
+	time.sleep(1)
+	print(ia)
+	print(ia.robot.roue_droite.vTourParSec)
+	print(ia.robot.roue_gauche.vTourParSec)
+	#else :
+	#	ia.evite()
+	#	ia.nouvelle_position2(1)
+	#	time.sleep(1)
+	#	print(ia)
+	#	print(ia.robot.roue_droite.vTourParSec)
+	#	print(ia.robot.roue_gauche.vTourParSec)

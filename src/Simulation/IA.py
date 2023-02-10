@@ -97,7 +97,7 @@ class IA :
 		"""
 		tourne de pi/2
 		"""
-		self.bouger(0,(pi*self.robot.l*0.01)/(2*self.robot.rayonRouesCm*0.01))
+		self.bouger(0,(pi*self.robot.l*0.01)/(2*self.robot.roue_droite.taille_cm*0.01))
 		
 
 
@@ -206,7 +206,8 @@ class IA :
 		"""
 		Fonction de redéfinition de la methode print(monInstance)
 		"""
-		res = "Le robot en position (" + str(self.pos_x) +","+ str(self.pos_y) + ")"
+		res = "Le robot en position (" + str(self.pos_x) +","+ str(self.pos_y) + ")" +" angle = "+str(self.angle)
+
 		# Le test suivant permet de faire un affichage du robot selon s'il roule ou pas#
 		
 		return res
