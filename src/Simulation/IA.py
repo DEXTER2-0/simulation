@@ -79,9 +79,9 @@ class IA :
 		cette methode suppose que les rdeux roues possede le meme rayon
 		"""	
 		# vitesse moyenn du robot
-		self.v = (self.roue_gauche.taille_cm*0.01/2)*(ANG_D + ANG_G)	
+		self.robot.v = (self.robot.roue_gauche.taille_cm*0.01/2)*(ANG_D + ANG_G)	
 		#angle de rotation du robot en fonction des vitesses des roues
-		self.w = (self.roue_gauche.taille_cm*0.01/(self.l*0.01))*(ANG_D - ANG_G)
+		self.robot.w = (self.robot.roue_gauche.taille_cm*0.01/(self.robot.l*0.01))*(ANG_D - ANG_G)
 	def accelerer(self,vitesseVoule):
 		"""
 		Fonction prenant en paramètre la vitesse à atteindre en km/h
@@ -124,9 +124,9 @@ class IA :
 	def nouvelle_position2(self, duree):
 		"""
 		"""
-		self.pos_x = self.pos_x + self.v * np.cos(self.angle)*duree
-		self.pos_y = self.pos_y + self.v * np.sin(self.angle)*duree
-		self.angle = self.angle + self.w * duree 
+		self.pos_x = self.pos_x + self.robot.v * np.cos(self.angle)*duree
+		self.pos_y = self.pos_y + self.robot.v * np.sin(self.angle)*duree
+		self.angle = self.angle + self.robot.w * duree 
 	# def conversion_polaire_vers_cartesienne(self):
 		# 	"""
 		# 	Fait la conversion de donnée polaire en donnees cartesienne
