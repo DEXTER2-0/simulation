@@ -41,7 +41,7 @@ ia = IA(robot)
 while True :
 	# Si le capteur detecte un obstacle a 1.5  metre
 	#if robot.capteurDistance.distance(ia.pos_x,ia.pos_y,obstacle) < 1.5 :
-	distance = robot.capteurDistance.senseur_de_distance(ia.pos_x, ia.pos_y, ia.angle, 0.5,liste_obstacle)
+	distance = robot.capteurDistance.senseur_de_distance(ia.pos_x, ia.pos_y, ia.angle,8, 0.5,liste_obstacle)
 	if distance > 1 :
 		ia.bouger(150,150)
 		ia.nouvelle_position2(1)
