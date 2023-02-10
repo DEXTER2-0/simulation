@@ -30,15 +30,3 @@ class Robot :
 		# l = 2*rayon du robot
 		self.l=l*2*rayonDuRobotCm	
 
-	
-	def __str__ (self) :	
-		"""
-		Fonction de redéfinition de la methode print(monInstance)
-		"""
-		res = "Le robot en position (" + str(self.pos_x) +","+ str(self.pos_y) + ")"
-		# Le test suivant permet de faire un affichage du robot selon s'il roule ou pas#
-		if (self.est_entrain_de_rouler()) :
-			res += "est en train de rouler"
-		else :
-			res += " est à l'arret"
-		return res

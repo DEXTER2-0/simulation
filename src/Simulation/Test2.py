@@ -26,4 +26,4 @@ while True :
 	ia.tourner2(200.1,200)
 	ia.nouvelle_position2(1)
 	time.sleep(1)
-	print(robot)
+	print(ia)
