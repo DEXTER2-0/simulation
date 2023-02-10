@@ -27,19 +27,22 @@ class Capteur_de_distance :
         Aide page 16 du td2
         """
         k=0
-        x = 0
-        y = 0
-        print("Distance Captable = ",self.distanceCaptable)
+        x = ia_pos_x
+        y = ia_pos_y
+        #print("Distance Captable = ",self.distanceCaptable)
         while k*le_pas < self.distanceCaptable :
-            x += ia_pos_x + cos(angle_robot) * le_pas
-            y += ia_pos_y + sin(angle_robot) * le_pas
+            x = x + cos(angle_robot) * le_pas
+            y = y + sin(angle_robot) * le_pas
             print("capteur -> (",x,",",y,")")
             # Verification si les coordonées du laser se trouve dans un obstacle(cercle)
             for i in range(len(l_obstacle)) :
                 obstacle = l_obstacle[i]
+                
                 if (self.distance(x,y,obstacle)) < obstacle.rayon:
+                    print("obstacle à : ", sqrt((x-ia_pos_x)**2+(y-ia_pos_y)**2))
                     return sqrt((x-ia_pos_x)**2+(y-ia_pos_y)**2)
             k +=1
+        print("Rien à l'horizon")
         return self.distanceCaptable
 
 
