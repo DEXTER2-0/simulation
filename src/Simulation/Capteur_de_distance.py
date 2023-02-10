@@ -20,17 +20,19 @@ class Capteur_de_distance :
         yo = obstacle.y
         return sqrt((xo-xr)**2+(yo-yr)**2)
 
-    def senseur_de_distance(ia_pos_x,ia_pos_y,angle_robot,duree,distanceCaptable,le_pas):
+    def senseur_de_distance(ia_pos_x,ia_pos_y,angle_robot,duree,distanceCaptable,le_pas,l_obstacle):
         """
+        l_obstacle est une liste d'obstacle
         Aide page 16 du td2
         """
-        i=0
-        x=0
-        ia_pos_x
+        k=0
+        x = ia_pos_x
         y = ia_pos_y
-        while i < distanceCaptable :
+        while k < distanceCaptable :
             x = ia_pos_x + le_pas*cos(angle_robot)*duree
             y = ia_pos_y + le_pas*sin(angle_robot)*duree
+            for i in range(len(l_obstacle)) :
+                if (x == l_obstacle[i].x and y == l_obstacle[i].y)
 
 
 
