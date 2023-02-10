@@ -5,7 +5,7 @@ from Capteur_de_distance import * # Permet d'utiliser la classe Capteur_de_dista
 import math
 import numpy as np
 class Robot :
-	def __init__ (self, rayonRouesCm,rayonDuRobotCm, capteur,vMaxTourParSec, r=0,angle = 0, pos_x = 0, pos_y = 0) :
+	def __init__ (self, rayonRouesCm,rayonDuRobotCm, capteur,vMaxTourParSec, pos_x = 0, pos_y = 0) :
 		"""
 		Fonction d'initialisation prenant en paramètre le rayon des roues en cm, le rayon du robot en cm,
 		la distance maximale captable par le capteur de distance, la vitesse maximale possible pour les roues,
@@ -17,9 +17,7 @@ class Robot :
 		assert(rayonDuRobotCm > 0) # Ne peut pas avoir un rayon < 0
 		self.roue_gauche = Roue(rayonRouesCm, vMaxTourParSec)
 		self.roue_droite = Roue(rayonRouesCm, vMaxTourParSec)
-		self.r=r
 		self.capteurDistance = Capteur_de_distance(capteur)
-		self.angle = angle
 		self.rayonDuRobotCm = rayonDuRobotCm
 		self.pos_x = pos_x
 		self.pos_y = pos_y
