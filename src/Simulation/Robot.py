@@ -125,7 +125,7 @@ class Robot :
 		else :
 			res += " est à l'arret \n"
 		return res
-===	===
+#===+===
 	
 	def est_entrain_de_rouler(self) :
 		"""
@@ -194,20 +194,18 @@ class Robot :
 	#	assert(self.roue_gauche.vTourParSec==self.roue_droite.vTourParSec)
 		assert(self.roue_gauche.vTourParSec != 0)
 		assert(self.roue_gauche.vTourParSec==self.roue_gauche.vTourParSec)
-<<<	<<< HEAD
 	#	print(self.roue_gauche.vTourParSec)	
 		vitesse_actuelle=(36*np.pi*self.roue_gauche.taille_cm)/(5*self.roue_gauche.vTourParSec)
-===	===
 		print(self.roue_gauche.vTourParSec)
 		if (self.roue_gauche.vTourParSec > 0) :
 			vitesse_actuelle=(36*np.pi*self.roue_gauche.taille_cm)/(5*self.roue_gauche.vTourParSec)
 		else :
 			vitesse_actuelle = 0
->>>	>>> 3fb04e685be9380960781b7705d142d51b962b6f
-		while(vitesse_actuelle <= vitesseVoule):
+
+		"""while(vitesse_actuelle <= vitesseVoule):
 				self.roue_gauche.setVitesse(vitesse_actuelle+1)
 				self.roue_gauche.setVitesse(vitesse_actuelle+1)
-				vitesse_actuelle=(36*np.pi*self.roue_gauche.taille_cm)/(5*self.roue_gauche.vTourParSec)	
+				vitesse_actuelle=(36*np.pi*self.roue_gauche.taille_cm)/(5*self.roue_gauche.vTourParSec)	"""
 	#	print("le robot roule à la vitesse voulue apres acceleration :  " , vitesse_actuelle)	
 	def decelerer(self,vitesseVoule):
 		"""
