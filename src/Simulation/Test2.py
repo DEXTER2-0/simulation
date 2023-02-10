@@ -23,7 +23,7 @@ ia = IA(robot)
 #ia.pos_y = 800/2
 
 while True :
-	ia.tourner2(200.1,0)
+	ia.tourner2(0,200.1)
 	ia.nouvelle_position2(1)
 	time.sleep(1)
 	print(ia)
