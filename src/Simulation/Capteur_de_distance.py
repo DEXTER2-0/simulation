@@ -29,14 +29,16 @@ class Capteur_de_distance :
         k=0
         x = ia_pos_x
         y = ia_pos_y
+        print("Distance Captable = ",distanceCaptable)
         while k*le_pas < distanceCaptable :
             x = ia_pos_x + le_pas*cos(angle_robot)
             y = ia_pos_y + le_pas*sin(angle_robot)
+            print("capteur -> (",x,",",y,")")
             for i in range(len(l_obstacle)) :
                 obstacle = l_obstacle[i]
                 if (sqrt((obstacle.x-x)**2+(obstacle.y-y)**2)) < obstacle.rayon:
                     return sqrt((x-ia_pos_x)**2+(y-ia_pos_y)**2)
-
+            le_pas +=1
         return distanceCaptable
 
 
