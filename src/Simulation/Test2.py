@@ -8,7 +8,7 @@ from IA import *
 # Initialisation des constantes du robot
 RAYON_DES_ROUES_CM = 1 # ---->  r
 VITESSE_MAX_TOUR_PAR_SEC = 30 #pas encore utilisé
-RAYON_ROBOT_CM = 4
+RAYON_ROBOT_CM = 1
 DISTANCE_ROUE_CENTRE_CM = 100 # ----->  l
 
 #Initialisation du Robot
@@ -23,7 +23,7 @@ ia = IA(robot)
 #ia.pos_y = 800/2
 
 while True :
-	ia.tourner2(200.1,200)
+	ia.tourner2(200.1,0)
 	ia.nouvelle_position2(1)
 	time.sleep(1)
 	print(ia)
