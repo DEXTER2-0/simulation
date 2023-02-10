@@ -22,22 +22,26 @@ class Capteur_de_distance :
 
     def senseur_de_distance(self,ia_pos_x,ia_pos_y,angle_robot,le_pas,l_obstacle):
         """
-        Suppose que la liste d'obstacle sont des cercles
-        l_obstacle est une liste d'obstacle
         Aide page 16 du td2
+        Suppose que la liste d'obstacle sont des cercles
+        l_obstacle : est une liste d'obstacle
+        ia.pos_y et ia.pos_y : permettent de récuperer les coordonnée actuelles du robot
+        angle : permet au capteur de savoir dans quelle direction lancer le laser
+        le_pas : permet de couper en plusieurs morceaux la distance avant de rencontrer un obstacle 
         """
         k=0
         x = ia_pos_x
         y = ia_pos_y
         #print("Distance Captable = ",self.distanceCaptable)
         while k*le_pas < self.distanceCaptable :
-            x = x + cos(angle_robot) * le_pas
-            y = y + sin(angle_robot) * le_pas
-            print("capteur -> (",x,",",y,")")
+            x = x + cos(angle_robot) * le_pas #Lance le laser dans la bonne direction
+            y = y + sin(angle_robot) * le_pas #Lance le laser dans la bonne direction
+            print("capteur -> (",x,",",y,")") 
             # Verification si les coordonées du laser se trouve dans un obstacle(cercle)
             for i in range(len(l_obstacle)) :
                 obstacle = l_obstacle[i]
                 
+                # Si a un moment le laser se trouve dans un obstacle
                 if (self.distance(x,y,obstacle)) < obstacle.rayon:
                     print("obstacle à : ", sqrt((x-ia_pos_x)**2+(y-ia_pos_y)**2))
                     return sqrt((x-ia_pos_x)**2+(y-ia_pos_y)**2)
