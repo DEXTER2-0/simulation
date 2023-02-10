@@ -37,7 +37,7 @@ class Capteur_de_distance :
             # Verification si les coordonées du laser se trouve dans un obstacle(cercle)
             for i in range(len(l_obstacle)) :
                 obstacle = l_obstacle[i]
-                if (sqrt((obstacle.x-x)**2+(obstacle.y-y)**2)) < obstacle.rayon:
+                if (self.distance(x,y,obstacle)) < obstacle.rayon:
                     return sqrt((x-ia_pos_x)**2+(y-ia_pos_y)**2)
             le_pas +=1
         return self.distanceCaptable
