@@ -27,7 +27,7 @@ class Robot :
         #self.angle = angle
 		self.w=w
 		self.v=v
-		self.l	
+		self.l=l	
 
 	
 	def __str__ (self) :	
