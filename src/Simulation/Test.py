@@ -2,12 +2,8 @@
 # -*- coding: latin-1 -*-
 from Robot import * # Permet d'utiliser la classe Robot se trouvant dans le meme repertoire
 from Roue import * # Permet d'utiliser la classe Roue se trouvant dans le meme repertoire
-<<<<<<< HEAD
-#Test commit
-
-=======
 import constantes as cs
->>>>>>> develop
+
 
 # Initialisation des constantes du robot
 
