@@ -260,10 +260,11 @@ class Robot :
 		val=np.pi/2
 		if(self.capteurDistance.distance(self,Obstacle) < 10):
 			self.tourner(val,1)
-	#		print("le robot a évité l'obstacle")
+			print("le robot a évité l'obstacle")
 		else :
-	#		print("pas de danger , no worries")	
-	    def __str__ (self) :	
+			print("pas de danger , no worries")	
+
+	def __str__ (self) :	
 		"""
 		Fonction de redéfinition de la methode print(monInstance)
 		"""
@@ -274,4 +275,3 @@ class Robot :
 		else :
 			res += " est à l'arret"
 		return res	
->>>	>>> develop	
