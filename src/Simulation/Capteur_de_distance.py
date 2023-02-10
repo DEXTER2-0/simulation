@@ -39,7 +39,7 @@ class Capteur_de_distance :
                 obstacle = l_obstacle[i]
                 if (self.distance(x,y,obstacle)) < obstacle.rayon:
                     return sqrt((x-ia_pos_x)**2+(y-ia_pos_y)**2)
-            le_pas +=1
+            k +=1
         return self.distanceCaptable
 
 
