@@ -29,3 +29,5 @@ while True :
 	ia.nouvelle_position2(1)
 	time.sleep(1)
 	print(ia)
+	print(ia.robot.roue_droite.vTourParSec)
+	print(ia.robot.roue_gauche.vTourParSec)

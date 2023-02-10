@@ -82,6 +82,10 @@ class IA :
 		self.robot.v = (self.robot.roue_gauche.taille_cm*0.01/2)*(ANG_D + ANG_G)	
 		#angle de rotation du robot en fonction des vitesses des roues
 		self.robot.w = (self.robot.roue_gauche.taille_cm*0.01/(self.robot.l*0.01))*(ANG_D - ANG_G)
+		self.robot.roue_gauche.vTourParSec = ANG_G
+		self.robot.roue_droite.vTourParSec = ANG_D
+
+
 	def accelerer(self,vitesseVoule):
 		"""
 		Fonction prenant en paramètre la vitesse à atteindre en km/h
