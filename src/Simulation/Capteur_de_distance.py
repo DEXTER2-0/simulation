@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: latin-1 -*-
-from math import pi,sqrt,sin,cos
+from math import pi,sqrt,sin,cos,abs
 class Capteur_de_distance :
     def __init__(self, distanceCaptable) :
        """
@@ -22,6 +22,7 @@ class Capteur_de_distance :
 
     def senseur_de_distance(ia_pos_x,ia_pos_y,angle_robot,duree,distanceCaptable,le_pas,l_obstacle):
         """
+        Suppose que la liste d'obstacle sont des cercles
         l_obstacle est une liste d'obstacle
         Aide page 16 du td2
         """
@@ -32,7 +33,11 @@ class Capteur_de_distance :
             x = ia_pos_x + le_pas*cos(angle_robot)*duree
             y = ia_pos_y + le_pas*sin(angle_robot)*duree
             for i in range(len(l_obstacle)) :
-                if (x == l_obstacle[i].x and y == l_obstacle[i].y)
+                obstacle = l_obstacle[i]
+                if (sqrt((obstacle.x-x)**2+(obstacle.y-y)**2)) < obstacle.rayon:
+                    return sqrt((x-ia_pos_x)**2+(y-ia_pos_y)**2)
+
+        return distanceCaptable
 
 
 
