@@ -19,7 +19,7 @@ robot = Robot(RAYON_DES_ROUES_CM, RAYON_ROBOT_CM, 8,VITESSE_MAX_TOUR_PAR_SEC)
 obstacle1 = Obstacle(1,3000,1)
 obstacle2 = Obstacle(2,500,5)
 obstacle3 = Obstacle(3,2200,1)
-obstacle4 = Obstacle(4,1500,1)
+obstacle4 = Obstacle(4,15,1)
 
 liste_obstacle = []
 liste_obstacle.append(obstacle1)

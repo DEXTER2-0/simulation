@@ -27,12 +27,12 @@ class Capteur_de_distance :
         Aide page 16 du td2
         """
         k=0
-        x = ia_pos_x
-        y = ia_pos_y
+        x = 0
+        y = 0
         print("Distance Captable = ",self.distanceCaptable)
         while k*le_pas < self.distanceCaptable :
-            x = ia_pos_x + cos(angle_robot) * le_pas
-            y = ia_pos_y + sin(angle_robot) * le_pas
+            x += ia_pos_x + cos(angle_robot) * le_pas
+            y += ia_pos_y + sin(angle_robot) * le_pas
             print("capteur -> (",x,",",y,")")
             # Verification si les coordonées du laser se trouve dans un obstacle(cercle)
             for i in range(len(l_obstacle)) :
