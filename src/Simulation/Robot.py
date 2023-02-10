@@ -6,7 +6,6 @@ import math
 import numpy as np
 
 class Robot :
-<<<<<<< HEAD
     def __init__ (self, rayonRouesCm,rayonDuRobotCm,vMaxTourParSec, r=0,angle = 0, pos_x = 0, pos_y = 0,v=0,l=8,w=0, estEnTrainDeRouler = False) :
         #"""
         #Le robot instancie ses deux roues de la meme taille et de meme vitesse maximal
@@ -111,7 +110,6 @@ class Robot :
 
 
     def conversion_cartesienne_vers_polaire(self):
-
 	    """ convertit les coordonnées cartesiennes en coordonnées polaires """
 	    r=np.sqrt((self.pos_x * self.pos_x) + (self.pos_y * self.pos_y))
 	    o=2*math.atan(self.pos_y / (self.pos_x + r))
