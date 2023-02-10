@@ -6,28 +6,26 @@ import math
 import numpy as np
 
 class Robot :
-    def __init__ (self, rayonRouesCm,rayonDuRobotCm,vMaxTourParSec, r=0,angle = 0, pos_x = 0, pos_y = 0,v=0,l=8,w=0, estEnTrainDeRouler = False) :
-        #"""
-        #Le robot instancie ses deux roues de la meme taille et de meme vitesse maximal
-       # v est la vitesse moyenne du robot initialisé a zero
-       # l est la distance entre les deux roues en cm 
-       # w est la orientation du robot en fonction des deux roues
-       # """
-
-        assert(rayonRouesCm > 0) # Ne peut pas avoir un rayon < 0
-        assert(vMaxTourParSec > 0) # Ne peut pavoir une vitesse max < 0
-        assert(rayonDuRobotCm > 0) # Ne peut pas avoir un rayon < 0
-        self.roue_gauche = Roue(rayonRouesCm, vMaxTourParSec)
-        self.roue_droite = Roue(rayonRouesCm, vMaxTourParSec)
-        self.r=r
-        self.angle = angle
-        self.rayonDuRobotCm = rayonDuRobotCm 
-        self.pos_x = pos_x
-        self.pos_y = pos_y
-        self.estEnTrainDeRouler = estEnTrainDeRouler # Permet de savoir si le robot est en train de rouler
-        self.w=w
-        self.v=v
-        self.l=l
+	def __init__ (self, rayonRouesCm,rayonDuRobotCm,vMaxTourParSec, r=0,angle = 0, pos_x = 0, pos_y = 0,v=0,l=8,w=0, estEnTrainDeRouler = False) :
+		"""
+        Le robot instancie ses deux roues de la meme taille et de meme vitesse maximal
+       	v est la vitesse moyenne du robot initialisé a zero
+       	l est la distance entre les deux roues en cm 
+       	w est la orientation du robot en fonction des deux roues
+        """
+		assert(rayonRouesCm > 0) # Ne peut pas avoir un rayon < 0
+		assert(vMaxTourParSec > 0) # Ne peut pavoir une vitesse max < 0
+		assert(rayonDuRobotCm > 0) # Ne peut pas avoir un rayon < 0
+		self.roue_gauche = Roue(rayonRouesCm, vMaxTourParSec)
+		self.roue_droite = Roue(rayonRouesCm, vMaxTourParSec)
+		#self.r=r
+		#self.angle = angle
+		self.rayonDuRobotCm = rayonDuRobotCm 
+		#self.pos_x = pos_x
+		self.estEnTrainDeRouler = estEnTrainDeRouler # Permet de savoir si le robot est en train de rouler
+		self.w=w
+		self.v=v
+		self.l
 
 
     def avancer(self,vitesseVoulue_kmh_er,vitesseVoulue_kmh_et) :
@@ -110,6 +108,7 @@ class Robot :
 
 
     def conversion_cartesienne_vers_polaire(self):
+
 	    """ convertit les coordonnées cartesiennes en coordonnées polaires """
 	    r=np.sqrt((self.pos_x * self.pos_x) + (self.pos_y * self.pos_y))
 	    o=2*math.atan(self.pos_y / (self.pos_x + r))
