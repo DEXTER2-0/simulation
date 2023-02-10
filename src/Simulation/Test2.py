@@ -31,7 +31,7 @@ liste_obstacle.append(obstacle4)
 
 #Initilaisation de l'IA
 ia = IA(robot)
-#Modification angle de départ 
+#Modification angle de départ
 ia.angle = pi/4
 
 # Les coordonnées (Permet de placer le robot au milieu de la fenetre)
@@ -54,9 +54,10 @@ while True :
 	else :
 		print("obstacle à ",distance ,"metre")
 		break
-	#	ia.evite()
-	#	ia.nouvelle_position2(1)
-	#	time.sleep(1)
-	#	print(ia)
-	#	print(ia.robot.roue_droite.vTourParSec)
-	#	print(ia.robot.roue_gauche.vTourParSec)
+		# EN CONSTRUCTION .......
+		# ia.evite()
+		# ia.nouvelle_position2(1)
+		# time.sleep(1)
+		# print(ia)
+		# print(ia.robot.roue_droite.vTourParSec)
+		# print(ia.robot.roue_gauche.vTourParSec)
