@@ -52,7 +52,7 @@ while True :
 		#print(ia.robot.roue_droite.vTourParSec)
 		#print(ia.robot.roue_gauche.vTourParSec)
 	else :
-		print("obstacle à ",distance ,"metre")
+		print("obstacle à ",distance ,"metre ARRET !!")
 		break
 		# EN CONSTRUCTION .......
 		# ia.evite()
