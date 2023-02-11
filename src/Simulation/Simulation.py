@@ -12,16 +12,19 @@ class Simulation :
         self.robot = robotDonne
         self.obs1 = Obstacle(6,2,2)
         self.obs2 = Obstacle(3,4,7)
-
-    def simulationsansInterface(self):
-        i=1
-        t=2
-        while(i<=t):
-            #faire avancer le robot
-	    self.robot.avancer(i,i)
-            #methode d'evitement
-            i+=0.1
-            sleep(0.5)
+    
+    
+    
+    def simul(self):
+    i=0
+    t=
+    self.ia.robot.bouger(vr,vl)
+    while (i<t):
+        for i in self.terrain.liste_obstacle:
+            self.ia.robot.eviter(i)
+        self.collision()
+        i+=0.1
+    self.robot.arret()
 
     
 
