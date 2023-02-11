@@ -2,6 +2,7 @@ from Robot import *
 from Obstacle import *
 from Roue import *
 from Capteur_de_distance import *
+import numpy as np
 
 class Simulation :
     def __init__ (self, robotDonne) :
@@ -13,7 +14,13 @@ class Simulation :
         self.obs1 = Obstacle(6,2,2)
         self.obs2 = Obstacle(3,4,7)
     
-    
+    def collision(self):
+    for i in self.terrain.liste_obstacles:
+        d=np.sqrt((self.ia.robot.x-i.x)**2+(self.ia.robot.y-i.y)**2)
+        if(d<=(self.ia.robot.rayon+i.rayon)): # collision de deux cercles
+            self.ia.robot.arreter_urgence()
+        elif (d<=(self.ia.robot.rayon)): # collision d'un cercle et d'un rectangle A COMPLETER
+            self.ia.robot.arret_urgence()
     
     def simul(self):
     i=0
