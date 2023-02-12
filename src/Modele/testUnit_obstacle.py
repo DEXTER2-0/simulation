@@ -13,6 +13,7 @@ class TestObstacle(unittest.TestCase):
     def test_init(self):
         """
         """
-        
+
     if __name__ == '__main__':
         unittest.main()
+#pour tester -> python3 .m unittest nom_de_module.nomdefichier -v
