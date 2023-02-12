@@ -5,7 +5,7 @@ class TestSimulation(unittest.TestCase):
 
     def setUp(self):
         """
-        Permet d'enregistrer tous les attributs de IA
+        Permet d'enregistrer tous les attributs de Simulation
         """
         #self.roue1
 
