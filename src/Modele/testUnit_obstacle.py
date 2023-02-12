@@ -13,11 +13,6 @@ class TestObstacle(unittest.TestCase):
     def test_init(self):
         """
         """
-    def test_distance(self):
-        """
-        """
-    def test_senseurDistance(self):
-        """
-        """
+        
     if __name__ == '__main__':
         unittest.main()
