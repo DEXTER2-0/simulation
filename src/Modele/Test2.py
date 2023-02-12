@@ -10,7 +10,7 @@ from Obstacle import *
 RAYON_DES_ROUES_CM = 1 # ---->  r
 VITESSE_MAX_TOUR_PAR_SEC = 30 #pas encore utilisé
 RAYON_ROBOT_CM = 1
-DISTANCE_ROUE_CENTRE_CM = 100 # ----->  l
+
 
 #Initialisation du Robot
 robot = Robot(RAYON_DES_ROUES_CM, RAYON_ROBOT_CM, 8,VITESSE_MAX_TOUR_PAR_SEC)
