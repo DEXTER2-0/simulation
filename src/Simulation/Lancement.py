@@ -2,7 +2,7 @@ import Simulation as simu
 from Modele import Robot Roue  
 from Modele import Constantes as cs
 from Modele import Obstacle as obs
-from Controleur import IA
+from Controleur import IA as ia
 
 #Initialisation du Robot
 robot = Robot(cs.RAYON_DES_ROUES_CM, cs.RAYON_ROBOT_CM, 8,cs.VITESSE_MAX_TOUR_PAR_SEC)
@@ -19,4 +19,4 @@ liste_obstacle.append(obstacle3)
 liste_obstacle.append(obstacle4)
 
 
-simulation = simu.Simulation(robot,liste_obstacle)
+simulation = simu.Simulation(robot,liste_obstacle,1)
