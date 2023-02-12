@@ -5,12 +5,13 @@ from Capteur_de_distance import *
 import numpy as np
 
 class Simulation :
-    def __init__ (self, robotDonne, liste_obstacle, duree_boucle) :
+    def __init__ (self, robotDonne, terrain,liste_obstacle, duree_boucle) :
         """
         """
         #self.mur_x = range(10) 
         #self.mur_y = range(10)
         self.robot = robotDonne
+        self.terrain = terrain
         self.liste_obstacle = liste_obstacle 
         self.duree_boucle = duree_boucle
         self.obs1 = Obstacle(6,2,2)
