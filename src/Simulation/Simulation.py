@@ -36,6 +36,9 @@ class Simulation :
             self.ia.nouvelle_position2(self.duree_boucle)
             time.sleep(1)
             print(self.ia)
+        else :
+            print("obstacle à ",distance ,"metre ARRET !!")
+    
 
     #def simul(self):
     #    i=0

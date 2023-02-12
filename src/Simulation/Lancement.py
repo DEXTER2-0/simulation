@@ -1,6 +1,6 @@
 import Simulation as simu
 from Modele import Robot Roue  
-from Modele import Constantes as cs
+from Modele import constantes as cs
 from Modele import Obstacle as obs
 from Controleur import IA as ia
 from Modele import Terrain as ter
@@ -28,3 +28,6 @@ terrain = ter.Terrain(0,600,0,600, liste_obstacle)
 
 
 simulation = simu.Simulation(ia,terrain,1)
+
+while True :
+    simulation.update_simulation()
