@@ -16,7 +16,9 @@ class TestRoue(unittest.TestCase):
         self.assertEqual(self.roue2.taille_cm,5)
         self.assertEqual(self.roue1.vMaxTourParSec,5)
         self.assertEqual(self.roue2.vMaxTourParSec,15)
-    
+    def test_setVitesse(self):
+        """
+        """
     if __name__ == '__main__':
         unittest.main()
 #pour tester -> python3 .m unittest nom_de_module.nomdefichier -v

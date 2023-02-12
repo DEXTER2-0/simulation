@@ -9,5 +9,15 @@ class TestObstacle(unittest.TestCase):
         Permet d'enregistrer tous les attributs de Obstacle
         """
         #self.roue1
+
+    def test_init(self):
+        """
+        """
+    def test_distance(self):
+        """
+        """
+    def test_senseurDistance(self):
+        """
+        """
     if __name__ == '__main__':
         unittest.main()
