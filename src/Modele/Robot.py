@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: latin-1 -*-
-from Roue import * # Permet d'utiliser la classe Roue se trouvant dans le meme repertoire
-from Capteur_de_distance import * # Permet d'utiliser la classe Capteur_de_distance se trouvant dans le meme repertoire
+from Modele import Roue 
+from Modele import Capteur_de_distance 
 import math
 import numpy as np
 
