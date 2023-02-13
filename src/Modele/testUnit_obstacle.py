@@ -19,3 +19,4 @@ class TestObstacle(unittest.TestCase):
         unittest.main()
 #pour tester -> python3 .m unittest nom_de_module.nomdefichier -v
 #constructeur avec longueur et largeur ne marche pas ?
+#si deux obstacle sont dans le meme position?
