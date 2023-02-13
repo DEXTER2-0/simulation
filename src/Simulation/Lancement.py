@@ -1,9 +1,12 @@
 import Simulation as simu
-from Modele import Robot Roue  
+from Modele import Robot
+from Modele import Roue  
 from Modele import constantes as cs
 from Modele import Obstacle as obs
 from Controleur import IA as ia
 from Modele import Terrain as ter
+import time #pour pouvoir controler le temps de la boucle while True
+
 
 #Initialisation du Robot
 robot = Robot(cs.RAYON_DES_ROUES_CM, cs.RAYON_ROBOT_CM, 8,cs.VITESSE_MAX_TOUR_PAR_SEC)

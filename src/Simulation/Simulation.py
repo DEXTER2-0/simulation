@@ -1,9 +1,11 @@
-from Robot import *
-from Obstacle import *
-from Roue import *
-from Capteur_de_distance import *
-import numpy as np
+from Modele import Robot
+from Modele import Roue  
+from Modele import constantes
+from Modele import Obstacle
+from Controleur import IA
+from Modele import Terrain
 import time #pour pouvoir controler le temps de la boucle while True
+import numpy as np
 
 
 
