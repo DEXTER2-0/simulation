@@ -5,17 +5,19 @@ from Modele import constantes as cs
 from Modele import Obstacle as obs
 from Controleur import IA as ia
 from Modele import Terrain as ter
+from Graphique import Graphique as gr
+
 import time #pour pouvoir controler le temps de la boucle while Truefrom math import *
 
 ##----- Importation des Modules -----##
-from tkinter import * 
+#from tkinter import * 
 
 ##----- Création de la fenetre -----##
-fen = Tk() 
-WIDTH = 800 # axe des x
-HEIGHT = 800 # axe des y
-canvas = Canvas(fen, width = WIDTH, height = HEIGHT, bg = 'yellow') #fentre graphique
-canvas.pack(fill="both", expand=True)
+#fen = Tk() 
+#WIDTH = 800 # axe des x
+#HEIGHT = 800 # axe des y
+#canvas = Canvas(fen, width = WIDTH, height = HEIGHT, bg = 'yellow') #fentre graphique
+#canvas.pack(fill="both", expand=True)
 
 # calcul vitesse angulaire
 def ang(T_en_sec):
@@ -27,14 +29,39 @@ def distance(xA, yA, xB, yB):
 
 
 # Initialisation des constantes du robot
-RAYON_DES_ROUES_CM = 1 # ---->  r
-VITESSE_MAX_TOUR_PAR_SEC = 30 #pas encore utilisé
-RAYON_ROBOT_CM = 8
-DISTANCE_ROUE_CENTRE_CM = 100 # ----->  l
+#RAYON_DES_ROUES_CM = 1 # ---->  r
+#VITESSE_MAX_TOUR_PAR_SEC = 30 #pas encore utilisé
+#RAYON_ROBOT_CM = 8
+#DISTANCE_ROUE_CENTRE_CM = 100 # ----->  l
 
 
-# Le robot à déplacer
-robot = Robot(RAYON_DES_ROUES_CM, RAYON_ROBOT_CM, VITESSE_MAX_TOUR_PAR_SEC)
+#Initialisation du Robot
+robot = rb.Robot(cs.RAYON_DES_ROUES_CM, cs.RAYON_ROBOT_CM, 8,cs.VITESSE_MAX_TOUR_PAR_SEC)
+
+#Initilaisation de l'IA
+ia = ia.IA(robot)
+
+#Initialisation d'une liste d'obstacle
+obstacle1 = obs.Obstacle(1,30,0)
+obstacle2 = obs.Obstacle(2,500,5)
+obstacle3 = obs.Obstacle(3,220,1)
+obstacle4 = obs.Obstacle(1,15,15)
+liste_obstacle = []
+liste_obstacle.append(obstacle1)
+liste_obstacle.append(obstacle2)
+liste_obstacle.append(obstacle3)
+liste_obstacle.append(obstacle4)
+
+#Initialisation d'un terrain
+terrain = ter.Terrain(0,cs.WIDTH,0,cs.HEIGHT, liste_obstacle)
+
+graphique2D = gr.Graphique(ia,robot,terrain,1)
+
+simulation = simu.Simulation(ia,robot,terrain,1)
+
+while True :
+    simulation.update_simulation()
+
 # Permet de représenter le robot sur tkinter
 representation_robot = canvas.create_oval(robot.pos_x - robot.rayonDuRobotCm , robot.pos_y - robot.rayonDuRobotCm,robot.pos_x + robot.rayonDuRobotCm, robot.pos_y + robot.rayonDuRobotCm, width=2, fill="purple")
 
