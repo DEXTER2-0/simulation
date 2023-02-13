@@ -1,3 +1,6 @@
+import sys
+sys.path.append("./..")
+
 import Simulation as simu
 from Modele import Robot
 from Modele import Roue  
