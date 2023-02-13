@@ -33,6 +33,12 @@ class IA :
 		self.roue_gauche.setVitesse(0)
 		self.roue_droite.setVitesse(0)
 	
+	def arreter(self):
+		"""
+		Fonction arretant le robot par décélération jusqu'à l'arrêt
+		"""
+		self.decelerer(0)
+	
 #	def avancer(self,vitesseVoulue_kmh_er,vitesseVoulue_kmh_et) :
 #		"""
 #		Fonction prenant en paramètre la vitesse voulue en km/h projetée sur l'axe er et la vitesse voulue en km/h projetée sur l'axe et
@@ -136,14 +142,6 @@ class IA :
 			self.roue_gauche.setVitesse(vitesse_actuelle-1)
 			self.roue_gauche.setVitesse(vitesse_actuelle-1)
 			vitesse_actuelle=(36*np.pi*self.roue_gauche.taille_cm)/(5*self.roue_gauche.vTourParSec)	
-	#	print("le robot roule à la vitesse voulue apres deceleration : ", vitesse_actuelle)	
-	def arreter(self):
-		"""
-		Fonction arretant le robot par décélération jusqu'à l'arrêt
-		"""
-		self.decelerer(0)
-	#	print("le robot s'arrete")	
-
 	
 	# def conversion_polaire_vers_cartesienne(self):
 		# 	"""
