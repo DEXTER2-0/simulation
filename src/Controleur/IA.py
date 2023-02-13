@@ -59,24 +59,24 @@ class IA :
 #		vitesseVoulue_kmh=-(np.sqrt(vitesseVoulue_kmh_er**2+vitesseVoulue_kmh_et**2))
 #		self.accelerer(vitesseVoulue_kmh)
 #		#print("le robot recule à une vitesse de ",vitesseVoulue_kmh)	
-	def tourner(self,angleEnRad,tempsDonneEnSec):
-		"""
-		Fonction prenant en paramètre l'angle en rad que le robot doit effectuer et le temps qu'il a pour faire cette rotation
-		commençant par arrêter le robot puis calculant la vitesse angulaire et la vitesse en km/h de cette rotation
-		avant de tester si l'angle est positif, dans ce cas la vitesse est transmise à la roue gauche pour tourner à droite, 
-		ou négatif, dans ce cas la vitesse est transmise à la roue droite pour tourner à gauche
-		"""
-		self.arreter_urgence()
-		vitesseAng = angleEnRad/tempsDonneEnSec
-		vitessekmh = 3.6*self.roue_droite.taille_cm*(10**(-2))*vitesseAng
-		if(angleEnRad<0):
-			self.roue_droite.setVitesse(vitessekmh)
-			self.roue_gauche.setVitesse(0)
-		#	print("le robot tourne vers la gauche d'un angle de : ", angleEnRad)
-		if(angleEnRad>0):
-			self.roue_droite.setVitesse(0)
-			self.roue_gauche.setVitesse(vitessekmh)
-		#	print("le robot tourne vers la droite d'un angle de :  " ,angleEnRad)	
+#	def tourner(self,angleEnRad,tempsDonneEnSec):
+#		"""
+#		Fonction prenant en paramètre l'angle en rad que le robot doit effectuer et le temps qu'il a pour faire cette rotation
+#		commençant par arrêter le robot puis calculant la vitesse angulaire et la vitesse en km/h de cette rotation
+#		avant de tester si l'angle est positif, dans ce cas la vitesse est transmise à la roue gauche pour tourner à droite, 
+#		ou négatif, dans ce cas la vitesse est transmise à la roue droite pour tourner à gauche
+#		"""
+#		self.arreter_urgence()
+#		vitesseAng = angleEnRad/tempsDonneEnSec
+#		vitessekmh = 3.6*self.roue_droite.taille_cm*(10**(-2))*vitesseAng
+#		if(angleEnRad<0):
+#			self.roue_droite.setVitesse(vitessekmh)
+#			self.roue_gauche.setVitesse(0)
+#		#	print("le robot tourne vers la gauche d'un angle de : ", angleEnRad)
+#		if(angleEnRad>0):
+#			self.roue_droite.setVitesse(0)
+#			self.roue_gauche.setVitesse(vitessekmh)
+#		#	print("le robot tourne vers la droite d'un angle de :  " ,angleEnRad)	
 	def bouger(self, ANG_G, ANG_D):
 		"""
 		cette methode suppose que les rdeux roues possede le meme rayon
