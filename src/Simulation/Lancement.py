@@ -2,7 +2,7 @@ import sys
 sys.path.append("../")
 
 import Simulation as simu
-from Modele import Robot
+from Modele import Robot as rb
 from Modele import Roue  
 from Modele import constantes as cs
 from Modele import Obstacle as obs
@@ -12,7 +12,7 @@ import time #pour pouvoir controler le temps de la boucle while True
 
 
 #Initialisation du Robot
-robot = Robot(cs.RAYON_DES_ROUES_CM, cs.RAYON_ROBOT_CM, 8,cs.VITESSE_MAX_TOUR_PAR_SEC)
+robot = rb.Robot(cs.RAYON_DES_ROUES_CM, cs.RAYON_ROBOT_CM, 8,cs.VITESSE_MAX_TOUR_PAR_SEC)
 
 #Initilaisation de l'IA
 ia = ia.IA(robot)
