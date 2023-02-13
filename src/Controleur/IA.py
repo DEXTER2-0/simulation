@@ -100,8 +100,8 @@ class IA :
 	def nouvelle_position2(self, duree):
 		"""
 		"""
-		self.pos_x = self.pos_x + self.v * np.cos(self.angle)*duree
-		self.pos_y = self.pos_y + self.v * np.sin(self.angle)*duree
+		self.pos_x = self.pos_x + self.v * cos(self.angle)*duree
+		self.pos_y = self.pos_y + self.v * sin(self.angle)*duree
 		self.angle = self.angle + self.w * duree 
 
 	def evite(self):

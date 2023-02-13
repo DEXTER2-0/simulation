@@ -18,7 +18,7 @@ robot = rb.Robot(cs.RAYON_DES_ROUES_CM, cs.RAYON_ROBOT_CM, 8,cs.VITESSE_MAX_TOUR
 ia = ia.IA(robot)
 
 #Initialisation d'une liste d'obstacle
-obstacle1 = obs.Obstacle(1,300,1)
+obstacle1 = obs.Obstacle(1,30,0)
 obstacle2 = obs.Obstacle(2,500,5)
 obstacle3 = obs.Obstacle(3,220,1)
 obstacle4 = obs.Obstacle(1,15,15)
@@ -33,7 +33,7 @@ terrain = ter.Terrain(0,600,0,600, liste_obstacle)
 
 
 
-simulation = simu.Simulation(ia,terrain,1)
+simulation = simu.Simulation(ia,robot,terrain,1)
 
 while True :
     simulation.update_simulation()
