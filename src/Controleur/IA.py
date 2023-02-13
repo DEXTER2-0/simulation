@@ -27,7 +27,8 @@ class IA :
 		else :
 			return True
 	
-	def arreter_urgence(self):		"""
+	def arreter_urgence(self):		
+		"""
 		Fonction arretant le robot en mettant la vitesses des roues à 0 d'un coup
 		"""
 		self.roue_gauche.setVitesse(0)
