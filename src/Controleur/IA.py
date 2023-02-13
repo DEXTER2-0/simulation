@@ -1,7 +1,7 @@
-from Robot import *
-from Obstacle import *
-from Roue import *
-from Capteur_de_distance import *
+from Modele import Robot
+from Modele import Obstacle
+from Modele import Roue
+from Modele import Capteur_de_distance
 from math import *
 
 class IA :
