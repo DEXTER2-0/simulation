@@ -1,6 +1,7 @@
 import unittest
 import Roue as ro
 import constantes as c
+import math
 
 class TestRoue(unittest.TestCase):
 
@@ -19,6 +20,9 @@ class TestRoue(unittest.TestCase):
     def test_setVitesse(self):
         """
         """
+        self.roue1.setVitesse(5)
+        self.roue2.setVitesse(20)
+        self.assertEqual(self.roue1.vTourParSec,(5*5)/(36*math.pi*self.taille_cm*0.01))
     if __name__ == '__main__':
         unittest.main()
 #pour tester -> python3 .m unittest nom_de_module.nomdefichier -v

@@ -16,7 +16,8 @@ class TestRobot(unittest.TestCase):
         self.assertEqual(self.r1.rayonDuRobotCm,10)
         self.assertEqual(self.r1.roue_droite.vMaxTourParSec,5)
         self.assertEqual(self.r1.roue_droite.vMaxTourParSec,self.r1.roue_gauche.vMaxTourParSec)
-    
+        self.assertEqual(self.r1.l,l*2*self.r1.rayonDuRobotCm)
+
     if __name__ == '__main__':
         unittest.main()
 
