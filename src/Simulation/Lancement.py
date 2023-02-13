@@ -1,5 +1,5 @@
 import sys
-sys.path.append("./..")
+sys.path.append("../")
 
 import Simulation as simu
 from Modele import Robot
