@@ -1,7 +1,11 @@
-from Robot import * # Permet d'utiliser la classe Robot se trouvant dans le meme repertoire
-from Roue import * # Permet d'utiliser la classe Roue se trouvant dans le meme repertoire
-import time #pour pouvoir controler le temps de la boucle while True
-from math import *
+import Simulation as simu
+from Modele import Robot as rb
+from Modele import Roue  
+from Modele import constantes as cs
+from Modele import Obstacle as obs
+from Controleur import IA as ia
+from Modele import Terrain as ter
+import time #pour pouvoir controler le temps de la boucle while Truefrom math import *
 
 ##----- Importation des Modules -----##
 from tkinter import * 
