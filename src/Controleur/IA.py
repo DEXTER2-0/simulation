@@ -26,34 +26,33 @@ class IA :
 			return False
 		else :
 			return True	
-	def avancer(self,vitesseVoulue_kmh_er,vitesseVoulue_kmh_et) :
-		"""
-		Fonction prenant en paramètre la vitesse voulue en km/h projetée sur l'axe er et la vitesse voulue en km/h projetée sur l'axe et
-		puis vérifiant que les vitesses permettent d'avancer (>0) afin de calculer la vitesse voulue en km/h
-		et de la transmettre aux roues
-		"""
-		assert(vitesseVoulue_kmh_er > 0)
-		assert(vitesseVoulue_kmh_et > 0)
-		self.vitesse_er=vitesseVoulue_kmh_er
-		self.vitesse_et=vitesseVoulue_kmh_et
-		vitesseVoulue_kmh=np.sqrt(vitesseVoulue_kmh_er**2+vitesseVoulue_kmh_et**2)
-		self.accelerer(vitesseVoulue_kmh)
-		#print("le robot avance à une vitesse ", vitesseVoulue_kmh)	
-	def reculer(self,vitesseVoulue_kmh_er,vitesseVoulue_kmh_et) :
-		"""
-		Fonction prenant en paramètre la vitesse voulue en km/h projetée sur l'axe er et la vitesse voulue en km/h projetée sur l'axe et
-		puis vérifiant que les vitesses permettent d'avancer (<0) afin de calculer la vitesse voulue en km/h
-		et de la transmettre aux roues
-		"""
-		assert(vitesseVoulue_kmh_er < 0)
-		assert(vitesseVoulue_kmh_et < 0)
-		self.vitesse_er=vitesseVoulue_kmh_er
-		self.vitesse_et=vitesseVoulue_kmh_et
-		vitesseVoulue_kmh=-(np.sqrt(vitesseVoulue_kmh_er**2+vitesseVoulue_kmh_et**2))
-		self.accelerer(vitesseVoulue_kmh)
-		#print("le robot recule à une vitesse de ",vitesseVoulue_kmh)	
-	def arreter_urgence(self):
-		"""
+#	def avancer(self,vitesseVoulue_kmh_er,vitesseVoulue_kmh_et) :
+#		"""
+#		Fonction prenant en paramètre la vitesse voulue en km/h projetée sur l'axe er et la vitesse voulue en km/h projetée sur l'axe et
+#		puis vérifiant que les vitesses permettent d'avancer (>0) afin de calculer la vitesse voulue en km/h
+#		et de la transmettre aux roues
+#		"""
+#		assert(vitesseVoulue_kmh_er > 0)
+#		assert(vitesseVoulue_kmh_et > 0)
+#		self.vitesse_er=vitesseVoulue_kmh_er
+#		self.vitesse_et=vitesseVoulue_kmh_et
+#		vitesseVoulue_kmh=np.sqrt(vitesseVoulue_kmh_er**2+vitesseVoulue_kmh_et**2)
+#		self.accelerer(vitesseVoulue_kmh)
+#		#print("le robot avance à une vitesse ", vitesseVoulue_kmh)	
+#	def reculer(self,vitesseVoulue_kmh_er,vitesseVoulue_kmh_et) :
+#		"""
+#		Fonction prenant en paramètre la vitesse voulue en km/h projetée sur l'axe er et la vitesse voulue en km/h projetée sur l'axe et
+#		puis vérifiant que les vitesses permettent d'avancer (<0) afin de calculer la vitesse voulue en km/h
+#		et de la transmettre aux roues
+#		"""
+#		assert(vitesseVoulue_kmh_er < 0)
+#		assert(vitesseVoulue_kmh_et < 0)
+#		self.vitesse_er=vitesseVoulue_kmh_er
+#		self.vitesse_et=vitesseVoulue_kmh_et
+#		vitesseVoulue_kmh=-(np.sqrt(vitesseVoulue_kmh_er**2+vitesseVoulue_kmh_et**2))
+#		self.accelerer(vitesseVoulue_kmh)
+#		#print("le robot recule à une vitesse de ",vitesseVoulue_kmh)	
+	def arreter_urgence(self):		"""
 		Fonction arretant le robot en mettant la vitesses des roues à 0 d'un coup
 		"""
 		self.roue_gauche.setVitesse(0)
