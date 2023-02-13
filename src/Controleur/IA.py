@@ -25,7 +25,14 @@ class IA :
 		if robot.roue_droite.vTourParSec==0 and robot.roue_gauche.vTourParSec==0 :
 			return False
 		else :
-			return True	
+			return True
+	
+	def arreter_urgence(self):		"""
+		Fonction arretant le robot en mettant la vitesses des roues à 0 d'un coup
+		"""
+		self.roue_gauche.setVitesse(0)
+		self.roue_droite.setVitesse(0)
+	
 #	def avancer(self,vitesseVoulue_kmh_er,vitesseVoulue_kmh_et) :
 #		"""
 #		Fonction prenant en paramètre la vitesse voulue en km/h projetée sur l'axe er et la vitesse voulue en km/h projetée sur l'axe et
@@ -52,12 +59,6 @@ class IA :
 #		vitesseVoulue_kmh=-(np.sqrt(vitesseVoulue_kmh_er**2+vitesseVoulue_kmh_et**2))
 #		self.accelerer(vitesseVoulue_kmh)
 #		#print("le robot recule à une vitesse de ",vitesseVoulue_kmh)	
-	def arreter_urgence(self):		"""
-		Fonction arretant le robot en mettant la vitesses des roues à 0 d'un coup
-		"""
-		self.roue_gauche.setVitesse(0)
-		self.roue_droite.setVitesse(0)
-		#print("le robot est en arret")	
 	def tourner(self,angleEnRad,tempsDonneEnSec):
 		"""
 		Fonction prenant en paramètre l'angle en rad que le robot doit effectuer et le temps qu'il a pour faire cette rotation
