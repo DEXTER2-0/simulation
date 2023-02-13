@@ -6,6 +6,7 @@ from Modele import Obstacle as obs
 from Controleur import IA as ia
 from Modele import Terrain as ter
 import time #pour pouvoir controler le temps de la boucle while Truefrom math import *
+from math import *
 
 
 ##----- Importation des Modules -----##
@@ -27,8 +28,10 @@ class Graphique :
         ia.pos_y = terrain.HEIGHT/2
 
     
-    def conversion_obstacle(liste_obstacle):
+    def initialiser():
+        # Permet de représenter le robot sur tkinter
+        representation_robot = canvas.create_oval(ia.pos_x - ia.rayonDuRobotCm , ia.pos_y - ia.rayonDuRobotCm,ia.pos_x + ia.robot.rayonDuRobotCm, ia.pos_y + ia.robot.rayonDuRobotCm, width=ia.robot.l, fill="purple")
 
-        for i in liste_obstacle :
-            # Creation des obstacle (Pensez a utliser la classe Obstacle)
-            obstacle1 = canvas.create_oval(20, 20, 40, 40,width=2, fill="orange")
+        # orientation du robot
+        orientation = canvas.create_line(ia.pos_x,ia.pos_y, ia.pos_x+cos(ia.angle)*15, ia.pos_y+sin(ia.angle)*15, width=2,fill="black")
+
