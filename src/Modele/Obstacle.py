@@ -5,8 +5,11 @@ class Obstacle :
 		""" 
 		Fonction d'initialisation prenant en paramètre la longuer, la largeur et les coordonnées cartésiennes d'un obstacle rectangulaire
 		"""
-		if len(args)<2 :
-			print("error : il faut au moins 2 arguments")
+		if (len(args)<2 |len(args)>4 ):
+			if(len(args)<2):
+				print("error : il faut au moins 2 arguments")
+			else:
+				print("error : il faut au plus 4 arguments")
 			return 0
 		if len(args)==2 :
 			self.x = range(args[0])
@@ -18,6 +21,13 @@ class Obstacle :
 			self.type = 'cercle'
 			self.x = args[1]
 			self.y = args[2]
+		else :
+			self.longueur = args[0]
+			self.largeur = args[1]
+			self.type = 'elipse'
+			self.x = args[2]
+			self.y = args[3]
+		
 		
 		
 
