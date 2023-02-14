@@ -42,19 +42,22 @@ class IA :
 
 	def bouger(self, ANG_G, ANG_D):
 		"""
-		cette methode suppose que les rdeux roues possede le meme rayon
+		cette methode suppose que les deux roues possede le meme rayon
+		ANG_G prend une vitesse angulaire pour la roue gauche
+		ANG_D prend une vitesse angulaire pour la roue droite
 		"""	
 		# vitesse moyenn du robot
 		self.v = (self.robot.roue_gauche.taille_cm*0.01/2)*(ANG_D + ANG_G)	
 		#angle de rotation du robot en fonction des vitesses des roues
 		self.w = (self.robot.roue_gauche.taille_cm*0.01/(self.robot.l*0.01))*(ANG_D - ANG_G)
-		
-		
+		#Donne l'information aux roues de la vitesse en rad/seconde de la vitesse qu'elles doivent avoir
 		self.robot.roue_gauche.vTourParSec = ANG_G
 		self.robot.roue_droite.vTourParSec = ANG_D
 
 	def nouvelle_position2(self, duree):
 		"""
+		Doit etre appelé apres la methode bouger() pour pouvoir mettre a jours les 
+		coordonées du robot ainsi que son angle d'orientation
 		"""
 		self.pos_x = self.pos_x + self.v * cos(self.angle)*duree
 		self.pos_y = self.pos_y + self.v * sin(self.angle)*duree
@@ -62,7 +65,10 @@ class IA :
 
 	def evite(self):
 		"""
+		Permet d'eviter un obstacle
+		Pour le moment uniquement orientation de pi/2 
 		tourne de pi/2
+		Appele bouger avec les vitesse nécessaire pour faire la rotation
 		"""
 		self.bouger(0,(pi*self.robot.l*0.01)/(2*self.robot.roue_droite.taille_cm*0.01))
 ##-------------------------------------------------------
