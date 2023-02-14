@@ -102,7 +102,7 @@ class IA :
 		"""
 		self.pos_x = self.pos_x + self.v * cos(self.angle)*duree
 		self.pos_y = self.pos_y + self.v * sin(self.angle)*duree
-		self.angle = self.angle + self.w * duree 
+		self.angle = self.angle + self.w * duree
 
 	def evite(self):
 		"""
