@@ -41,8 +41,9 @@ graph.placer_robot_milieu(simulation)
 graph.lancer_fenetre()
 while True :
     simulation.update_simulation()
+    graph.update()
     
-    
+   
 
 
 

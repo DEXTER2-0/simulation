@@ -13,8 +13,6 @@ from math import *
 from tkinter import Tk
 from tkinter import Canvas 
 
-fen = Tk() 
-canvas = Canvas(fen, width = cs.WIDTH, height = cs.HEIGHT, bg = 'yellow') #fentre graphique
 
 class Graphique : 
     def __init__ (self, simulation):
@@ -27,15 +25,14 @@ class Graphique :
 
     def lancer_fenetre(self):
         ##----- Création de la fenetre -----##
-        #fen = Tk() 
-        #canvas = Canvas(fen, width = cs.WIDTH, height = cs.HEIGHT, bg = 'yellow') #fentre graphique
+        fen = Tk() 
+        canvas = Canvas(fen, width = cs.WIDTH, height = cs.HEIGHT, bg = 'yellow') #fentre graphique
         canvas.pack(fill="both", expand=True)
         self.representation_robot = canvas.create_oval(self.simulation.ia.pos_x - self.simulation.ia.robot.rayonDuRobotCm , self.simulation.ia.pos_y - self.simulation.ia.robot.rayonDuRobotCm,self.simulation.ia.pos_x + self.simulation.ia.robot.rayonDuRobotCm, self.simulation.ia.pos_y + self.simulation.ia.robot.rayonDuRobotCm, width=self.simulation.ia.robot.l, fill="red")
-       
         #self.afficher()
 
         ##----- Programme principal -----##
-        fen.mainloop()  # Boucle d'attente des événements
+        #fen.mainloop()  # Boucle d'attente des événements
 
    
 
@@ -43,6 +40,7 @@ class Graphique :
     def update(self):
         self.simulation.update()
         #Permet de représenter le robot sur tkinter
+        fen.update()
         self.representation_robot = canvas.create_oval(self.simulation.ia.pos_x - self.simulation.ia.robot.rayonDuRobotCm , self.simulation.ia.pos_y - self.simulation.ia.robot.rayonDuRobotCm,self.simulation.ia.pos_x + self.simulation.ia.robot.rayonDuRobotCm, self.simulation.ia.pos_y + self.simulation.ia.robot.rayonDuRobotCm, width=self.simulation.ia.robot.l, fill="red")
 
             
@@ -56,7 +54,8 @@ class Graphique :
 
        # print("robot -> x : ",robot.pos_x)
        # print("robot -> y : ",robot.pos_y)
-        self.simulation.update_simulation()
+        #self.simulation.update_simulation()
+        fen.update()
         print(self.simulation.ia.pos_x)
         print(self.simulation.ia.pos_x)
         
@@ -67,7 +66,7 @@ class Graphique :
 
 
         ##----- Programme principal -----##
-        fen.mainloop()                    # Boucle d'attente des événements
+        #fen.mainloop()                    # Boucle d'attente des événements
 
 
 
