@@ -39,8 +39,12 @@ graph = gr.Graphique(simulation)
 
 graph.placer_robot_milieu(simulation)
 graph.lancer_fenetre()
-graph.afficher()
+while True :
+    simulation.update_simulation()
+    
+    
 
 
-##----- Programme principal -----##
-#fen.mainloop()  # Boucle d'attente des événements
+
+
+#graph.afficher()
