@@ -7,6 +7,9 @@ from Controleur import IA as ia
 from Modele import Terrain as ter
 import Graphique as gr
 
+from tkinter import Tk
+from tkinter import Canvas
+
 import time #pour pouvoir controler le temps de la boucle while True
 
 
@@ -36,3 +39,4 @@ simulation = simu.Simulation(ia,robot,terrain,1)
 graph = gr.Graphique(simulation)
 
 graph.placer_robot_milieu(simulation)
+graph.lancer_fenetre()
