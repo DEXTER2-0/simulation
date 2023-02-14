@@ -15,8 +15,8 @@ class Obstacle :
 			else:
 				print("error : il faut au plus 4 arguments")
 		if len(args)==2 :
-			self.longueur = -1
-			self.largeur = -1
+			self.longueur = -1 #permettre de dire que c'est un obstacle qui a le trou (ça pourrait être util pour simulation?)
+			self.largeur = -1 #permettre de dire que c'est un obstacle qui a le trou (ça pourrait être util pour simulation?)
 			self.x = range(args[0])
 			self.y = range(args[1])
 			self.type = 'mur'
