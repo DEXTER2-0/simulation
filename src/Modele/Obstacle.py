@@ -5,12 +5,20 @@ class Obstacle :
 		""" 
 		Fonction d'initialisation prenant en paramètre la longuer, la largeur et les coordonnées cartésiennes d'un obstacle rectangulaire
 		"""
+		if len(args)<2 :
+			print("error : il faut au moins 2 arguments")
+			return 0
+		if len(args)==2 :
+			self.x = range(args[0])
+			self.y = range(args[1])
+			self.type = 'mur'
 		if len(args)==3 :
 			self.longueur = args[0]
 			self.largeur = args[0]
 			self.type = 'cercle'
 			self.x = args[1]
 			self.y = args[2]
+		
 		
 
 
