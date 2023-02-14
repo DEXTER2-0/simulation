@@ -35,16 +35,16 @@ terrain = ter.Terrain(0,cs.WIDTH,0,cs.HEIGHT, liste_obstacle)
 simulation = simu.Simulation(ia,robot,terrain,0.1)
 
 fen = tk.Tk() 
-canvas = tk.Canvas(fen, width = cs.WIDTH, height = cs.HEIGHT, bg = 'yellow') #fentre graphique
-canvas.pack(fill="both", expand=True)
+canvas_fenetre = tk.Canvas(fen, width = cs.WIDTH, height = cs.HEIGHT, bg = 'yellow') #fentre graphique
+canvas_fenetre.pack(fill="both", expand=True)
 
-graph = gr.Graphique(canvas,simulation)
+graph = gr.Graphique(canvas_fenetre,simulation)
 graph.placer_robot_milieu(simulation)
 
 while True :
     simulation.update_simulation()
     graph.update()
-    canvas.update()
+    canvas_fenetre.update()
     
    
 
