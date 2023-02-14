@@ -15,11 +15,8 @@ from tkinter import *
 
 class Graphique : 
     def __init__ (self, simulation):
-        self.simulation = simulation
-        self.ia = ia
-        # Les coordonnées (Permet de placer le robot au milieu de la fenetre)
-        simulation.ia.pos_x = simulation.terrain.WIDTH/2
-        simulation.ia.pos_y = simulation.terrain.HEIGHT/2
+        self.simulation=simulation
+       
 
     def lancer_fenetre():
         ##----- Création de la fenetre -----##
@@ -27,7 +24,10 @@ class Graphique :
         canvas = Canvas(fen, width = cs.WIDTH, height = cs.HEIGHT, bg = 'yellow') #fentre graphique
         canvas.pack(fill="both", expand=True)
     
-
+    def placer_robot_milieu(self,simulation):
+        #Les coordonnées (Permet de placer le robot au milieu de la fenetre)
+        simulation.ia.pos_x = simulation.terrain.WIDTH_MAX/2
+        simulation.ia.pos_y = simulation.terrain.HEIGHT_MAX/2
 
     #def initialiser():
         # Permet de représenter le robot sur tkinter

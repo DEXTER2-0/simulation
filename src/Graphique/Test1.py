@@ -5,7 +5,7 @@ from Modele import constantes as cs
 from Modele import Obstacle as obs
 from Controleur import IA as ia
 from Modele import Terrain as ter
-from Graphique import Graphique as gr
+import Graphique as gr
 
 import time #pour pouvoir controler le temps de la boucle while True
 
@@ -33,4 +33,6 @@ terrain = ter.Terrain(0,cs.WIDTH,0,cs.HEIGHT, liste_obstacle)
 simulation = simu.Simulation(ia,robot,terrain,1)
 
 
-graphique2D = gr.Graphique(simulation, ia,robot,terrain,1)
+graph = gr.Graphique(simulation)
+
+graph.placer_robot_milieu(simulation)
