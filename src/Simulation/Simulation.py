@@ -39,7 +39,7 @@ class Simulation :
             #self.ia.bouger(150,150)
             self.ia.bouger(cs.V_ANGULAIRE_G,cs.V_ANGULAIRE_D)
             self.ia.nouvelle_position2(self.duree_boucle)
-            time.sleep(0.01)
+            time.sleep(0.001)
             print(self.ia)
         else :
             self.ia.evite()

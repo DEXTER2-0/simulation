@@ -1,38 +1,15 @@
-import Simulation as simu
+from Simulation import Simulation as simu
 from Modele import Robot as rb
 from Modele import Roue  
 from Modele import constantes as cs
 from Modele import Obstacle as obs
 from Controleur import IA as ia
 from Modele import Terrain as ter
-from Graphique import Graphique as gr
+import Graphique as gr
 
-import time #pour pouvoir controler le temps de la boucle while Truefrom math import *
+import tkinter as tk
 
-##----- Importation des Modules -----##
-#from tkinter import * 
-
-##----- Création de la fenetre -----##
-#fen = Tk() 
-#WIDTH = 800 # axe des x
-#HEIGHT = 800 # axe des y
-#canvas = Canvas(fen, width = WIDTH, height = HEIGHT, bg = 'yellow') #fentre graphique
-#canvas.pack(fill="both", expand=True)
-
-# calcul vitesse angulaire
-def ang(T_en_sec):
-    return (2*pi/T_en_sec)*RAYON_DES_ROUES_CM*0.01
-
-# formule de la distance
-def distance(xA, yA, xB, yB):
-    return sqrt((xB-xA)**2 + (yB-yA)**2)
-
-
-# Initialisation des constantes du robot
-#RAYON_DES_ROUES_CM = 1 # ---->  r
-#VITESSE_MAX_TOUR_PAR_SEC = 30 #pas encore utilisé
-#RAYON_ROBOT_CM = 8
-#DISTANCE_ROUE_CENTRE_CM = 100 # ----->  l
+import time #pour pouvoir controler le temps de la boucle while True
 
 
 #Initialisation du Robot
@@ -42,10 +19,10 @@ robot = rb.Robot(cs.RAYON_DES_ROUES_CM, cs.RAYON_ROBOT_CM, 8,cs.VITESSE_MAX_TOUR
 ia = ia.IA(robot)
 
 #Initialisation d'une liste d'obstacle
-obstacle1 = obs.Obstacle(1,30,0)
-obstacle2 = obs.Obstacle(2,500,5)
-obstacle3 = obs.Obstacle(3,220,1)
-obstacle4 = obs.Obstacle(1,15,15)
+obstacle1 = obs.Obstacle(5,500,300)
+obstacle2 = obs.Obstacle(7,500,500)
+obstacle3 = obs.Obstacle(20,150,100)
+obstacle4 = obs.Obstacle(10,200,480)
 liste_obstacle = []
 liste_obstacle.append(obstacle1)
 liste_obstacle.append(obstacle2)
@@ -55,66 +32,33 @@ liste_obstacle.append(obstacle4)
 #Initialisation d'un terrain
 terrain = ter.Terrain(0,cs.WIDTH,0,cs.HEIGHT, liste_obstacle)
 
-graphique2D = gr.Graphique(ia,robot,terrain,1)
+#initialisation de la simulation
+simulation = simu.Simulation(ia,robot,terrain,0.1)
 
-simulation = simu.Simulation(ia,robot,terrain,1)
+fen = tk.Tk() 
 
+#Initialisation de la fenêtre graphique
+canvas_fenetre = tk.Canvas(fen, width = cs.WIDTH, height = cs.HEIGHT, bg = 'yellow') 
+canvas_fenetre.pack(fill="both", expand=True)
+
+#Initialisation d'un graphique récuperant les données de la simulation et les recopie sur une fentre
+graph = gr.Graphique(canvas_fenetre,simulation)
+
+#placer le robot au milieu de la fenetre
+graph.placer_robot_milieu(simulation)
+
+#Lancement de la Simulation avec un update de la partie graphique qui se met a jours quand la simulation change
 while True :
+    #MAJ de la simu
     simulation.update_simulation()
-
-# Permet de représenter le robot sur tkinter
-#representation_robot = canvas.create_oval(robot.pos_x - robot.rayonDuRobotCm , robot.pos_y - robot.rayonDuRobotCm,robot.pos_x + robot.rayonDuRobotCm, robot.pos_y + robot.rayonDuRobotCm, width=2, fill="purple")
-
-
-#print(robot.rayonDuRobotCm)
-
-# Les coordonnées (Permet de placer le robot au milieu de la fenetre)
-#robot.pos_x = WIDTH/2
-#robot.pos_y = HEIGHT/2
-
-
-# Creation des obstacle (Pensez a utliser la classe Obstacle)
-obstacle1 = canvas.create_oval(20, 20, 40, 40,width=2, fill="orange")
-obstacle2 = canvas.create_oval(70, 5, 80, 15, width=2, fill="green")
-
-
-# L = (rayon) = (x1-(x0+x1)/2) = liste des rayons de chaque objets
-#L = ( (40-(20+40)/2), (80-(70+80)/2),  )
-#MIL  = (xmil,ymil)  = Liste des milieus des obstacles 
-#MIL = ( ((20+40)/2, (20+40)/2), ((70+80)/2, (5+15)/2))
-
-print(L)
-print (MIL)
-
-# orientation du robot
-#orientation = canvas.create_line(robot.pos_x,robot.pos_y, robot.pos_x+cos(robot.angle)*15, robot.pos_y+sin(robot.angle)*15, width=2,fill="black")
-
-
-def afficher(robot):
-    # variable globale qui vont etre modifié
-    global x0,y0,x1,y1,dx,dy,dROTAT,xmil,ymil
+    #MAJ des coordonnes recu par la simulation
+    graph.update()
+    #MAJ de l'affichage graphique
+    canvas_fenetre.update()
     
-    
-    #robot.tourner2(200.1,200)
-    #robot.nouvelle_position2(1)
-    #time.sleep(0.25)
-
-
-    print("robot -> x : ",robot.pos_x)
-    print("robot -> y : ",robot.pos_y)
-
-    
-    canvas.coords(representation_robot,robot.pos_x - robot.rayonDuRobotCm , robot.pos_y - robot.rayonDuRobotCm,robot.pos_x + robot.rayonDuRobotCm, robot.pos_y + robot.rayonDuRobotCm)
-    canvas.coords(orientation,robot.pos_x,robot.pos_y, robot.pos_x+cos(robot.angle)*15, robot.pos_y+sin(robot.angle)*15)
-
-    canvas.after(1000,afficher)
-
-
-afficher()
+   
 
 
 
 
-
-
-
+#graph.afficher()
