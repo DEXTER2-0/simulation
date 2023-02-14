@@ -66,6 +66,13 @@ class Graphique :
         #canvas.after(1,afficher)
 
 
+        ##----- Programme principal -----##
+        fen.mainloop()                    # Boucle d'attente des événements
+
+
+
+
+
 #afficher()
 
 
