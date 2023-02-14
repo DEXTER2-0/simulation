@@ -10,8 +10,8 @@ from math import *
 
 
 ##----- Importation des Modules -----##
-from tkinter import Tk
-from tkinter import Canvas 
+import tkinter as tk
+ 
 
 
 class Graphique : 
@@ -30,11 +30,11 @@ class Graphique :
 
 
 
-    def lancer_fenetre(self):
+    #def lancer_fenetre(self):
         ##----- Création de la fenetre -----##
-        fen = Tk() 
-        canvas = Canvas(fen, width = cs.WIDTH, height = cs.HEIGHT, bg = 'yellow') #fentre graphique
-        canvas.pack(fill="both", expand=True)
+        #fen = Tk() 
+#        canvas = Canvas(fen, width = cs.WIDTH, height = cs.HEIGHT, bg = 'yellow') #fentre graphique
+        #canvas.pack(fill="both", expand=True)
         #self.representation_robot = canvas.create_oval(self.simulation.ia.pos_x - self.simulation.ia.robot.rayonDuRobotCm , self.simulation.ia.pos_y - self.simulation.ia.robot.rayonDuRobotCm,self.simulation.ia.pos_x + self.simulation.ia.robot.rayonDuRobotCm, self.simulation.ia.pos_y + self.simulation.ia.robot.rayonDuRobotCm, width=self.simulation.ia.robot.l, fill="red")
         #self.afficher()
 

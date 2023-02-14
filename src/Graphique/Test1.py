@@ -7,8 +7,8 @@ from Controleur import IA as ia
 from Modele import Terrain as ter
 import Graphique as gr
 
-from tkinter import tk
-from tkinter import Canvas
+import tkinter as tk
+
 import time #pour pouvoir controler le temps de la boucle while True
 
 
@@ -35,16 +35,15 @@ terrain = ter.Terrain(0,cs.WIDTH,0,cs.HEIGHT, liste_obstacle)
 simulation = simu.Simulation(ia,robot,terrain,0.1)
 
 fen = tk.Tk() 
-canvas = Canvas(fen, width = cs.WIDTH, height = cs.HEIGHT, bg = 'yellow') #fentre graphique
+canvas = tk.Canvas(fen, width = cs.WIDTH, height = cs.HEIGHT, bg = 'yellow') #fentre graphique
 canvas.pack(fill="both", expand=True)
 
 graph = gr.Graphique(canvas,simulation)
-
 graph.placer_robot_milieu(simulation)
 
 while True :
     simulation.update_simulation()
-    graph.update()
+    canvas.update()
     
    
 
