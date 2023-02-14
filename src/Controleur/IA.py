@@ -144,34 +144,34 @@ class IA :
 			self.roue_gauche.setVitesse(vitesse_actuelle-1)
 			vitesse_actuelle=(36*np.pi*self.roue_gauche.taille_cm)/(5*self.roue_gauche.vTourParSec)	
 	
-	# def conversion_polaire_vers_cartesienne(self):
-		# 	"""
-		# 	Fait la conversion de donnée polaire en donnees cartesienne
-		#     """
-		# 	pos_x = self.r * np.cos(self.angle)
-		# 	pos_y = self.r * np.sin(self.angle)
-		# 	return pos_x, pos_y	
-		# def conversion_cartesienne_vers_polaire(self):	
-		# 	""" convertit les coordonnées cartesiennes en coordonnées polaires """
-		# 	r=np.sqrt((self.pos_x * self.pos_x) + (self.pos_y * self.pos_y))
-		# 	o=2*math.atan(self.pos_y / (self.pos_x + r))
-		# 	return r,
-		# def conversion_polaire_vers_cartesienne(self):
-		# 	"""
-		# 	Fonction faisant la conversion des coordonnées polaires en coordonées cartésiennes
-		# 	formules utilisées : x=r*cos(theta) et y=r*sin(theta)
-		# 	"""
-		# 	pos_x = self.r * np.cos(self.angle)
-		# 	pos_y = self.r * np.sin(self.angle)
-		# 	return pos_x, pos_y	
-		# def conversion_cartesienne_vers_polaire(self):
-		# 	"""
-		# 	Fonction faisant la conversion des coordonnées cartésiennes en coordonées polaires
-		# 	formules utilisées : r=(x²+y²)^(1/2) et theta=arctan(y/x)
-		# 	"""
-		# 	r = np.sqrt(self.pos_x**2 + self.pos_y**2)
-		# 	angle= np.arctan(self.pos_y/self.pos_x)
-		# 	return r, angle
+	def conversion_polaire_vers_cartesienne(self):
+		"""
+		Fait la conversion de donnée polaire en donnees cartesienne
+	    """
+		pos_x = self.r * np.cos(self.angle)
+		pos_y = self.r * np.sin(self.angle)
+		return pos_x, pos_y	
+	def conversion_cartesienne_vers_polaire(self):	
+		""" convertit les coordonnées cartesiennes en coordonnées polaires """
+		r=np.sqrt((self.pos_x * self.pos_x) + (self.pos_y * self.pos_y))
+		o=2*math.atan(self.pos_y / (self.pos_x + r))
+		return r,
+	def conversion_polaire_vers_cartesienne(self):
+		"""
+		Fonction faisant la conversion des coordonnées polaires en coordonées cartésiennes
+		formules utilisées : x=r*cos(theta) et y=r*sin(theta)
+		"""
+		pos_x = self.r * np.cos(self.angle)
+		pos_y = self.r * np.sin(self.angle)
+		return pos_x, pos_y	
+	def conversion_cartesienne_vers_polaire(self):
+		"""
+		Fonction faisant la conversion des coordonnées cartésiennes en coordonées polaires
+		formules utilisées : r=(x²+y²)^(1/2) et theta=arctan(y/x)
+		"""
+		r = np.sqrt(self.pos_x**2 + self.pos_y**2)
+		angle= np.arctan(self.pos_y/self.pos_x)
+		return r, angle
 	def nouvelle_position4(self, vitesse_er, vitesse_et,orientation, duree):
 		"""
 		Renvoie la distance parcourue (m), pour une vitesse (km)
