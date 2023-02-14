@@ -3,3 +3,6 @@ VITESSE_MAX_TOUR_PAR_SEC=30 #en km/h
 RAYON_ROBOT_CM=5 #en cm
 WIDTH = 600 # axe des x
 HEIGHT = 600 # axe des y
+V_ANGULAIRE_G = 250.5
+V_ANGULAIRE_D = 250
+DISTANCE_MIN_ARRET = 1 #en metre
