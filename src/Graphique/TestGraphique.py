@@ -63,13 +63,13 @@ print (MIL)
 orientation = canvas.create_line(robot.pos_x,robot.pos_y, robot.pos_x+cos(robot.angle)*15, robot.pos_y+sin(robot.angle)*15, width=2,fill="black")
 
 
-def afficher():
+def afficher(robot):
     # variable globale qui vont etre modifié
     global x0,y0,x1,y1,dx,dy,dROTAT,xmil,ymil
     
     
-    robot.tourner2(200.1,200)
-    robot.nouvelle_position2(1)
+    #robot.tourner2(200.1,200)
+    #robot.nouvelle_position2(1)
     #time.sleep(0.25)
 
 
