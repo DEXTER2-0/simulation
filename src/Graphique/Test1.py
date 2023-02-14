@@ -43,6 +43,7 @@ graph.placer_robot_milieu(simulation)
 
 while True :
     simulation.update_simulation()
+    graph.update()
     canvas.update()
     
    
