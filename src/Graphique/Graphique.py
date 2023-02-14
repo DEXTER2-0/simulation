@@ -22,6 +22,7 @@ class Graphique :
         self.canvas = canvas
         self.simulation = simulation
         #Initialisation des coordonées a représenter graphiquement en fonction du robot de la simu
+        #cercle pour le robot, et une ligne pour son orientation
         self.objet = self.canvas.create_oval(self.simulation.ia.pos_x - self.simulation.ia.robot.rayonDuRobotCm , self.simulation.ia.pos_y - self.simulation.ia.robot.rayonDuRobotCm,self.simulation.ia.pos_x + self.simulation.ia.robot.rayonDuRobotCm, self.simulation.ia.pos_y + self.simulation.ia.robot.rayonDuRobotCm, width=self.simulation.ia.robot.l, fill="red")
         self.orientation = self.canvas.create_line(self.simulation.ia.pos_x,self.simulation.ia.pos_y, self.simulation.ia.pos_x+cos(self.simulation.ia.angle)*15, self.simulation.ia.pos_y+sin(self.simulation.ia.angle)*15, width=2,fill="red")
 
@@ -31,6 +32,7 @@ class Graphique :
         simulation.ia.pos_y = simulation.terrain.HEIGHT_MAX/2
 
     def update(self):
+        # Récupere les coordonées du robot de la simu ainsi que son angle et les projettes graphiquement
         self.canvas.coords(self.objet,self.simulation.ia.pos_x - self.simulation.ia.robot.rayonDuRobotCm , self.simulation.ia.pos_y - self.simulation.ia.robot.rayonDuRobotCm,self.simulation.ia.pos_x + self.simulation.ia.robot.rayonDuRobotCm, self.simulation.ia.pos_y + self.simulation.ia.robot.rayonDuRobotCm)
         self.canvas.coords(self.orientation,self.simulation.ia.pos_x,self.simulation.ia.pos_y, self.simulation.ia.pos_x+cos(self.simulation.ia.angle)*15, self.simulation.ia.pos_y+sin(self.simulation.ia.angle)*15)
 
