@@ -3,21 +3,24 @@ class Obstacle :
 
 	def __init__ (self, *args) :
 		""" 
-		Fonction d'initialisation prenant en paramètre la longuer, la largeur et les coordonnées cartésiennes d'un obstacle rectangulaire
+		Fonction d'initialisation prenant en paramètre:
+			: 2 arguments : création un obstacle de type mur 
+			: 3 arguments : création un obstacle de type cercle
+			: 4 arguments : création un obstacle de type rectangle
+
 		"""
 		if (len(args)<2 |len(args)>4 ):
 			if(len(args)<2):
 				print("error : il faut au moins 2 arguments")
 			else:
 				print("error : il faut au plus 4 arguments")
-			return 0
 		if len(args)==2 :
 			self.longueur = -1
 			self.largeur = -1
 			self.x = range(args[0])
 			self.y = range(args[1])
 			self.type = 'mur'
-		if len(args)==3 :
+		elif len(args)==3 :
 			self.longueur = args[0]
 			self.largeur = args[0]
 			self.type = 'cercle'
