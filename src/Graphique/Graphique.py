@@ -25,6 +25,13 @@ class Graphique :
         #cercle pour le robot, et une ligne pour son orientation
         self.objet = self.canvas.create_oval(self.simulation.ia.pos_x - self.simulation.ia.robot.rayonDuRobotCm , self.simulation.ia.pos_y - self.simulation.ia.robot.rayonDuRobotCm,self.simulation.ia.pos_x + self.simulation.ia.robot.rayonDuRobotCm, self.simulation.ia.pos_y + self.simulation.ia.robot.rayonDuRobotCm, width=self.simulation.ia.robot.l, fill="red")
         self.orientation = self.canvas.create_line(self.simulation.ia.pos_x,self.simulation.ia.pos_y, self.simulation.ia.pos_x+cos(self.simulation.ia.angle)*15, self.simulation.ia.pos_y+sin(self.simulation.ia.angle)*15, width=2,fill="red")
+        for i in range (len(self.simulation.terrain.liste_obstacle)):
+                self.obstacle = self.canvas.create_oval( 500,100 ,515, 115, width=1, fill="red")
+
+
+        #self.obstacle1 = self.canvas.create_oval( 500,100 ,515, 115, width=1, fill="red")
+        #self.obstacle1 = self.canvas.create_oval( 400,100 ,515, 115, width=1, fill="red")
+
 
     def placer_robot_milieu(self,simulation):
         #Les coordonnées (Permet de placer le robot au milieu de la fenetre)

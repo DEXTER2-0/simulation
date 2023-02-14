@@ -42,7 +42,8 @@ class Simulation :
             time.sleep(0.01)
             print(self.ia)
         else :
-            print("obstacle à ",distance ,"mettre ARRET !!")
+            self.ia.evite()
+            #print("obstacle à ",distance ,"mettre ARRET !!")
     
 
     #def simul(self):
