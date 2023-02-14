@@ -16,8 +16,12 @@ import tkinter as tk
 
 class Graphique : 
     def __init__ (self,canvas, simulation):
+        """
+        Prend une simulation et une fenetre graphique de type Canvas en parametre
+        """
         self.canvas = canvas
         self.simulation = simulation
+        #Initialisation des coordonées a représenter graphiquement en fonction du robot de la simu
         self.objet = self.canvas.create_oval(self.simulation.ia.pos_x - self.simulation.ia.robot.rayonDuRobotCm , self.simulation.ia.pos_y - self.simulation.ia.robot.rayonDuRobotCm,self.simulation.ia.pos_x + self.simulation.ia.robot.rayonDuRobotCm, self.simulation.ia.pos_y + self.simulation.ia.robot.rayonDuRobotCm, width=self.simulation.ia.robot.l, fill="red")
         self.orientation = self.canvas.create_line(self.simulation.ia.pos_x,self.simulation.ia.pos_y, self.simulation.ia.pos_x+cos(self.simulation.ia.angle)*15, self.simulation.ia.pos_y+sin(self.simulation.ia.angle)*15, width=2,fill="red")
 

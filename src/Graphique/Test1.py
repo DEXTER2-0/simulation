@@ -32,18 +32,28 @@ liste_obstacle.append(obstacle4)
 #Initialisation d'un terrain
 terrain = ter.Terrain(0,cs.WIDTH,0,cs.HEIGHT, liste_obstacle)
 
+#initialisation de la simulation
 simulation = simu.Simulation(ia,robot,terrain,0.1)
 
 fen = tk.Tk() 
-canvas_fenetre = tk.Canvas(fen, width = cs.WIDTH, height = cs.HEIGHT, bg = 'yellow') #fentre graphique
+
+#Initialisation de la fenêtre graphique
+canvas_fenetre = tk.Canvas(fen, width = cs.WIDTH, height = cs.HEIGHT, bg = 'yellow') 
 canvas_fenetre.pack(fill="both", expand=True)
 
+#Initialisation d'un graphique récuperant les données de la simulation et les recopie sur une fentre
 graph = gr.Graphique(canvas_fenetre,simulation)
+
+#placer le robot au milieu de la fenetre
 graph.placer_robot_milieu(simulation)
 
+#Lancement de la Simulation avec un update de la partie graphique qui se met a jours quand la simulation change
 while True :
+    #MAJ de la simu
     simulation.update_simulation()
+    #MAJ des coordonnes recu par la simulation
     graph.update()
+    #MAJ de l'affichage graphique
     canvas_fenetre.update()
     
    
