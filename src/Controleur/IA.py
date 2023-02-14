@@ -39,6 +39,33 @@ class IA :
 		Fonction arretant le robot par décélération jusqu'à l'arrêt
 		"""
 		self.decelerer(0)
+
+	def bouger(self, ANG_G, ANG_D):
+		"""
+		cette methode suppose que les rdeux roues possede le meme rayon
+		"""	
+		# vitesse moyenn du robot
+		self.v = (self.robot.roue_gauche.taille_cm*0.01/2)*(ANG_D + ANG_G)	
+		#angle de rotation du robot en fonction des vitesses des roues
+		self.w = (self.robot.roue_gauche.taille_cm*0.01/(self.robot.l*0.01))*(ANG_D - ANG_G)
+		
+		
+		self.robot.roue_gauche.vTourParSec = ANG_G
+		self.robot.roue_droite.vTourParSec = ANG_D
+
+	def nouvelle_position2(self, duree):
+		"""
+		"""
+		self.pos_x = self.pos_x + self.v * cos(self.angle)*duree
+		self.pos_y = self.pos_y + self.v * sin(self.angle)*duree
+		self.angle = self.angle + self.w * duree
+
+	def evite(self):
+		"""
+		tourne de pi/2
+		"""
+		self.bouger(0,(pi*self.robot.l*0.01)/(2*self.robot.roue_droite.taille_cm*0.01))
+##-------------------------------------------------------
 	
 #	def avancer(self,vitesseVoulue_kmh_er,vitesseVoulue_kmh_et) :
 #		"""
@@ -84,31 +111,6 @@ class IA :
 #			self.roue_droite.setVitesse(0)
 #			self.roue_gauche.setVitesse(vitessekmh)
 #		#	print("le robot tourne vers la droite d'un angle de :  " ,angleEnRad)	
-	def bouger(self, ANG_G, ANG_D):
-		"""
-		cette methode suppose que les rdeux roues possede le meme rayon
-		"""	
-		# vitesse moyenn du robot
-		self.v = (self.robot.roue_gauche.taille_cm*0.01/2)*(ANG_D + ANG_G)	
-		#angle de rotation du robot en fonction des vitesses des roues
-		self.w = (self.robot.roue_gauche.taille_cm*0.01/(self.robot.l*0.01))*(ANG_D - ANG_G)
-		
-		
-		self.robot.roue_gauche.vTourParSec = ANG_G
-		self.robot.roue_droite.vTourParSec = ANG_D
-
-	def nouvelle_position2(self, duree):
-		"""
-		"""
-		self.pos_x = self.pos_x + self.v * cos(self.angle)*duree
-		self.pos_y = self.pos_y + self.v * sin(self.angle)*duree
-		self.angle = self.angle + self.w * duree
-
-	def evite(self):
-		"""
-		tourne de pi/2
-		"""
-		self.bouger(0,(pi*self.robot.l*0.01)/(2*self.robot.roue_droite.taille_cm*0.01))
 		
 
 
