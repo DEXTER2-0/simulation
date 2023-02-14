@@ -25,12 +25,10 @@ class Graphique :
         #cercle pour le robot, et une ligne pour son orientation
         self.objet = self.canvas.create_oval(self.simulation.ia.pos_x - self.simulation.ia.robot.rayonDuRobotCm , self.simulation.ia.pos_y - self.simulation.ia.robot.rayonDuRobotCm,self.simulation.ia.pos_x + self.simulation.ia.robot.rayonDuRobotCm, self.simulation.ia.pos_y + self.simulation.ia.robot.rayonDuRobotCm, width=self.simulation.ia.robot.l, fill="red")
         self.orientation = self.canvas.create_line(self.simulation.ia.pos_x,self.simulation.ia.pos_y, self.simulation.ia.pos_x+cos(self.simulation.ia.angle)*15, self.simulation.ia.pos_y+sin(self.simulation.ia.angle)*15, width=2,fill="red")
+        # Suppose liste d'obstacle rond Pour la représentation des obstacles de la simulation
         for i in range (len(self.simulation.terrain.liste_obstacle)):
-                self.obstacle = self.canvas.create_oval( 500,100 ,515, 115, width=1, fill="red")
-
-
-        #self.obstacle1 = self.canvas.create_oval( 500,100 ,515, 115, width=1, fill="red")
-        #self.obstacle1 = self.canvas.create_oval( 400,100 ,515, 115, width=1, fill="red")
+                obs_cour = self.simulation.terrain.liste_obstacle[i]
+                self.obstacle = self.canvas.create_oval(obs_cour.x-obs_cour.longueur,obs_cour.y-obs_cour.longueur,obs_cour.x+obs_cour.longueur, obs_cour.y+obs_cour.longueur, width=1, fill="red")
 
 
     def placer_robot_milieu(self,simulation):
