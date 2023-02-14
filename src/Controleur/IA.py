@@ -15,8 +15,8 @@ class IA :
 		self.pos_x = pos_x
 		self.pos_y = pos_y
 		self.robot = robot
-		self.v=v
-		self.w=w
+		self.v=v #vitesse moyenne du robot initialisé a 0
+		self.w=w #angle à ajouter à l'angle au temps t-1
 		
 	def est_entrain_de_rouler(robot) :
 		"""
