@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: latin-1 -*-
-from Roue import * # Permet d'utiliser la classe Roue se trouvant dans le meme repertoire
-from Capteur_de_distance import * # Permet d'utiliser la classe Capteur_de_distance se trouvant dans le meme repertoire
+from Modele import Roue as r
+from Modele import Capteur_de_distance as cdd
 import math
 import numpy as np
 
@@ -16,9 +16,9 @@ class Robot :
 		assert(rayonRouesCm > 0)# Ne peut pas avoir un rayon < 0
 		assert(vMaxTourParSec > 0) # Ne peut pavoir une vitesse max < 0
 		assert(rayonDuRobotCm > 0) # Ne peut pas avoir un rayon < 0
-		self.roue_gauche = Roue(rayonRouesCm, vMaxTourParSec)
-		self.roue_droite = Roue(rayonRouesCm, vMaxTourParSec)
-		self.capteurDistance = Capteur_de_distance(capteur)
+		self.roue_gauche = r.Roue(rayonRouesCm, vMaxTourParSec)
+		self.roue_droite = r.Roue(rayonRouesCm, vMaxTourParSec)
+		self.capteurDistance = cdd.Capteur_de_distance(capteur)
 		self.rayonDuRobotCm = rayonDuRobotCm
 		#self.pos_x = pos_x
 		#self.pos_y = pos_y

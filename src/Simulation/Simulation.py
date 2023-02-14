@@ -1,9 +1,11 @@
-from Robot import *
-from Obstacle import *
-from Roue import *
-from Capteur_de_distance import *
-import numpy as np
+from Modele import Robot
+from Modele import Roue  
+from Modele import constantes
+from Modele import Obstacle
+from Controleur import IA
+from Modele import Terrain
 import time #pour pouvoir controler le temps de la boucle while True
+import numpy as np
 
 
 
@@ -31,9 +33,10 @@ class Simulation :
 	    
     
     def update_simulation(self):
-        distance = self.robot.capteurDistance.senseur_de_distance(self.ia.pos_x, self.ia.pos_y, self.ia.angle, 0.1, self.terrain.liste_obstacle)
+        distance = self.robot.capteurDistance.senseur_de_distance(self.ia.pos_x, self.ia.pos_y, self.ia.angle, 0.5, self.terrain.liste_obstacle)
         if distance > 1 :
-            self.ia.bouger(150,150)
+            #self.ia.bouger(150,150)
+            self.ia.bouger(250,250)
             self.ia.nouvelle_position2(self.duree_boucle)
             time.sleep(1)
             print(self.ia)
