@@ -12,6 +12,8 @@ class Obstacle :
 				print("error : il faut au plus 4 arguments")
 			return 0
 		if len(args)==2 :
+			self.longueur = -1
+			self.largeur = -1
 			self.x = range(args[0])
 			self.y = range(args[1])
 			self.type = 'mur'
