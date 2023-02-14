@@ -9,7 +9,6 @@ import Graphique as gr
 
 from tkinter import Tk
 from tkinter import Canvas
-
 import time #pour pouvoir controler le temps de la boucle while True
 
 
@@ -33,10 +32,15 @@ liste_obstacle.append(obstacle4)
 #Initialisation d'un terrain
 terrain = ter.Terrain(0,cs.WIDTH,0,cs.HEIGHT, liste_obstacle)
 
-simulation = simu.Simulation(ia,robot,terrain,1)
+simulation = simu.Simulation(ia,robot,terrain,0.1)
 
 
 graph = gr.Graphique(simulation)
 
 graph.placer_robot_milieu(simulation)
 graph.lancer_fenetre()
+graph.afficher()
+
+
+##----- Programme principal -----##
+#fen.mainloop()  # Boucle d'attente des événements
