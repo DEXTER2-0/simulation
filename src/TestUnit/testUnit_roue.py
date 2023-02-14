@@ -1,6 +1,6 @@
 import unittest
-import Roue as ro
-import constantes as c
+from Modele import Roue as ro
+from Modele import constantes as c
 import math
 
 class TestRoue(unittest.TestCase):

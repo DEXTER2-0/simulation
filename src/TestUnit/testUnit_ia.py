@@ -1,5 +1,5 @@
 import unittest
-import IA as ia
+from Controleur import IA as ia
 
 class TestIA(unittest.TestCase):
 

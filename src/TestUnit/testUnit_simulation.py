@@ -1,5 +1,12 @@
 import unittest
-import Simulation as sim
+from Simulation import Simulation as sim
+from Modele import Robot
+from Modele import Roue  
+from Modele import constantes
+from Modele import Obstacle
+from Modele import Terrain
+import time
+import numpy as np
 
 class TestSimulation(unittest.TestCase):
 
