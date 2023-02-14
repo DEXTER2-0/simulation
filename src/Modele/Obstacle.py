@@ -1,22 +1,18 @@
 #coding: utf-8
 class Obstacle :
 
-	def __init__ (self, longueur , largeur , x , y) :
+	def __init__ (self, *args) :
 		""" 
 		Fonction d'initialisation prenant en paramètre la longuer, la largeur et les coordonnées cartésiennes d'un obstacle rectangulaire
 		"""
-		self.longueur=longueur
-		self.largeur=largeur
-		self.x=x
-		self.y=y
-	
-	def __init__ (self, rayon,x,y) :
-		""" 
-		Fonction d'initialisation prenant en paramètre le rayon et les coordonnées cartésiennes d'un obstacle circulaire   
-		"""
-		self.rayon=rayon
-		self.x=x
-		self.y=y
+		if len(args)==3 :
+			self.longueur = args[0]
+			self.largeur = args[0]
+			self.type = 'cercle'
+			self.x = args[1]
+			self.y = args[2]
+		
+
 
 	def __str__ (self) : 
 		"""
