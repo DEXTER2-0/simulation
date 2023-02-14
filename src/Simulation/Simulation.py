@@ -22,12 +22,13 @@ class Simulation :
         
     
     def collision(self):
-        for i in self.terrain.liste_obstacles:
-            d=np.sqrt((self.ia.robot.x-i.x)**2+(self.ia.robot.y-i.y)**2)
-            if(d<=(self.ia.robot.rayon+i.rayon)): # collision de deux cercles
+        for obstacle in self.terrain.liste_obstacles: #pour chaque obstacle
+            d=np.sqrt((self.ia.robot.x-obstacle.x)**2+(self.ia.robot.y-obstacle.y)**2) #distance euclidienne entre le robot et l'obstacle
+            if(d<=(self.ia.robot.rayon)): # collision de deux cercles
                 self.ia.robot.arreter_urgence()
             elif (d<=(self.ia.robot.rayon)): # collision d'un cercle et d'un rectangle A COMPLETER
                 self.ia.robot.arret_urgence()
+	    
     
     def update_simulation(self):
         distance = self.robot.capteurDistance.senseur_de_distance(self.ia.pos_x, self.ia.pos_y, self.ia.angle, 0.1, self.terrain.liste_obstacle)
@@ -37,7 +38,7 @@ class Simulation :
             time.sleep(1)
             print(self.ia)
         else :
-            print("obstacle à ",distance ,"metre ARRET !!")
+            print("obstacle à ",distance ,"mettre ARRET !!")
     
 
     #def simul(self):
