@@ -36,14 +36,14 @@ class Capteur_de_distance :
         while k*le_pas < self.distanceCaptable :
             x = x + cos(angle_robot) * le_pas #Lance le laser dans la bonne direction
             y = y + sin(angle_robot) * le_pas #Lance le laser dans la bonne direction
-            print("capteur -> (",x,",",y,")") 
+            ##print("capteur -> (",x,",",y,")") 
             # Verification si les coordonées du laser se trouve dans un obstacle(cercle)
             for i in range(len(l_obstacle)) :
                 obstacle = l_obstacle[i]
                 
                 # Si a un moment le laser se trouve dans un obstacle
                 if (self.distance(x,y,obstacle)) < obstacle.longueur: #obstacle.longueur car dans obstacle attribut longueur m¨
-                    print("obstacle à : ", sqrt((x-ia_pos_x)**2+(y-ia_pos_y)**2))
+                    ###print("obstacle à : ", sqrt((x-ia_pos_x)**2+(y-ia_pos_y)**2))
                     return sqrt((x-ia_pos_x)**2+(y-ia_pos_y)**2)
             k +=1
         print("Rien à l'horizon")
