@@ -44,7 +44,11 @@ class Simulation :
             self.ia.evite()
             self.ia.nouvelle_position2(self.duree_boucle)
 
-    
+    #def update_simulation(self):
+    #    self.ia.evite()
+    #    self.ia.nouvelle_position2(self.duree_boucle)
+    #    print(self.ia)
+        
               
             #print("obstacle à ",distance ,"mettre ARRET !!")
     

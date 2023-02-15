@@ -72,7 +72,7 @@ class IA :
 		"""
 		self.bouger(0,(pi*self.robot.l*0.01)/(2*self.robot.roue_droite.taille_cm*0.01))
 
-	def faire_carre(self):
+	#def faire_carre(self):
 
 
 ##-------------------------------------------------------

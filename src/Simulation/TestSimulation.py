@@ -36,5 +36,5 @@ terrain = ter.Terrain(0,cs.WIDTH,0,cs.HEIGHT, liste_obstacle)
 simulation = simu.Simulation(ia,robot,terrain,1)
 
 while True :
-    #simulation.update_simulation()
-    simulation.update_carre()
+    simulation.update_simulation()
+    #simulation.update_carre()
