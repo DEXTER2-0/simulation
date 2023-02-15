@@ -12,7 +12,7 @@ class Obstacle :
 		if (len(args)<2 |len(args)>4 ):
 			if(len(args)<2):
 				print("error : il faut au moins 2 arguments")
-			else:
+			if(len(args)>4):
 				print("error : il faut au plus 4 arguments")
 		if len(args)==2 :
 			self.longueur = -1 #permettre de dire que c'est un obstacle qui a le trou (ça pourrait être util pour simulation?)
