@@ -46,7 +46,7 @@ class Capteur_de_distance :
                     ###print("obstacle à : ", sqrt((x-ia_pos_x)**2+(y-ia_pos_y)**2))
                     return sqrt((x-ia_pos_x)**2+(y-ia_pos_y)**2)
             k +=1
-        print("Rien à l'horizon")
+        ###print("Rien à l'horizon")
         return self.distanceCaptable
 
 
