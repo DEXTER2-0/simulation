@@ -38,7 +38,7 @@ class Simulation :
         if distance > cs.DISTANCE_MIN_ARRET:
             self.ia.bouger(cs.V_ANGULAIRE_G,cs.V_ANGULAIRE_D)
             self.ia.nouvelle_position2(self.duree_boucle)
-            time.sleep(0.005)
+            #.sleep(0.005)
             print(self.ia)
         else :
             self.ia.evite()
