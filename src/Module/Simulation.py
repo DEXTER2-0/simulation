@@ -53,8 +53,8 @@ class Simulation :
         self.angle = self.angle + self.ia.w * duree
     
     def evite_murs(self):
-		if (self.pos_x>=(WIDTH/2)-2) or (self.pos_x<=-(WIDTH/2)+2) or (self.pos_y>=(HEIGHT/2)-2) or (self.pos_y<=-(HEIGHT/2)+2):
-			self.ia.bouger(0,(pi*self.robot.l*0.01)/(2*self.robot.roue_droite.taille_cm*0.01))
+        if (self.pos_x>=(WIDTH/2)-2) or (self.pos_x<=-(WIDTH/2)+2) or (self.pos_y>=(HEIGHT/2)-2) or (self.pos_y<=-(HEIGHT/2)+2):
+            self.ia.bouger(0,(pi*self.robot.l*0.01)/(2*self.robot.roue_droite.taille_cm*0.01))
 		
     def update_simulation(self):
         distance = self.robot.capteurDistance.senseur_de_distance(self.pos_x, self.pos_y, self.angle, 0.5, self.terrain.liste_obstacle)
