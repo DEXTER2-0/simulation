@@ -114,13 +114,13 @@ class Capteur_de_distance :
                 obstacle = l_obstacle[i]
                 
                 # Si a un moment le laser se trouve dans un obstacle
-<<<<<<< HEAD
+
                 if (self.distance(x,y,obstacle)) < obstacle.longueur : #obstacle.longueur car dans obstacle attribut longueur m¨
                     ###print("obstacle à : ", sqrt((x-ia_pos_x)**2+(y-ia_pos_y)**2))
-=======
+
                 if (self.distance(x,y,obstacle)) < obstacle.longueur + cs.RAYON_ROBOT_CM +5: #obstacle.longueur car dans obstacle attribut longueur m¨
                     print("obstacle à : ", sqrt((x-ia_pos_x)**2+(y-ia_pos_y)**2))
->>>>>>> fbb363fab08d7ec4776bbe0194c874cd1b55bcd3
+
                     return sqrt((x-ia_pos_x)**2+(y-ia_pos_y)**2)
             k +=1
         print("Rien à l'horizon")
