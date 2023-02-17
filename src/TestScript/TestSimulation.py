@@ -3,7 +3,7 @@ sys.path.append("../")
 
 import Simulation as simu
 from Module import Robot as rb 
-from Module import constantes as cs
+import constantes as cs
 from Module import Obstacle as obs
 from Module import IA as ia
 from Module import Terrain as ter
