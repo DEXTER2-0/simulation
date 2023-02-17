@@ -1,6 +1,6 @@
 import unittest
-import Obstacle as ob
-import constantes as c
+from Modele import Obstacle as ob
+from Modele import constantes as c
 
 class TestObstacle(unittest.TestCase):
 
