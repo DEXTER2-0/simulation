@@ -1,15 +1,14 @@
-from Modele import Robot
-
-import Obstacle
-import IA
+#import Robot
+#import Obstacle
+#import IA as ia
 from TestScript import constantes as cs
-import Terrain
+#import Terrain
 import time #pour pouvoir controler le temps de la boucle while True
 import numpy as np
 
 
 
-class Simulation :
+class Simulation : 
     def __init__ (self, ia, robot, terrain, duree_boucle) :
         """
         """
@@ -33,11 +32,13 @@ class Simulation :
 	    
     
     def update_simulation(self):
+        print("APPEELLL UPPDDAAAATTEEE  ")
         distance = self.robot.capteurDistance.senseur_de_distance(self.ia.pos_x, self.ia.pos_y, self.ia.angle, 0.5, self.terrain.liste_obstacle)
+        print(distance)
         if distance > cs.DISTANCE_MIN_ARRET:
             self.ia.bouger(cs.V_ANGULAIRE_G,cs.V_ANGULAIRE_D)
             self.ia.nouvelle_position2(self.duree_boucle)
-            #time.sleep(1)
+            time.sleep(1)
             print(self.ia)
         else :
             angle_depart = self.ia.angle
