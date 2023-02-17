@@ -91,18 +91,18 @@ class Capteur_de_distance :
         yo = obstacle.y
         return sqrt((xo-xr)**2+(yo-yr)**2)
 
-    def senseur_de_distance(self,ia_pos_x,ia_pos_y,angle_robot,le_pas,l_obstacle):
+    def senseur_de_distance(self,pos_x,pos_y,angle_robot,le_pas,l_obstacle):
         """
         Aide page 16 du td2
         Suppose que la liste d'obstac le sont des cercles
         l_obstacle : est une liste d'obstacle
-        ia.pos_y et ia.pos_y : permettent de récuperer les coordonnée actuelles du robot
+        pos_y et pos_y : permettent de récuperer les coordonnée actuelles du robot
         angle : permet au capteur de savoir dans quelle direction lancer le laser
         le_pas : permet de couper en plusieurs morceaux la distance avant de rencontrer un obstacle 
         """
         k=0
-        x = ia_pos_x
-        y = ia_pos_y
+        x = pos_x
+        y = pos_y
         #print("Distance Captable = ",self.distanceCaptable)
         while k*le_pas < self.distanceCaptable :
             x = x + cos(angle_robot) * le_pas #Lance le laser dans la bonne direction
@@ -114,9 +114,9 @@ class Capteur_de_distance :
                 
                 # Si a un moment le laser se trouve dans un obstacle
                 if(self.distance(x,y,obstacle)) < obstacle.longueur + cs.RAYON_ROBOT_CM +5: #obstacle.longueur car dans obstacle attribut longueur m¨
-                    logging.debug(f"obstacle à : {sqrt((x-ia_pos_x)**2+(y-ia_pos_y)**2)}")
+                    logging.debug(f"obstacle à : {sqrt((x-pos_x)**2+(y-pos_y)**2)}")
 
-                    return sqrt((x-ia_pos_x)**2+(y-ia_pos_y)**2)
+                    return sqrt((x-pos_x)**2+(y-pos_y)**2)
             k +=1
         logging.debug("**** Rien à l'horizon ****")
         return self.distanceCaptable

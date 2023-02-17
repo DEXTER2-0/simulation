@@ -11,7 +11,7 @@ import time #pour pouvoir controler le temps de la boucle while True
 
 
 #Initialisation du Robot
-robot = rb.Robot(cs.RAYON_DES_ROUES_CM, cs.RAYON_ROBOT_CM, 8,cs.VITESSE_MAX_TOUR_PAR_SEC)
+robot = rb.Robot(cs.RAYON_DES_ROUES_CM, cs.RAYON_ROBOT_CM, cs.DISTANCE_CAPTABLE,cs.VITESSE_MAX_TOUR_PAR_SEC)
 
 #Initilaisation de l'IA
 ia = ia.IA(robot)
