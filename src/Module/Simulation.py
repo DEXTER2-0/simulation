@@ -59,7 +59,7 @@ class Simulation :
             self.ia.bouger(0,(pi*self.robot.l*0.01)/(2*self.robot.roue_droite.taille_cm*0.01))
 		
     def update_simulation(self):
-        logging.debug(f"robot pos_x= {self.pos_x},robot pos_y={self.pos_y}")
+        logging.debug(f"robot pos_x= {self.pos_x},robot pos_y={self.pos_y}, angle {self.angle}")
         distance = self.robot.capteurDistance.senseur_de_distance(self.pos_x, self.pos_y, self.angle, 0.5, self.terrain.liste_obstacle)
         self.collision()
         logging.debug(f"{distance}")
@@ -69,6 +69,7 @@ class Simulation :
             #time.sleep(0.001)
         else :  
             self.ia.evite()
+
             self.nouvelle_position2(self.duree_boucle)
         
 
