@@ -33,7 +33,7 @@ class Simulation :
     
     def update_simulation(self):
         print("APPEELLL UPPDDAAAATTEEE  ")
-        distance = self.robot.capteurDistance.senseur_de_distance(self.ia.pos_x, self.ia.pos_y, self.ia.angle, 0.5, self.terrain.liste_obstacle)
+        distance = self.robot.capteurDistance.senseur_de_distance(self.ia.pos_x, self.ia.pos_y, self.ia.angle, 0.1, self.terrain.liste_obstacle)
         print(distance)
         if distance > cs.DISTANCE_MIN_ARRET:
             self.ia.bouger(cs.V_ANGULAIRE_G,cs.V_ANGULAIRE_D)
@@ -42,9 +42,10 @@ class Simulation :
             print(self.ia)
         else :
             angle_depart = self.ia.angle
+            print(self.ia)
+
             while self.ia.angle <= angle_depart - (np.pi/2) : 
                 self.ia.evite()
-              
             #print("obstacle à ",distance ,"mettre ARRET !!")
 
     
