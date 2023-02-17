@@ -212,12 +212,12 @@ class IA :
 		else :
 			print("pas de danger , no worries")	
 
-	def __str__ (self) :	
-		"""
-		Fonction de redéfinition de la methode print(monInstance)
-		"""
-		res = "Le robot en position (" + str(self.pos_x) +","+ str(self.pos_y) + ")" +" angle = "+str(self.angle)
-
-		# Le test suivant permet de faire un affichage du robot selon s'il roule ou pas#
-		
-		return res
+	#def __str__ (self) :	
+	#	"""
+	#	Fonction de redéfinition de la methode print(monInstance)
+	#	"""
+	#	res = "Le robot en position (" + str(self.pos_x) +","+ str(self.pos_y) + ")" +" angle = "+str(self.angle)
+	#
+	#	# Le test suivant permet de faire un affichage du robot selon s'il roule ou pas#
+	#	
+	#	return res

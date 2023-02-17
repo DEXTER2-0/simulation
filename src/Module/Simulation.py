@@ -5,11 +5,12 @@ from TestScript import constantes as cs
 #import Terrain
 import time #pour pouvoir controler le temps de la boucle while True
 import numpy as np
+from math import *
 
 
 
 class Simulation : 
-    def __init__ (self, ia, robot,pos_x=0,pos_y=0,r=0,angle=0,terrain, duree_boucle) :
+    def __init__ (self, ia, robot,terrain,duree_boucle,pos_x=0,pos_y=0,r=0,angle=0) :
 	    
         """
         """
@@ -19,9 +20,11 @@ class Simulation :
         self.robot = robot
         self.terrain = terrain
         self.duree_boucle = duree_boucle
-	self.pos_x=pos_x
-	self.pos_y=pos_y
-	self.r=r
+        self.pos_x=pos_x
+        self.pos_y=pos_y
+        self.r=r
+        self.angle = angle
+    
 	
         #self.obs1 = Obstacle(6,2,2)
         #self.obs2 = Obstacle(3,4,7)
@@ -32,42 +35,38 @@ class Simulation :
         Suppose objet est cercle
         """
         for obstacle in self.terrain.liste_obstacle: #pour chaque obstacle
-            d=np.sqrt((self.ia.pos_x-obstacle.x)**2+(self.ia.pos_y-obstacle.y)**2) #distance euclidienne entre le robot et l'obstacle
+            d=np.sqrt((self.pos_x-obstacle.x)**2+(self.pos_y-obstacle.y)**2) #distance euclidienne entre le robot et l'obstacle
             if(d<=(self.ia.robot.rayonDuRobotCm+obstacle.longueur)): # collision de deux cercles
                 self.ia.robot.arreter_urgence()
                 print("Collision détectée : arret d'urgence")
             #elif (d<=(self.ia.robot.rayon)): # collision d'un cercle et d'un rectangle A COMPLETER
              #   self.ia.robot.arret_urgence()
 	
-     def nouvelle_position2(self, duree):
-	                      """
-			        Doit etre appelé apres la methode bouger() pour pouvoir mettre a jours les 
-	  coordonées du robot ainsi que son angle d'orientatio					                      """
-	 self.pos_x = self.pos_x + self.v * cos(self.angle)*duree
-	 self.pos_y = self.pos_y + self.v * sin(self.angle)*duree
-         self.angle = self.angle + self.w * duree
+    def nouvelle_position2(self,duree):
+        """
+        Doit etre appelé apres la methode bouger() pour pouvoir mettre a jours les 
+        oordonées du robot ainsi que son angle d'orientation					                      
+        """
+        self.pos_x = self.pos_x + self.ia.v * cos(self.angle)*duree
+        self.pos_y = self.pos_y + self.ia.v * sin(self.angle)*duree
+        self.angle = self.angle + self.ia.w * duree
 	    
     
     def update_simulation(self):
         print("APPEELLL UPPDDAAAATTEEE  ")
-        distance = self.robot.capteurDistance.senseur_de_distance(self.ia.pos_x, self.ia.pos_y, self.ia.angle, 0.5, self.terrain.liste_obstacle)
+        distance = self.robot.capteurDistance.senseur_de_distance(self.pos_x, self.pos_y, self.angle, 0.5, self.terrain.liste_obstacle)
         self.collision()
         print(distance)
         if distance > cs.DISTANCE_MIN_ARRET:
             self.ia.bouger(cs.V_ANGULAIRE_G,cs.V_ANGULAIRE_D)
-            self.ia.nouvelle_position2(self.duree_boucle)
+            self.nouvelle_position2(self.duree_boucle)
             time.sleep(0.001)
-            print(self.ia)
+            print(self.pos_x," , ",self.pos_y)
         else :  
-            #self.ia.evite()
-            self.ia.bouger(cs.V_ANGULAIRE_G,cs.V_ANGULAIRE_D)
-            self.ia.nouvelle_position2(self.duree_boucle)
-            #angle_depart = self.ia.angle
-            #print(self.ia)
-
-            #while self.ia.angle <= angle_depart - (np.pi/2) : 
-            #    self.ia.evite()
-            #print("obstacle à ",distance ,"mettre ARRET !!")
+            print(self.pos_x," , ",self.pos_y)
+            self.ia.evite()
+            #self.nouvelle_position2(self.duree_boucle)
+        
 
     
 
