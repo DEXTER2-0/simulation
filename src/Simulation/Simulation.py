@@ -1,4 +1,8 @@
-from ..Modele import *
+import sys
+import os
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 from Modele import constantes as cs
 import time as t #pour pouvoir controler le temps de la boucle while True
 import numpy as np

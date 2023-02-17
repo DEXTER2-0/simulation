@@ -1,10 +1,13 @@
-#import Simulation as simu
-#import Robot as rb
-#from ..Modele import Roue  
-from ..Modele import constantes as cs
-from ..Modele import Obstacle as obs
-from ..Controleur import IA as ia
-from ..Modele import Terrain as ter
+import sys
+import os
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))) 
+from Modele import Robot as rb
+from Modele import constantes as cs
+from Modele import Obstacle as obs
+from Controleur import IA as ia
+import Simulation as simu
+from Modele import Terrain as ter
 #import time as t#pour pouvoir controler le temps de la boucle while True
 
 
