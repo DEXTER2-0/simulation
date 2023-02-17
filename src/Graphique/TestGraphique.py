@@ -57,8 +57,3 @@ while True :
     canvas_fenetre.update()
     
    
-
-
-
-
-#graph.afficher()

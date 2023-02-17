@@ -38,12 +38,17 @@ class Simulation :
         if distance > cs.DISTANCE_MIN_ARRET:
             self.ia.bouger(cs.V_ANGULAIRE_G,cs.V_ANGULAIRE_D)
             self.ia.nouvelle_position2(self.duree_boucle)
-            #time.sleep(1)
+            #.sleep(0.005)
             print(self.ia)
         else :
-            angle_depart = self.ia.angle
-            while self.ia.angle <= angle_depart - (np.pi/2) : 
-                self.ia.evite()
+            self.ia.evite()
+            self.ia.nouvelle_position2(self.duree_boucle)
+
+    #def update_simulation(self):
+    #    self.ia.evite()
+    #    self.ia.nouvelle_position2(self.duree_boucle)
+    #    print(self.ia)
+        
               
             #print("obstacle à ",distance ,"mettre ARRET !!")
     

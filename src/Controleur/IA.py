@@ -71,6 +71,10 @@ class IA :
 		Appele bouger avec les vitesse nécessaire pour faire la rotation
 		"""
 		self.bouger(0,(pi*self.robot.l*0.01)/(2*self.robot.roue_droite.taille_cm*0.01))
+
+	#def faire_carre(self):
+
+
 ##-------------------------------------------------------
 	
 #	def avancer(self,vitesseVoulue_kmh_er,vitesseVoulue_kmh_et) :
@@ -180,27 +184,27 @@ class IA :
 		# 	r = np.sqrt(self.pos_x**2 + self.pos_y**2)
 		# 	angle= np.arctan(self.pos_y/self.pos_x)
 		# 	return r, angle
-	def nouvelle_position4(self, vitesse_er, vitesse_et,orientation, duree):
-		"""
-		Renvoie la distance parcourue (m), pour une vitesse (km)
-		et une durée (s)
-		Augmente la distance si vitesse est supérieur a zero
-		Diminue la distance sinon
-		"""
-		self.r+=vitesse_er*duree
-		self.angle+=vitesse_et*duree/self.r
-		print("Le robot a avancé et est maintenant à la position : x=",self.conversion_polaire_vers_cartesienne()[0]," y=",self.conversion_polaire_vers_cartesienne()[1])		
-	def nouvelle_position5(self,duree):
-		"""
-		Fonction prenant en paramètre la durée en s depuis le calcul de la dernière position
-		puis calcul le nouveau r et le nouvel angle
-		formules utilisées : r+=vitesse projetée sur l'axe er*t et theta+=vitesse projetée sur l'axe et*t/r
-		"""
-		self.r+=self.vitesse_er*duree
-		self.angle+=self.vitesse_et*duree/self.r
-		val = self.conversion_polaire_vers_cartesienne()
-		self.pos_x = val[0]
-		self.pos_y = val[1]	
+	# def nouvelle_position4(self, vitesse_er, vitesse_et,orientation, duree):
+	# 	"""
+	# 	Renvoie la distance parcourue (m), pour une vitesse (km)
+	# 	et une durée (s)
+	# 	Augmente la distance si vitesse est supérieur a zero
+	# 	Diminue la distance sinon
+	# 	"""
+	# 	self.r+=vitesse_er*duree
+	# 	self.angle+=vitesse_et*duree/self.r
+	# 	print("Le robot a avancé et est maintenant à la position : x=",self.conversion_polaire_vers_cartesienne()[0]," y=",self.conversion_polaire_vers_cartesienne()[1])		
+	#def nouvelle_position5(self,duree):
+	#	"""
+		# Fonction prenant en paramètre la durée en s depuis le calcul de la dernière position
+		# puis calcul le nouveau r et le nouvel angle
+		# formules utilisées : r+=vitesse projetée sur l'axe er*t et theta+=vitesse projetée sur l'axe et*t/r
+		# """
+		# self.r+=self.vitesse_er*duree
+		# self.angle+=self.vitesse_et*duree/self.r
+		# val = self.conversion_polaire_vers_cartesienne()
+		# self.pos_x = val[0]
+		# self.pos_y = val[1]	
 	def evite_obstacles2(self,Obstacle):
 		"""
 		Fonction prenant en paramètre l'obstacle et si la distance captée par le capteur entre le robot et l'obstacle est 
