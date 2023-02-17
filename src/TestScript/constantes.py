@@ -5,4 +5,4 @@ WIDTH = 600 # axe des x
 HEIGHT = 600 # axe des y
 V_ANGULAIRE_G = 250.17#250 #250.17
 V_ANGULAIRE_D = 250
-DISTANCE_MIN_ARRET = 7 #en metre
+DISTANCE_MIN_ARRET = 4 #en metre

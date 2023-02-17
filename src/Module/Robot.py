@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: latin-1 -*-
 
-
+from TestScript import constantes as cs
 from math import pi,sqrt,sin,cos
 
 class Robot :
@@ -102,18 +102,25 @@ class Capteur_de_distance :
         k=0
         x = ia_pos_x
         y = ia_pos_y
+		#print("CAAAPPPTTEEUURRRR DIISSATAAANNCCEEE")
+
         #print("Distance Captable = ",self.distanceCaptable)
         while k*le_pas < self.distanceCaptable :
             x = x + cos(angle_robot) * le_pas #Lance le laser dans la bonne direction
             y = y + sin(angle_robot) * le_pas #Lance le laser dans la bonne direction
-            ##print("capteur -> (",x,",",y,")") 
+            print("capteur -> (",x,",",y,")") 
             # Verification si les coordonées du laser se trouve dans un obstacle(cercle)
             for i in range(len(l_obstacle)) :
                 obstacle = l_obstacle[i]
                 
                 # Si a un moment le laser se trouve dans un obstacle
+<<<<<<< HEAD
                 if (self.distance(x,y,obstacle)) < obstacle.longueur : #obstacle.longueur car dans obstacle attribut longueur m¨
                     ###print("obstacle à : ", sqrt((x-ia_pos_x)**2+(y-ia_pos_y)**2))
+=======
+                if (self.distance(x,y,obstacle)) < obstacle.longueur + cs.RAYON_ROBOT_CM +5: #obstacle.longueur car dans obstacle attribut longueur m¨
+                    print("obstacle à : ", sqrt((x-ia_pos_x)**2+(y-ia_pos_y)**2))
+>>>>>>> fbb363fab08d7ec4776bbe0194c874cd1b55bcd3
                     return sqrt((x-ia_pos_x)**2+(y-ia_pos_y)**2)
             k +=1
         print("Rien à l'horizon")
