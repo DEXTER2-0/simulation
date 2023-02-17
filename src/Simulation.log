@@ -1,0 +1,88 @@
+DEBUG:root:capteur -> (0.5,0.0)
+DEBUG:root:capteur -> (1.0,0.0)
+DEBUG:root:capteur -> (1.5,0.0)
+DEBUG:root:capteur -> (2.0,0.0)
+DEBUG:root:capteur -> (2.5,0.0)
+DEBUG:root:capteur -> (3.0,0.0)
+DEBUG:root:capteur -> (3.5,0.0)
+DEBUG:root:capteur -> (4.0,0.0)
+DEBUG:root:capteur -> (4.5,0.0)
+DEBUG:root:capteur -> (5.0,0.0)
+DEBUG:root:capteur -> (5.5,0.0)
+DEBUG:root:capteur -> (6.0,0.0)
+DEBUG:root:capteur -> (6.5,0.0)
+DEBUG:root:obstacle Ã  : 6.5
+DEBUG:root:6.5
+DEBUG:root:2.5,0.0
+DEBUG:root:capteur -> (3.0,0.0)
+DEBUG:root:capteur -> (3.5,0.0)
+DEBUG:root:capteur -> (4.0,0.0)
+DEBUG:root:capteur -> (4.5,0.0)
+DEBUG:root:capteur -> (5.0,0.0)
+DEBUG:root:capteur -> (5.5,0.0)
+DEBUG:root:capteur -> (6.0,0.0)
+DEBUG:root:capteur -> (6.5,0.0)
+DEBUG:root:obstacle Ã  : 4.0
+DEBUG:root:4.0
+DEBUG:root:2.5,0.0
+DEBUG:root:capteur -> (2.578539816339745,0.5)
+DEBUG:root:capteur -> (2.578539816339745,1.0)
+DEBUG:root:capteur -> (2.578539816339745,1.5)
+DEBUG:root:capteur -> (2.578539816339745,2.0)
+DEBUG:root:capteur -> (2.578539816339745,2.5)
+DEBUG:root:capteur -> (2.578539816339745,3.0)
+DEBUG:root:capteur -> (2.578539816339745,3.5)
+DEBUG:root:capteur -> (2.578539816339745,4.0)
+DEBUG:root:capteur -> (2.578539816339745,4.5)
+DEBUG:root:capteur -> (2.578539816339745,5.0)
+DEBUG:root:capteur -> (2.578539816339745,5.5)
+DEBUG:root:capteur -> (2.578539816339745,6.0)
+DEBUG:root:capteur -> (2.578539816339745,6.5)
+DEBUG:root:capteur -> (2.578539816339745,7.0)
+DEBUG:root:capteur -> (2.578539816339745,7.5)
+DEBUG:root:capteur -> (2.578539816339745,8.0)
+DEBUG:root:Rien Ã  l'horizon
+DEBUG:root:8
+DEBUG:root:2.5785398163397457,2.5
+DEBUG:root:capteur -> (2.5785398163397457,3.0)
+DEBUG:root:capteur -> (2.5785398163397457,3.5)
+DEBUG:root:capteur -> (2.5785398163397457,4.0)
+DEBUG:root:capteur -> (2.5785398163397457,4.5)
+DEBUG:root:capteur -> (2.5785398163397457,5.0)
+DEBUG:root:capteur -> (2.5785398163397457,5.5)
+DEBUG:root:capteur -> (2.5785398163397457,6.0)
+DEBUG:root:capteur -> (2.5785398163397457,6.5)
+DEBUG:root:capteur -> (2.5785398163397457,7.0)
+DEBUG:root:capteur -> (2.5785398163397457,7.5)
+DEBUG:root:capteur -> (2.5785398163397457,8.0)
+DEBUG:root:capteur -> (2.5785398163397457,8.5)
+DEBUG:root:capteur -> (2.5785398163397457,9.0)
+DEBUG:root:capteur -> (2.5785398163397457,9.5)
+DEBUG:root:capteur -> (2.5785398163397457,10.0)
+DEBUG:root:capteur -> (2.5785398163397457,10.5)
+DEBUG:root:obstacle Ã  : 8.0
+DEBUG:root:8.0
+DEBUG:root:2.5785398163397466,5.0
+DEBUG:root:capteur -> (2.5785398163397466,5.5)
+DEBUG:root:capteur -> (2.5785398163397466,6.0)
+DEBUG:root:capteur -> (2.5785398163397466,6.5)
+DEBUG:root:capteur -> (2.5785398163397466,7.0)
+DEBUG:root:capteur -> (2.5785398163397466,7.5)
+DEBUG:root:capteur -> (2.5785398163397466,8.0)
+DEBUG:root:capteur -> (2.5785398163397466,8.5)
+DEBUG:root:capteur -> (2.5785398163397466,9.0)
+DEBUG:root:capteur -> (2.5785398163397466,9.5)
+DEBUG:root:capteur -> (2.5785398163397466,10.0)
+DEBUG:root:capteur -> (2.5785398163397466,10.5)
+DEBUG:root:obstacle Ã  : 5.5
+DEBUG:root:5.5
+DEBUG:root:2.5785398163397475,7.5
+DEBUG:root:capteur -> (2.5785398163397475,8.0)
+DEBUG:root:capteur -> (2.5785398163397475,8.5)
+DEBUG:root:capteur -> (2.5785398163397475,9.0)
+DEBUG:root:capteur -> (2.5785398163397475,9.5)
+DEBUG:root:capteur -> (2.5785398163397475,10.0)
+DEBUG:root:capteur -> (2.5785398163397475,10.5)
+DEBUG:root:obstacle Ã  : 3.0
+DEBUG:root:3.0
+DEBUG:root:2.5785398163397475,7.5

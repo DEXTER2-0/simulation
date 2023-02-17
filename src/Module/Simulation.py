@@ -7,6 +7,8 @@ import time #pour pouvoir controler le temps de la boucle while True
 import numpy as np
 from math import *
 import logging
+logging.basicConfig(filename='Simulation.log', filemode='w', level=logging.DEBUG)
+
 
 
 
@@ -64,11 +66,11 @@ class Simulation :
             self.ia.bouger(cs.V_ANGULAIRE_G,cs.V_ANGULAIRE_D)
             self.nouvelle_position2(self.duree_boucle)
             time.sleep(0.001)
-            logging.debug(f"{self.pos_x},{self.pos_y}")
+            logging.debug(f"robot pos_x= {self.pos_x},robot pos_y={self.pos_y}")
         else :  
             logging.debug(f"{self.pos_x},{self.pos_y}")
             self.ia.evite()
-            #self.nouvelle_position2(self.duree_boucle)
+            self.nouvelle_position2(self.duree_boucle)
         
 
     
