@@ -59,16 +59,15 @@ class Simulation :
             self.ia.bouger(0,(pi*self.robot.l*0.01)/(2*self.robot.roue_droite.taille_cm*0.01))
 		
     def update_simulation(self):
+        logging.debug(f"robot pos_x= {self.pos_x},robot pos_y={self.pos_y}")
         distance = self.robot.capteurDistance.senseur_de_distance(self.pos_x, self.pos_y, self.angle, 0.5, self.terrain.liste_obstacle)
         self.collision()
         logging.debug(f"{distance}")
         if distance > cs.DISTANCE_MIN_ARRET:
             self.ia.bouger(cs.V_ANGULAIRE_G,cs.V_ANGULAIRE_D)
             self.nouvelle_position2(self.duree_boucle)
-            time.sleep(0.001)
-            logging.debug(f"robot pos_x= {self.pos_x},robot pos_y={self.pos_y}")
+            #time.sleep(0.001)
         else :  
-            logging.debug(f"{self.pos_x},{self.pos_y}")
             self.ia.evite()
             self.nouvelle_position2(self.duree_boucle)
         
