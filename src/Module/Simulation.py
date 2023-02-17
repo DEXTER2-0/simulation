@@ -6,6 +6,7 @@ from TestScript import constantes as cs
 import time #pour pouvoir controler le temps de la boucle while True
 import numpy as np
 from math import *
+import loggin
 
 
 
@@ -38,7 +39,7 @@ class Simulation :
             d=np.sqrt((self.pos_x-obstacle.x)**2+(self.pos_y-obstacle.y)**2) #distance euclidienne entre le robot et l'obstacle
             if(d<=(self.ia.robot.rayonDuRobotCm+obstacle.longueur)): # collision de deux cercles
                 self.ia.robot.arreter_urgence()
-                print("Collision détectée : arret d'urgence")
+                loggin.debug("Collision détectée : arret d'urgence")
             #elif (d<=(self.ia.robot.rayon)): # collision d'un cercle et d'un rectangle A COMPLETER
              #   self.ia.robot.arret_urgence()
 	
@@ -56,7 +57,6 @@ class Simulation :
 			self.ia.bouger(0,(pi*self.robot.l*0.01)/(2*self.robot.roue_droite.taille_cm*0.01))
 		
     def update_simulation(self):
-        print("APPEELLL UPPDDAAAATTEEE  ")
         distance = self.robot.capteurDistance.senseur_de_distance(self.pos_x, self.pos_y, self.angle, 0.5, self.terrain.liste_obstacle)
         self.collision()
         print(distance)
@@ -66,7 +66,7 @@ class Simulation :
             time.sleep(0.001)
             print(self.pos_x," , ",self.pos_y)
         else :  
-            print(self.pos_x," , ",self.pos_y)
+            loggin.debug(f"{self.pos_x},{self.pos_y}")
             self.ia.evite()
             #self.nouvelle_position2(self.duree_boucle)
         
