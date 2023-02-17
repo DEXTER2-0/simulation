@@ -44,7 +44,6 @@ class IA :
 		ANG_G prend une vitesse angulaire pour la roue gauche
 		ANG_D prend une vitesse angulaire pour la roue droite
 		"""	
-		print("JE BOOUUUGGEE")
 		# vitesse moyenn du robot
 		self.v = (self.robot.roue_gauche.taille_cm*0.01/2)*(ANG_D + ANG_G)	
 		#angle de rotation du robot en fonction des vitesses des roues
