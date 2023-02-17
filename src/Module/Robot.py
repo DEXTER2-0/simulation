@@ -118,7 +118,7 @@ class Capteur_de_distance :
 
                     return sqrt((x-ia_pos_x)**2+(y-ia_pos_y)**2)
             k +=1
-        logging.debug(f"Rien à l'horizon")
+        logging.debug("Rien à l'horizon")
         return self.distanceCaptable
 
 
