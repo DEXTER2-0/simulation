@@ -59,12 +59,12 @@ class Simulation :
     def update_simulation(self):
         distance = self.robot.capteurDistance.senseur_de_distance(self.pos_x, self.pos_y, self.angle, 0.5, self.terrain.liste_obstacle)
         self.collision()
-        print(distance)
+        loggin.debug(f"{distance}")
         if distance > cs.DISTANCE_MIN_ARRET:
             self.ia.bouger(cs.V_ANGULAIRE_G,cs.V_ANGULAIRE_D)
             self.nouvelle_position2(self.duree_boucle)
             time.sleep(0.001)
-            print(self.pos_x," , ",self.pos_y)
+            loggin.debug(f"{self.pos_x},{self.pos_y}")
         else :  
             loggin.debug(f"{self.pos_x},{self.pos_y}")
             self.ia.evite()
