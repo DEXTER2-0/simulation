@@ -23,9 +23,12 @@ class Simulation :
         
     
     def collision(self):
+        """
+        Suppose objet est cercle
+        """
         for obstacle in self.terrain.liste_obstacles: #pour chaque obstacle
             d=np.sqrt((self.ia.robot.x-obstacle.x)**2+(self.ia.robot.y-obstacle.y)**2) #distance euclidienne entre le robot et l'obstacle
-            if(d<=(self.ia.robot.rayon)): # collision de deux cercles
+            if(d<=(self.ia.robot.rayon+obstacle.rayon)): # collision de deux cercles
                 self.ia.robot.arreter_urgence()
             #elif (d<=(self.ia.robot.rayon)): # collision d'un cercle et d'un rectangle A COMPLETER
              #   self.ia.robot.arret_urgence()
