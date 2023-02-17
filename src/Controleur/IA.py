@@ -1,8 +1,5 @@
-from Modele import Robot
-from Modele import Obstacle
-from Modele import Roue
-from Modele import Capteur_de_distance
 from math import *
+import numpy as np
 
 class IA :
 	def __init__ (self, robot,r=0,angle = 0, pos_x = 0, pos_y = 0, v=0, w=0) :
