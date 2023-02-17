@@ -1,11 +1,6 @@
-from Modele import Robot
-from Modele import Roue  
-from Modele import constantes
-from Modele import Obstacle
-from Controleur import IA
+from ..Modele import *
 from Modele import constantes as cs
-from Modele import Terrain
-import time #pour pouvoir controler le temps de la boucle while True
+import time as t #pour pouvoir controler le temps de la boucle while True
 import numpy as np
 
 
@@ -38,7 +33,7 @@ class Simulation :
         if distance > cs.DISTANCE_MIN_ARRET:
             self.ia.bouger(cs.V_ANGULAIRE_G,cs.V_ANGULAIRE_D)
             self.ia.nouvelle_position2(self.duree_boucle)
-            #.sleep(0.005)
+            t.sleep(0.005)
             print(self.ia)
         else :
             self.ia.evite()
