@@ -1,10 +1,9 @@
 from Modele import Robot
-from Modele import Roue  
-from Modele import constantes
-from Modele import Obstacle
-from Controleur import IA
-from Modele import constantes as cs
-from Modele import Terrain
+
+import Obstacle
+import IA
+from TestScript import constantes as cs
+import Terrain
 import time #pour pouvoir controler le temps de la boucle while True
 import numpy as np
 
@@ -41,15 +40,12 @@ class Simulation :
             #time.sleep(1)
             print(self.ia)
         else :
-<<<<<<< HEAD
-		print("obstacle à ",distance ,"SOS : il faut mettre le robot en ARRET !!")
-=======
             angle_depart = self.ia.angle
             while self.ia.angle <= angle_depart - (np.pi/2) : 
                 self.ia.evite()
               
             #print("obstacle à ",distance ,"mettre ARRET !!")
->>>>>>> 593cff97d9b0a51f7fb95a58baa1b261e7abadb8
+
     
 
     #def simul(self):
