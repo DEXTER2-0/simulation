@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: latin-1 -*-
 
-
+from TestScript import constantes as cs
 from math import pi,sqrt,sin,cos
 
 class Robot :
@@ -113,7 +113,7 @@ class Capteur_de_distance :
                 obstacle = l_obstacle[i]
                 
                 # Si a un moment le laser se trouve dans un obstacle
-                if (self.distance(x,y,obstacle)) < obstacle.longueur*2: #obstacle.longueur car dans obstacle attribut longueur m¨
+                if (self.distance(x,y,obstacle)) < obstacle.longueur + cs.RAYON_ROBOT_CM +5: #obstacle.longueur car dans obstacle attribut longueur m¨
                     print("obstacle à : ", sqrt((x-ia_pos_x)**2+(y-ia_pos_y)**2))
                     return sqrt((x-ia_pos_x)**2+(y-ia_pos_y)**2)
             k +=1

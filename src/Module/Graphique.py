@@ -1,10 +1,20 @@
-import Simulation as simu
-from Modele import Robot as rb
-from Modele import Roue  
-from Modele import constantes as cs
-from Modele import Obstacle as obs
-from Controleur import IA as ia
-from Modele import Terrain as ter
+import sys
+sys.path.append("../")
+
+from Module import Simulation as simu
+from Module import Robot as rb 
+from TestScript import constantes as cs
+from Module import Obstacle as obs
+from Module import IA as ia
+from Module import Terrain as ter
+import time #pour pouvoir controler le temps de la boucle while True
+
+from Module import Graphique as gr
+
+import tkinter as tk
+
+import time #pour pouvoir controler le temps de la boucle while True
+
 import time #pour pouvoir controler le temps de la boucle while Truefrom math import *
 from math import *
 
@@ -28,7 +38,7 @@ class Graphique :
         # Suppose liste d'obstacle rond Pour la représentation des obstacles de la simulation
         for i in range (len(self.simulation.terrain.liste_obstacle)):
                 obs_cour = self.simulation.terrain.liste_obstacle[i]
-                self.obstacle = self.canvas.create_oval(obs_cour.x-obs_cour.longueur,obs_cour.y-obs_cour.longueur,obs_cour.x+obs_cour.longueur, obs_cour.y+obs_cour.longueur, width=1, fill="red")
+                self.obstacle = self.canvas.create_oval(obs_cour.x-obs_cour.longueur,obs_cour.y-obs_cour.longueur,obs_cour.x+obs_cour.longueur, obs_cour.y+obs_cour.longueur, fill="red")
 
 
     def placer_robot_milieu(self,simulation):

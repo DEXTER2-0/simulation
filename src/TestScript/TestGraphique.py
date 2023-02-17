@@ -1,11 +1,15 @@
-from Simulation import Simulation as simu
-from Modele import Robot as rb
-from Modele import Roue  
-from Modele import constantes as cs
-from Modele import Obstacle as obs
-from Controleur import IA as ia
-from Modele import Terrain as ter
-import Graphique as gr
+import sys
+sys.path.append("../")
+
+from Module import Simulation as simu
+from Module import Robot as rb 
+import constantes as cs
+from Module import Obstacle as obs
+from Module import IA as ia
+from Module import Terrain as ter
+import time #pour pouvoir controler le temps de la boucle while True
+
+from Module import Graphique as gr
 
 import tkinter as tk
 
@@ -19,7 +23,7 @@ robot = rb.Robot(cs.RAYON_DES_ROUES_CM, cs.RAYON_ROBOT_CM, 8,cs.VITESSE_MAX_TOUR
 ia = ia.IA(robot)
 
 #Initialisation d'une liste d'obstacle
-obstacle1 = obs.Obstacle(5,500,300)
+obstacle1 = obs.Obstacle(10,500,300)
 obstacle2 = obs.Obstacle(7,500,500)
 obstacle3 = obs.Obstacle(20,150,100)
 obstacle4 = obs.Obstacle(10,200,480)

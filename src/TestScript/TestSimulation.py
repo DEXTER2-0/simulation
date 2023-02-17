@@ -17,7 +17,7 @@ robot = rb.Robot(cs.RAYON_DES_ROUES_CM, cs.RAYON_ROBOT_CM, 8,cs.VITESSE_MAX_TOUR
 ia = ia.IA(robot)
 
 #Initialisation d'une liste d'obstacle
-obstacle1 = obs.Obstacle(4,30,0)
+obstacle1 = obs.Obstacle(4,20,0)
 obstacle2 = obs.Obstacle(2,0,22)
 obstacle3 = obs.Obstacle(3,220,1)
 obstacle4 = obs.Obstacle(1,15,15)
