@@ -70,7 +70,7 @@ class Roue :
 ####------------------------ Capteur_de_distance --------------------------##
 
 from math import pi,sqrt,sin,cos
-import loggin
+import logging
 
 class Capteur_de_distance :
     def __init__(self, distanceCaptable) :
@@ -94,7 +94,7 @@ class Capteur_de_distance :
     def senseur_de_distance(self,ia_pos_x,ia_pos_y,angle_robot,le_pas,l_obstacle):
         """
         Aide page 16 du td2
-        Suppose que la liste d'obstacle sont des cercles
+        Suppose que la liste d'obstac le sont des cercles
         l_obstacle : est une liste d'obstacle
         ia.pos_y et ia.pos_y : permettent de récuperer les coordonnée actuelles du robot
         angle : permet au capteur de savoir dans quelle direction lancer le laser
@@ -103,24 +103,22 @@ class Capteur_de_distance :
         k=0
         x = ia_pos_x
         y = ia_pos_y
-		#print("CAAAPPPTTEEUURRRR DIISSATAAANNCCEEE")
-
         #print("Distance Captable = ",self.distanceCaptable)
         while k*le_pas < self.distanceCaptable :
             x = x + cos(angle_robot) * le_pas #Lance le laser dans la bonne direction
             y = y + sin(angle_robot) * le_pas #Lance le laser dans la bonne direction
-            loggin.debug(f"capteur -> ({x},{y})") 
+            logging.debug(f"capteur -> ({x},{y})") 
             # Verification si les coordonées du laser se trouve dans un obstacle(cercle)
             for i in range(len(l_obstacle)) :
                 obstacle = l_obstacle[i]
                 
                 # Si a un moment le laser se trouve dans un obstacle
                 if(self.distance(x,y,obstacle)) < obstacle.longueur + cs.RAYON_ROBOT_CM +5: #obstacle.longueur car dans obstacle attribut longueur m¨
-                    loggin.debug(f"obstacle à : {sqrt((x-ia_pos_x)**2+(y-ia_pos_y)**2)}")
+                    logging.debug(f"obstacle à : {sqrt((x-ia_pos_x)**2+(y-ia_pos_y)**2)}")
 
                     return sqrt((x-ia_pos_x)**2+(y-ia_pos_y)**2)
             k +=1
-        print("Rien à l'horizon")
+        logging.debug(f"Rien à l'horizon")
         return self.distanceCaptable
 
 
