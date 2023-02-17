@@ -70,6 +70,7 @@ class Roue :
 ####------------------------ Capteur_de_distance --------------------------##
 
 from math import pi,sqrt,sin,cos
+import loggin
 
 class Capteur_de_distance :
     def __init__(self, distanceCaptable) :
@@ -108,14 +109,14 @@ class Capteur_de_distance :
         while k*le_pas < self.distanceCaptable :
             x = x + cos(angle_robot) * le_pas #Lance le laser dans la bonne direction
             y = y + sin(angle_robot) * le_pas #Lance le laser dans la bonne direction
-            print("capteur -> (",x,",",y,")") 
+            loggin.debug(f"capteur -> ({x},{y})") 
             # Verification si les coordonées du laser se trouve dans un obstacle(cercle)
             for i in range(len(l_obstacle)) :
                 obstacle = l_obstacle[i]
                 
                 # Si a un moment le laser se trouve dans un obstacle
                 if(self.distance(x,y,obstacle)) < obstacle.longueur + cs.RAYON_ROBOT_CM +5: #obstacle.longueur car dans obstacle attribut longueur m¨
-                    print("obstacle à : ", sqrt((x-ia_pos_x)**2+(y-ia_pos_y)**2))
+                    loggin.debug(f"obstacle à : {sqrt((x-ia_pos_x)**2+(y-ia_pos_y)**2)}")
 
                     return sqrt((x-ia_pos_x)**2+(y-ia_pos_y)**2)
             k +=1
