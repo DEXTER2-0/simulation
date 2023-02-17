@@ -6,24 +6,24 @@ class IA :
 	def __init__ (self, robot,r=0,angle = 0, pos_x = 0, pos_y = 0, v=0, w=0) :
 		"""
 		"""
-		self.r=r
-		self.angle = angle
+		#self.r=r
+		#self.angle = angle
 		#self.vitesse_er 
 		#self.vitesse_et
-		self.pos_x = pos_x
-		self.pos_y = pos_y
+		#self.pos_x = pos_x
+		#self.pos_y = pos_y
 		self.robot = robot
 		self.v=v #vitesse moyenne du robot initialisé a 0
 		self.w=w #angle à ajouter à l'angle au temps t-1
 		
-	def est_entrain_de_rouler(robot) :
-		"""
-		Fonction testant la vitesse des roues afin de retourner un booléen corresponsant à si le robot roule ou non
-		"""
-		if robot.roue_droite.vTourParSec==0 and robot.roue_gauche.vTourParSec==0 :
-			return False
-		else :
-			return True
+#	def est_entrain_de_rouler(robot) :
+#		"""
+#		Fonction testant la vitesse des roues afin de retourner un booléen corresponsant à si le robot roule ou non
+#		"""
+#		if robot.roue_droite.vTourParSec==0 and robot.roue_gauche.vTourParSec==0 :
+#			return False
+#		else :
+#			return True
 	
 	def arreter_urgence(self):		
 		"""
@@ -53,14 +53,14 @@ class IA :
 		self.robot.roue_gauche.vTourParSec = ANG_G
 		self.robot.roue_droite.vTourParSec = ANG_D
 
-	def nouvelle_position2(self, duree):
-		"""
-		Doit etre appelé apres la methode bouger() pour pouvoir mettre a jours les 
-		coordonées du robot ainsi que son angle d'orientation
-		"""
-		self.pos_x = self.pos_x + self.v * cos(self.angle)*duree
-		self.pos_y = self.pos_y + self.v * sin(self.angle)*duree
-		self.angle = self.angle + self.w * duree
+	#def nouvelle_position2(self, duree):
+		#"""
+		#Doit etre appelé apres la methode bouger() pour pouvoir mettre a jours les 
+		#coordonées du robot ainsi que son angle d'orientation
+		#"""
+		#self.pos_x = self.pos_x + self.v * cos(self.angle)*duree
+		#self.pos_y = self.pos_y + self.v * sin(self.angle)*duree
+		#self.angle = self.angle + self.w * duree
 
 	def evite(self):
 		"""
