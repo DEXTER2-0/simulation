@@ -2,12 +2,11 @@ import sys
 sys.path.append("../")
 
 import Simulation as simu
-from Modele import Robot as rb
-from Modele import Roue  
-from Modele import constantes as cs
-from Modele import Obstacle as obs
-from Controleur import IA as ia
-from Modele import Terrain as ter
+from Module import Robot as rb 
+from Module import constantes as cs
+from Module import Obstacle as obs
+from Module import IA as ia
+from Module import Terrain as ter
 import time #pour pouvoir controler le temps de la boucle while True
 
 
