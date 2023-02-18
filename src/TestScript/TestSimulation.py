@@ -1,5 +1,3 @@
-import sys
-sys.path.append("../")
 
 from Module import Simulation as simu
 from Module import Robot as rb 
