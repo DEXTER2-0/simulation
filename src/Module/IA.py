@@ -29,8 +29,8 @@ class IA :
 		"""
 		Fonction arretant le robot en mettant la vitesses des roues à 0 d'un coup
 		"""
-		self.roue_gauche.setVitesse(0)
-		self.roue_droite.setVitesse(0)
+		self.robot.roue_gauche.setVitesse(0)
+		self.robot.roue_droite.setVitesse(0)
 	
 	def arreter(self):
 		"""

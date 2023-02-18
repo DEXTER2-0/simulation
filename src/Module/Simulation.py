@@ -40,8 +40,9 @@ class Simulation :
         for obstacle in self.terrain.liste_obstacle: #pour chaque obstacle
             d=np.sqrt((self.pos_x-obstacle.x)**2+(self.pos_y-obstacle.y)**2) #distance euclidienne entre le robot et l'obstacle
             if(d<=(self.ia.robot.rayonDuRobotCm+obstacle.longueur)): # collision de deux cercles
-                self.ia.robot.arreter_urgence()
+                self.ia.arreter_urgence()
                 logging.debug("Collision détectée : arret d'urgence")
+                return 1
             #elif (d<=(self.ia.robot.rayon)): # collision d'un cercle et d'un rectangle A COMPLETER
              #   self.ia.robot.arret_urgence()
 	
@@ -60,16 +61,20 @@ class Simulation :
 		
     def update_simulation(self):
         logging.debug(f"robot pos_x= {self.pos_x},robot pos_y={self.pos_y}, angle {self.angle}")
-        distance = self.robot.capteurDistance.senseur_de_distance(self.pos_x, self.pos_y, self.angle, 0.5, self.terrain.liste_obstacle)
-        self.collision()
+        distance = self.robot.capteurDistance.senseur_de_distance(self.pos_x, self.pos_y, self.angle, 0.1, self.terrain.liste_obstacle)
+        if self.collision() == 1:
+            exit(-1)
         logging.debug(f"{distance}")
-        if distance > cs.DISTANCE_MIN_ARRET:
+        if distance >cs.DISTANCE_MIN_ARRET:
+            print(distance)
             self.ia.bouger(cs.V_ANGULAIRE_G,cs.V_ANGULAIRE_D)
             self.nouvelle_position2(self.duree_boucle)
             #time.sleep(0.001)
         else :  
+            print(distance)
+            print(cs.DISTANCE_MIN_ARRET)
+            print("EVIIITTEE")
             self.ia.evite()
-
             self.nouvelle_position2(self.duree_boucle)
         
 

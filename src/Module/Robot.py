@@ -103,7 +103,8 @@ class Capteur_de_distance :
         k=0
         x = pos_x
         y = pos_y
-        #print("Distance Captable = ",self.distanceCaptable)
+
+        print("Distance Captable = ",self.distanceCaptable)
         while k*le_pas < self.distanceCaptable :
             x = x + cos(angle_robot) * le_pas #Lance le laser dans la bonne direction
             y = y + sin(angle_robot) * le_pas #Lance le laser dans la bonne direction
@@ -113,13 +114,13 @@ class Capteur_de_distance :
                 obstacle = l_obstacle[i]
                 
                 # Si a un moment le laser se trouve dans un obstacle
-                if(self.distance(x,y,obstacle)) < obstacle.longueur + cs.RAYON_ROBOT_CM +5: #obstacle.longueur car dans obstacle attribut longueur m¨
+                if(self.distance(x,y,obstacle)) <= obstacle.longueur : #obstacle.longueur car dans obstacle attribut longueur m¨
                     logging.debug(f"obstacle à : {sqrt((x-pos_x)**2+(y-pos_y)**2)}")
 
-                    return sqrt((x-pos_x)**2+(y-pos_y)**2)
+                    return sqrt((x-pos_x)**2+(y-pos_y)**2)-cs.RAYON_ROBOT_CM
             k +=1
         logging.debug("**** Rien à l'horizon ****")
-        return self.distanceCaptable
+        return self.distanceCaptable-cs.RAYON_ROBOT_CM
 
 
 

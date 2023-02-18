@@ -29,9 +29,9 @@ obstacle3 = obs.Obstacle(20,150,100)
 obstacle4 = obs.Obstacle(10,200,480)
 liste_obstacle = []
 liste_obstacle.append(obstacle1)
-liste_obstacle.append(obstacle2)
-liste_obstacle.append(obstacle3)
-liste_obstacle.append(obstacle4)
+#liste_obstacle.append(obstacle2)
+#liste_obstacle.append(obstacle3)
+#liste_obstacle.append(obstacle4)
 
 #Initialisation d'un terrain
 terrain = ter.Terrain(0,cs.WIDTH,0,cs.HEIGHT, liste_obstacle)
