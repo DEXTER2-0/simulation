@@ -33,7 +33,8 @@ class Robot :
 class Roue :
 	def __init__ (self, taille_cm, vMaxTourParSec) :
 		"""
-		Fonction d'initialisation prenant en paramètre le rayon en cm et la vitesse maximale possible pour les roues
+		:param taille_cm : taille de la roue en cm
+		:param vMaxTourParSec : vitesse maximale possible pour les roues en tours par seconde
 		"""
 		self.taille_cm = taille_cm
 		self.vMaxTourParSec = vMaxTourParSec
