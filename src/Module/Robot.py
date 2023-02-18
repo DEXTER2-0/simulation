@@ -78,7 +78,7 @@ import logging
 class Capteur_de_distance :
     def __init__(self, distanceCaptable) :
        """
-       Fonction d'initialisation prenant en paramètre la distance maximale captable possible
+       :param distanceCaptable : distance maximale captable possible
        """
        self.distanceCaptable=distanceCaptable
     
