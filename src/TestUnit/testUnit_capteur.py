@@ -1,9 +1,9 @@
 import unittest
-from Modele import Capteur_de_distance as cap
-from Modele import Robot as rob
-from Modele import Obstacle as ob
-from Modele import constantes as c
-from Controleur import IA as i
+from ..Modele.Capteur_de_distance import Capteur_de_distance as cap
+from ..Modele.Robot import Robot as rob
+from ..Modele.Obstacle import Obstacle as ob
+from ..Modele.constantes import constantes as c
+from ..Controleur.IA import IA as i
 
 class TestCapteur(unittest.TestCase):
 
@@ -23,6 +23,7 @@ class TestCapteur(unittest.TestCase):
     def test_distance(self):
         self.capteur.distance(self.ia.pos_x,self.ia.pos_y,self.obs1)
         self.capteur.distance(self.ia.pos_x,self.ia.pos_y,self.obs2)
+        self.capteur.distance(self.ia.pos_x,self.ia.pos_y,self.obs3)
 
     def test_senseurDistance(self):
         """

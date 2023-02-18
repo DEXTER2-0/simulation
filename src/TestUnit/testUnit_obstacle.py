@@ -1,6 +1,5 @@
 import unittest
-from Modele import Obstacle as ob
-from Modele import constantes as c
+from ..Modele.Obstacle import *
 
 class TestObstacle(unittest.TestCase):
 
@@ -8,9 +7,9 @@ class TestObstacle(unittest.TestCase):
         """
         Permet d'enregistrer tous les attributs de Obstacle
         """
-        self.obs1 = ob.Obstacle(5,6,1,4) #création d'un obstacle du type rectangle
-        self.obs2 = ob.Obstacle(3,5,4) #création d'un obstacle du type cercle
-        self.obs3 = ob.Obstacle(50,50) #création d'un obstacle du type mur 
+        self.obs1 = Obstacle(5,6,1,4) #création d'un obstacle du type rectangle
+        self.obs2 = Obstacle(3,5,4) #création d'un obstacle du type cercle
+        self.obs3 = Obstacle(50,50) #création d'un obstacle du type mur 
     def test_init(self):
         self.assertEqual(self.obs1.longueur,5)
         self.assertEqual(self.obs1.largeur,6)
