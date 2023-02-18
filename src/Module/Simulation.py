@@ -66,14 +66,13 @@ class Simulation :
             exit(-1)
         logging.debug(f"{distance}")
         if distance >cs.DISTANCE_MIN_ARRET:
-            print(distance)
+            logging.debug(f"{distance}")
             self.ia.bouger(cs.V_ANGULAIRE_G,cs.V_ANGULAIRE_D)
             self.nouvelle_position2(self.duree_boucle)
             #time.sleep(0.001)
         else :  
-            print(distance)
-            print(cs.DISTANCE_MIN_ARRET)
-            print("EVIIITTEE")
+            logging.debug(f"{distance}")
+            logging.debug(f"{cs.DISTANCE_MIN_ARRET}")
             self.ia.evite()
             self.nouvelle_position2(self.duree_boucle)
         
