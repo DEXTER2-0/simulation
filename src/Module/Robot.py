@@ -7,9 +7,10 @@ from math import pi,sqrt,sin,cos
 class Robot :
 	def __init__ (self, rayonRouesCm,rayonDuRobotCm, capteur,vMaxTourParSec,l=1) :
 		"""
-		Fonction d'initialisation prenant en paramètre le rayon des roues en cm, le rayon du robot en cm,
-		la distance maximale captable par le capteur de distance, la vitesse maximale possible pour les roues,
-		les coordonnées polaires et les coordonnées cartésiennes du robot
+		:param rayonRouesCm : rayon des roues en cm
+		:param rayonDuRobotCm : rayon du cercle dans lequel s'inscrit le robot en cm
+		:param capteur : Capteur utilisé
+		:param vMaxTourParSec : vitesse maximale possible pour les roues en tours par seconde
 		Cette fonction instancie deux roues de la même taille et de même vitesse maximale, ainsi qu'un capteur de position
 		"""
 		assert(rayonRouesCm > 0)# Ne peut pas avoir un rayon < 0
