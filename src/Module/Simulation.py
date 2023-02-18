@@ -14,8 +14,11 @@ logging.basicConfig(filename='Simulation.log', filemode='w', level=logging.DEBUG
 
 class Simulation : 
     def __init__ (self, ia, robot,terrain,duree_boucle,pos_x=0,pos_y=0,r=0,angle=0) :
-	    
-        """
+	"""    
+        :param ia : IA utilisé
+	:param robot : Robot utilisé
+	:param terrain : Terrain utilisé
+	:param duree_boucle : duree de simulation
         """
         #self.mur_x = range(10) 
         #self.mur_y = range(10)
