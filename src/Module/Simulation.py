@@ -51,6 +51,7 @@ class Simulation :
 	
     def nouvelle_position2(self,duree):
         """
+	:param duree : duree passee depuis le dernier calcul de la position
         Doit etre appelé apres la methode bouger() pour pouvoir mettre a jours les 
         oordonées du robot ainsi que son angle d'orientation					                      
         """
