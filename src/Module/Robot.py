@@ -54,7 +54,8 @@ class Roue :
 	
 	def setVitesse(self,vitesseVoulue_kmh) :
 		"""
-		Formule prenant en paramètre la vitesse voulue en km/h et calculant sa converion en vitesse de rotation n en tr/s et la retourne
+		:param vitesseVoulue_kmh : vitesse du robot voulue en km/h
+		Formule calculant sa converion en vitesse de rotation n en tr/s et la retourne
 		puis donnant évaluant si la vitesse demandée est possible et de donner soit cette vitesse soit la vitesse maximale aux roues
 		formule de conversion utilisée : N=(5*v)/(36*pi*rayon_en_metre)
 		"""
