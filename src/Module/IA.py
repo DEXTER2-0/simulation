@@ -5,6 +5,7 @@ from math import *
 class IA :
 	def __init__ (self, robot,r=0,angle = 0, pos_x = 0, pos_y = 0, v=0, w=0) :
 		"""
+		:param robot : Robot utilisé
 		"""
 		#self.r=r
 		#self.angle = angle
@@ -120,7 +121,7 @@ class IA :
 
 	def accelerer(self,vitesseVoule):
 		"""
-		Fonction prenant en paramètre la vitesse à atteindre en km/h
+		:param vitesseVoulue : vitesse du robot en km/h voulue
 		puis transmets des vitesses aux roues par pas de 0,1 km/h tant que la vitesse voulue n'est pas atteinte
 		"""	
 		#assert(self.roue_gauche.vTourParSec==self.roue_droite.vTourParSec)
@@ -140,7 +141,7 @@ class IA :
 	#	print("le robot roule à la vitesse voulue apres acceleration :  " , vitesse_actuelle)	
 	def decelerer(self,vitesseVoule):
 		"""
-		Fonction prenant en paramètre la vitesse à atteindre en km/h
+		:param vitesseVoulue : vitesse du robot en km/h voulue
 		puis transmets des vitesses aux roues par pas de 0,1 km/h tant que la vitesse voulue n'est pas atteinte
 		"""
 		assert(self.roue_gauche.vTourParSec>0)
