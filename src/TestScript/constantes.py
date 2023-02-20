@@ -10,8 +10,8 @@ V_ANGULAIRE_D = 250
 
 
 ###--------------- PROPRIETE CAPTEUR_DISTANCE ----------------###
-DISTANCE_MIN_ARRET = 4 #en metre (mais faudra mettre en en cm)
-DISTANCE_CAPTABLE = 20+RAYON_ROBOT_CM#en metre (mais faudra mettre en en cm)
+DISTANCE_MIN_ARRET = 20 #en metre (mais faudra mettre en en cm)
+DISTANCE_CAPTABLE = 40+RAYON_ROBOT_CM#en metre (mais faudra mettre en en cm)
 
 ###--------------- PROPRIETE TERRAIN -------------------------###
 WIDTH = 600 # axe des x

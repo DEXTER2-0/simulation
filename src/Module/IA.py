@@ -1,9 +1,10 @@
 from Module import Robot
 from Module import Obstacle
 from math import *
+from TestScript import constantes as cs
 
 class IA :
-	def __init__ (self, robot,r=0,angle = 0, pos_x = 0, pos_y = 0, v=0, w=0) :
+	def __init__ (self, robot, v=0, w=0) :
 		"""
 		:param robot : Robot utilisé
 		"""
@@ -69,7 +70,7 @@ class IA :
 		tourne de pi/2
 		Appele bouger avec les vitesse nécessaire pour faire la rotation
 		"""
-		self.bouger(0,(pi*self.robot.l*0.01)/(2*self.robot.roue_droite.taille_cm*0.01))
+		self.bouger(0,(pi*self.robot.l)/(2*self.robot.roue_droite.taille_cm*0.01))
 ##-------------------------------------------------------
 	
 #	def avancer(self,vitesseVoulue_kmh_er,vitesseVoulue_kmh_et) :

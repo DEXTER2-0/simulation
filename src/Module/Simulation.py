@@ -14,12 +14,12 @@ logging.basicConfig(filename='Simulation.log', filemode='w', level=logging.DEBUG
 
 class Simulation : 
     def __init__ (self, ia, robot,terrain,duree_boucle,pos_x=0,pos_y=0,r=0,angle=0) :
-	"""    
+        """    
         :param ia : IA utilisé
 	:param robot : Robot utilisé
 	:param terrain : Terrain utilisé
 	:param duree_boucle : duree de simulation
-        """
+    """
         #self.mur_x = range(10) 
         #self.mur_y = range(10)
         self.ia = ia
@@ -62,6 +62,7 @@ class Simulation :
     def evite_murs(self):
         if (self.pos_x>=(cs.WIDTH/2)-2) or (self.pos_x<=-(cs.WIDTH/2)+2) or (self.pos_y>=(cs.HEIGHT/2)-2) or (self.pos_y<=-(cs.HEIGHT/2)+2):
             self.ia.bouger(0,(pi*self.robot.l*0.01)/(2*self.robot.roue_droite.taille_cm*0.01))
+        self.ia.evite()
 		
     def update_simulation(self):
         logging.debug(f"robot pos_x= {self.pos_x},robot pos_y={self.pos_y}, angle {self.angle}")
@@ -69,12 +70,19 @@ class Simulation :
         if self.collision() == 1:
             exit(-1)
         logging.debug(f"{distance}")
+        if (self.pos_x>=(cs.WIDTH/2)-2) or (self.pos_x<=-(cs.WIDTH/2)+2) or (self.pos_y>=(cs.HEIGHT/2)-2) or (self.pos_y<=-(cs.HEIGHT/2)+2):
+            self.ia.evite()
+            
         if distance >cs.DISTANCE_MIN_ARRET:
             logging.debug(f"{distance}")
             self.ia.bouger(cs.V_ANGULAIRE_G,cs.V_ANGULAIRE_D)
             self.nouvelle_position2(self.duree_boucle)
+            print("if -> angle = ",self.angle)
+
             #time.sleep(0.001)
-        else :  
+        else : 
+            print("EVITE!!!!!") 
+            print("else -> angle = ",self.angle)
             logging.debug(f"{distance}")
             logging.debug(f"{cs.DISTANCE_MIN_ARRET}")
             self.ia.evite()
