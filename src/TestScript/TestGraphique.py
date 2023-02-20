@@ -34,7 +34,7 @@ liste_obstacle.append(obstacle1)
 terrain = ter.Terrain(0,cs.WIDTH,0,cs.HEIGHT, liste_obstacle)
 
 #initialisation de la simulation
-simulation = simu.Simulation(ia,robot,terrain,0.01)
+simulation = simu.Simulation(ia,robot,terrain,0.1)
 
 fen = tk.Tk() 
 
