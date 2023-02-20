@@ -1,4 +1,3 @@
-
 from Module import Simulation as simu
 from Module import Robot as rb 
 import constantes as cs
