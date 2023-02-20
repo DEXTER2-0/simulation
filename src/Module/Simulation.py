@@ -73,7 +73,9 @@ class Simulation :
         if (self.pos_x>=cs.WIDTH-20) or (self.pos_x<=20) or (self.pos_y>=cs.HEIGHT-20) or (self.pos_y<=20):
             self.ia.evite()
             self.nouvelle_position2(self.duree_boucle)
-            
+            self.ia.bouger(cs.V_ANGULAIRE_G,cs.V_ANGULAIRE_D)
+            self.nouvelle_position2(self.duree_boucle)
+
         if distance >cs.DISTANCE_MIN_ARRET:
             logging.debug(f"{distance}")
             self.ia.bouger(cs.V_ANGULAIRE_G,cs.V_ANGULAIRE_D)
