@@ -70,18 +70,20 @@ class Simulation :
         if self.collision() == 1:
             exit(-1)
         logging.debug(f"{distance}")
-        if (self.pos_x>=cs.WIDTH-20) or (self.pos_x<=20) or (self.pos_y>=cs.HEIGHT-20) or (self.pos_y<=20):
+        cpt =0
+        if (((self.pos_x>=cs.WIDTH-20) or (self.pos_x<=20) or (self.pos_y>=cs.HEIGHT-20) or (self.pos_y<=20) )and cpt ==0):
             self.ia.evite()
             self.nouvelle_position2(self.duree_boucle)
             self.ia.bouger(cs.V_ANGULAIRE_G,cs.V_ANGULAIRE_D)
             self.nouvelle_position2(self.duree_boucle)
+            cpt += 1
 
         if distance >cs.DISTANCE_MIN_ARRET:
             logging.debug(f"{distance}")
             self.ia.bouger(cs.V_ANGULAIRE_G,cs.V_ANGULAIRE_D)
             self.nouvelle_position2(self.duree_boucle)
             print("if -> angle = ",self.angle)
-
+            cpt -= 1
             #time.sleep(0.001)
         else : 
             print("EVITE!!!!!") 
