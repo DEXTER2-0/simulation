@@ -7,7 +7,7 @@ import time #pour pouvoir controler le temps de la boucle while True
 import numpy as np
 from math import *
 import logging
-logging.basicConfig(filename='Simulation.log', filemode='w', level=logging.DEBUG)
+#logging.basicConfig(filename='Simulation.log', filemode='w', level=logging.DEBUG)
 
 
 
