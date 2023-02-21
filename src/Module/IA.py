@@ -2,6 +2,7 @@ from Module import Robot
 from Module import Obstacle
 from math import *
 from TestScript import constantes as cs
+import time
 
 class IA_avancer :
 	def __init__ (self, robot, v=0, w=0) :
@@ -11,6 +12,15 @@ class IA_avancer :
 		self.robot = robot
 		self.v=v #vitesse moyenne du robot initialisé a 0
 		self.w=w #angle à ajouter à l'angle au temps t-1
+	
+	def avancer(self,distance):
+		t=0
+		duree=vitesseVoulue/distance
+		self.robot.roue_gauche.vTourParSec = ANG_G
+		self.robot.roue_droite.vTourParSec = ANG_D
+		sleep(duree)
+		self.robot.roue_gauche.vTourParSec = 0
+		self.robot.roue_droite.vTourParSec = 0
 		
 class IA_tourner:
 	def __init__(self, robot, v=0, w=0) :
