@@ -1,9 +1,9 @@
-from Module import Simulation as simu
-from Module import Robot as rb 
+from Dexter  import Simulation as simu
+from Dexter  import Robot as rb 
 import constantes as cs
-from Module import Obstacle as obs
-from Module import IA as ia
-from Module import Terrain as ter
+from Dexter  import Obstacle as obs
+from Dexter  import IA as ia
+from Dexter  import Terrain as ter
 import time #pour pouvoir controler le temps de la boucle while True
 
 
