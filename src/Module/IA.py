@@ -13,11 +13,11 @@ class IA_avancer :
 		self.v=v #vitesse moyenne du robot initialisé a 0
 		self.w=w #angle à ajouter à l'angle au temps t-1
 	
-	def avancer(self,distance):
+	def avancer(self,distance,vAngulaire):
 		t=0
-		duree=vitesseVoulue/distance
-		self.robot.roue_gauche.vTourParSec = ANG_G
-		self.robot.roue_droite.vTourParSec = ANG_D
+		duree=vAngulaire/distance
+		self.robot.roue_gauche.vTourParSec = vAngulaire
+		self.robot.roue_droite.vTourParSec = vAngulaire
 		sleep(duree)
 		self.robot.roue_gauche.vTourParSec = 0
 		self.robot.roue_droite.vTourParSec = 0
