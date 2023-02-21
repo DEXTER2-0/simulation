@@ -27,7 +27,19 @@ class Robot :
         #self.angle = angle
 		# l = 2*rayon du robot
 		self.l=l*2*rayonDuRobotCm	
+	def setMotorDps(self, ANG_G, ANG_D):
+		"""
+		cette methode suppose que les deux roues possede le meme rayo
+		ANG_G prend une vitesse angulaire pour la roue gauch
+		ANG_D prend une vitesse angulaire pour la roue droit
+		"""
+		# vitesse moyenn du robo
+		
+		#Donne l'information aux roues de la vitesse en rad/seconde de la vitesse qu'elles doivent avoi
+		self.roue_gauche.vTourParSec = ANG_G
+		self.roue_droite.vTourParSec = ANG_D
 
+		
 ####------------------------ ROUE --------------------------##
 
 class Roue :
@@ -106,6 +118,10 @@ class Capteur_de_distance :
             k +=1
         logging.debug("**** Rien à l'horizon ****")
         return self.distanceCaptable-cs.RAYON_ROBOT_CM
+	
+
+
+
 
 
 
