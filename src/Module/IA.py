@@ -21,8 +21,8 @@ class IA_avancer :
 		"""
 		t=0
 		duree=(36*np.pi*vAngulaire*RAYON_DES_RAYONS)/distance
-		self.robot.roue_gauche.vTourParSec = V_ANGULAIRE_G
-		self.robot.roue_droite.vTourParSec = V_ANGULAIRE_G
+		self.robot.roue_gauche.vTourParSec = vAngulaire
+		self.robot.roue_droite.vTourParSec = vAngulaire
 		sleep(duree)
 		self.robot.roue_gauche.vTourParSec = 0
 		self.robot.roue_droite.vTourParSec = 0
