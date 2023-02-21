@@ -14,6 +14,10 @@ class IA_avancer :
 		self.w=w #angle à ajouter à l'angle au temps t-1
 	
 	def avancer(self,distance,vAngulaire):
+		"""
+		:param distance : distance a effectuer en m
+		:param vAngulaire : vitesse angulaire des roues en 
+		"""
 		t=0
 		duree=vAngulaire/distance
 		self.robot.roue_gauche.vTourParSec = vAngulaire
