@@ -80,10 +80,10 @@ class Simulation :
             self.nouvelle_position2(self.duree_boucle)
             mur=True
         if(((self.pos_x>=cs.WIDTH-20) or (self.pos_x<=20) or (self.pos_y>=cs.HEIGHT-20) or (self.pos_y<=20) ) and mur):
-            self.ia.bouger(cs.V_ANGULAIRE_G,0)
+            self.ia.bouger(cs.V_ANGULAIRE_G-50,cs.V_ANGULAIRE_D+50)
             self.nouvelle_position2(self.duree_boucle)
             print("if -> angle = ",self.angle)
-
+            
         if distance >cs.DISTANCE_MIN_ARRET:
             logging.debug(f"{distance}")
             self.ia.bouger(cs.V_ANGULAIRE_G,cs.V_ANGULAIRE_D)
