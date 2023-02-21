@@ -1,5 +1,5 @@
 import unittest
-from ..Modele.Obstacle import *
+from ..Dexter.Obstacle import *
 
 class TestObstacle(unittest.TestCase):
 

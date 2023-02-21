@@ -1,6 +1,6 @@
 import unittest
-from Modele import Robot as r
-from Modele import constantes as c
+from Dexter import Robot as r
+from Dexter import constantes as c
 class TestRobot(unittest.TestCase):
     
     def setUp(self):
