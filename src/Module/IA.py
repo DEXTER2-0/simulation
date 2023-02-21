@@ -12,14 +12,14 @@ class IA_avancer :
 		self.v=v #vitesse moyenne du robot initialisé a 0
 		self.w=w #angle à ajouter à l'angle au temps t-1
 		
-#	def est_entrain_de_rouler(robot) :
-#		"""
-#		Fonction testant la vitesse des roues afin de retourner un booléen corresponsant à si le robot roule ou non
-#		"""
-#		if robot.roue_droite.vTourParSec==0 and robot.roue_gauche.vTourParSec==0 :
-#			return False
-#		else :
-#			return True
+class IA_tourner:
+	def __init__(self, robot, v=0, w=0) :
+		"""
+		:param robot : Robot utilisé
+		"""
+		self.robot = robot
+		self.v=v #vitesse moyenne du robot initialisé a 0
+		self.w=w #angle à ajouter à l'angle au temps t-1
 	
 	def arreter_urgence(self):		
 		"""
