@@ -3,17 +3,11 @@ from Module import Obstacle
 from math import *
 from TestScript import constantes as cs
 
-class IA :
+class IA_avancer :
 	def __init__ (self, robot, v=0, w=0) :
 		"""
 		:param robot : Robot utilisé
 		"""
-		#self.r=r
-		#self.angle = angle
-		#self.vitesse_er 
-		#self.vitesse_et
-		#self.pos_x = pos_x
-		#self.pos_y = pos_y
 		self.robot = robot
 		self.v=v #vitesse moyenne du robot initialisé a 0
 		self.w=w #angle à ajouter à l'angle au temps t-1
