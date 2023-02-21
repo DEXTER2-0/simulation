@@ -31,6 +31,7 @@ class Simulation :
         """
         Suppose objet est cercle
         """
+	
         for obstacle in self.terrain.liste_obstacle: #pour chaque obstacle
             d=np.sqrt((self.ia.pos_x-obstacle.x)**2+(self.ia.pos_y-obstacle.y)**2) #distance euclidienne entre le robot et l'obstacle
             if(d<=(self.ia.robot.rayonDuRobotCm+obstacle.longueur)): # collision de deux cercles
