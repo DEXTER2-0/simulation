@@ -1,10 +1,12 @@
 from Module import Robot
 from Module import Obstacle
 from math import *
+from TestScript import constantes as cs
 
 class IA :
-	def __init__ (self, robot,r=0,angle = 0, pos_x = 0, pos_y = 0, v=0, w=0) :
+	def __init__ (self, robot, v=0, w=0) :
 		"""
+		:param robot : Robot utilisé
 		"""
 		#self.r=r
 		#self.angle = angle
@@ -29,8 +31,8 @@ class IA :
 		"""
 		Fonction arretant le robot en mettant la vitesses des roues à 0 d'un coup
 		"""
-		self.roue_gauche.setVitesse(0)
-		self.roue_droite.setVitesse(0)
+		self.robot.roue_gauche.setVitesse(0)
+		self.robot.roue_droite.setVitesse(0)
 	
 	def arreter(self):
 		"""
@@ -44,7 +46,6 @@ class IA :
 		ANG_G prend une vitesse angulaire pour la roue gauche
 		ANG_D prend une vitesse angulaire pour la roue droite
 		"""	
-		print("JE BOOUUUGGEE")
 		# vitesse moyenn du robot
 		self.v = (self.robot.roue_gauche.taille_cm*0.01/2)*(ANG_D + ANG_G)	
 		#angle de rotation du robot en fonction des vitesses des roues
@@ -69,7 +70,7 @@ class IA :
 		tourne de pi/2
 		Appele bouger avec les vitesse nécessaire pour faire la rotation
 		"""
-		self.bouger(0,(pi*self.robot.l*0.01)/(2*self.robot.roue_droite.taille_cm*0.01))
+		self.bouger(0,(pi*self.robot.l)/(2*self.robot.roue_droite.taille_cm*0.01))
 ##-------------------------------------------------------
 	
 #	def avancer(self,vitesseVoulue_kmh_er,vitesseVoulue_kmh_et) :
@@ -121,7 +122,7 @@ class IA :
 
 	def accelerer(self,vitesseVoule):
 		"""
-		Fonction prenant en paramètre la vitesse à atteindre en km/h
+		:param vitesseVoulue : vitesse du robot en km/h voulue
 		puis transmets des vitesses aux roues par pas de 0,1 km/h tant que la vitesse voulue n'est pas atteinte
 		"""	
 		#assert(self.roue_gauche.vTourParSec==self.roue_droite.vTourParSec)
@@ -141,7 +142,7 @@ class IA :
 	#	print("le robot roule à la vitesse voulue apres acceleration :  " , vitesse_actuelle)	
 	def decelerer(self,vitesseVoule):
 		"""
-		Fonction prenant en paramètre la vitesse à atteindre en km/h
+		:param vitesseVoulue : vitesse du robot en km/h voulue
 		puis transmets des vitesses aux roues par pas de 0,1 km/h tant que la vitesse voulue n'est pas atteinte
 		"""
 		assert(self.roue_gauche.vTourParSec>0)
@@ -212,12 +213,12 @@ class IA :
 		else :
 			print("pas de danger , no worries")	
 
-	def __str__ (self) :	
-		"""
-		Fonction de redéfinition de la methode print(monInstance)
-		"""
-		res = "Le robot en position (" + str(self.pos_x) +","+ str(self.pos_y) + ")" +" angle = "+str(self.angle)
-
-		# Le test suivant permet de faire un affichage du robot selon s'il roule ou pas#
-		
-		return res
+	#def __str__ (self) :	
+	#	"""
+	#	Fonction de redéfinition de la methode print(monInstance)
+	#	"""
+	#	res = "Le robot en position (" + str(self.pos_x) +","+ str(self.pos_y) + ")" +" angle = "+str(self.angle)
+	#
+	#	# Le test suivant permet de faire un affichage du robot selon s'il roule ou pas#
+	#	
+	#	return res

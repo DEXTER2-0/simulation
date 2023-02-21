@@ -1,4 +1,5 @@
 #coding: utf-8
+import logging
 class Obstacle :
 
 	def __init__ (self, *args) :
@@ -11,9 +12,9 @@ class Obstacle :
 		"""
 		if (len(args)<2 |len(args)>4 ):
 			if(len(args)<2):
-				print("error : il faut au moins 2 arguments")
+				logging.debug("error : il faut au moins 2 arguments")
 			else:
-				print("error : il faut au plus 4 arguments")
+				logging.debug("error : il faut au plus 4 arguments")
 		if len(args)==2 :
 			self.longueur = -1 #permettre de dire que c'est un obstacle qui a le trou (ça pourrait être util pour simulation?)
 			self.largeur = -1 #permettre de dire que c'est un obstacle qui a le trou (ça pourrait être util pour simulation?)
