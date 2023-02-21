@@ -1,6 +1,3 @@
-import sys
-sys.path.append("../")
-
 from Module import Simulation as simu
 from Module import Robot as rb 
 import constantes as cs
@@ -17,21 +14,21 @@ import time #pour pouvoir controler le temps de la boucle while True
 
 
 #Initialisation du Robot
-robot = rb.Robot(cs.RAYON_DES_ROUES_CM, cs.RAYON_ROBOT_CM, 8,cs.VITESSE_MAX_TOUR_PAR_SEC)
+robot = rb.Robot(cs.RAYON_DES_ROUES_CM, cs.RAYON_ROBOT_CM,cs.DISTANCE_CAPTABLE ,cs.VITESSE_MAX_TOUR_PAR_SEC)
 
 #Initilaisation de l'IA
-ia = ia.IA(robot)
+ia = ia.IAEvite(robot)
 
 #Initialisation d'une liste d'obstacle
-obstacle1 = obs.Obstacle(10,500,300)
+obstacle1 = obs.Obstacle(8,400,300)
 obstacle2 = obs.Obstacle(7,500,500)
 obstacle3 = obs.Obstacle(20,150,100)
 obstacle4 = obs.Obstacle(10,200,480)
 liste_obstacle = []
 liste_obstacle.append(obstacle1)
-liste_obstacle.append(obstacle2)
-liste_obstacle.append(obstacle3)
-liste_obstacle.append(obstacle4)
+#liste_obstacle.append(obstacle2)
+#liste_obstacle.append(obstacle3)
+#liste_obstacle.append(obstacle4)
 
 #Initialisation d'un terrain
 terrain = ter.Terrain(0,cs.WIDTH,0,cs.HEIGHT, liste_obstacle)

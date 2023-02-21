@@ -7,9 +7,10 @@ from math import pi,sqrt,sin,cos
 class Robot :
 	def __init__ (self, rayonRouesCm,rayonDuRobotCm, capteur,vMaxTourParSec,l=1) :
 		"""
-		Fonction d'initialisation prenant en paramètre le rayon des roues en cm, le rayon du robot en cm,
-		la distance maximale captable par le capteur de distance, la vitesse maximale possible pour les roues,
-		les coordonnées polaires et les coordonnées cartésiennes du robot
+		:param rayonRouesCm : rayon des roues en cm
+		:param rayonDuRobotCm : rayon du cercle dans lequel s'inscrit le robot en cm
+		:param capteur : Capteur utilisé
+		:param vMaxTourParSec : vitesse maximale possible pour les roues en tours par seconde
 		Cette fonction instancie deux roues de la même taille et de même vitesse maximale, ainsi qu'un capteur de position
 		"""
 		assert(rayonRouesCm > 0)# Ne peut pas avoir un rayon < 0
@@ -26,13 +27,26 @@ class Robot :
         #self.angle = angle
 		# l = 2*rayon du robot
 		self.l=l*2*rayonDuRobotCm	
+	def setMotorDps(self, ANG_G, ANG_D):
+		"""
+		cette methode suppose que les deux roues possede le meme rayo
+		ANG_G prend une vitesse angulaire pour la roue gauch
+		ANG_D prend une vitesse angulaire pour la roue droit
+		"""
+		# vitesse moyenn du robo
+		
+		#Donne l'information aux roues de la vitesse en rad/seconde de la vitesse qu'elles doivent avoi
+		self.roue_gauche.vTourParSec = ANG_G
+		self.roue_droite.vTourParSec = ANG_D
 
+		
 ####------------------------ ROUE --------------------------##
 
 class Roue :
 	def __init__ (self, taille_cm, vMaxTourParSec) :
 		"""
-		Fonction d'initialisation prenant en paramètre le rayon en cm et la vitesse maximale possible pour les roues
+		:param taille_cm : taille de la roue en cm
+		:param vMaxTourParSec : vitesse maximale possible pour les roues en tours par seconde
 		"""
 		self.taille_cm = taille_cm
 		self.vMaxTourParSec = vMaxTourParSec
@@ -50,23 +64,6 @@ class Roue :
 			res += " roule à " + str(self.vTourParSec) + "tour/seconde"
 		return res
 	
-	def setVitesse(self,vitesseVoulue_kmh) :
-		"""
-		Formule prenant en paramètre la vitesse voulue en km/h et calculant sa converion en vitesse de rotation n en tr/s et la retourne
-		puis donnant évaluant si la vitesse demandée est possible et de donner soit cette vitesse soit la vitesse maximale aux roues
-		formule de conversion utilisée : N=(5*v)/(36*pi*rayon_en_metre)
-		"""
-		#print("la vitesse de la roue était de:  ",self.vTourParSec)
-		vVoulueTourParSec= (5*vitesseVoulue_kmh)/(36*pi*self.taille_cm*0.01)
-		if (vVoulueTourParSec<=self.vMaxTourParSec):# Si la vitesse est possible pour la roue 
-			self.vTourParSec=vVoulueTourParSec
-
-		else : # Si la vitesse voulue est plus grande que la vitesse maximale possible
-			self.vTourParSec=self.vMaxTourParSec
-		#print("la nouvelle vitesse de la roue est de:  ",self.vTourParSec)
-
-		return self.vTourParSec
-	
 ####------------------------ Capteur_de_distance --------------------------##
 
 from math import pi,sqrt,sin,cos
@@ -75,7 +72,7 @@ import logging
 class Capteur_de_distance :
     def __init__(self, distanceCaptable) :
        """
-       Fonction d'initialisation prenant en paramètre la distance maximale captable possible
+       :param distanceCaptable : distance maximale captable possible
        """
        self.distanceCaptable=distanceCaptable
     
@@ -103,7 +100,8 @@ class Capteur_de_distance :
         k=0
         x = pos_x
         y = pos_y
-        #print("Distance Captable = ",self.distanceCaptable)
+
+        print("Distance Captable = ",self.distanceCaptable)
         while k*le_pas < self.distanceCaptable :
             x = x + cos(angle_robot) * le_pas #Lance le laser dans la bonne direction
             y = y + sin(angle_robot) * le_pas #Lance le laser dans la bonne direction
@@ -113,13 +111,17 @@ class Capteur_de_distance :
                 obstacle = l_obstacle[i]
                 
                 # Si a un moment le laser se trouve dans un obstacle
-                if(self.distance(x,y,obstacle)) < obstacle.longueur + cs.RAYON_ROBOT_CM +5: #obstacle.longueur car dans obstacle attribut longueur m¨
+                if(self.distance(x,y,obstacle)) <= obstacle.longueur : #obstacle.longueur car dans obstacle attribut longueur m¨
                     logging.debug(f"obstacle à : {sqrt((x-pos_x)**2+(y-pos_y)**2)}")
 
-                    return sqrt((x-pos_x)**2+(y-pos_y)**2)
+                    return sqrt((x-pos_x)**2+(y-pos_y)**2)-cs.RAYON_ROBOT_CM
             k +=1
         logging.debug("**** Rien à l'horizon ****")
-        return self.distanceCaptable
+        return self.distanceCaptable-cs.RAYON_ROBOT_CM
+	
+
+
+
 
 
 
