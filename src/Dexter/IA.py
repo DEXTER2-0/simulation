@@ -1,5 +1,5 @@
-from Module import Robot
-from Module import Obstacle
+from Dexter import Robot
+from Dexter import Obstacle
 from math import *
 from TestScript import constantes as cs
 import time
