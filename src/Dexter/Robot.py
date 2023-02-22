@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: latin-1 -*-
 
-from Dexter import constantes as cs
+import constantes as cs
 from math import pi,sqrt,sin,cos
 
 class Robot :
