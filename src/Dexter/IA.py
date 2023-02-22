@@ -1,7 +1,7 @@
 from Dexter import Robot
 from Dexter import Obstacle
 from math import *
-from TestScript import constantes as cs
+from Dexter import constantes as cs
 import time
 
 
