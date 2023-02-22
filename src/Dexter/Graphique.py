@@ -3,7 +3,7 @@ sys.path.append("../")
 
 from Dexter import Simulation as simu
 from Dexter import Robot as rb 
-from TestScript import constantes as cs
+from Dexter import constantes as cs
 from Dexter import Obstacle as obs
 from Dexter import IA as ia
 from Dexter import Terrain as ter

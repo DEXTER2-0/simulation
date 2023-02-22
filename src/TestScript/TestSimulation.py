@@ -1,6 +1,11 @@
+import sys
+import os
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 from Dexter  import Simulation as simu
 from Dexter  import Robot as rb 
-import constantes as cs
+from Dexter import constantes as cs
 from Dexter  import Obstacle as obs
 from Dexter  import IA as ia
 from Dexter  import Terrain as ter
