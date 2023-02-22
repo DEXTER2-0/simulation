@@ -20,10 +20,10 @@ class IA_avancer :
 		:param vAngulaire : vitesse angulaire des roues en tr/s
 		"""
 		t=0
-		duree=(2*np.pi*vAngulaire*RAYON_DES_RAYONS)/distance #duree en s
+		duree=(2*pi*vAngulaire*cs.RAYON_DES_RAYONS)/distance #duree en s
 		self.robot.roue_gauche.vTourParSec = vAngulaire
 		self.robot.roue_droite.vTourParSec = vAngulaire
-		sleep(duree)
+		time.sleep(duree)
 		self.robot.roue_gauche.vTourParSec = 0
 		self.robot.roue_droite.vTourParSec = 0
 		
