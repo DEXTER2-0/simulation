@@ -1,0 +1,14 @@
+lundi :
+
+mercredi  :
+- physique du robot à revoir et retourner à une version antérieure qui fonctionne
+-garder les parties de codes qui fonctionnent et faire attention à ne pas les écraser
+-refaire les tests unitaires à chaque fois
+-estimer le temps des tâches sur le Trello
+-créer les sous-modules Simulation, Controlleur et Graphique dans Dexter
+-remettre les constantes dans le module Dexter
+-régler le problème de la relation entre la partie graphique et la simulation
+-faire un gitignore du .log créé par le lancement de la simulation
+-enlever les pychacyhes
+-problème de travail collaboratif et d'organisation du projet (le mécanisme de travail est brouillon, il faut donc multiplier les réunions et les travaux en groupe ainsi que plus communiquer ce qui implique une entraide pour la compréhension)
+-mettre des noms plus explicites lors des commits
