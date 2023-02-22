@@ -1,7 +1,7 @@
 #import Robot
 #import Obstacle
 #import IA as ia
-from Dexter import constantes as cs
+import constantes as cs
 #import Terrain
 import time #pour pouvoir controler le temps de la boucle while True
 import numpy as np
@@ -40,6 +40,10 @@ class Simulation :
         """
         Suppose objet est cercle
         """
+        if (self.pos_x<=0) or (self.pos_y<=0) or (self.pos_x>=cs.WIDTH) or (self.pos_y>=cs.HEIGHT):
+            self.IAEvite.arreter_urgence()
+            logging.debug("Collision détectée : arret d'urgence")
+            return 1
         for obstacle in self.terrain.liste_obstacle: #pour chaque obstacle
             d=np.sqrt((self.pos_x-obstacle.x)**2+(self.pos_y-obstacle.y)**2) #distance euclidienne entre le robot et l'obstacle
             if(d<=(self.IAEvite.robot.rayonDuRobotCm+obstacle.longueur)): # collision de deux cercles
@@ -73,16 +77,16 @@ class Simulation :
         #cpt =0
         mur=False
 
-        if (((self.pos_x>=cs.WIDTH-20) or (self.pos_x<=20) or (self.pos_y>=cs.HEIGHT-20) or (self.pos_y<=20) ) and not(mur)):
-            self.IAEvite.evite()
-            self.nouvelle_position2(self.duree_boucle)
-            self.IAEvite.setVitesseRobot(cs.V_ANGULAIRE_G,cs.V_ANGULAIRE_D)
-            self.nouvelle_position2(self.duree_boucle)
-            mur=True
-        if(((self.pos_x>=cs.WIDTH-20) or (self.pos_x<=20) or (self.pos_y>=cs.HEIGHT-20) or (self.pos_y<=20) ) and mur):
-            self.IAEvite.setVitesseRobot(cs.V_ANGULAIRE_G-50,cs.V_ANGULAIRE_D+50)
-            self.nouvelle_position2(self.duree_boucle)
-            print("if -> angle = ",self.angle)
+        #if (((self.pos_x>=cs.WIDTH-20) or (self.pos_x<=20) or (self.pos_y>=cs.HEIGHT-20) or (self.pos_y<=20) ) and not(mur)):
+        #    self.IAEvite.evite()
+        #    self.nouvelle_position2(self.duree_boucle)
+        #    self.IAEvite.setVitesseRobot(cs.V_ANGULAIRE_G,cs.V_ANGULAIRE_D)
+        #    self.nouvelle_position2(self.duree_boucle)
+        #    mur=True
+        #if(((self.pos_x>=cs.WIDTH-20) or (self.pos_x<=20) or (self.pos_y>=cs.HEIGHT-20) or (self.pos_y<=20) ) and mur):
+        #    self.IAEvite.setVitesseRobot(cs.V_ANGULAIRE_G-50,cs.V_ANGULAIRE_D+50)
+        #    self.nouvelle_position2(self.duree_boucle)
+        #    print("if -> angle = ",self.angle)
             
         if distance >cs.DISTANCE_MIN_ARRET:
             logging.debug(f"{distance}")
