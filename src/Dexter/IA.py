@@ -17,10 +17,10 @@ class IA_avancer :
 	def avancer(self,distance,vAngulaire):
 		"""
 		:param distance : distance a effectuer en m
-		:param vAngulaire : vitesse angulaire des roues en 
+		:param vAngulaire : vitesse angulaire des roues en tr/s
 		"""
 		t=0
-		duree=(36*np.pi*vAngulaire*RAYON_DES_RAYONS)/distance
+		duree=(36*np.pi*vAngulaire*RAYON_DES_RAYONS)/(5*distance)
 		self.robot.roue_gauche.vTourParSec = vAngulaire
 		self.robot.roue_droite.vTourParSec = vAngulaire
 		sleep(duree)
