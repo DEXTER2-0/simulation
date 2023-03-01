@@ -1,7 +1,5 @@
 #import Robot
-#import Obstacle
-#import IA as ia
-from Dexter import constantes as cs
+import constantes as cs
 #import Terrain
 import time #pour pouvoir controler le temps de la boucle while True
 import numpy as np

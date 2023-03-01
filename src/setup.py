@@ -7,5 +7,5 @@ setup(name='Dexter',
       author='Dexter',
       author_email='',
       license='Aucune',
-      packages=['Dexter'],
+      packages=['Code'],
       zip_safe=False)
