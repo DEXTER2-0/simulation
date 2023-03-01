@@ -1,7 +1,7 @@
-from Module import Robot
-from Module import Obstacle
+from Dexter import Robot
+from Dexter import Obstacle
 from math import *
-from TestScript import constantes as cs
+import constantes as cs
 import time
 
 
@@ -20,7 +20,7 @@ class IA_avancer :
 		:param vAngulaire : vitesse angulaire des roues en 
 		"""
 		t=0
-		duree=vAngulaire/distance
+		duree=(36*np.pi*vAngulaire*RAYON_DES_RAYONS)/distance
 		self.robot.roue_gauche.vTourParSec = vAngulaire
 		self.robot.roue_droite.vTourParSec = vAngulaire
 		sleep(duree)
