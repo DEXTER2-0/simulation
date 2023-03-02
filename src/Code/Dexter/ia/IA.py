@@ -6,13 +6,11 @@ import time
 
 
 class IA_avancer :
-	def __init__ (self, robot, v=0, w=0) :
+	def __init__ (self, robot) :
 		"""
 		:param robot : Robot utilisé
 		"""
 		self.robot = robot
-		self.v=v #vitesse moyenne du robot initialisé a 0
-		self.w=w #angle à ajouter à l'angle au temps t-1
 	
 	def avancer(self,distance,vAngulaire):
 		"""
