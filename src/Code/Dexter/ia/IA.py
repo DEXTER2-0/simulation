@@ -89,6 +89,8 @@ class IA_eviter:
 			self.tourner.start(pi/2)
 		elif(self.robot.capteur<=self.d_evitement) and (self.tourner.fonctionne):
 			self.tourner.step()
+		elif(self.avancer.arret) and (self.tourner.arret):
+			self.avancer.start(cs.WIDTH)
 		else:
 			self.avancer.step()
 
