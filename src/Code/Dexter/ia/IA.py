@@ -27,7 +27,7 @@ class IA_avancer :
 			return
 		if (self.d<self.d_voulue):
 			duree=time()-self.t0
-			self.d+=duree*V_ANGULAIRE_G* #vitesse convertie en m/s
+			self.d+=duree*cs.V_ANGULAIRE_G* #vitesse convertie en m/s
 		else:
 			self.stop()
 	
@@ -50,7 +50,7 @@ class IA_tourner:
 		self.t0=time()
 		self.a=0
 		self.a_voulu=a_voulu
-		self.robot. #méthode de contrôle de la vitesse des roues
+		self.robot.setMotorDps(cs.V_ANGULAIRE_G,0)
 		self.fonctionne=True
 		self.arret=False
 
@@ -59,12 +59,12 @@ class IA_tourner:
 			return
 		if (self.a<self.a_voulu):
 			duree=time()-self.t0
-			self.a+=duree* #vitesse angulaire
+			self.a+=duree*cs.V_ANGULAIRE_G
 		else:
 			self.stop()
 	
 	def stop(self):
-		self.robot. #méthode de contrôle de la vitesse des roues appelée avec 0 comme vitesse
+		self.robot.setMotorDps(0,0)
 		self.fonctionne=False
 		self.arret=True
 
