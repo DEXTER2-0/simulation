@@ -76,3 +76,6 @@ class IA_eviter:
 		self.robot = robot
 		self.avancer=IA_avancer
 		self.tourner=IA_tourner
+	
+	def start(self):
+		self.avancer.start()
