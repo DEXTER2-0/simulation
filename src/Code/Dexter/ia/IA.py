@@ -53,7 +53,16 @@ class IA_tourner:
 		self.a_voulu=a_voulu
 		self.robot. #méthode de contrôle de la vitesse des roues
 		self.fonctionne=True
-		self.arret=False		
+		self.arret=False
+
+	def step(self):
+		if self.arret:
+			return
+		if (self.a<self.a_voulu):
+			duree=time()-self.t0
+			self.a+=duree* #vitesse angulaire
+		else:
+			self.stop()	
 
 class IAEvite:
 
