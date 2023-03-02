@@ -77,5 +77,9 @@ class IA_eviter:
 		self.avancer=IA_avancer
 		self.tourner=IA_tourner
 	
-	def start(self):
+	def start(self,d_evitement):
+		"""
+		:param d_evitement : distance voulue entre l'obstacle et le robot lors de l'évitement
+		"""
+		self.d_evitement=d_evitement
 		self.avancer.start()
