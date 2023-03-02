@@ -82,7 +82,7 @@ class IA_eviter:
 		:param d_evitement : distance voulue entre l'obstacle et le robot lors de l'évitement
 		"""
 		self.d_evitement=d_evitement
-		self.avancer.start()
+		self.avancer.start(cs.WIDTH)
 	
 	def step(self):
 		if(self.robot.capteur<=self.d_evitement) and (self.tourner.arret):
