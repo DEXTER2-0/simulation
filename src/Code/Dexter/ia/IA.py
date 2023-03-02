@@ -12,19 +12,15 @@ class IA_avancer :
 		"""
 		self.robot = robot
 	
-	def avancer(self,distance,vAngulaire):
+	def start(self,d_voulue):
 		"""
-		:param distance : distance a effectuer en m
-		:param vAngulaire : vitesse angulaire des roues en 
+		:param d_voulue : ditance voulue à effectuer en m
 		"""
-		t=0
-		duree=(36*np.pi*vAngulaire*RAYON_DES_RAYONS)/distance
-		self.robot.roue_gauche.vTourParSec = vAngulaire
-		self.robot.roue_droite.vTourParSec = vAngulaire
-		sleep(duree)
-		self.robot.roue_gauche.vTourParSec = 0
-		self.robot.roue_droite.vTourParSec = 0
-		
+		t0=time()
+		d=0
+		self.robot.
+		fonctionne=True
+		arret=False
 
 class IA_tourner:
 	def __init__(self, robot, v=0, w=0) :
