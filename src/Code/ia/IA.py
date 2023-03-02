@@ -1,5 +1,5 @@
-from Dexter import Robot
-from Dexter import Obstacle
+from simulation import Robot
+from simulation import Obstacle
 from math import *
 import constantes as cs
 import time
