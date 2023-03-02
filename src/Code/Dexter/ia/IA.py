@@ -69,17 +69,10 @@ class IA_tourner:
 		self.arret=True
 
 class IA_eviter:
-	def __init__ (self, robot) :
+	def __init__ (self,robot,IA_avancer,IA_tourner) :
 		"""
 		:param robot : Robot utilisé
 		"""
 		self.robot = robot
-
-	def evite(self):
-		"""
-		Permet d'eviter un obstacle
-		Pour le moment uniquement orientation de pi/2 
-		tourne de pi/2
-		Appele bouger avec les vitesse nécessaire pour faire la rotation
-		"""
-		self.setVitesseRobot(0,(pi*self.robot.l)/(2*self.robot.roue_droite.taille_cm*0.01))
+		self.avancer=IA_avancer
+		self.tourner=IA_tourner
