@@ -1,4 +1,6 @@
 #import Robot
+#import Obstacle
+#import IA as ia
 import constantes as cs
 #import Terrain
 import time #pour pouvoir controler le temps de la boucle while True
@@ -45,7 +47,7 @@ class Simulation :
             self.IAEvite.arreter_urgence()
             logging.debug("Collision détectée : arret d'urgence")
             return 1
->>>>>>> 26c711e680cf8dc49a9195b179e8b2fab24293f6:src/Code/Dexter/simulation/Simulation.py
+>>>>>>> ebab939247fb65e44eec3bdba38b70accb309eeb:src/Dexter/Simulation.py
         for obstacle in self.terrain.liste_obstacle: #pour chaque obstacle
             d=np.sqrt((self.pos_x-obstacle.x)**2+(self.pos_y-obstacle.y)**2) #distance euclidienne entre le robot et l'obstacle
             if(d<=(self.IAEvite.robot.rayonDuRobotCm+obstacle.longueur)): # collision de deux cercles
