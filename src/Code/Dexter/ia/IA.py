@@ -4,7 +4,6 @@ from math import *
 import constantes as cs
 import time
 
-
 class IA_avancer :
 	def __init__ (self, robot) :
 		"""
@@ -19,7 +18,7 @@ class IA_avancer :
 		self.t0=time()
 		self.d=0
 		self.d_voulue=d_voulue
-		self.robot. #méthode de contrôle de la vitesse des roues
+		self.robot.setMotorDps(cs.V_ANGULAIRE_G,cs.V_ANGULAIRE_D)
 		self.fonctionne=True
 		self.arret=False
 	
@@ -28,12 +27,12 @@ class IA_avancer :
 			return
 		if (self.d<self.d_voulue):
 			duree=time()-self.t0
-			self.d+=duree* #vitesse convertie en m/s
+			self.d+=duree*V_ANGULAIRE_G* #vitesse convertie en m/s
 		else:
 			self.stop()
 	
 	def stop(self):
-		self.robot. #méthode de contrôle de la vitesse des roues appelée avec 0 comme vitesse
+		self.robot.setMotorDps(0,0)
 		self.fonctionne=False
 		self.arret=True
 
