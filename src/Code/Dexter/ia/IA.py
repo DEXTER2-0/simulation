@@ -16,11 +16,21 @@ class IA_avancer :
 		"""
 		:param d_voulue : ditance voulue à effectuer en m
 		"""
-		t0=time()
-		d=0
-		self.robot.
-		fonctionne=True
-		arret=False
+		self.t0=time()
+		self.d=0
+		self.d_voulue=d_voulue
+		self.robot. #méthode de contrôle de la vitesse des roues
+		self.fonctionne=True
+		self.arret=False
+	
+	def step(self):
+		if self.arret:
+			return
+		if (self.d<self.d_voulue):
+			duree=time()-self.t0
+			self.d+=duree* #vitesse convertie en m/s
+		else:
+			self.stop()
 
 class IA_tourner:
 	def __init__(self, robot, v=0, w=0) :
