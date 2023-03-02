@@ -75,19 +75,6 @@ class IA_eviter:
 		"""
 		self.robot = robot
 
-	def setVitesseRobot(self, ANG_G, ANG_D):
-		"""
-		cette methode suppose que les deux roues possede le meme rayon
-		ANG_G prend une vitesse angulaire pour la roue gauche
-		ANG_D prend une vitesse angulaire pour la roue droite
-		"""	
-		# vitesse moyenn du robot
-		self.v = (self.robot.roue_gauche.taille_cm*0.01/2)*(ANG_D + ANG_G)	
-		#angle de rotation du robot en fonction des vitesses des roues
-		self.w = (self.robot.roue_gauche.taille_cm*0.01/(self.robot.l*0.01))*(ANG_D - ANG_G)
-		self.robot.setMotorDps(ANG_D,ANG_D)
-
-
 	def evite(self):
 		"""
 		Permet d'eviter un obstacle
