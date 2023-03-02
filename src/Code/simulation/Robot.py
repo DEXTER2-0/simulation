@@ -1,7 +1,6 @@
 #!/usr/bin/python
 # -*- coding: latin-1 -*-
-
-import constantes as cs
+from simulation import constantes as cs
 from math import pi,sqrt,sin,cos
 
 class Robot :

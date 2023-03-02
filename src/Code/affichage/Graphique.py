@@ -1,15 +1,15 @@
 import sys
 sys.path.append("../")
 
-from Dexter import Simulation as simu
-from Dexter import Robot as rb 
-from Dexter import constantes as cs
-from Dexter import Obstacle as obs
-from Dexter import IA as ia
-from Dexter import Terrain as ter
+from simulation import Simulation as simu
+from simulation import Robot as rb 
+from simulation import constantes as cs
+from simulation import Obstacle as obs
+from simulation import IA as ia
+from simulation import Terrain as ter
 import time #pour pouvoir controler le temps de la boucle while True
 
-from Dexter import Graphique as gr
+from simulation import Graphique as gr
 
 import tkinter as tk
 
@@ -19,7 +19,7 @@ import time #pour pouvoir controler le temps de la boucle while Truefrom math im
 from math import *
 
 
-##----- Importation des Dexters -----##
+##----- Importation des simulations -----##
 import tkinter as tk
  
 
