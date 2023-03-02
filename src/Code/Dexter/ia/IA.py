@@ -83,3 +83,12 @@ class IA_eviter:
 		"""
 		self.d_evitement=d_evitement
 		self.avancer.start()
+	
+	def step(self):
+		if(self.robot.capteur<=self.d_evitement) and (self.tourner.arret):
+			self.tourner.start(pi/2)
+		elif(self.robot.capteur<=self.d_evitement) and (self.tourner.fonctionne):
+			self.tourner.step()
+		else:
+			self.avancer.step()
+	
