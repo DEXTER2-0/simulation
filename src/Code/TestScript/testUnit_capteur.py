@@ -16,7 +16,8 @@ class TestCapteur(unittest.TestCase):
         self.ia = i.IA(self.robot)
         self.obs1 = ob.Obstacle(5,6,1,4) #création d'un obstacle du type rectangle
         self.obs2 = ob.Obstacle(3,5,4) #création d'un obstacle du type cercle
-        self.obs3 = ob.Obstacle(50,50) #création d'un obstacle du type mur 
+        self.obs3 = ob.Obstacle(50,50) #création d'un obstacle du type mur
+        listObs = [self.obs1,self.obs2,self.obs3]
     def test_init(self):
         self.assertEqual(self.capteur.distanceCaptable,10)
 
@@ -25,8 +26,7 @@ class TestCapteur(unittest.TestCase):
         self.capteur.distance(self.ia.pos_x,self.ia.pos_y,self.obs2)
 
     def test_senseurDistance(self):
-        """
-        """
+        
     if __name__ == '__main__':
         unittest.main()
 #pour tester -> python3 .m unittest nom_de_Dexter .nomdefichier -v
