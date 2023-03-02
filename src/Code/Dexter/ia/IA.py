@@ -97,11 +97,3 @@ class IA_eviter:
 		Appele bouger avec les vitesse nécessaire pour faire la rotation
 		"""
 		self.setVitesseRobot(0,(pi*self.robot.l)/(2*self.robot.roue_droite.taille_cm*0.01))
-
-	def arreter_urgence(self):		
-		"""
-		Fonction arretant le robot en mettant la vitesses des roues à 0 d'un coup
-		"""
-		self.robot.roue_gauche.setVitesse(0)
-		self.robot.roue_droite.setVitesse(0)
-	
