@@ -22,4 +22,4 @@ class TestTerrain(unittest.TestCase):
 
     if __name__ == '__main__':
         unittest.main()
-#pour tester -> python3 .m unittest nom_de_Dexter .nomdefichier -v
+#pour tester -> python3 .m unittest nom_de_simulation .nomdefichier -v
