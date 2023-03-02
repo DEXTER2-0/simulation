@@ -91,4 +91,7 @@ class IA_eviter:
 			self.tourner.step()
 		else:
 			self.avancer.step()
-	
+
+	def stop(self):
+		self.avancer.stop()
+		self.tourner.stop()
