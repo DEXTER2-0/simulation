@@ -31,6 +31,11 @@ class IA_avancer :
 			self.d+=duree* #vitesse convertie en m/s
 		else:
 			self.stop()
+	
+	def stop(self):
+		self.robot. #méthode de contrôle de la vitesse des roues appelée avec 0 comme vitesse
+		self.fonctionne=False
+		self.arret=True
 
 class IA_tourner:
 	def __init__(self, robot, v=0, w=0) :
