@@ -105,27 +105,3 @@ class IA_eviter:
 		self.robot.roue_gauche.setVitesse(0)
 		self.robot.roue_droite.setVitesse(0)
 	
-	
-	
-	
-
-
-	#def accelerer(self,vitesseVoule):
-	#	"""
-	#	:param vitesseVoulue : vitesse du robot en km/h voulue
-	#	puis transmets des vitesses aux roues par pas de 0,1 km/h tant que la vitesse voulue n'est pas atteinte
-	#	"""	
-	#	#assert(self.roue_gauche.vTourParSec==self.roue_droite.vTourParSec)
-	#	assert(self.roue_gauche.vTourParSec != 0)
-	#	assert(self.roue_gauche.vTourParSec==self.roue_gauche.vTourParSec)
-	##	print(self.roue_gauche.vTourParSec)	
-	#	vitesse_actuelle=(36*np.pi*self.roue_gauche.taille_cm)/(5*self.roue_gauche.vTourParSec)
-	#	print(self.roue_gauche.vTourParSec)
-	#	if (self.roue_gauche.vTourParSec > 0) :
-	#			vitesse_actuelle=(36*np.pi*self.roue_gauche.taille_cm)/(5*self.roue_gauche.vTourParSec)
-	#	else :
-	#			vitesse_actuelle = 0
-	#	"""while(vitesse_actuelle <= vitesseVoule):
-	#				self.roue_gauche.setVitesse(vitesse_actuelle+1)
-	#			self.roue_gauche.setVitesse(vitesse_actuelle+1)
-	#			vitesse_actuelle=(36*np.pi*self.roue_gauche.taille_cm)/(5*self.roue_gauche.vTourParSec)	"""
