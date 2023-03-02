@@ -44,19 +44,16 @@ class IA_tourner:
 		"""
 		self.robot = robot
 	
-	def tourner(self, ANG_G, ANG_D):
+	def start(self,a_voulu):
 		"""
-		cette methode suppose que les deux roues possede le meme rayon
-		ANG_G prend une vitesse angulaire pour la roue gauche
-		ANG_D prend une vitesse angulaire pour la roue droite
-		"""	
-		# vitesse moyenn du robot
-		self.v = (self.robot.roue_gauche.taille_cm*0.01/2)*(ANG_D + ANG_G)	
-		#angle de rotation du robot en fonction des vitesses des roues
-		self.w = (self.robot.roue_gauche.taille_cm*0.01/(self.robot.l*0.01))*(ANG_D - ANG_G)
-		#Donne l'information aux roues de la vitesse en rad/seconde de la vitesse qu'elles doivent avoir
-		self.robot.roue_gauche.vTourParSec = ANG_G
-		self.robot.roue_droite.vTourParSec = ANG_D
+		:param a_voulu : angle voulu à effectuer en 
+		"""
+		self.t0=time()
+		self.a=0
+		self.a_voulu=a_voulu
+		self.robot. #méthode de contrôle de la vitesse des roues
+		self.fonctionne=True
+		self.arret=False		
 
 class IAEvite:
 
