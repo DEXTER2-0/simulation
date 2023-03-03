@@ -1,6 +1,6 @@
 import unittest
-from Modele import Terrain as t
-from Modele import constantes as c
+from Dexter import Terrain as t
+from Dexter import constantes as c
 
 class TestTerrain(unittest.TestCase):
     def setUp(self):
