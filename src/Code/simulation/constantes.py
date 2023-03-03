@@ -4,9 +4,9 @@ RAYON_ROBOT_CM=9 #en cm
 
 ###--------------- PROPRIETE ROUE ---------------------------###
 RAYON_DES_ROUES_CM=3 #en cm
-VITESSE_MAX_TOUR_PAR_SEC=
-V_ANGULAIRE_G = 0.2 #rad/s
-V_ANGULAIRE_D = 0.2 #rad/s
+VITESSE_MAX_DEG_PAR_SEC=
+V_ANGULAIRE_G = 11 #°/s
+V_ANGULAIRE_D = 11 #°/s
 
 
 ###--------------- PROPRIETE CAPTEUR_DISTANCE ----------------###
