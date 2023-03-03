@@ -7,3 +7,6 @@ class Traducteur :
 class Traducteur_Simulation:
     def __init__(self,robot):
         self.robot=robot
+    
+    def setMotorDps(self,v_gauche,v_droite):
+        self.robot.setMotorDps(v_gauche,v_droite)
