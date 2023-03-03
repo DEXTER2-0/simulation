@@ -14,3 +14,6 @@ class Traducteur_Simulation:
 class Traducteur_Realite:
     def __init__(self,robot):
         self.robot=robot
+    
+    def setMotorDps(self,v_gauche,v_droit):
+        self.robot.set_motor_dps(port,v_gauche)
