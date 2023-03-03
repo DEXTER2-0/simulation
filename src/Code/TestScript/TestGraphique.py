@@ -1,8 +1,5 @@
-import sys
-import os
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
+import time #pour pouvoir controler le temps de la boucle while True
 
 from simulation import Simulation as simu
 from simulation import Robot as rb 
@@ -10,7 +7,6 @@ import constantes as cs
 from simulation import Obstacle as obs
 from simulation import IA as ia
 from simulation import Terrain as ter
-import time #pour pouvoir controler le temps de la boucle while True
 
 from simulation  import Graphique as gr
 

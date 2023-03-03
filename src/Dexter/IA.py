@@ -1,7 +1,7 @@
 from Dexter import Robot
 from Dexter import Obstacle
 from math import *
-import constantes as cs
+from TestScript import constantes as cs
 import time
 
 
@@ -17,13 +17,13 @@ class IA_avancer :
 	def avancer(self,distance,vAngulaire):
 		"""
 		:param distance : distance a effectuer en m
-		:param vAngulaire : vitesse angulaire des roues en 
+		:param vAngulaire : vitesse angulaire des roues en tr/s
 		"""
 		t=0
-		duree=(36*np.pi*vAngulaire*RAYON_DES_RAYONS)/distance
+		duree=(2*pi*vAngulaire*cs.RAYON_DES_RAYONS)/distance #duree en s
 		self.robot.roue_gauche.vTourParSec = vAngulaire
 		self.robot.roue_droite.vTourParSec = vAngulaire
-		sleep(duree)
+		time.sleep(duree)
 		self.robot.roue_gauche.vTourParSec = 0
 		self.robot.roue_droite.vTourParSec = 0
 		

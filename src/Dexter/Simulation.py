@@ -77,9 +77,9 @@ class Simulation :
         distance = self.robot.capteurDistance.senseur_de_distance(self.pos_x, self.pos_y, self.angle, 0.1, self.terrain.liste_obstacle)
         if self.collision() == 1:
             exit(-1)
-        logging.debug(f"{distance}")
+        logging.debug(f"capteur renvoie --> {distance}")
         #cpt =0
-        mur=False
+       # mur=False
 
         #if (((self.pos_x>=cs.WIDTH-20) or (self.pos_x<=20) or (self.pos_y>=cs.HEIGHT-20) or (self.pos_y<=20) ) and not(mur)):
         #    self.IAEvite.evite()
