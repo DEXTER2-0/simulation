@@ -27,7 +27,7 @@ class IA_avancer :
 			return
 		if (self.d<self.d_voulue):
 			duree=time()-self.t0
-			self.d+=duree*cs.V_ANGULAIRE_G*cs.RAYON_ROBOT_CM #vitesse convertie en m/s
+			self.d+=duree*cs.V_ANGULAIRE_G*cs.RAYON_ROBOT_CM*360 #vitesse convertie en m/s
 		else:
 			self.stop()
 	
@@ -45,7 +45,7 @@ class IA_tourner:
 	
 	def start(self,a_voulu):
 		"""
-		:param a_voulu : angle voulu à effectuer en rad
+		:param a_voulu : angle voulu à effectuer en deg
 		"""
 		self.t0=time()
 		self.a=0

@@ -76,16 +76,7 @@ class Simulation :
         #cpt =0
         mur=False
 
-        #if (((self.pos_x>=cs.WIDTH-20) or (self.pos_x<=20) or (self.pos_y>=cs.HEIGHT-20) or (self.pos_y<=20) ) and not(mur)):
-        #    self.IAEvite.evite()
-        #    self.nouvelle_position2(self.duree_boucle)
-        #    self.IAEvite.setVitesseRobot(cs.V_ANGULAIRE_G,cs.V_ANGULAIRE_D)
-        #    self.nouvelle_position2(self.duree_boucle)
-        #    mur=True
-        #if(((self.pos_x>=cs.WIDTH-20) or (self.pos_x<=20) or (self.pos_y>=cs.HEIGHT-20) or (self.pos_y<=20) ) and mur):
-        #    self.IAEvite.setVitesseRobot(cs.V_ANGULAIRE_G-50,cs.V_ANGULAIRE_D+50)
-        #    self.nouvelle_position2(self.duree_boucle)
-        #    print("if -> angle = ",self.angle)
+       
             
         if distance >cs.DISTANCE_MIN_ARRET:
             logging.debug(f"{distance}")
@@ -104,16 +95,6 @@ class Simulation :
 
     
 
-    #def simul(self):
-    #    i=0
-    #    t=
-    #    self.ia.robot.bouger(vr,vl)
-    #    while (i<t):
-    #        for i in self.terrain.liste_obstacle:
-    #            self.ia.robot.eviter(i)
-    #        self.collision()
-    #        i+=0.1
-    #self.robot.arret()
 
     
 
