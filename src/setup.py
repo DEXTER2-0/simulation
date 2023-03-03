@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import find_packages,setup
 
 setup(name='Dexter',
       version='0.1',
@@ -7,5 +7,6 @@ setup(name='Dexter',
       author='Dexter',
       author_email='',
       license='Aucune',
-      packages=['Code'],
-      zip_safe=False)
+      packages=find_packages(),
+      zip_safe=False
+      )

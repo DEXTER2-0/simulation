@@ -1,1 +1,1 @@
-from .affichage import Graphique
+from . import Graphique

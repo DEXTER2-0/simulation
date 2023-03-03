@@ -1,5 +1,5 @@
 #import Robot
-import constantes as cs
+from Code.simulation import constantes as cs
 #import Terrain
 import time #pour pouvoir controler le temps de la boucle while True
 import numpy as np

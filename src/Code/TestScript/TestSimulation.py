@@ -1,16 +1,16 @@
-from simulation import Simulation  as simu
-from simulation import constantes as cs
-from simulation  import Obstacle as obs
-from ia  import IA as ia
-from simulation  import Terrain as ter
-from simulation import Robot as rb
+from Code.simulation import Simulation  as simu
+from Code.simulation import constantes as cs
+from Code.simulation  import Obstacle as obs
+from Code.ia  import IA as ia
+from Code.simulation  import Terrain as ter
+from Code.simulation import Robot as rb
 #print(globals())
-#from ..Code import simulation as simu
+#from ..Code import Code.simulation as simu
 #Initialisation du Robot
-robot = rb.Robot(cs.RAYON_DES_ROUES_CM, cs.RAYON_ROBOT_CM,cs.DISTANCE_CAPTABLE,cs.VITESSE_MAX_TOUR_PAR_SEC)
+robot = rb.Robot(cs.RAYON_DES_ROUES_CM, cs.RAYON_ROBOT_CM,cs.DISTANCE_CAPTABLE,cs.VITESSE_MAX_RAD_PAR_SEC)
 
 #Initilaisation de l'IA
-ia = ia.IAEvite(robot)
+ia = ia.IA_eviter(robot)
 
 #Initialisation d'une liste d'obstacle
 #obstacle1 = obs.Obstacle(4,20,0)
@@ -28,4 +28,4 @@ terrain = ter.Terrain(0,cs.WIDTH,0,cs.HEIGHT, liste_obstacle)
 
 
 
-simulation = simu.Simulation(ia,robot,terrain,1)
+Code.simulation = simu.Code.simulation(ia,robot,terrain,1)

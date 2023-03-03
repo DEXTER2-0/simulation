@@ -1,20 +1,11 @@
-import sys
-sys.path.append("../")
+from Code.simulation import Simulation as simu
+from Code.simulation import Robot as rb 
+from Code.simulation import constantes as cs
 
-from simulation import Simulation as simu
-from simulation import Robot as rb 
-from simulation import constantes as cs
-from simulation import Obstacle as obs
-from simulation import IA as ia
-from simulation import Terrain as ter
-import time #pour pouvoir controler le temps de la boucle while True
-
-from simulation import Graphique as gr
-
-import tkinter as tk
-
-import time #pour pouvoir controler le temps de la boucle while True
-
+from Code.simulation import Obstacle as obs
+from Code.ia import IA as ia
+from Code.simulation import Terrain as ter
+#print(globals())
 import time #pour pouvoir controler le temps de la boucle while Truefrom math import *
 from math import *
 
