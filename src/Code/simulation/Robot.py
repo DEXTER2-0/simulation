@@ -43,25 +43,25 @@ class Robot :
 ####------------------------ ROUE --------------------------##
 
 class Roue :
-	def __init__ (self, taille_cm, vMaxRadParSec) :
+	def __init__ (self, taille_cm, vMaxDegParSec) :
 		"""
 		:param taille_cm : taille de la roue en cm
 		:param vMaxTourParSec : vitesse maximale possible pour les roues en rad/s
 		"""
 		self.taille_cm = taille_cm
-		self.vMaxRadParSec = vMaxRadParSec
-		self.vRadParSec = 0
+		self.vMaxDegParSec = vMaxDegParSec
+		self.vDegParSec = 0
 
 	def __str__ (self) :
 		"""
 		Fonction de redéfinition de la methode print(monInstance)
 		""" 
 		res = "Roue de taille " + str(self.taille_cm) + " cm"
-		if self.vRadParSec == 0: # Si la roue est à l'arret
+		if self.vDegParSec == 0: # Si la roue est à l'arret
 			res += " est à l'arret" 
 
 		else : # Si la roue tourne
-			res += " roule à " + str(self.vRadParSec) + "tour/seconde"
+			res += " roule à " + str(self.vDegParSec) + "tour/seconde"
 		return res
 	
 ####------------------------ Capteur_de_distance --------------------------##
