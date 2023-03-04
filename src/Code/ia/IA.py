@@ -115,3 +115,7 @@ class IA_carre:
 		self.avancer.start(self.cote)
 		self.cpta=1 #compteur de cêtés faits
 		self.cptt=0 #compteur d'angles effectués
+	
+	def stop(self):
+		self.avancer.stop()
+		self.tourner.stop()
