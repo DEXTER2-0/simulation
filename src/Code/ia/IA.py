@@ -97,3 +97,40 @@ class IA_eviter:
 	def stop(self):
 		self.avancer.stop()
 		self.tourner.stop()
+
+class IA_carre:
+	def __init__ (self,robot,IA_avancer,IA_tourner) :
+		"""
+		:param robot : Robot utilisé
+		"""
+		self.robot = robot
+		self.avancer=IA_avancer
+		self.tourner=IA_tourner
+	
+	def start(self,d_cote):
+		"""
+		:param d_cote : longueur s'un côté du carré en m
+		"""
+		self.cote=d_cote
+		self.avancer.start(self.cote)
+		self.cpta=1 #compteur de cêtés faits
+		self.cptt=0 #compteur d'angles effectués
+	
+	def step(self):
+		if self.cpta<=4:
+			if self.avancer.arret and self.cptt<self.cpta:
+				self.tourner.start(90)
+				self.cptt+=1
+			elif self.tourner.fonctionne:
+				self.tourner.step()
+			elif self.tourner.arret and self.avancer.arret:
+				self.avancer.start(self.cote)
+				self.cpta+=1
+			elif self.avancer.fonctionne:
+				self.avancer.step()
+		else:
+			self.stop
+
+	def stop(self):
+		self.avancer.stop()
+		self.tourner.stop()
