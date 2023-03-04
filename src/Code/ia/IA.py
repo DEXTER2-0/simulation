@@ -97,3 +97,12 @@ class IA_eviter:
 	def stop(self):
 		self.avancer.stop()
 		self.tourner.stop()
+
+class IA_carre:
+	def __init__ (self,robot,IA_avancer,IA_tourner) :
+		"""
+		:param robot : Robot utilisé
+		"""
+		self.robot = robot
+		self.avancer=IA_avancer
+		self.tourner=IA_tourner
