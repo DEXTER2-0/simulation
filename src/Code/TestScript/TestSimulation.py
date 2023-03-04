@@ -7,7 +7,7 @@ from Code.simulation import Robot as rb
 #print(globals())
 #from ..Code import Code.simulation as simu
 #Initialisation du Robot
-robot = rb.Robot(cs.RAYON_DES_ROUES_CM, cs.RAYON_ROBOT_CM,cs.DISTANCE_CAPTABLE,cs.VITESSE_MAX_RAD_PAR_SEC)
+robot = rb.Robot(cs.RAYON_DES_ROUES_CM, cs.RAYON_ROBOT_CM,cs.DISTANCE_CAPTABLE,cs.VITESSE_MAX_DEG_PAR_SEC)
 
 #Initilaisation de l'IA
 ia = ia.IA_eviter(robot)
