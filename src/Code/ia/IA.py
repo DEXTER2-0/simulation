@@ -106,3 +106,12 @@ class IA_carre:
 		self.robot = robot
 		self.avancer=IA_avancer
 		self.tourner=IA_tourner
+	
+	def start(self,d_cote):
+		"""
+		:param d_cote : longueur s'un côté du carré en m
+		"""
+		self.cote=d_cote
+		self.avancer.start(self.cote)
+		self.cpta=1 #compteur de cêtés faits
+		self.cptt=0 #compteur d'angles effectués
