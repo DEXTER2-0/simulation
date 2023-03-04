@@ -1,5 +1,5 @@
 import unittest
-from ..Dexter.Obstacle import *
+from Code.simulation import Obstacle 
 
 class TestObstacle(unittest.TestCase):
 

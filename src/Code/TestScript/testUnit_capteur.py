@@ -1,5 +1,5 @@
 import unittest
-from ..Dexter.Capteur_de_distance import Capteur_de_distance as cap
+from Code.Capteur_de_distance import Capteur_de_distance as cap
 from ..Dexter.Robot import Robot as rob
 from ..Dexter.Obstacle import Obstacle as ob
 from ..Dexter.constantes import constantes as c

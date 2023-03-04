@@ -1,7 +1,7 @@
 #from Code.simulation.Robot import Robot
 #from simulation import Obstacle
 from math import *
-#from Code.simulation.constantes import constantes as cs
+from Code.simulation.constantes import constantes as cs
 import time
 
 class IA_avancer :
