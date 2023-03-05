@@ -1,18 +1,25 @@
 import unittest
-from Code.simulation.Robot import Robot
-from Code.simulation.Robot import Capteur_de_distance
+from Code.simulation import Robot as rb
 from Code.simulation import constantes as cs
-from Code.ia.IA import IA_avancer 
+from Code.simulation import Terrain as tr
+from Code.ia import IA as ia
+from Code.simulation import Obstacle as ob
+from Code.simulation import Simulation as sm
 class TestIA_avancer(unittest.TestCase):
 
     def setUp(self):
         """
         Permet d'enregistrer tous les attributs de Obstacle
         """
-        self.capteur1 = Capteur_de_distance(cs.DISTANCE_CAPTABLE)
-        self.robot1 = Robot(cs.RAYON_DES_ROUES_CM,cs.RAYON_ROBOT_CM,self.capteur1,cs.VITESSE_MAX_DEG_PAR_SEC)
-        self.ia = IA_avancer(self.robot1)
-        self.simu 
+        self.capteur1 = rb.Capteur_de_distance(cs.DISTANCE_CAPTABLE)
+        self.robot1 = rb.Robot(cs.RAYON_DES_ROUES_CM,cs.RAYON_ROBOT_CM,self.capteur1,cs.VITESSE_MAX_DEG_PAR_SEC)
+        self.ia = ia.IA_avancer(self.robot1)
+        self.obs1 = ob.Obstacle(2,22,0)
+        self.obs2 = ob.Obstacle(4,15,5)
+        self.obs3 = ob.Obstacle(8,20,10)
+        self.listObs = [self.obs1,self.obs2,self.obs3]
+        self.terrain = tr.Terrain(0,cs.WIDTH,0,cs.HEIGHT,self.listObs)
+        self.simu = sm.Simulation(self.robot1,self.terrain,1)
         
     def test_init(self):
         """
@@ -20,6 +27,7 @@ class TestIA_avancer(unittest.TestCase):
         self.assertEqual(self.robot1.roue_gauche.taille_cm,cs.RAYON_DES_ROUES_CM) # pour le robot
         self.assertEqual(self.robot1.roue_gauche.taille_cm,self.robot1.roue_droite.taille_cm)
         self.assertEqual(self.robot1.rayonDuRobotCm, cs.RAYON_ROBOT_CM) 
+    
     """class TestIA_tourner(unittest.TestCase):
 
     def setUp(self):

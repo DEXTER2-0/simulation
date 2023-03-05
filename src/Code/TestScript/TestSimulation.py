@@ -30,4 +30,4 @@ terrain = ter.Terrain(0,cs.WIDTH,0,cs.HEIGHT, liste_obstacle)
 
 
 
-#Code.simulation = simu.Code.simulation(ia,robot,terrain,1)
+simulation = simu.simulation(ia,robot,terrain,1)
