@@ -11,7 +11,7 @@ import logging
 
 
 class Simulation : 
-    def __init__ (self, IAEvite, robot,terrain,duree_boucle,pos_x=0,pos_y=0,r=0,angle=0) :
+    def __init__ (self, robot,terrain,duree_boucle,pos_x=0,pos_y=0,r=0,angle=0) :
         """    
         :param ia : IA utilisé
 	:param robot : Robot utilisé
@@ -20,7 +20,6 @@ class Simulation :
     """
         #self.mur_x = range(10) 
         #self.mur_y = range(10)
-        self.IAEvite = IAEvite
         self.robot = robot
         self.terrain = terrain
         self.duree_boucle = duree_boucle

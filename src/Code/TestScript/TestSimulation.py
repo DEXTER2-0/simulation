@@ -10,7 +10,9 @@ from Code.simulation import Robot as rb
 robot = rb.Robot(cs.RAYON_DES_ROUES_CM, cs.RAYON_ROBOT_CM,cs.DISTANCE_CAPTABLE,cs.VITESSE_MAX_DEG_PAR_SEC)
 
 #Initilaisation de l'IA
-ia = ia.IA_eviter(robot)
+ia_av = ia.IA_avancer(robot)
+ia_tn = ia.IA_tourner(robot)
+ia = ia.IA_eviter(robot,)
 
 #Initialisation d'une liste d'obstacle
 #obstacle1 = obs.Obstacle(4,20,0)
@@ -28,4 +30,4 @@ terrain = ter.Terrain(0,cs.WIDTH,0,cs.HEIGHT, liste_obstacle)
 
 
 
-Code.simulation = simu.Code.simulation(ia,robot,terrain,1)
+#Code.simulation = simu.Code.simulation(ia,robot,terrain,1)
