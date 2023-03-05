@@ -1,4 +1,16 @@
 setup.py
+Code/__init__.py
+Code/affichage/Graphique.py
+Code/affichage/__init__.py
+Code/ia/IA.py
+Code/ia/Traducteur.py
+Code/ia/__init__.py
+Code/simulation/Obstacle.py
+Code/simulation/Robot.py
+Code/simulation/Simulation.py
+Code/simulation/Terrain.py
+Code/simulation/__init__.py
+Code/simulation/constantes.py
 Dexter.egg-info/PKG-INFO
 Dexter.egg-info/SOURCES.txt
 Dexter.egg-info/dependency_links.txt

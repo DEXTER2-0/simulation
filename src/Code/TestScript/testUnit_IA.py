@@ -27,7 +27,10 @@ class TestIA_avancer(unittest.TestCase):
         self.assertEqual(self.robot1.roue_gauche.taille_cm,cs.RAYON_DES_ROUES_CM) # pour le robot
         self.assertEqual(self.robot1.roue_gauche.taille_cm,self.robot1.roue_droite.taille_cm)
         self.assertEqual(self.robot1.rayonDuRobotCm, cs.RAYON_ROBOT_CM) 
-    
+        self.assertIn(self.obs1,self.listObs)
+        self.assertIn(self.obs2,self.listObs)
+        self.assertIn(self.obs3,self.listObs)
+
     """class TestIA_tourner(unittest.TestCase):
 
     def setUp(self):
