@@ -12,8 +12,7 @@ import logging
 
 class Simulation : 
     def __init__ (self, robot,terrain,duree_boucle,pos_x=0,pos_y=0,r=0,angle=0) :
-        """    
-        :param ia : IA utilisé
+        """     
 	:param robot : Robot utilisé
 	:param terrain : Terrain utilisé
 	:param duree_boucle : duree de simulation
