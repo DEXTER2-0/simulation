@@ -38,13 +38,13 @@ class Simulation :
         """
 
         if (self.pos_x<=0) or (self.pos_y<=0) or (self.pos_x>=cs.WIDTH) or (self.pos_y>=cs.HEIGHT):
-            self.IAEvite.arreter_urgence()
+            self.robot.setMotorDps(0, 0)
             logging.debug("Collision détectée : arret d'urgence")
             return 1
         for obstacle in self.terrain.liste_obstacle: #pour chaque obstacle
             d=np.sqrt((self.pos_x-obstacle.x)**2+(self.pos_y-obstacle.y)**2) #distance euclidienne entre le robot et l'obstacle
-            if(d<=(self.IAEvite.robot.rayonDuRobotCm+obstacle.longueur)): # collision de deux cercles
-                self.IAEvite.arreter_urgence()
+            if(d<=(self.robot.rayonDuRobotCm+obstacle.longueur)): # collision de deux cercles
+                self.robotsetMotorDps(0, 0)
                 logging.debug("Collision détectée : arret d'urgence")
                 return 1
             #elif (d<=(self.ia.robot.rayon)): # collision d'un cercle et d'un rectangle A COMPLETER
