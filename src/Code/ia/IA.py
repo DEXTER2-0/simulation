@@ -22,7 +22,8 @@ class IA_avancer :
 		self.robot.setMotorDps(cs.V_ANGULAIRE_G,cs.V_ANGULAIRE_D)
 		self.fonctionne=True
 		self.arret=False
-		
+		self.v = (cs.RAYON_DES_ROUES_CM/2)*(cs.V_ANGULAIRE_D+cs.V_ANGULAIRE_G) 
+		self.w = (cs.RAYON_DES_ROUES_CM/self.robot.l)*(cs.V_ANGULAIRE_D-cs.V_ANGULAIRE_G)
 		
 	
 	def step(self):
@@ -58,6 +59,8 @@ class IA_tourner:
 		self.robot.setMotorDps(cs.V_ANGULAIRE_G,0)
 		self.fonctionne=True
 		self.arret=False
+		self.v = (cs.RAYON_DES_ROUES_CM/2)*(cs.V_ANGULAIRE_D+cs.V_ANGULAIRE_G) 
+		self.w = (cs.RAYON_DES_ROUES_CM/self.robot.l)*(cs.V_ANGULAIRE_D-cs.V_ANGULAIRE_G)
 
 	def step(self):
 		if self.arret:
@@ -72,6 +75,8 @@ class IA_tourner:
 		self.robot.setMotorDps(0,0)
 		self.fonctionne=False
 		self.arret=True
+		self.v = 0
+		self.w = 0
 
 class IA_eviter:
 	def __init__ (self,robot,IA_avancer,IA_tourner) :
@@ -103,6 +108,8 @@ class IA_eviter:
 	def stop(self):
 		self.avancer.stop()
 		self.tourner.stop()
+		self.v = 0
+		self.w = 0
 
 class IA_carre:
 	def __init__ (self,robot,IA_avancer,IA_tourner) :
