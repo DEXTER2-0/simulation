@@ -60,11 +60,6 @@ class Simulation :
         self.pos_x = self.pos_x + self.IAEvite.v * cos(self.angle)*duree
         self.pos_y = self.pos_y + self.IAEvite.v * sin(self.angle)*duree
         self.angle = self.angle + self.IAEvite.w * duree
-    
-    def evite_murs(self):
-        if (self.pos_x>=(cs.WIDTH/2)-2) or (self.pos_x<=-(cs.WIDTH/2)+2) or (self.pos_y>=(cs.HEIGHT/2)-2) or (self.pos_y<=-(cs.HEIGHT/2)+2):
-            self.IAevite.setVitesseRobot(0,(pi*self.robot.l*0.01)/(2*self.robot.roue_droite.taille_cm*0.01))
-        self.IAEvite.evite()
 		
     def update_simulation(self):
         logging.debug(f"robot pos_x= {self.pos_x},robot pos_y={self.pos_y}, angle {self.angle}")
