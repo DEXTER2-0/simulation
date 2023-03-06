@@ -61,38 +61,3 @@ class Simulation :
         self.pos_y = self.pos_y + self.IAEvite.v * sin(self.angle)*duree
         self.angle = self.angle + self.IAEvite.w * duree
 		
-    def update_simulation(self):
-        logging.debug(f"robot pos_x= {self.pos_x},robot pos_y={self.pos_y}, angle {self.angle}")
-        distance = self.robot.capteurDistance.senseur_de_distance(self.pos_x, self.pos_y, self.angle, 0.1, self.terrain.liste_obstacle)
-        if self.collision() == 1:
-            exit(-1)
-        logging.debug(f"{distance}")
-        #cpt =0
-        mur=False
-
-       
-            
-        if distance >cs.DISTANCE_MIN_ARRET:
-            logging.debug(f"{distance}")
-            self.IAEvite.setVitesseRobot(cs.V_ANGULAIRE_G,cs.V_ANGULAIRE_D)
-            self.nouvelle_position2(self.duree_boucle)
-            print("if -> angle = ",self.angle)
-            #time.sleep(0.001)
-        else : 
-            print("EVITE!!!!!") 
-            print("else -> angle = ",self.angle)
-            logging.debug(f"{distance}")
-            logging.debug(f"{cs.DISTANCE_MIN_ARRET}")
-            self.IAEvite.evite()
-            self.nouvelle_position2(self.duree_boucle)
-        
-
-    
-
-
-    
-
-
-
-
-
