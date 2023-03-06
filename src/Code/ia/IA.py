@@ -10,7 +10,8 @@ class IA_avancer :
 		:param robot : Robot utilisé
 		"""
 		self.robot = robot
-	
+		self.v = 0
+		self.w = 0
 	def start(self,d_voulue):
 		"""
 		:param d_voulue : ditance voulue à effectuer en m
@@ -21,6 +22,8 @@ class IA_avancer :
 		self.robot.setMotorDps(cs.V_ANGULAIRE_G,cs.V_ANGULAIRE_D)
 		self.fonctionne=True
 		self.arret=False
+		
+		
 	
 	def step(self):
 		if self.arret:
@@ -42,6 +45,8 @@ class IA_tourner:
 		:param robot : Robot utilisé
 		"""
 		self.robot = robot
+		self.v = 0
+		self.w = 0
 	
 	def start(self,a_voulu):
 		"""
@@ -76,6 +81,7 @@ class IA_eviter:
 		self.robot = robot
 		self.avancer=IA_avancer
 		self.tourner=IA_tourner
+
 	
 	def start(self,d_evitement):
 		"""
