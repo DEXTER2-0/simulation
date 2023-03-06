@@ -39,6 +39,8 @@ class IA_avancer :
 		self.robot.setMotorDps(0,0)
 		self.fonctionne=False
 		self.arret=True
+		self.v = 0
+		self.w = 0
 
 class IA_tourner:
 	def __init__(self, robot) :
@@ -108,8 +110,7 @@ class IA_eviter:
 	def stop(self):
 		self.avancer.stop()
 		self.tourner.stop()
-		self.v = 0
-		self.w = 0
+
 
 class IA_carre:
 	def __init__ (self,robot,IA_avancer,IA_tourner) :
