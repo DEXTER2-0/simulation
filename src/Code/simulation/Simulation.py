@@ -61,3 +61,6 @@ class Simulation :
         self.pos_y = self.pos_y + self.IAEvite.v * sin(self.angle)*duree
         self.angle = self.angle + self.IAEvite.w * duree
 		
+   def update(self,duree):
+	self.collision()
+	self.nouvelle_position2(duree)
