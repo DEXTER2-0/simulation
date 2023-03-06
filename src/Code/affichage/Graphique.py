@@ -32,10 +32,10 @@ class Graphique :
                 self.obstacle = self.canvas.create_oval(obs_cour.x-obs_cour.longueur,obs_cour.y-obs_cour.longueur,obs_cour.x+obs_cour.longueur, obs_cour.y+obs_cour.longueur, fill="red")
 
 
-    def placer_robot_milieu(self,simulation):
+    #def placer_robot_milieu(self,simulation):
         #Les coordonnées (Permet de placer le robot au milieu de la fenetre)
-        simulation.pos_x = simulation.terrain.WIDTH_MAX/2
-        simulation.pos_y = simulation.terrain.HEIGHT_MAX/2
+    #    simulation.pos_x = simulation.terrain.WIDTH_MAX/2
+    #    simulation.pos_y = simulation.terrain.HEIGHT_MAX/2
 
     def update(self):
         # Récupere les coordonées du robot de la simu ainsi que son angle et les projettes graphiquement

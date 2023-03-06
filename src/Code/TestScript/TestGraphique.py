@@ -48,7 +48,7 @@ canvas_fenetre.pack(fill="both", expand=True)
 graph = gr.Graphique(canvas_fenetre,Code.simulation)
 
 #placer le robot au milieu de la fenetre
-graph.placer_robot_milieu(Code.simulation)
+#graph.placer_robot_milieu(Code.simulation)
 
 #Lancement de la Code.simulation avec un update de la partie graphique qui se met a jours quand la Code.simulation change
 while True :
