@@ -19,6 +19,8 @@ class Robot :
 		self.roue_droite = Roue(rayonRouesCm, vMaxDegParSec)
 		self.capteurDistance = Capteur_de_distance(capteur)
 		self.rayonDuRobotCm = rayonDuRobotCm
+		self.v = 0
+		self.w = 0
 		#self.pos_x = pos_x
 		#self.pos_y = pos_y
         #self.robot = robot

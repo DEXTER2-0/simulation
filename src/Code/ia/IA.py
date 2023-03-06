@@ -10,8 +10,9 @@ class IA_avancer :
 		:param robot : Robot utilisé
 		"""
 		self.robot = robot
-		self.v = 0
-		self.w = 0
+		self.robot.v = 0
+		self.robot.w = 0
+	
 	def start(self,d_voulue):
 		"""
 		:param d_voulue : ditance voulue à effectuer en m
@@ -22,8 +23,8 @@ class IA_avancer :
 		self.robot.setMotorDps(cs.V_ANGULAIRE_G,cs.V_ANGULAIRE_D)
 		self.fonctionne=True
 		self.arret=False
-		self.v = (cs.RAYON_DES_ROUES_CM/2)*(cs.V_ANGULAIRE_D+cs.V_ANGULAIRE_G) 
-		self.w = (cs.RAYON_DES_ROUES_CM/self.robot.l)*(cs.V_ANGULAIRE_D-cs.V_ANGULAIRE_G)
+		self.robot.v = (cs.RAYON_DES_ROUES_CM/2)*(cs.V_ANGULAIRE_D+cs.V_ANGULAIRE_G) 
+		self.robot.w = (cs.RAYON_DES_ROUES_CM/self.robot.l)*(cs.V_ANGULAIRE_D-cs.V_ANGULAIRE_G)
 		
 	
 	def step(self):
@@ -39,8 +40,8 @@ class IA_avancer :
 		self.robot.setMotorDps(0,0)
 		self.fonctionne=False
 		self.arret=True
-		self.v = 0
-		self.w = 0
+		self.robot.v = 0
+		self.robot.w = 0
 
 class IA_tourner:
 	def __init__(self, robot) :
@@ -48,8 +49,8 @@ class IA_tourner:
 		:param robot : Robot utilisé
 		"""
 		self.robot = robot
-		self.v = 0
-		self.w = 0
+		self.robot.v = 0
+		self.robot.w = 0
 	
 	def start(self,a_voulu):
 		"""
@@ -61,8 +62,8 @@ class IA_tourner:
 		self.robot.setMotorDps(cs.V_ANGULAIRE_G,0)
 		self.fonctionne=True
 		self.arret=False
-		self.v = (cs.RAYON_DES_ROUES_CM/2)*(cs.V_ANGULAIRE_D+cs.V_ANGULAIRE_G) 
-		self.w = (cs.RAYON_DES_ROUES_CM/self.robot.l)*(cs.V_ANGULAIRE_D-cs.V_ANGULAIRE_G)
+		self.robot.v = (cs.RAYON_DES_ROUES_CM/2)*(cs.V_ANGULAIRE_D+cs.V_ANGULAIRE_G) 
+		self.robot.w = (cs.RAYON_DES_ROUES_CM/self.robot.l)*(cs.V_ANGULAIRE_D-cs.V_ANGULAIRE_G)
 
 	def step(self):
 		if self.arret:
@@ -77,8 +78,8 @@ class IA_tourner:
 		self.robot.setMotorDps(0,0)
 		self.fonctionne=False
 		self.arret=True
-		self.v = 0
-		self.w = 0
+		self.robot.v = 0
+		self.robot.w = 0
 
 class IA_eviter:
 	def __init__ (self,robot,IA_avancer,IA_tourner) :

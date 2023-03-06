@@ -56,9 +56,9 @@ class Simulation :
         Doit etre appelé apres la methode bouger() pour pouvoir mettre a jours les 
         oordonées du robot ainsi que son angle d'orientation					                      
         """
-        self.pos_x = self.pos_x + self.IAEvite.v * cos(self.angle)*duree
-        self.pos_y = self.pos_y + self.IAEvite.v * sin(self.angle)*duree
-        self.angle = self.angle + self.IAEvite.w * duree
+        self.pos_x = self.pos_x + self.robot.v * cos(self.angle)*duree
+        self.pos_y = self.pos_y + self.robot.v * sin(self.angle)*duree
+        self.angle = self.angle + self.robot.w * duree
 		
     def update(self,duree):
         self.collision()
