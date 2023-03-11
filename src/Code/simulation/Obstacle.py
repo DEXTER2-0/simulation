@@ -33,7 +33,18 @@ class Obstacle :
 			self.type = 'rectangle'
 			self.x = args[2]
 			self.y = args[3]
-		
+	
+
+
+
+
+	def capte(self,x,y):
+		if(np.sqrt( (self.x - x )**2 + (self.y-y)**2)) <= 0):
+			return true
+													
+		return false
+
+
 
 	def __str__ (self) : 
 		"""

@@ -32,7 +32,18 @@ class Simulation :
 	
         #self.obs1 = Obstacle(6,2,2)
         #self.obs2 = Obstacle(3,4,7)
-        
+    
+
+
+    def capterDistance(self,robot):
+	    Distance=0
+	    Vect0=(cos(angle))
+	    Vect1=sin(-angle))											               RayonCoord=(pos_x + Vect0 * robot.rayonDuRobotCm,pos_y + Vect1 * robot.rayonDuRobotCm)
+
+	    for i in range(0,len(self.terrain.getListeObstacles())):
+		    if self.terrain.getObstacle(i).Capte(RayonCoord[0] , RayonCoord[1]):
+			    self.SensorOn= True
+			    self.newPos_x = RayonCoord[0]																																																										    								
     
     def collision(self):
         """
