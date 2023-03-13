@@ -48,6 +48,8 @@ class IA_tourner:
 		:param robot : Robot utilisé
 		"""
 		self.robot = robot
+		self.v=0
+		self.w=0
 	
 	def start(self,a_voulu):
 		"""
@@ -59,6 +61,8 @@ class IA_tourner:
 		self.robot.setMotorDps(cs.V_ANGULAIRE_G,0)
 		self.fonctionne=True
 		self.arret=False
+		self.v=cs.RAYON_DES_ROUES/2*(cs.V_ANGULAIRE_G+0)
+		self.w=cs.RAYON_DES_ROUES/cs.RAYON_ROBOT_CM*(cs.V_ANGULAIRE_G-0)
 
 	def step(self):
 		if self.arret:
@@ -73,6 +77,8 @@ class IA_tourner:
 		self.robot.setMotorDps(0,0)
 		self.fonctionne=False
 		self.arret=True
+		self.v=0
+		self.w=0
 
 class IA_eviter:
 	def __init__ (self,robot,IA_avancer,IA_tourner) :
