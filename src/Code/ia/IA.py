@@ -10,6 +10,8 @@ class IA_avancer :
 		:param robot : Robot utilisé
 		"""
 		self.robot = robot
+		self.v=0
+		self.w=0
 	
 	def start(self,d_voulue):
 		"""
@@ -21,6 +23,8 @@ class IA_avancer :
 		self.robot.setMotorDps(cs.V_ANGULAIRE_G,cs.V_ANGULAIRE_D)
 		self.fonctionne=True
 		self.arret=False
+		self.v=cs.RAYON_DES_ROUES/2*(cs.V_ANGULAIRE_G+cs.V_ANGULAIRE_D)
+		self.w=cs.RAYON_DES_ROUES/cs.RAYON_ROBOT_CM*(cs.V_ANGULAIRE_G-cs.V_ANGULAIRE_D)
 	
 	def step(self):
 		if self.arret:
@@ -35,6 +39,8 @@ class IA_avancer :
 		self.robot.setMotorDps(0,0)
 		self.fonctionne=False
 		self.arret=True
+		self.v=0
+		self.w=0
 
 class IA_tourner:
 	def __init__(self, robot) :
