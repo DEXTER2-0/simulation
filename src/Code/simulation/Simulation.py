@@ -92,4 +92,4 @@ class Simulation(Thread):
         """
         self.pos_x = self.pos_x + self.IAEvite.v * cos(self.angle)*duree
         self.pos_y = self.pos_y + self.IAEvite.v * sin(self.angle)*duree
-        self.angle = self.angle + self.IAEvite.w * duree
+        self.angle = self.angle + self.IAEvite.new_orientation * duree
