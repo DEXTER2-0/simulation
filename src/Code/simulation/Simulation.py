@@ -30,12 +30,12 @@ class Simulation(Thread) :
         self.angle = angle
 	
 
-	 #partie capteur de distance :
-	self.capteurOn = False
-	  #coordonnées du dernier point capté par le capteur de distance 
-
-	self.lastX = 0  
-	self.lastY=0
+	    #partie capteur de distance :
+	    self.capteurOn = False
+	      #coordonnées du dernier point capté par le capteur de distance 
+    
+	    self.lastX = 0  
+	    self.lastY=0
 
 
     
@@ -113,8 +113,6 @@ class Simulation(Thread) :
 	        self.robot=None
 	    if self.collision() == 0:
 	    	self.nouvelle_position2(self.dt)
-
-
-
+		
 
 
