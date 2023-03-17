@@ -3,6 +3,15 @@
 from math import *
 from Code.simulation import constantes as cs
 import time
+from threading import Thread
+
+class IA(Thread):
+	def __init__(self, list_ia):
+		super(IA, self).__init__()
+		self.list_ia=list_ia
+
+
+
 
 class IA_avancer :
 	def __init__ (self, robot) :

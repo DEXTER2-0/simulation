@@ -6,13 +6,7 @@ from Code.simulation  import Terrain as ter
 from Code.simulation import Robot as rb
 #print(globals())
 #from ..Code import Code.simulation as simu
-#Initialisation du Robot
-robot = rb.Robot(cs.RAYON_DES_ROUES_CM, cs.RAYON_ROBOT_CM,cs.DISTANCE_CAPTABLE,cs.VITESSE_MAX_DEG_PAR_SEC)
 
-#Initilaisation de l'IA
-ia_av = ia.IA_avancer(robot)
-ia_tn = ia.IA_tourner(robot)
-ia = ia.IA_eviter(robot,)
 
 #Initialisation d'une liste d'obstacle
 #obstacle1 = obs.Obstacle(4,20,0)
@@ -25,9 +19,23 @@ liste_obstacle.append(obstacle2)
 #liste_obstacle.append(obstacle3)
 #liste_obstacle.append(obstacle4)
 
+
 #Initialisation d'un terrain
 terrain = ter.Terrain(0,cs.WIDTH,0,cs.HEIGHT, liste_obstacle)
 
+#Initialisation du Robot
+robot = rb.Robot(cs.RAYON_DES_ROUES_CM, cs.RAYON_ROBOT_CM,cs.DISTANCE_CAPTABLE,cs.VITESSE_MAX_DEG_PAR_SEC)
+ 
+#Initialisation de la simulation avec un thread
+thread_simulation = simu.Simulation(ia,robot,terrain,1)
 
 
-simulation = simu.Simulation(ia,robot,terrain,1)
+
+#Initilaisation de l'IA
+list_ia = [ia.IA_avancer(robot)]
+ia_global = ia.IA(list_ia)
+
+
+
+thread_simulation.start()
+#ia_global.start()
