@@ -12,30 +12,23 @@ from threading import Thread
 
 class Simulation(Thread) : 
     def __init__ (self, robot,terrain,dt,pos_x=0,pos_y=0,r=0,angle=0) :
-        """     
+      """     
 	:param robot : Robot utilisé
 	:param terrain : Terrain utilisé
 	:param duree_boucle : duree de simulation
-    """
-        #self.mur_x = range(10) 
-        #self.mur_y = range(10)
-
-        super(Simulation, self).__init__()
-        self.robot = robot
-        self.terrain = terrain
-        self.dt = dt
-        self.pos_x=pos_x
-        self.pos_y=pos_y
-        self.r=r
-        self.angle = angle
-	
-
-	    #partie capteur de distance :
-	    self.capteurOn = False
+   """
+      super(Simulation, self).__init__()
+      self.robot = robot
+      self.terrain = terrain
+      self.dt = dt
+      self.pos_x=pos_x
+      self.pos_y=pos_y
+      self.r=r
+      self.angle = angle
+      self.capteurOn = False
 	      #coordonnées du dernier point capté par le capteur de distance 
-    
-	    self.lastX = 0  
-	    self.lastY=0
+      self.lastX = 0  
+      self.lastY=0
 
 
     
@@ -47,20 +40,18 @@ class Simulation(Thread) :
 
 
     def capterDistance(self,robot):
-	    Distance=0
-	    Vect0=(cos(angle))
-	    Vect1=sin(-angle)
-	    RayonCoord=(pos_x + Vect0 * robot.rayonDuRobotCm,pos_y + Vect1 * robot.rayonDuRobotCm)
-
-	    for i in range(0,len(self.terrain.getListeObstacles())):
-		    if self.terrain.getObstacle(i).Capte(RayonCoord[0] , RayonCoord[1]):
-			    self.SensorOn= True
-			    self.newPos_x = RayonCoord[0]	
-
-
-
-
-   def collision(self):
+      Distance=0
+      Vect0=(cos(angle))
+      Vect1=sin(-angle)
+      RayonCoord=(pos_x + Vect0 * robot.rayonDuRobotCm,pos_y + Vect1 * robot.rayonDuRobotCm)
+      for i in range(0,len(self.terrain.getListeObstacles())):
+            if self.terrain.getObstacle(i).Capte(RayonCoord[0] , RayonCoord[1]):
+               self.SensorOn= True
+               self.newPos_x = RayonCoord[0]	
+      
+      
+      
+    def collision(self):
         """
         Suppose objet est cercle
         """
@@ -96,23 +87,25 @@ class Simulation(Thread) :
 
 	
     def step(self):
-	    "le step de la simulation "
-        self.step = True
-        while self.step:   #tant qu'on run 
-	        self._lastTime = time.time()    # on sauvegarde l'instant du run 
-		    time.sleep(self._dt)     #on fait un sleep de dt afin de calculer l'intervalle de temps 
-	        self._ITemps = time.time() - self._lastTime   #on calcule l'intervalle de temps 
-		    self.update() #on met à jour la simulation 
+      "le step de la simulation "
+      self.step = True
+      while self.step:   #tant qu'on run 
+         self._lastTime = time.time()    # on sauvegarde l'instant du run 
+         time.sleep(self._dt)     #on fait un sleep de dt afin de calculer l'intervalle de temps 
+         self._ITemps = time.time() - self._lastTime   #on calcule l'intervalle de temps 
+         self.update() #on met à jour la simulation 
 		
-    def stop(self): 
-	    self.stop = False
+    def stop(self):
+        self.stop = False
+            
+
 
     def update(self):
-	    """ met à jour la simulation selon le temps écoulé """
-	    if self.collision() == 1 :
-	        self.robot=None
-	    if self.collision() == 0:
-	    	self.nouvelle_position2(self.dt)
+      """ met à jour la simulation selon le temps écoulé """
+      if self.collision() == 1 :
+          self.robot=None
+      if self.collision() == 0:
+          self.nouvelle_position2(self.dt)
 		
 
 
