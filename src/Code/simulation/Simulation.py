@@ -42,13 +42,8 @@ class Simulation(Thread) :
         #self.obs2 = Obstacle(3,4,7)
     
 
-    def run (self):
-	    self.running = True
-	    while self.running :
-		    self._lastTime = time.time()
-		    time.sleep(self._wait)
-		    self._dT = time.time() - self._lastTime
-		    self.actualiser ()
+
+
     def capterDistance(self,robot):
 	    Distance=0
 	    Vect0=(cos(angle))
@@ -61,8 +56,7 @@ class Simulation(Thread) :
 			    self.newPos_x = RayonCoord[0]	
 
 
-   def run(self):
-	   self.run=True
+
 
    def collision(self):
         """
@@ -81,7 +75,11 @@ class Simulation(Thread) :
                 return 1
             #elif (d<=(self.ia.robot.rayon)): # collision d'un cercle et d'un rectangle A COMPLETER
              #   self.ia.robot.arret_urgence()
-	
+
+
+
+
+
     def nouvelle_position2(self,duree):
         """
 	:param duree : duree passee depuis le dernier calcul de la position
