@@ -96,80 +96,23 @@ class Simulation(Thread) :
 
 
     def step(self):
-	                            "le step de la simulation "
+	    "le step de la simulation "
+	    self.step = True
+	    while self.step:   #tant qu'on run 
+	        self._lastTime = time.time()    # on sauvegarde l'instant du run 
+		    time.sleep(self._dt)     #on fait un sleep de dt afin de calculer l'intervalle de temps 
+		    self._ITemps = time.time() - self._lastTime   #on calcule l'intervalle de temp
+		    self.update() #on met à jour la simulation 
 
-
-				                                                    self.step = True
-
-										                                                                while self.step:   #tant qu'on run 
-
-																			                                                                                        self._lastTime = time.time()    # on sauvegarde l'instant du run 
-																														                                                                                                            time.sleep(self._dt)     #on fait un sleep de dt afin de calculer l'intervalle de temps 
-																																											                                                                                                                                    self._ITemps = time.time() - self._lastTime   #on calcule l'intervalle de temps 
-
-																																																											                      self.update() #on met à jour la simulation 
-
-
-
-
-																																																													                            def stop(self):
-
-																																																																	                                          self.stop = False
-
-
-
-
-
-
-
-																																																																						                                            def nouvelle_position2(self,duree):
-
-																																																																												                                                              """
-																																																																																			                                                                                                                                                                                                          :param duree : duree passee depuis le dernier calcul de la position
-																																																																																																												                                                                                                                                                                                                              Doit etre appelé apres la methode bouger() pour pouvoir mettre a jours les 
-																																																																																																																																					                                                                                                                                                                                                                          oordonées du robot ainsi que son angle d'orientation                                                          
-																																																																																																																																																																                                                                                                                                                                                                                              """
-
-
-																																																																																																																																																																																											                                                                                                        self.pos_x = self.pos_x + self.IAEvite.v * cos(self.angle)*duree
-
-																																																																																																																																																																																																								                                                                                                          self.pos_y = self.pos_y + self.IAEvite.v * sin(self.angle)*duree
-
-																																																																																																																																																																																																																					  def step(self):
-																																																																																																																																																																																																																						                          "le step de la simulation "
-
-
-																																																																																																																																																																																																																									                                                  self.step = True
-
-																																																																																																																																																																																																																															                                                              while self.step:   #tant qu'on run 
-
-																																																																																																																																																																																																																																							                                                                                              self._lastTime = time.time()    # on sauvegarde l'instant du run 
-																																																																																																																																																																																																																																																		                                                                                                                  time.sleep(self._dt)     #on fait un sleep de dt afin de calculer l'intervalle de temps 
-																																																																																																																																																																																																																																																																                                                                                                                                  self._ITemps = time.time() - self._lastTime   #on calcule l'intervalle de temps 
-
-																																																																																																																																																																																																																																																																																                    self.update() #on met à jour la simulation 
-
-
-
-
-																																																																																																																																																																																																																																																																																		                          def stop(self):
-
-																																																																																																																																																																																																																																																																																						                                        self.stop = False
-
-
-
-
-
-
-
-																																																																																																																																																																																																																																																																																											                                          def nouvelle_position2(self,duree):
-
-																																																																																																																																																																																																																																																																																																	                                                            """
-																																																																																																																																																																																																																																																																																																								                                                                                                                                                                                                        :param duree : duree passee depuis le dernier calcul de la position
-																																																																																																																																																																																																																																																																																																																																	                                                                                                                                                                                                            Doit etre appelé apres la methode bouger() pour pouvoir mettre a jours les 
-																																																																																																																																																																																																																																																																																																																																																										                                                                                                                                                                                                                        oordonées du robot ainsi que son angle d'orientation                                                          
-																																																																																																																																																																																																																																																																																																																																																																																					                                                """
-
-		   self.pos_x = self.pos_x + self.IAEvite.v * cos(self.angle)*duree
-
-																																																																																																																																																																																																																																																																																																																																																																																																																												                                                                                                                self.pos_y = self.pos_y + self.IAEvite.v * sin(self.angle)*duree
+	
+    def step(self):
+	    "le step de la simulation "
+        self.step = True
+        while self.step:   #tant qu'on run 
+	        self._lastTime = time.time()    # on sauvegarde l'instant du run 
+		    time.sleep(self._dt)     #on fait un sleep de dt afin de calculer l'intervalle de temps 
+	        self._ITemps = time.time() - self._lastTime   #on calcule l'intervalle de temps 
+		    self.update() #on met à jour la simulation 
+		
+	def stop(self):
+	    self.stop = False
