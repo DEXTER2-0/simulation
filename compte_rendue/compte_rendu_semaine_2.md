@@ -3,3 +3,10 @@
 -commenter les hypothèses
 -travailler sur l'orientation et tourner
 -pas la peine de faire des repertory compte-rendu mais les mettre dans simulation
+-pas faireles choses à la dernière minute
+-mettre sur les fiches Trello qui a fait la tâche et le temps consacré comparé au temps prévu
+-un commit/push pour 4-5 lignes de code et à chaque changement de méthode
+-prendre du temps pour travailler ensemble
+-apprendre à revenir à une version ancienne
+-se renseigner sur la partie graphique
+-répartir le travail pour éviter que des personnes travaillent en même temps sur le même fichier
