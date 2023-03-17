@@ -1,7 +1,7 @@
 #import Robot
 from Code.simulation import constantes as cs
 #import Terrain
-import time #pour pouvoir controler le temps de la boucle while True
+import time as time#pour pouvoir controler le temps de la boucle while True
 import numpy as np
 from math import *
 import logging
