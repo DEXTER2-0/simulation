@@ -10,17 +10,12 @@ class Obstacle :
 			: 4 arguments : création un obstacle de type rectangle
 
 		"""
-		if (len(args)<2 |len(args)>4 ):
-			if(len(args)<2):
-				logging.debug("error : il faut au moins 2 arguments")
+		if (len(args)<3 |len(args)>4 ):
+			if(len(args)<3):
+				logging.debug("error : il faut au moins 3 arguments")
 			else:
 				logging.debug("error : il faut au plus 4 arguments")
-		if len(args)==2 :
-			self.longueur = -1 #permettre de dire que c'est un obstacle qui a le trou (ça pourrait être util pour simulation?)
-			self.largeur = -1 #permettre de dire que c'est un obstacle qui a le trou (ça pourrait être util pour simulation?)
-			self.x = range(args[0])
-			self.y = range(args[1])
-			self.type = 'mur'
+		
 		elif len(args)==3 :
 			self.longueur = args[0]
 			self.largeur = args[0]
@@ -39,7 +34,7 @@ class Obstacle :
 
 
 	def capte(self,x,y):
-		if(np.sqrt( (self.x - x )**2 + (self.y-y)**2)) <= 0):
+		if(np.sqrt( (self.x - x )**2 + (self.y-y)**2) <= 0):
 			return true
 													
 		return false
