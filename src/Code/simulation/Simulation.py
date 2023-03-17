@@ -104,5 +104,24 @@ class Simulation(Thread) :
 	        self._ITemps = time.time() - self._lastTime   #on calcule l'intervalle de temps 
 		    self.update() #on met à jour la simulation 
 		
-	def stop(self):
+    def stop(self): 
 	    self.stop = False
+
+   
+                                                                                                                          def update(self):
+
+
+
+																            """ met à jour la simulation selon le temps écoulé """
+
+
+
+																	                           if self.collision() == 1 :
+									 self.robot=None
+																																																												                                                                                 if self.collision() == 0:
+																																																																							 self.nouvelle_position2(self.dt)
+
+
+
+
+
