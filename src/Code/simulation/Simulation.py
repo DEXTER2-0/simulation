@@ -5,7 +5,7 @@ import time #pour pouvoir controler le temps de la boucle while True
 import numpy as np
 from math import *
 import logging
-import threading
+import threading import Thread
 #logging.basicConfig(filename='Simulation.log', filemode='w', level=logging.DEBUG)
 
 
@@ -19,6 +19,8 @@ class Simulation(Thread) :
     """
         #self.mur_x = range(10) 
         #self.mur_y = range(10)
+
+        super(Simulation, self).__init__()
         self.robot = robot
         self.terrain = terrain
         self.duree_boucle = duree_boucle
