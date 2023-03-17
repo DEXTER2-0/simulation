@@ -94,16 +94,6 @@ class Simulation(Thread) :
         self.angle = self.angle + self.robot.new_orientation * duree
 
 
-
-    def step(self):
-	    "le step de la simulation "
-	    self.step = True
-	    while self.step:   #tant qu'on run 
-	        self._lastTime = time.time()    # on sauvegarde l'instant du run 
-		    time.sleep(self._dt)     #on fait un sleep de dt afin de calculer l'intervalle de temps 
-		    self._ITemps = time.time() - self._lastTime   #on calcule l'intervalle de temp
-		    self.update() #on met à jour la simulation 
-
 	
     def step(self):
 	    "le step de la simulation "
