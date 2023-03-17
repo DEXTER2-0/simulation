@@ -10,9 +10,16 @@ import logging
 
 
 
+<<<<<<< HEAD
 class Simulation : 
     def __init__ (self, robot,terrain,duree_boucle,pos_x=0,pos_y=0,r=0,angle=0) :
         """     
+=======
+class Simulation(Thread): 
+    def __init__ (self, IAEvite, robot,terrain,duree_boucle,pos_x=0,pos_y=0,r=0,angle=0) :
+        """    
+        :param ia : IA utilisé
+>>>>>>> 2c50d6b2f54cad65dee0735f69482e6711069daf
 	:param robot : Robot utilisé
 	:param terrain : Terrain utilisé
 	:param duree_boucle : duree de simulation
@@ -26,13 +33,45 @@ class Simulation :
         self.pos_y=pos_y
         self.r=r
         self.angle = angle
+	
+
+	 #partie capteur de distance :
+	 self.capteurOn = False
+	  #coordonnées du dernier point capté par le capteur de distance 
+
+	 self.lastX = 0  
+	 self.lastY=0
+
+
     
 	
         #self.obs1 = Obstacle(6,2,2)
         #self.obs2 = Obstacle(3,4,7)
-        
     
-    def collision(self):
+
+    def run (self):
+	    self.running = True
+	    while self.running :
+		    self._lastTime = time.time()
+		    time.sleep(self._wait)
+		    self._dT = time.time() - self._lastTime
+		    self.actualiser ()
+    def capterDistance(self,robot):
+	    Distance=0
+	    Vect0=(cos(angle))
+	    Vect1=sin(-angle))
+	    RayonCoord=(pos_x + Vect0 * robot.rayonDuRobotCm,pos_y + Vect1 * robot.rayonDuRobotCm)
+
+	    for i in range(0,len(self.terrain.getListeObstacles())):
+		    if self.terrain.getObstacle(i).Capte(RayonCoord[0] , RayonCoord[1]):
+			    self.SensorOn= True
+			    self.newPos_x = RayonCoord[0]	
+
+
+   def run(self):
+	   self.run=True
+
+   def collision(self):
         """
         Suppose objet est cercle
         """
@@ -56,6 +95,7 @@ class Simulation :
         Doit etre appelé apres la methode bouger() pour pouvoir mettre a jours les 
         oordonées du robot ainsi que son angle d'orientation					                      
         """
+<<<<<<< HEAD
         self.pos_x = self.pos_x + self.robot.v * cos(self.angle)*duree
         self.pos_y = self.pos_y + self.robot.v * sin(self.angle)*duree
         self.angle = self.angle + self.robot.w * duree
@@ -63,3 +103,8 @@ class Simulation :
     def update(self,duree):
         self.collision()
         self.nouvelle_position2(duree)
+=======
+        self.pos_x = self.pos_x + self.IAEvite.v * cos(self.angle)*duree
+        self.pos_y = self.pos_y + self.IAEvite.v * sin(self.angle)*duree
+        self.angle = self.angle + self.IAEvite.new_orientation * duree
+>>>>>>> 2c50d6b2f54cad65dee0735f69482e6711069daf
