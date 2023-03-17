@@ -1,0 +1,5 @@
+-travailler sur deux vitesses différentes
+-bien tout tester
+-commenter les hypothèses
+-travailler sur l'orientation et tourner
+-pas la peine de faire des repertory compte-rendu mais les mettre dans simulation
