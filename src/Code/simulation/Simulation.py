@@ -89,6 +89,6 @@ class Simulation(Thread) :
         oordonées du robot ainsi que son angle d'orientation					                      
         """
 
-        self.pos_x = self.pos_x + self.IAEvite.v * cos(self.angle)*duree
-        self.pos_y = self.pos_y + self.IAEvite.v * sin(self.angle)*duree
-        self.angle = self.angle + self.IAEvite.new_orientation * duree
+        self.pos_x = self.pos_x + self.robot.v * cos(self.angle)*duree
+        self.pos_y = self.pos_y + self.robot.v * sin(self.angle)*duree
+        self.angle = self.angle + self.robot.new_orientation * duree
