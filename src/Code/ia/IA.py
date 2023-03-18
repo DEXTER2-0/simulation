@@ -19,13 +19,16 @@ class IA(Thread):
 			time.sleep(self._dt)     #on fait un sleep de dt afin de calculer l'intervalle de temps
 			self._ITemps = time.time() - self._lastTime   #on calcule l'intervalle de temps 
 			self.step() #on met à jour la simulation 
-
+           
 	def step(self):
 		""" met à jour la simulation selon le temps écoulé """
 		if self.list_ia[self.ia_actuel].arret:
 			self.ia_actuel+=1
 			if self.ia_actuel>=len(self.list_ia):
 				self.stop()
+				self.step=False
+				return
+			self.list_ia[self.ia_actuel].start()
 		else:
 			self.list_ia[self.ia_actuel].step()
 			
