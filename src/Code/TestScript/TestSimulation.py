@@ -35,31 +35,31 @@ if __name__ == "__main__":
 
 
 #obstacle4 = obs.Obstacle(1,15,15)
-liste_obstacle = []
+#liste_obstacle = []
 #liste_obstacle.append(obstacle1)
-liste_obstacle.append(obstacle2)
+#liste_obstacle.append(obstacle2)
 #liste_obstacle.append(obstacle3)
 #liste_obstacle.append(obstacle4)
 
 
 #Initialisation d'un terrain
-terrain = ter.Terrain(0,cs.WIDTH,0,cs.HEIGHT, liste_obstacle)
+#terrain = ter.Terrain(0,cs.WIDTH,0,cs.HEIGHT, liste_obstacle)
 
 #Initialisation du Robot
-robot = rb.Robot(cs.RAYON_DES_ROUES_CM, cs.RAYON_ROBOT_CM,cs.DISTANCE_CAPTABLE,cs.VITESSE_MAX_DEG_PAR_SEC)
+#robot = rb.Robot(cs.RAYON_DES_ROUES_CM, cs.RAYON_ROBOT_CM,cs.DISTANCE_CAPTABLE,cs.VITESSE_MAX_DEG_PAR_SEC)
  
 #Initialisation de la simulation avec un thread
-thread_simulation = simu.Simulation(ia,robot,terrain,1)
+#thread_simulation = simu.Simulation(ia,robot,terrain,1)
 
 
 
 #Initilaisation de l'IA
-list_ia = [ia.IA_avancer(robot)]
-ia_global = ia.IA(list_ia)
+#list_ia = [ia.IA_avancer(robot)]
+#ia_global = ia.IA(list_ia)
 
 
 
-thread_simulation.start()
+#thread_simulation.start()
 #ia_global.start()
 
 
