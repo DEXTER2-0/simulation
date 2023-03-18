@@ -4,7 +4,7 @@ from Code.simulation import constantes as cs
 from math import pi,sqrt,sin,cos
 
 class Robot :
-	def __init__ (self, rayonRouesCm,rayonDuRobotCm, capteur,vMaxDegParSec,l=1) :
+	def __init__ (self, rayonRouesCm,rayonDuRobotCm,vMaxDegParSec,l=1) :
 		"""
 		:param rayonRouesCm : rayon des roues en cm
 		:param rayonDuRobotCm : rayon du cercle dans lequel s'inscrit le robot en cm
@@ -17,7 +17,7 @@ class Robot :
 		assert(rayonDuRobotCm > 0) # Ne peut pas avoir un rayon < 0
 		self.roue_gauche = Roue(rayonRouesCm, vMaxDegParSec)
 		self.roue_droite = Roue(rayonRouesCm, vMaxDegParSec)
-		self.capteurDistance = Capteur_de_distance(capteur)
+		#self.capteurDistance = Capteur_de_distance(capteur)
 		self.rayonDuRobotCm = rayonDuRobotCm
 		self.v = 0
 		self.new_orientation = 0
