@@ -16,7 +16,7 @@ class Test_IA(unittest.TestCase):
         self.ia_tourne = ia.IA_tourner(self.robot)
         self.ia_evite = ia.IA_eviter(self.robot,self.ia_avance,self.ia_tourne)
         self.list = [self.ia_avance,self.ia_tourne,self.ia_evite]
-        self.ia = ia.IA(self.list)
+        self.ia = ia.IA(self.list,50)
 
     def test_init(self):
         self.assertEqual(self.ia.list_ia,self.list)
@@ -70,15 +70,19 @@ class TestIA_avancer(unittest.TestCase):
         self.assertEqual(self.robot1.new_orientation,self.ia.robot.new_orientation)
     
     
-    def test_step(self):
+    def test_step_stop(self):
         self.ia.start(1)
         self.assertFalse(self.ia.arret)
         while self.ia.arret == False:
+            acd = self.ia.d
             self.ia.step()
-            duree=time.time()-self.ia.t0
+            self.assertGreaterEqual(self.ia.d,acd)
         self.assertTrue(self.ia.arret)
-        #self.assertAlmostEqual(self.ia.d,(duree*cs.V_ANGULAIRE_G*cs.RAYON_ROBOT_CM*360))
+        self.assertFalse(self.ia.fonctionne)
+        self.assertEqual(self.ia.robot.v, 0)
+        self.assertEqual(self.ia.robot.new_orientation,0)
 
+       
     #def test_stop(self):
 
     """class TestIA_tourner(unittest.TestCase):
