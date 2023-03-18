@@ -6,9 +6,11 @@ import time
 from threading import Thread
 
 class IA(Thread):
-	def __init__(self, list_ia):
+	def __init__(self, list_ia,dt):
 		super(IA, self).__init__()
 		self.list_ia=list_ia
+		self.dt = dt
+		self.ia_actuel=0
 
 	def run(self):
 		self.step = True
@@ -19,8 +21,14 @@ class IA(Thread):
 			self.step() #on met à jour la simulation 
 
 	def step(self):
-		for ia in self.list_ia:
-			ia.step()
+		""" met à jour la simulation selon le temps écoulé """
+		if self.list_ia[self.ia_actuel].arret:
+			self.ia_actuel+=1
+			if self.ia_actuel>=len(self.list_ia):
+				self.stop()
+		else:
+			self.list_ia[self.ia_actuel].step()
+			
 
 
 
@@ -31,8 +39,7 @@ class IA_avancer :
 		"""
 		self.robot = robot
 		self.v=0
-		self.new_orientation=0
-	
+		self.new_orientation=0	
 	def start(self,d_voulue):
 		"""
 		:param d_voulue : ditance voulue à effectuer en m
