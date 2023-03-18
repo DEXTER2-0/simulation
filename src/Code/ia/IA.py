@@ -13,10 +13,10 @@ class IA(Thread):
 		self.ia_actuel=0
 
 	def run(self):
-		self.step = True
-		while self.step:   #tant qu'on run 
+		self.encours = True
+		while self.encours:   #tant qu'on run 
 			self._lastTime = time.time()    # on sauvegarde l'instant du run 
-			time.sleep(self._dt)     #on fait un sleep de dt afin de calculer l'intervalle de temps
+			time.sleep(self.dt)     #on fait un sleep de dt afin de calculer l'intervalle de temps
 			self._ITemps = time.time() - self._lastTime   #on calcule l'intervalle de temps 
 			self.step() #on met à jour la simulation 
            
@@ -26,9 +26,14 @@ class IA(Thread):
 			self.ia_actuel+=1
 			if self.ia_actuel>=len(self.list_ia):
 				self.stop()
-				self.step=False
+				self.encours=False
 				return
-			self.list_ia[self.ia_actuel].start()
+			if list_ia[self.ia_actuel]==IA_avancer():
+				self.list_ia[self.ia_actuel].start(0.5)
+			if list_ia[self.ia_actuel]==IA_tourner():
+				self.list_ia[self.ia_actuel].start(90)
+			if list_ia[self.ia_actuel]==IA_eviter():
+				self.list_ia[self.ia_actuel].start(5)
 		else:
 			self.list_ia[self.ia_actuel].step()
 			
@@ -42,7 +47,8 @@ class IA_avancer :
 		"""
 		self.robot = robot
 		self.v=0
-		self.new_orientation=0	
+		self.new_orientation=0
+		self.arret=False	
 	def start(self,d_voulue):
 		"""
 		:param d_voulue : ditance voulue à effectuer en m
