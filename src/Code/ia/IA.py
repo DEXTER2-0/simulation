@@ -2,7 +2,7 @@
 #from simulation import Obstacle
 from math import *
 from Code.simulation import constantes as cs
-import time
+import time as time
 from threading import Thread
 
 class IA(Thread):
@@ -44,20 +44,20 @@ class IA_avancer :
 		"""
 		:param d_voulue : ditance voulue à effectuer en m
 		"""
-		self.t0=time()
+		self.t0=time.time()
 		self.d=0
 		self.d_voulue=d_voulue
 		self.robot.setMotorDps(cs.V_ANGULAIRE_G,cs.V_ANGULAIRE_D)
 		self.fonctionne=True
 		self.arret=False
-		self.robot.v=cs.RAYON_DES_ROUES/2*(cs.V_ANGULAIRE_G+cs.V_ANGULAIRE_D)
-		self.robot.new_orientation=cs.RAYON_DES_ROUES/cs.RAYON_ROBOT_CM*(cs.V_ANGULAIRE_G-cs.V_ANGULAIRE_D)
+		self.robot.v=cs.RAYON_DES_ROUES_CM/2*(cs.V_ANGULAIRE_G+cs.V_ANGULAIRE_D)
+		self.robot.new_orientation=cs.RAYON_DES_ROUES_CM/cs.RAYON_ROBOT_CM*(cs.V_ANGULAIRE_G-cs.V_ANGULAIRE_D)
 
 	def step(self):
 		if self.arret:
 			return
 		if (self.d<self.d_voulue):
-			duree=time()-self.t0
+			duree=time.time()-self.t0
 			self.d+=duree*cs.V_ANGULAIRE_G*cs.RAYON_ROBOT_CM*360 #vitesse convertie en m/s
 		else:
 			self.stop()
