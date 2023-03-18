@@ -5,12 +5,12 @@ from Code.simulation import Terrain as tr
 from Code.ia import IA as ia
 from Code.simulation import Obstacle as ob
 from Code.simulation import Simulation as sm
-
+import time as time
 
 
 
 class Test_IA(unittest.TestCase):
-    def setUp(self,list_ia):
+    def setUp(self):
         self.robot = rb.Robot(cs.RAYON_DES_ROUES_CM,cs.RAYON_ROBOT_CM,cs.VITESSE_MAX_DEG_PAR_SEC)
         self.ia_avance = ia.IA_avancer(self.robot)
         self.ia_tourne = ia.IA_tourner(self.robot)
@@ -19,9 +19,15 @@ class Test_IA(unittest.TestCase):
         self.ia = ia.IA(self.list)
 
     def test_init(self):
+        self.assertEqual(self.ia.list_ia,self.list)
         self.assertIn(self.ia_evite,self.list)
         self.assertIn(self.ia_tourne,self.list)
         self.assertIn(self.ia_avance,self.list)
+
+    """def test_run(self):
+        self
+    """
+
 
 class TestIA_avancer(unittest.TestCase):
 
@@ -52,6 +58,28 @@ class TestIA_avancer(unittest.TestCase):
         self.assertIn(self.obs1,self.listObs)
         self.assertIn(self.obs2,self.listObs)
         self.assertIn(self.obs3,self.listObs)
+    
+    def test_start(self):
+        d_voulue = 5
+        self.ia.start(d_voulue)
+        self.assertEqual(self.ia.fonctionne,True)
+        self.assertEqual(self.ia.arret,False)
+        self.assertEqual(self.ia.robot.v,cs.RAYON_DES_ROUES_CM/2*(cs.V_ANGULAIRE_G+cs.V_ANGULAIRE_D))
+        self.assertEqual(self.ia.robot.new_orientation,cs.RAYON_DES_ROUES_CM/cs.RAYON_ROBOT_CM*(cs.V_ANGULAIRE_G-cs.V_ANGULAIRE_D))
+        self.assertEqual(self.robot1.v,self.ia.robot.v)
+        self.assertEqual(self.robot1.new_orientation,self.ia.robot.new_orientation)
+    
+    
+    def test_step(self):
+        self.ia.start(1)
+        self.assertFalse(self.ia.arret)
+        while self.ia.arret == False:
+            self.ia.step()
+            duree=time.time()-self.ia.t0
+        self.assertTrue(self.ia.arret)
+        #self.assertAlmostEqual(self.ia.d,(duree*cs.V_ANGULAIRE_G*cs.RAYON_ROBOT_CM*360))
+
+    #def test_stop(self):
 
     """class TestIA_tourner(unittest.TestCase):
 
@@ -84,5 +112,7 @@ class TestIA_eviter(unittest.TestCase):
 
     """
     if __name__ == '__main__':
+        import doctest
+        doctest.testmod()
         unittest.main()
 #pour tester -> python3 .m unittest nom_de_simulation .nomdefichier -v
