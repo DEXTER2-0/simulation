@@ -1,5 +1,15 @@
 setup.py
 Code/__init__.py
+Code/TestScript/TestGraphique.py
+Code/TestScript/TestSimulation.py
+Code/TestScript/__init__.py
+Code/TestScript/testUnit.py
+Code/TestScript/testUnit_IA.py
+Code/TestScript/testUnit_capteur.py
+Code/TestScript/testUnit_obstacle.py
+Code/TestScript/testUnit_robot.py
+Code/TestScript/testUnit_roue.py
+Code/TestScript/testUnit_terrain.py
 Code/affichage/Graphique.py
 Code/affichage/__init__.py
 Code/ia/IA.py

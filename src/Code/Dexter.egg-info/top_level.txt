@@ -1,4 +1,0 @@
-affichage
-ia
-simulation
-TestScript
