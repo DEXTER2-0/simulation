@@ -8,10 +8,32 @@ from Code.simulation import Robot as rb
 #from ..Code import Code.simulation as simu
 
 
-#Initialisation d'une liste d'obstacle
-#obstacle1 = obs.Obstacle(4,20,0)
-obstacle2 = obs.Obstacle(2,22,0)
-#obstacle3 = obs.Obstacle(3,220,1)
+
+class TestSimulation():
+
+	def __init__(self):
+
+		obstacle = obs.Obstacle(2,22,0)
+		liste_obstacle = []
+		liste_obstacle.append(obstacle)
+		terrain = ter.Terrain(0,cs.WIDTH,0,cs.HEIGHT, liste_obstacle)
+		robot = rb.Robot(cs.RAYON_DES_ROUES_CM, cs.RAYON_ROBOT_CM,cs.VITESSE_MAX_DEG_PAR_SEC)
+		self.simulation = Simulation(robot,terrain,1)
+
+	
+
+	
+	def testCollision(self):
+		robot2=rb.Robot(cs.RAYON_DES_ROUES_CM, cs.RAYON_ROBOT_CM,cs.VITESSE_MAX_DEG_PAR_SEC)
+		self.assertEqual(self.simulation.collision(),0)
+
+
+
+if __name__ == "__main__":
+	import doctest
+	doctest.testmod()
+
+
 #obstacle4 = obs.Obstacle(1,15,15)
 liste_obstacle = []
 #liste_obstacle.append(obstacle1)
@@ -39,3 +61,9 @@ ia_global = ia.IA(list_ia)
 
 thread_simulation.start()
 #ia_global.start()
+
+
+
+
+
+
