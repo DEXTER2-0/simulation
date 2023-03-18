@@ -1,4 +1,4 @@
-import time #pour pouvoir controler le temps de la boucle while True
+"""import time #pour pouvoir controler le temps de la boucle while True
 
 from Code.simulation import Simulation as simu
 from Code.simulation import Robot as rb 
