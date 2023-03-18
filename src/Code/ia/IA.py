@@ -6,11 +6,12 @@ import time as time
 from threading import Thread
 
 class IA(Thread):
-	def __init__(self, list_ia,dt):
+	def __init__(self, robot,list_ia,dt):
 		super(IA, self).__init__()
 		self.list_ia=list_ia
 		self.dt = dt
 		self.ia_actuel=0
+		self.robot=robot
 
 	def run(self):
 		self.encours = True
@@ -24,15 +25,17 @@ class IA(Thread):
 		""" met à jour la simulation selon le temps écoulé """
 		if self.list_ia[self.ia_actuel].arret:
 			self.ia_actuel+=1
+			if self.ia_actuel>= 0 and self.ia_actuel <=len(self.list_ia)-1:
+				self.list_ia[self.ia_actuel].stop()
 			if self.ia_actuel>=len(self.list_ia):
-				self.stop()
+				self.ia_actuel=0
 				self.encours=False
 				return
-			if list_ia[self.ia_actuel]==IA_avancer():
+			if self.list_ia[self.ia_actuel]==IA_avancer(self.robot):
 				self.list_ia[self.ia_actuel].start(0.5)
-			if list_ia[self.ia_actuel]==IA_tourner():
+			if self.list_ia[self.ia_actuel]==IA_tourner(self.robot):
 				self.list_ia[self.ia_actuel].start(90)
-			if list_ia[self.ia_actuel]==IA_eviter():
+			if self.list_ia[self.ia_actuel]==IA_eviter(self.robot,IA_avancer,IA_tourner):
 				self.list_ia[self.ia_actuel].start(5)
 		else:
 			self.list_ia[self.ia_actuel].step()
@@ -49,6 +52,8 @@ class IA_avancer :
 		self.v=0
 		self.new_orientation=0
 		self.arret=False	
+		self.d=0
+		self.d_voulue=0
 	def start(self,d_voulue):
 		"""
 		:param d_voulue : ditance voulue à effectuer en m
@@ -86,6 +91,9 @@ class IA_tourner:
 		self.robot = robot
 		self.robot.v=0
 		self.robot.new_orientation=0
+		self.arret=False
+		self.a=0
+		self.a_voulu=0
 	
 	def start(self,a_voulu):
 		"""
@@ -116,6 +124,7 @@ class IA_tourner:
 		self.arret=True
 		self.robot.v=0
 		self.robot.new_orientation=0
+		self.arret=True
 
 class IA_eviter:
 	def __init__ (self,robot,IA_avancer,IA_tourner) :
@@ -125,6 +134,7 @@ class IA_eviter:
 		self.robot = robot
 		self.avancer=IA_avancer
 		self.tourner=IA_tourner
+		self.arret=False
 
 	
 	def start(self,d_evitement):
@@ -133,6 +143,7 @@ class IA_eviter:
 		"""
 		self.d_evitement=d_evitement
 		self.avancer.start(cs.WIDTH)
+
 	
 	def step(self):
 		if(self.robot.capteur<=self.d_evitement) and (self.tourner.arret):
@@ -147,6 +158,7 @@ class IA_eviter:
 	def stop(self):
 		self.avancer.stop()
 		self.tourner.stop()
+		self.arret=True
 
 
 class IA_carre:

@@ -15,7 +15,7 @@ IA_avance = ia.IA_avancer(Dexter)
 #commandes pour tourner selon un angle donnée 
 IA_tourne = ia.IA_tourner(Dexter)
 
-IA = ia.IA([IA_avance,IA_tourne],0.001)
+IA = ia.IA(Dexter,[IA_avance,IA_tourne],0.001)
 
 Simu=simu.Simulation(Dexter,Terrain,0.001)
 
