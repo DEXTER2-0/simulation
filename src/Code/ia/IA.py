@@ -10,6 +10,17 @@ class IA(Thread):
 		super(IA, self).__init__()
 		self.list_ia=list_ia
 
+	def run(self):
+		self.step = True
+		while self.step:   #tant qu'on run 
+			self._lastTime = time.time()    # on sauvegarde l'instant du run 
+			time.sleep(self._dt)     #on fait un sleep de dt afin de calculer l'intervalle de temps
+			self._ITemps = time.time() - self._lastTime   #on calcule l'intervalle de temps 
+			self.step() #on met à jour la simulation 
+
+	def step(self):
+		for ia in self.list_ia:
+			ia.step()
 
 
 
