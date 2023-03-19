@@ -1,8 +1,7 @@
 from threading import Thread 
 import time 
 from math import *
-import pygame
-from .. import simulation 
+import pygame 
 import os
 
 #colors 
@@ -69,8 +68,8 @@ class Affichage(Thread):
 			pygame.draw.circle(self._trace, RED, (obs.x + self._screen.get_size()[0]/2, obs.y + self._screen.get_size()[0]/2), obs.rayon)
 			os.chdir(os.path.dirname(os.path.abspath(__file__)))
 			im1 = pygame.image.load("robot.png").convert_alpha()
-			im1 = pygame.transform.scale(image_pas_tournee, (image_pas_tournee.get_width()/20 * self.simulation.robot.rayonDuRobotCm, im1.get_height()/20 * self.simulation.robot.rayonDuRobotCm))
-			im2 = pygame.transform.rotate(im1, degrees(self.simulationrobot.angle))
+			im1 = pygame.transform.scale(im1, (im1.get_width()/20 * self.simulation.robot.rayonDuRobotCm, im1.get_height()/20 * self.simulation.robot.rayonDuRobotCm))
+			im2 = pygame.transform.rotate(im1, degrees(self.simulation.robot.angle))
 			pygame.draw.circle(self._trace, GREEN, (self.simulation.pos_x + self._trace.get_size()[0]/2, self.simulation.pos_y + self._trace.get_size()[0]/2), 2)
 			pygame.display.update()
 			self.events()
