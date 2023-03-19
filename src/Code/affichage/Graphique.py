@@ -35,10 +35,10 @@ class Graphique(Thread) :
                 self.obstacle = self.canvas.create_oval(obs_cour.x-obs_cour.longueur,obs_cour.y-obs_cour.longueur,obs_cour.x+obs_cour.longueur, obs_cour.y+obs_cour.longueur, fill="red")
 
 
-    def placer_robot_milieu(self,simulation):
+    def placer_robot_milieu(self):
         """Les coordonnées (Permet de placer le robot au milieu de la fenetre)"""
-        simulation.pos_x = simulation.terrain.WIDTH_MAX/2
-        simulation.pos_y = simulation.terrain.HEIGHT_MAX/2
+        self.simulation.pos_x = self.simulation.terrain.WIDTH_MAX/2
+        self.simulation.pos_y = self.simulation.terrain.HEIGHT_MAX/2
     def run(self):
          """
          Boucle de la simulation

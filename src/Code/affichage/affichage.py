@@ -1,4 +1,4 @@
-from Threading import thread 
+from Threading import Thread 
 import time 
 from math import *
 import pygame
@@ -66,30 +66,17 @@ class Affichage(Thread):
 
 		for obs in self.simulation.terrain.getListeObstacles():
 			pygame.draw.circle(self._trace, RED, (obs.x + self._screen.get_size()[0]/2, obs.y + self._screen.get_size()[0]/2), obs.rayon)
+			os.chdir(os.path.dirname(os.path.abspath(__file__)))
+			im1 = pygame.image.load("robot.png").convert_alpha()
+			im1 = pygame.transform.scale(image_pas_tournee, (image_pas_tournee.get_width()/20 * robot.rayonDuRobotCm, im1.get_height()/20 * robot.rayonDuRobotCm))
+			im2 = pygame.transform.rotate(im1, degrees(robot.angle))
+			pygame.draw.circle(self._trace, GREEN, (robot.x + self._trace.get_size()[0]/2, robot.y + self._trace.get_size()[0]/2), 2)
+			pygame.display.update()
+			self.events()
 
 
 
-
-
-	       #on dessine le robot : 
-
-	       os.chdir(os.path.dirname(os.path.abspath(__file__)))
-	       im1 = pygame.image.load("robot.png").convert_alpha()
-	       im1 = pygame.transform.scale(image_pas_tournee, (image_pas_tournee.get_width()/20 * robot.rayonDuRobotCm, im1.get_height()/20 * robot.rayonDuRobotCm))
-
-	       im2 = pygame.transform.rotate(im1, degrees(robot.angle))
-
-
-	       #affichage du robot : 
-	       pygame.draw.circle(self._trace, GREEN, (robot.x + self._trace.get_size()[0]/2, robot.y + self._trace.get_size()[0]/2), 2)
-
-	       #mettre a jour l'ecran 
-
-	       pygame.display.update()
-
-	       #femeture de la fenetre :
-	       self.events()
-
-
-
-
+#on dessine le robot :
+#affichage du robot :
+			#mettre a jour l'ecran 
+#femeture de la fenetre :
