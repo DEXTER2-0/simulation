@@ -1,4 +1,4 @@
-from Threading import Thread 
+from threading import Thread 
 import time 
 from math import *
 import pygame
@@ -16,7 +16,7 @@ AUTRE = (235, 152, 135)
 
 
 class Affichage(Thread):
-	def __init__(self, simulation):
+	def __init__(self, simulation,fps):
 		""" Constructeur de la classe affichage """
 
 		super(Affichage, self).__init__()
@@ -26,18 +26,19 @@ class Affichage(Thread):
 		self._screen = pygame.display.set_mode((simulation.terrain.WIDTH_MAX , simulation.terrain.HEIGHT_MAX))
 		self._screen.fill((255, 255, 255))
 		self._trace.fill((255, 255, 255))
+		self.fps = fps 
 
 
 	
 
-	def boucle(self,fps):
+	def run(self):
 		""" 	Cette boucle permet d'actualiser l'affichage a chaque pas de temps   """
 
-		self.run = True
+		self.encours= True
 
-		while self.run : 
+		while self.encours : 
 			self.update()
-			time.sleep(1./fps)
+			time.sleep(1./self.fps)
 	
 
 
@@ -68,9 +69,9 @@ class Affichage(Thread):
 			pygame.draw.circle(self._trace, RED, (obs.x + self._screen.get_size()[0]/2, obs.y + self._screen.get_size()[0]/2), obs.rayon)
 			os.chdir(os.path.dirname(os.path.abspath(__file__)))
 			im1 = pygame.image.load("robot.png").convert_alpha()
-			im1 = pygame.transform.scale(image_pas_tournee, (image_pas_tournee.get_width()/20 * robot.rayonDuRobotCm, im1.get_height()/20 * robot.rayonDuRobotCm))
-			im2 = pygame.transform.rotate(im1, degrees(robot.angle))
-			pygame.draw.circle(self._trace, GREEN, (robot.x + self._trace.get_size()[0]/2, robot.y + self._trace.get_size()[0]/2), 2)
+			im1 = pygame.transform.scale(image_pas_tournee, (image_pas_tournee.get_width()/20 * self.simulation.robot.rayonDuRobotCm, im1.get_height()/20 * self.simulation.robot.rayonDuRobotCm))
+			im2 = pygame.transform.rotate(im1, degrees(self.simulationrobot.angle))
+			pygame.draw.circle(self._trace, GREEN, (self.simulation.pos_x + self._trace.get_size()[0]/2, self.simulation.pos_y + self._trace.get_size()[0]/2), 2)
 			pygame.display.update()
 			self.events()
 
