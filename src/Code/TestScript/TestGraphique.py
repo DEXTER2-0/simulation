@@ -1,4 +1,4 @@
-"""import time #pour pouvoir controler le temps de la boucle while True
+import time #pour pouvoir controler le temps de la boucle while True
 
 from Code.simulation import Simulation as simu
 from Code.simulation import Robot as rb 
@@ -15,7 +15,7 @@ import time #pour pouvoir controler le temps de la boucle while True
 
 
 #Initialisation du Robot
-robot = rb.Robot(cs.RAYON_DES_ROUES_CM, cs.RAYON_ROBOT_CM,cs.DISTANCE_CAPTABLE ,cs.VITESSE_MAX_DEG_PAR_SEC)
+robot = rb.Robot(cs.RAYON_DES_ROUES_CM, cs.RAYON_ROBOT_CM ,cs.VITESSE_MAX_DEG_PAR_SEC)
 
 #Initilaisation de l'IA
 #ia = ia.IA_eviter(robot)
@@ -52,9 +52,9 @@ graph = gr.Graphique(canvas_fenetre,simulation)
 #Lancement de la Code.simulation avec un update de la partie graphique qui se met a jours quand la Code.simulation change
 while True :
     #MAJ de la simu
-    simulation.update_Code.simulation()
+    simulation.update()
     #MAJ des coordonnes recu par la Code.simulation
-    graph.update()
+    graph.update_graph()
     #MAJ de l'affichage graphique
     canvas_fenetre.update()
     
@@ -64,4 +64,4 @@ while True :
 
 
 #graph.afficher()
-"""
+

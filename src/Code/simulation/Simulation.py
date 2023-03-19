@@ -56,18 +56,18 @@ class Simulation(Thread) :
         Suppose objet est cercle
         """
         if(self.robot == None):
-              return 0
+              return False
         if (self.pos_x<=0) or (self.pos_y<=0) or (self.pos_x>=cs.WIDTH) or (self.pos_y>=cs.HEIGHT):
             logging.debug("Collision détectée : arret d'urgence")
-            return 1
+            return True
         for obstacle in self.terrain.liste_obstacle: #pour chaque obstacle
             d=np.sqrt((self.pos_x-obstacle.x)**2+(self.pos_y-obstacle.y)**2) #distance euclidienne entre le robot et l'obstacle
             if(d<=(self.robot.rayonDuRobotCm+obstacle.longueur)): # collision de deux cercles
                 logging.debug("Collision détectée : arret d'urgence")
-                return 1
+                return True
             #elif (d<=(self.ia.robot.rayon)): # collision d'un cercle et d'un rectangle A COMPLETER
              #   self.ia.robot.arret_urgence()
-        return 0
+        return False
 
 
 
@@ -102,12 +102,12 @@ class Simulation(Thread) :
 
     def update(self):
       """ met à jour la simulation selon le temps écoulé """
-      if self.collision() == 1 :
+      if self.collision() :
           print("COOOOLISIONNNNN ")
           self.stop()
-          return
+          return 
        #   self.robot=None
-      if self.collision() == 0:
+      else :
           self.nouvelle_position2(self.dt)
 		
 

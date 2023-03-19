@@ -82,7 +82,7 @@ class TestIA_avancer(unittest.TestCase):
         self.assertEqual(self.ia.robot.v, 0)
         self.assertEqual(self.ia.robot.new_orientation,0)
 
-       
+    
 
 class TestIA_tourner(unittest.TestCase):
     
@@ -103,21 +103,21 @@ class TestIA_tourner(unittest.TestCase):
         self.assertEqual(self.ia.robot.new_orientation,self.robot2.new_orientation)
         
 
-"""class TestIA_eviter(unittest.TestCase):
+class TestIA_eviter(unittest.TestCase):
 
     def setUp(self):
         
         #self.capteur = self.Capteur()
-        self.robot2 = self.Robot(cs.RAYON_DES_ROUES_CM,cs.RAYON_ROBOT_CM, self.capteur,cs.VITESSE_MAX_DEG_PAR_SEC)
+        self.robot2 = self.Robot(cs.RAYON_DES_ROUES_CM,cs.RAYON_ROBOT_CM,cs.VITESSE_MAX_DEG_PAR_SEC)
         self.ia = self.IA_tourner(self.robot2)
         
-    def test_init(self):
+    """def test_init(self):
         
         
         self.assertEqual() #pour le capteur
         self.assertEqual() # pour le robot 
-
     """
+    
 if __name__ == '__main__':
         import doctest
         doctest.testmod()

@@ -6,7 +6,7 @@ from Code.affichage import Graphique as gr
 from Code.simulation  import Terrain as ter
 from Code.simulation import Robot as rb
 import tkinter as tk
-import time
+from time import time as time
 #cree les obstacles
 obstacle4 = obs.Obstacle(1,15,15)
 liste_obstacle = [obstacle4]
