@@ -31,12 +31,8 @@ class IA(Thread):
 				self.ia_actuel=0
 				self.encours=False
 				return
-			if self.list_ia[self.ia_actuel]==IA_avancer(self.robot):
-				self.list_ia[self.ia_actuel].start(0.5)
-			if self.list_ia[self.ia_actuel]==IA_tourner(self.robot):
-				self.list_ia[self.ia_actuel].start(90)
-			if self.list_ia[self.ia_actuel]==IA_eviter(self.robot,IA_avancer,IA_tourner):
-				self.list_ia[self.ia_actuel].start(5)
+			self.list_ia[self.ia_actuel].start()
+			
 		else:
 			self.list_ia[self.ia_actuel].step()
 			
@@ -44,19 +40,20 @@ class IA(Thread):
 
 
 class IA_avancer :
-	def __init__ (self, robot) :
+	def __init__ (self, robot,d_voulue) :
 		"""
 		:param robot : Robot utilisé
+		:param d_voulue : ditance voulue à effectuer en m
 		"""
 		self.robot = robot
 		self.v=0
 		self.new_orientation=0
 		self.arret=False	
 		self.d=0
-		self.d_voulue=0
-	def start(self,d_voulue):
+		self.d_voulue=d_voulue
+		self.t0=0
+	def start(self):
 		"""
-		:param d_voulue : ditance voulue à effectuer en m
 		"""
 		self.t0=time.time()
 		self.d=0
@@ -84,7 +81,7 @@ class IA_avancer :
 		self.robot.new_orientation=0
 
 class IA_tourner:
-	def __init__(self, robot) :
+	def __init__(self, robot,a_voulue) :
 		"""
 		:param robot : Robot utilisé
 		"""
@@ -93,27 +90,26 @@ class IA_tourner:
 		self.robot.new_orientation=0
 		self.arret=False
 		self.a=0
-		self.a_voulu=0
+		self.a_voulu=a_voulue
 	
-	def start(self,a_voulu):
+	def start(self):
 		"""
 		:param a_voulu : angle voulu à effectuer en deg
 		"""
-		self.t0=time()
+		self.t0=time.time()
 		self.a=0
-		self.a_voulu=a_voulu
 		self.robot.setMotorDps(cs.V_ANGULAIRE_G,0)
 		self.fonctionne=True
 		self.arret=False
-		self.robot.v=cs.RAYON_DES_ROUES/2*(cs.V_ANGULAIRE_G+0)
-		self.robot.new_orientation=cs.RAYON_DES_ROUES/cs.RAYON_ROBOT_CM*(cs.V_ANGULAIRE_G-0)
+		self.robot.v=cs.RAYON_DES_ROUES_CM/2*(cs.V_ANGULAIRE_G+0)
+		self.robot.new_orientation=cs.RAYON_DES_ROUES_CM/cs.RAYON_ROBOT_CM*(cs.V_ANGULAIRE_G-0)
 		
 
 	def step(self):
 		if self.arret:
 			return
 		if (self.a<self.a_voulu):
-			duree=time()-self.t0
+			duree=time.time()-self.t0
 			self.a+=duree*cs.V_ANGULAIRE_G
 		else:
 			self.stop()
@@ -127,7 +123,7 @@ class IA_tourner:
 		self.arret=True
 
 class IA_eviter:
-	def __init__ (self,robot,IA_avancer,IA_tourner) :
+	def __init__ (self,robot,IA_avancer,IA_tourner,d_evitement) :
 		"""
 		:param robot : Robot utilisé
 		"""
@@ -135,13 +131,13 @@ class IA_eviter:
 		self.avancer=IA_avancer
 		self.tourner=IA_tourner
 		self.arret=False
+		self.d_evitement=d_evitement
 
 	
-	def start(self,d_evitement):
+	def start(self):
 		"""
 		:param d_evitement : distance voulue entre l'obstacle et le robot lors de l'évitement
 		"""
-		self.d_evitement=d_evitement
 		self.avancer.start(cs.WIDTH)
 
 	
