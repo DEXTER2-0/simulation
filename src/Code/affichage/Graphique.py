@@ -1,4 +1,4 @@
-from Code.simulation import Simulation as simu
+"""from Code.simulation import Simulation as simu
 from Code.simulation import Robot as rb 
 from Code.simulation import constantes as cs
 
@@ -19,8 +19,8 @@ import tkinter as tk
 class Graphique(Thread) : 
     def __init__ (self,canvas, simulation):
         """
-        Prend une simulation et une fenetre graphique de type Canvas en parametre
-        """
+""" #Prend une simulation et une fenetre graphique de type Canvas en parametre
+       """ """
         super(Graphique,self).__init__()
         self.canvas = canvas
         self.simulation = simulation
@@ -36,13 +36,14 @@ class Graphique(Thread) :
 
 
     def placer_robot_milieu(self):
-        """Les coordonnées (Permet de placer le robot au milieu de la fenetre)"""
+        """"""#Les coordonnées (Permet de placer le robot au milieu de la fenetre)
+""""""
         self.simulation.pos_x = self.simulation.terrain.WIDTH_MAX/2
         self.simulation.pos_y = self.simulation.terrain.HEIGHT_MAX/2
     def run(self):
          """
-         Boucle de la simulation
-         """
+"""#Boucle de la simulation"""
+"""
          self.encours=True
          while self.encours:
              self.update_graph()
@@ -66,3 +67,4 @@ class Graphique(Thread) :
         self.canvas.coords(self.orientation,self.simulation.pos_x,self.simulation.pos_y, self.simulation.pos_x+cos(self.simulation.angle)*15, self.simulation.pos_y+sin(self.simulation.angle)*15)
         
     
+"""
