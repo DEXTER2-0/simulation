@@ -5,7 +5,7 @@ from Code.ia  import IA as ia
 from Code.affichage import affichage as af
 from Code.simulation  import Terrain as ter
 from Code.simulation import Robot as rb
-import pygame
+
 from time import time as time
 #cree les obstacles
 obstacle4 = obs.Obstacle(1,15,15)

@@ -3,6 +3,7 @@ import time
 from math import *
 import pygame 
 import os
+from Code.simulation import Simulation 
 
 #colors 
 BLACK = (0, 0, 0, 255)
@@ -21,8 +22,9 @@ class Affichage(Thread):
 		super(Affichage, self).__init__()
 		self.simulation = simulation
 		pygame.init()
-		self._trace = pygame.surface.Surface((simulation.terrain.WIDTH_MAX , simulation.terrain.HEIGHT_MAX))
-		self._screen = pygame.display.set_mode((simulation.terrain.WIDTH_MAX , simulation.terrain.HEIGHT_MAX))
+		self.terrain = self.simulation.terrain
+		self._trace = pygame.surface.Surface((self.terrain.WIDTH_MAX , self.terrain.HEIGHT_MAX))
+		self._screen = pygame.display.set_mode((self.terrain.WIDTH_MAX , self.terrain.HEIGHT_MAX))
 		self._screen.fill((255, 255, 255))
 		self._trace.fill((255, 255, 255))
 		self.fps = fps 
