@@ -38,7 +38,9 @@ class Simulation(Thread) :
     
 
 
-
+    def getangle(self):
+        return self.angle
+    
     def capterDistance(self,robot):
       Distance=0
       Vect0=(cos(angle))

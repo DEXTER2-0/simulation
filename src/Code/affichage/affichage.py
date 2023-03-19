@@ -3,7 +3,7 @@ import time
 from math import *
 import pygame 
 import os
-from Code.simulation import Simulation 
+
 
 #colors 
 BLACK = (0, 0, 0, 255)
@@ -16,13 +16,14 @@ AUTRE = (235, 152, 135)
 
 
 class Affichage(Thread):
-	def __init__(self, simulation,terrain,fps):
+	def __init__(self, simulation,terrain,robot,fps):
 		""" Constructeur de la classe affichage """
 
 		super(Affichage, self).__init__()
 		self.simulation = simulation
 		pygame.init()
 		self.terrain = terrain
+		self.robot=robot
 		self._trace = pygame.surface.Surface((self.terrain.WIDTH_MAX , self.terrain.HEIGHT_MAX))
 		self._screen = pygame.display.set_mode((self.terrain.WIDTH_MAX , self.terrain.HEIGHT_MAX))
 		self._screen.fill((255, 255, 255))
@@ -38,7 +39,7 @@ class Affichage(Thread):
 		self.encours= True
 
 		while self.encours : 
-			self.update()
+			self.update(self.fps)
 			time.sleep(1./self.fps)
 	
 
@@ -66,12 +67,12 @@ class Affichage(Thread):
 		self._screen.blit(self._trace, (0, 0))
 		#dessiner les obstacles : 
 
-		for obs in self.simulation.terrain.getListeObstacles():
-			pygame.draw.circle(self._trace, RED, (obs.x + self._screen.get_size()[0]/2, obs.y + self._screen.get_size()[0]/2), obs.rayon)
+		for obs in self.terrain.liste_obstacle:
+			pygame.draw.circle(self._trace, RED, (obs.x + self._screen.get_size()[0]/2, obs.y + self._screen.get_size()[0]/2), obs.longueur)
 			os.chdir(os.path.dirname(os.path.abspath(__file__)))
 			im1 = pygame.image.load("robot.png").convert_alpha()
-			im1 = pygame.transform.scale(im1, (im1.get_width()/20 * self.simulation.robot.rayonDuRobotCm, im1.get_height()/20 * self.simulation.robot.rayonDuRobotCm))
-			im2 = pygame.transform.rotate(im1, degrees(self.simulation.robot.angle))
+			im1 = pygame.transform.scale(im1, (im1.get_width()/20 * self.robot.rayonDuRobotCm, im1.get_height()/20 * self.robot.rayonDuRobotCm))
+			im2 = pygame.transform.rotate(im1, degrees(self.simulation.getangle()))
 			pygame.draw.circle(self._trace, GREEN, (self.simulation.pos_x + self._trace.get_size()[0]/2, self.simulation.pos_y + self._trace.get_size()[0]/2), 2)
 			pygame.display.update()
 			self.events()
