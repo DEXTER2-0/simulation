@@ -86,24 +86,27 @@ class Simulation(Thread) :
 
 
 	
-    def step(self):
+    def run(self):
       "le step de la simulation "
-      self.step = True
-      while self.step:   #tant qu'on run 
+      self.encours= True
+      while self.encours:   #tant qu'on run 
          self._lastTime = time.time()    # on sauvegarde l'instant du run 
-         time.sleep(self._dt)     #on fait un sleep de dt afin de calculer l'intervalle de temps 
+         time.sleep(self.dt)     #on fait un sleep de dt afin de calculer l'intervalle de temps 
          self._ITemps = time.time() - self._lastTime   #on calcule l'intervalle de temps 
          self.update() #on met à jour la simulation 
 		
     def stop(self):
-        self.stop = False
+        self.encours = False
             
 
 
     def update(self):
       """ met à jour la simulation selon le temps écoulé """
       if self.collision() == 1 :
-          self.robot=None
+          print("COOOOLISIONNNNN ")
+          self.stop()
+          return
+       #   self.robot=None
       if self.collision() == 0:
           self.nouvelle_position2(self.dt)
 		

@@ -2,8 +2,10 @@ from Code.simulation import Simulation  as simu
 from Code.simulation import constantes as cs
 from Code.simulation  import Obstacle as obs
 from Code.ia  import IA as ia
+from Code.affichage import Graphique as gr
 from Code.simulation  import Terrain as ter
 from Code.simulation import Robot as rb
+import tkinter as tk
 import time
 #cree les obstacles
 obstacle4 = obs.Obstacle(1,15,15)
@@ -16,10 +18,17 @@ Terrain=ter.Terrain(0,cs.WIDTH,0,cs.HEIGHT, liste_obstacle)
 IA_avance = ia.IA_avancer(Dexter,5)
 #commandes pour que le robot tourne
 IA_tourne = ia.IA_tourner(Dexter,50)
+fen = tk.Tk() 
+
 
 IA = ia.IA(Dexter,[IA_avance,IA_tourne],0.001)
+canvas_fenetre = tk.Canvas(fen, width = cs.WIDTH, height = cs.HEIGHT, bg = 'yellow') 
+canvas_fenetre.pack(fill="both", expand=True)
 
 Simu=simu.Simulation(Dexter,Terrain,0.001)
+graph = gr.Graphique(canvas_fenetre,Simu)
+graph.placer_robot_milieu(Simu)
 
 Simu.start()
+graph.start()
 IA.start()
