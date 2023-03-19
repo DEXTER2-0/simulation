@@ -16,13 +16,13 @@ AUTRE = (235, 152, 135)
 
 
 class Affichage(Thread):
-	def __init__(self, simulation,fps):
+	def __init__(self, simulation,terrain,fps):
 		""" Constructeur de la classe affichage """
 
 		super(Affichage, self).__init__()
 		self.simulation = simulation
 		pygame.init()
-		self.terrain = self.simulation.terrain
+		self.terrain = terrain
 		self._trace = pygame.surface.Surface((self.terrain.WIDTH_MAX , self.terrain.HEIGHT_MAX))
 		self._screen = pygame.display.set_mode((self.terrain.WIDTH_MAX , self.terrain.HEIGHT_MAX))
 		self._screen.fill((255, 255, 255))
