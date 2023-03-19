@@ -60,5 +60,5 @@ class Graphique(Thread) :
         # Récupere les coordonées du robot de la simu ainsi que son angle et les projettes graphiquement
         self.canvas.coords(self.objet,self.simulation.pos_x - self.robot.rayonDuRobotCm , self.simulation.pos_y - self.robot.rayonDuRobotCm,self.simulation.pos_x + self.robot.rayonDuRobotCm, self.simulation.pos_y + self.robot.rayonDuRobotCm)
         self.canvas.coords(self.orientation,self.simulation.pos_x,self.simulation.pos_y, self.simulation.pos_x+cos(self.simulation.angle)*15, self.simulation.pos_y+sin(self.simulation.angle)*15)
-
+        
     
