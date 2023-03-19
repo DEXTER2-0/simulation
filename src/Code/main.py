@@ -24,7 +24,7 @@ IA = ia.IA(Dexter,[IA_avance,IA_tourne],0.1)
 
 
 Simu=simu.Simulation(Dexter,Terrain,0.1)
-Affichage=af.Affichage(simu,30)
+Affichage=af.Affichage(simu,Terrain,30)
 
 
 Simu.start()
