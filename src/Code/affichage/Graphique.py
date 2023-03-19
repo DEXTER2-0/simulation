@@ -37,8 +37,8 @@ class Graphique(Thread) :
 
     def placer_robot_milieu(self,simulation):
         """Les coordonnées (Permet de placer le robot au milieu de la fenetre)"""
-        simulation.robot.pos_x = simulation.terrain.WIDTH_MAX/2
-        simulation.robot.pos_y = simulation.terrain.HEIGHT_MAX/2
+        simulation.pos_x = simulation.terrain.WIDTH_MAX/2
+        simulation.pos_y = simulation.terrain.HEIGHT_MAX/2
     def run(self):
          """
          Boucle de la simulation
