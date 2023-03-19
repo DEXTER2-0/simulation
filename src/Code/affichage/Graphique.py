@@ -37,26 +37,27 @@ class Graphique(Thread) :
 
     def placer_robot_milieu(self,simulation):
         """Les coordonnées (Permet de placer le robot au milieu de la fenetre)"""
-        simulation.pos_x = simulation.terrain.WIDTH_MAX/2
-        simulation.pos_y = simulation.terrain.HEIGHT_MAX/2
+        simulation.robot.pos_x = simulation.terrain.WIDTH_MAX/2
+        simulation.robot.pos_y = simulation.terrain.HEIGHT_MAX/2
     def run(self):
          """
          Boucle de la simulation
          """
          self.encours=True
          while self.encours:
-             self.update()
+             self.update_graph()
+             self.update_fenetre(self.canvas)
              time.sleep(self.simulation.dt)
-             print(ici)
 
 
     def stop(self):
         self.encours=False
 
+    def update_fenetre(self):
+        self.canvas.update()
 
 
-
-    def update(self):
+    def update_graph(self):
         # Récupere les coordonées du robot de la simu ainsi que son angle et les projettes graphiquement
         self.canvas.coords(self.objet,self.simulation.pos_x - self.robot.rayonDuRobotCm , self.simulation.pos_y - self.robot.rayonDuRobotCm,self.simulation.pos_x + self.robot.rayonDuRobotCm, self.simulation.pos_y + self.robot.rayonDuRobotCm)
         self.canvas.coords(self.orientation,self.simulation.pos_x,self.simulation.pos_y, self.simulation.pos_x+cos(self.simulation.angle)*15, self.simulation.pos_y+sin(self.simulation.angle)*15)
