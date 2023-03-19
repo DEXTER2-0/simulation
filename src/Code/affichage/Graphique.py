@@ -47,11 +47,14 @@ class Graphique(Thread) :
          while self.encours:
              self.update_graph()
              self.update_fenetre(self.canvas)
+             print("ici")
              time.sleep(self.simulation.dt)
 
 
     def stop(self):
         self.encours=False
+    def get_encours(self):
+        return self.encours
 
     def update_fenetre(self):
         self.canvas.update()

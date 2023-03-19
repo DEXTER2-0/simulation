@@ -21,15 +21,17 @@ IA_tourne = ia.IA_tourner(Dexter,50)
 fen = tk.Tk() 
 
 
-IA = ia.IA(Dexter,[IA_avance,IA_tourne],0.001)
+IA = ia.IA(Dexter,[IA_avance,IA_tourne],0.1)
 canvas_fenetre = tk.Canvas(fen, width = cs.WIDTH, height = cs.HEIGHT, bg = 'yellow') 
 canvas_fenetre.pack(fill="both", expand=True)
 
-Simu=simu.Simulation(Dexter,Terrain,0.001)
+Simu=simu.Simulation(Dexter,Terrain,0.1)
 graph = gr.Graphique(canvas_fenetre,Simu)
 graph.placer_robot_milieu(Simu)
-
-Simu.start()
 graph.start()
+Simu.start()
+
 IA.start()
-canvas_fenetre.update()
+while graph.get_encours():
+    canvas_fenetre.update()
+    time.sleep(0.1)
