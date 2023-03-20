@@ -75,7 +75,7 @@ class Affichage(Thread):
 
 	       os.chdir(os.path.dirname(os.path.abspath(__file__)))
 	       im1 = pygame.image.load("robot.png").convert_alpha()
-	       im1 = pygame.transform.scale(image_pas_tournee, (image_pas_tournee.get_width()/20 * robot.rayonDuRobotCm, im1.get_height()/20 * robot.rayonDuRobotCm))
+	       im1 = pygame.transform.scale(image_pas_tournee, (image_pas_tournee.get_width()/15 * robot.rayonDuRobotCm, im1.get_height()/15 * robot.rayonDuRobotCm))
 
 	       im2 = pygame.transform.rotate(im1, degrees(robot.angle))
 
