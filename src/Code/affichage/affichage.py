@@ -73,15 +73,15 @@ class Affichage(Thread):
 
 	       #on dessine le robot : 
 
-	       os.chdir(os.path.dirname(os.path.abspath(__file__)))
-	       im1 = pygame.image.load("robot.png").convert_alpha()
-	       im1 = pygame.transform.scale(image_pas_tournee, (image_pas_tournee.get_width()/15 * robot.rayonDuRobotCm, im1.get_height()/15 * robot.rayonDuRobotCm))
+#	       os.chdir(os.path.dirname(os.path.abspath(__file__)))
+#	       im1 = pygame.image.load("robot.png").convert_alpha()
+#	       im1 = pygame.transform.scale(image_pas_tournee, (image_pas_tournee.get_width()/15 * robot.rayonDuRobotCm, im1.get_height()/15 * robot.rayonDuRobotCm))
 
-	       im2 = pygame.transform.rotate(im1, degrees(robot.angle))
+#	       im2 = pygame.transform.rotate(im1, degrees(robot.angle))
 
 
 	       #affichage du robot : 
-	       pygame.draw.circle(self._trace, GREEN, (robot.x + self._trace.get_size()[0]/2, robot.y + self._trace.get_size()[0]/2), 2)
+	       pygame.draw.circle(self._trace, GREEN, (self.simulation.pos_x + self._trace.get_size()[0]/2, self.simulation.pos_y + self._trace.get_size()[0]/2), 2)
 
 	       #mettre a jour l'ecran 
 
