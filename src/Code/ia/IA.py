@@ -10,7 +10,7 @@ class IA(Thread):
 		super(IA, self).__init__()
 		self.list_ia=list_ia
 		self.dt = dt
-		self.ia_actuel=0
+		self.ia_actuel=-1
 		self.robot=robot
 
 	def run(self):
@@ -25,7 +25,7 @@ class IA(Thread):
 		""" met à jour la simulation selon le temps écoulé """
 		if self.list_ia[self.ia_actuel].arret:
 			self.ia_actuel+=1
-			if self.ia_actuel>= 0 and self.ia_actuel <=len(self.list_ia)-1:
+			if self.ia_actuel>= 0 and self.ia_actuel <len(self.list_ia):
 				self.list_ia[self.ia_actuel].stop()
 			if self.ia_actuel>=len(self.list_ia):
 				self.ia_actuel=0
@@ -57,7 +57,6 @@ class IA_avancer :
 		"""
 		self.t0=time.time()
 		self.d=0
-		self.d_voulue=d_voulue
 		self.robot.setMotorDps(cs.V_ANGULAIRE_G,cs.V_ANGULAIRE_D)
 		self.fonctionne=True
 		self.arret=False
@@ -68,8 +67,8 @@ class IA_avancer :
 		if self.arret:
 			return
 		if (self.d<self.d_voulue):
-			duree=time.time()-self.t0
-			self.d+=duree*cs.V_ANGULAIRE_G*cs.RAYON_ROBOT_CM*360 #vitesse convertie en m/s
+			self.dt=time.time()-self.t0
+			self.d+=self.dt*cs.V_ANGULAIRE_G*cs.RAYON_ROBOT_CM*360 #vitesse convertie en m/s
 		else:
 			self.stop()
 	
@@ -91,6 +90,7 @@ class IA_tourner:
 		self.arret=False
 		self.a=0
 		self.a_voulu=a_voulue
+		self.t0 = 0
 	
 	def start(self):
 		"""
@@ -109,8 +109,8 @@ class IA_tourner:
 		if self.arret:
 			return
 		if (self.a<self.a_voulu):
-			duree=time.time()-self.t0
-			self.a+=duree*cs.V_ANGULAIRE_G
+			self.dt=time.time()-self.t0
+			self.a+=self.dt*cs.V_ANGULAIRE_G
 		else:
 			self.stop()
 	

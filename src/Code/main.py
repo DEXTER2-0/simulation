@@ -13,14 +13,14 @@ liste_obstacle = [obstacle4]
 #initialise le robot
 Dexter=rb.Robot(cs.RAYON_DES_ROUES_CM,cs.RAYON_ROBOT_CM,cs.VITESSE_MAX_DEG_PAR_SEC)
 #initialise le terrain
-Terrain=ter.Terrain(0,cs.WIDTH,0,cs.HEIGHT, liste_obstacle)
+Terrain=ter.Terrain(-600,cs.WIDTH,-600,cs.HEIGHT, liste_obstacle)
 #commandes pour que le robot avance
-IA_avance = ia.IA_avancer(Dexter,5)
+IA_avance = ia.IA_avancer(Dexter,5000000000)
 #commandes pour que le robot tourne
-IA_tourne = ia.IA_tourner(Dexter,50)
+IA_tourne = ia.IA_tourner(Dexter,120)
 
 
-IA = ia.IA(Dexter,[IA_avance,IA_tourne],0.1)
+IA = ia.IA(Dexter,[IA_tourne],0.1)
 
 
 Simu=simu.Simulation(Dexter,Terrain,0.1)

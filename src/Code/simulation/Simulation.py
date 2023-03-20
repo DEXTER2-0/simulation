@@ -11,7 +11,7 @@ from threading import Thread
 
 
 class Simulation(Thread) : 
-    def __init__ (self, robot,terrain,dt,pos_x=0,pos_y=0,r=0,angle=0) :
+    def __init__ (self, robot,terrain,dt,pos_x=200,pos_y=30,r=0,angle=0) :
       """     
 	:param robot : Robot utilisé
 	:param terrain : Terrain utilisé
@@ -45,7 +45,7 @@ class Simulation(Thread) :
       Distance=0
       Vect0=(cos(angle))
       Vect1=sin(-angle)
-      RayonCoord=(pos_x + Vect0 * robot.rayonDuRobotCm,pos_y + Vect1 * robot.rayonDuRobotCm)
+      RayonCoord=(self.pos_x + Vect0 * robot.rayonDuRobotCm,self.pos_y + Vect1 * robot.rayonDuRobotCm)
       for i in range(0,len(self.terrain.getListeObstacles())):
             if self.terrain.getObstacle(i).Capte(RayonCoord[0] , RayonCoord[1]):
                self.SensorOn= True
@@ -59,13 +59,16 @@ class Simulation(Thread) :
         """
         if(self.robot == None):
               return False
-        if (self.pos_x<=0) or (self.pos_y<=0) or (self.pos_x>=cs.WIDTH) or (self.pos_y>=cs.HEIGHT):
-            logging.debug("Collision détectée : arret d'urgence")
+        if (self.pos_x<=self.terrain.WIDTH_MIN) or (self.pos_y<=self.terrain.HEIGHT_MIN) or (self.pos_x>=self.terrain.WIDTH_MAX) or (self.pos_y>=self.terrain.HEIGHT_MAX):
+            print("Collision détectée : arret d'urgence")
+            print("mur")
             return True
         for obstacle in self.terrain.liste_obstacle: #pour chaque obstacle
             d=np.sqrt((self.pos_x-obstacle.x)**2+(self.pos_y-obstacle.y)**2) #distance euclidienne entre le robot et l'obstacle
             if(d<=(self.robot.rayonDuRobotCm+obstacle.longueur)): # collision de deux cercles
-                logging.debug("Collision détectée : arret d'urgence")
+                print("Collision détectée : arret d'urgence")
+                print("la valeur d = ",d)
+                print("Obstacles")
                 return True
             #elif (d<=(self.ia.robot.rayon)): # collision d'un cercle et d'un rectangle A COMPLETER
              #   self.ia.robot.arret_urgence()
@@ -110,7 +113,9 @@ class Simulation(Thread) :
           return 
        #   self.robot=None
       else :
-          self.nouvelle_position2(self.dt)
+          self.nouvelle_position2(self._ITemps)
+          print("posx=",self.pos_x)
+          print("pos_y=",self.pos_y)
 		
 
 
