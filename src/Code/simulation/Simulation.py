@@ -11,7 +11,7 @@ from threading import Thread
 
 
 class Simulation(Thread) : 
-    def __init__ (self, robot,terrain,dt,pos_x=400,pos_y=400,r=0,angle=0) :
+    def __init__ (self, robot,terrain,dt,pos_x=0,pos_y=0,r=0,angle=0) :
       """     
 	:param robot : Robot utilisé
 	:param terrain : Terrain utilisé

@@ -8,7 +8,7 @@ from Code.simulation import Robot as rb
 
 from time import time as time
 #cree les obstacles
-obstacle4 = obs.Obstacle(50,15,15)
+obstacle4 = obs.Obstacle(10,100,100)
 liste_obstacle = [obstacle4]
 #initialise le robot
 Dexter=rb.Robot(cs.RAYON_DES_ROUES_CM,cs.RAYON_ROBOT_CM,cs.VITESSE_MAX_DEG_PAR_SEC)

@@ -67,6 +67,7 @@ class Affichage(Thread):
 		self._screen.blit(self._trace, (0, 0))
 		#dessiner les obstacles : 
 
+
 		for obs in self.terrain.liste_obstacle:
 			pygame.draw.circle(self._trace, RED, (obs.x + self._screen.get_size()[0]/2, obs.y + self._screen.get_size()[0]/2), obs.longueur)
 			os.chdir(os.path.dirname(os.path.abspath(__file__)))
@@ -77,9 +78,5 @@ class Affichage(Thread):
 			pygame.display.update()
 			self.events()
 
+		
 
-
-#on dessine le robot :
-#affichage du robot :
-			#mettre a jour l'ecran 
-#femeture de la fenetre :
