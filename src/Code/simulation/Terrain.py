@@ -12,4 +12,15 @@ class Terrain:
             self.HEIGHT_MIN = HEIGHT_MIN
             self.HEIGHT_MAX = HEIGHT_MAX
             self.liste_obstacle = liste_obstacle
-            
+	
+
+
+	def getListeObstacles(self):
+		return liste_obstacle
+
+
+
+
+	def getObstacle(self,i):
+		return 
+
