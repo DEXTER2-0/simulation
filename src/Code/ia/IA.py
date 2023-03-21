@@ -60,8 +60,8 @@ class IA_avancer :
 		self.robot.setMotorDps(cs.V_ANGULAIRE_G,cs.V_ANGULAIRE_D)
 		self.fonctionne=True
 		self.arret=False
-		self.robot.v=cs.RAYON_DES_ROUES_CM/2*(cs.V_ANGULAIRE_G+cs.V_ANGULAIRE_D)
-		self.robot.new_orientation=cs.RAYON_DES_ROUES_CM/cs.RAYON_ROBOT_CM*(cs.V_ANGULAIRE_G-cs.V_ANGULAIRE_D)
+		self.robot.v=(cs.RAYON_DES_ROUES_CM/2)*(cs.V_ANGULAIRE_G+cs.V_ANGULAIRE_D)
+		self.robot.new_orientation=(cs.RAYON_DES_ROUES_CM/cs.RAYON_ROBOT_CM)*(cs.V_ANGULAIRE_G-cs.V_ANGULAIRE_D)
 
 	def step(self):
 		if self.arret:
