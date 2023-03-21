@@ -43,8 +43,8 @@ class Simulation(Thread) :
     
     def capterDistance(self,robot):
       Distance=0
-      Vect0=(cos(angle))
-      Vect1=sin(-angle)
+      Vect0=(cos(self.angle))
+      Vect1=sin(-self.angle)
       RayonCoord=(self.pos_x + Vect0 * robot.rayonDuRobotCm,self.pos_y + Vect1 * robot.rayonDuRobotCm)
       for i in range(0,len(self.terrain.getListeObstacles())):
             if self.terrain.getObstacle(i).Capte(RayonCoord[0] , RayonCoord[1]):
@@ -74,10 +74,26 @@ class Simulation(Thread) :
              #   self.ia.robot.arret_urgence()
         return False
 
+    def getPosRoueGauche(self):
+        """
+        :returns: un tuple contenant la position absolue de la roue gauche
+        """
+        return (cos(self.angle + pi/2) * self.robot.rayonDuRobotCm + self.pos_x, sin(self.angle + pi/2) * self.robot.rayonDuRobotCm + self.pos_y)
 
-
-
-
+    def getPosRoueDroite(self):
+        """
+        :returns: un tuple contenant la position absolue de la roue droite
+        """
+        return (cos(self.angle - pi/2) * self.r + self.pos_x, sin(self.angle - pi/2) * self.r + self.pos_y)
+    def getPosRoueX(self):
+        return self.getPosRoueGauche()[0]
+    def getPosRoueY(self):
+        return self.getPosRoueGauche()[1]
+    def getPosRoueDroiteX(self):
+        return self.getPosRoueDroite()[0]
+    def getPosRoueDroiteY(self):
+        return self.getPosRoueDroite()[1]
+    
     def nouvelle_position2(self,duree):
         """
 	:param duree : duree passee depuis le dernier calcul de la position
@@ -116,6 +132,7 @@ class Simulation(Thread) :
           self.nouvelle_position2(self._ITemps)
           print("posx=",self.pos_x)
           print("pos_y=",self.pos_y)
-		
-
-
+          print("posx roue gauche= ",self.getPosRoueX())
+          print("posy roue gauche= ",self.getPosRoueY())
+          print("posx roue droite= ",self.getPosRoueDroiteX()) 
+          print("posy roue droite= ",self.getPosRoueDroiteY())

@@ -20,10 +20,10 @@ IA_avance = ia.IA_avancer(Dexter,5000000000)
 IA_tourne = ia.IA_tourner(Dexter,120)
 
 
-IA = ia.IA(Dexter,[IA_tourne],0.1)
+IA = ia.IA(Dexter,[IA_tourne],0.01)
 
 
-Simu=simu.Simulation(Dexter,Terrain,0.1)
+Simu=simu.Simulation(Dexter,Terrain,0.01)
 Affichage=af.Affichage(Simu,Terrain,Dexter,30)
 
 
