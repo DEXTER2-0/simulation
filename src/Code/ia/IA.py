@@ -109,10 +109,10 @@ class IA_tourner:
 	def step(self):
 		if self.arret:
 			return
-		if (self.a<=self.a_voulu-10):
+		if (self.a<=(self.a_voulu/2)-10):
 			self.dt=time.time()-self.t0
 			self.simulation.angle+=radians(self.dt*cs.V_ANGULAIRE_G)
-			self.a+=self.dt*cs.V_ANGULAIRE_G
+			self.a+=(self.dt*cs.V_ANGULAIRE_G)
 		else:
 			self.stop()
 			print("ANNNNNGGGLGLLLLLEEEEEE =",self.simulation.angle)

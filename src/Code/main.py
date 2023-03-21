@@ -9,7 +9,7 @@ from Code.simulation import Robot as rb
 
 from time import time as time
 #cree les obstacles
-obstacle4 = obs.Obstacle(10,50,0)
+obstacle4 = obs.Obstacle(10,20,40)
 liste_obstacle = [obstacle4]
 
 #initialise le robot
@@ -27,12 +27,12 @@ IA_avance = ia.IA_avancer(Dexter,5000000)
 
 
 Simu=simu.Simulation(Dexter,Terrain,0.01)
-IA_tourne = ia.IA_tourner(Dexter,45,Simu)
+IA_tourne = ia.IA_tourner(Dexter,90,Simu)
 Affichage=af.Affichage(Simu,Terrain,Dexter,260)
-#IA = ia.IA(Dexter,[IA_tourne],0.01)
+#IA = ia.IA(Dexter,[IA_avance],0.01)
 IA = ia.IA(Dexter,[IA_avance,IA_tourne,IA_avance,IA_tourne,IA_avance,IA_tourne,IA_avance],0.01)
 
-IA = ia.IA(Dexter,[IA_evite],0.01)
+#IA = ia.IA(Dexter,[IA_evite],0.01)
 
 Simu.start()
 Affichage.start()
