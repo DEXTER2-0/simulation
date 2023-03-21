@@ -6,9 +6,8 @@ import time as time
 from threading import Thread
 
 class IA(Thread):
-	def __init__(self, Traducteur,robot,list_ia,dt):
+	def __init__(self,robot,list_ia,dt):
 		super(IA, self).__init__()
-		self.Traducteur=Traducteur
 		self.list_ia=list_ia
 		self.dt = dt
 		self.ia_actuel=-1
@@ -81,15 +80,17 @@ class IA_avancer :
 		self.robot.new_orientation=0
 
 class IA_tourner:
-	def __init__(self, robot,a_voulue) :
+	def __init__(self, robot,a_voulue,simulation) :
 		"""
 		:param robot : Robot utilisé
 		"""
+		self.simulation=simulation
 		self.robot = robot
 		self.robot.v=0
 		self.robot.new_orientation=0
 		self.arret=False
 		self.a=0
+		self.simulation.angle=0
 		self.a_voulu=a_voulue
 		self.t0 = 0
 	
@@ -98,22 +99,25 @@ class IA_tourner:
 		:param a_voulu : angle voulu à effectuer en deg
 		"""
 		self.t0=time.time()
-		self.a=self.Traducteur.getangle()
 		self.robot.setMotorDps(cs.V_ANGULAIRE_G,-cs.V_ANGULAIRE_D)
 		self.fonctionne=True
 		self.arret=False
 		self.robot.v=(cs.RAYON_DES_ROUES_CM/2)*(cs.V_ANGULAIRE_G+0)
-		self.robot.new_orientation=(cs.RAYON_DES_ROUES_CM/cs.RAYON_ROBOT_CM)*(cs.V_ANGULAIRE_G-0)
+		self.robot.new_orientation=(cs.RAYON_DES_ROUES_CM/cs.RAYON_ROBOT_CM)*(cs.V_ANGULAIRE_G)
 		
 
 	def step(self):
 		if self.arret:
 			return
-		if (self.a<self.a_voulu):
+		if (self.a<=self.a_voulu-10):
 			self.dt=time.time()-self.t0
+			self.simulation.angle+=radians(self.dt*cs.V_ANGULAIRE_G)
 			self.a+=self.dt*cs.V_ANGULAIRE_G
 		else:
 			self.stop()
+			print("ANNNNNGGGLGLLLLLEEEEEE =",self.simulation.angle)
+			print("orientation : ",self.robot.new_orientation)
+			self.a=0
 	
 	def stop(self):
 		self.robot.setMotorDps(0,0)
@@ -139,16 +143,16 @@ class IA_eviter:
 		"""
 		:param d_evitement : distance voulue entre l'obstacle et le robot lors de l'évitement
 		"""
-		self.avancer.start(cs.WIDTH)
+		self.avancer.start()
 
 	
 	def step(self):
 		if(self.robot.capteur<=self.d_evitement) and (self.tourner.arret):
-			self.tourner.start(pi/2)
+			self.tourner.start()
 		elif(self.robot.capteur<=self.d_evitement) and (self.tourner.fonctionne):
 			self.tourner.step()
 		elif(self.avancer.arret) and (self.tourner.arret):
-			self.avancer.start(cs.WIDTH)
+			self.avancer.start()
 		else:
 			self.avancer.step()
 

@@ -11,7 +11,7 @@ from threading import Thread
 
 
 class Simulation(Thread) : 
-    def __init__ (self, robot,terrain,dt,pos_x=200,pos_y=30,r=0,angle=0) :
+    def __init__ (self, robot,terrain,dt,pos_x=0,pos_y=0,r=0,angle=0) :
       """     
 	:param robot : Robot utilisé
 	:param terrain : Terrain utilisé
@@ -24,7 +24,7 @@ class Simulation(Thread) :
       self.pos_x=pos_x
       self.pos_y=pos_y
       self.r=r
-      self.angle = angle
+      self.angle = radians(angle)
       self.capteurOn = False
 	      #coordonnées du dernier point capté par le capteur de distance 
       self.lastX = 0  
@@ -130,10 +130,10 @@ class Simulation(Thread) :
        #   self.robot=None
       else :
           self.nouvelle_position2(self._ITemps)
-          print("posx=",self.pos_x)
-          print("pos_y=",self.pos_y)
-          print("posx roue gauche= ",self.getPosRoueX())
-          print("posy roue gauche= ",self.getPosRoueY())
-          print("posx roue droite= ",self.getPosRoueDroiteX()) 
-          print("posy roue droite= ",self.getPosRoueDroiteY())
+          #print("posx=",self.pos_x)
+          #print("pos_y=",self.pos_y)
+          #print("posx roue gauche= ",self.getPosRoueX())
+          #print("posy roue gauche= ",self.getPosRoueY())
+          #print("posx roue droite= ",self.getPosRoueDroiteX()) 
+          #print("posy roue droite= ",self.getPosRoueDroiteY())
           print("angle = ",self.angle)
