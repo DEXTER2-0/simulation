@@ -101,8 +101,8 @@ class IA_tourner:
 		self.robot.setMotorDps(cs.V_ANGULAIRE_G,0)
 		self.fonctionne=True
 		self.arret=False
-		self.robot.v=cs.RAYON_DES_ROUES_CM/2*(cs.V_ANGULAIRE_G+0)
-		self.robot.new_orientation=cs.RAYON_DES_ROUES_CM/cs.RAYON_ROBOT_CM*(cs.V_ANGULAIRE_G-0)
+		self.robot.v=(cs.RAYON_DES_ROUES_CM/2)*(cs.V_ANGULAIRE_G+0)
+		self.robot.new_orientation=(cs.RAYON_DES_ROUES_CM/cs.RAYON_ROBOT_CM)*(cs.V_ANGULAIRE_G-0)
 		
 
 	def step(self):
