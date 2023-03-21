@@ -6,8 +6,9 @@ import time as time
 from threading import Thread
 
 class IA(Thread):
-	def __init__(self, robot,list_ia,dt):
+	def __init__(self, Traducteur,robot,list_ia,dt):
 		super(IA, self).__init__()
+		self.Traducteur=Traducteur
 		self.list_ia=list_ia
 		self.dt = dt
 		self.ia_actuel=-1
@@ -97,8 +98,8 @@ class IA_tourner:
 		:param a_voulu : angle voulu à effectuer en deg
 		"""
 		self.t0=time.time()
-		self.a=0
-		self.robot.setMotorDps(cs.V_ANGULAIRE_G,0)
+		self.a=self.Traducteur.getangle()
+		self.robot.setMotorDps(cs.V_ANGULAIRE_G,-cs.V_ANGULAIRE_D)
 		self.fonctionne=True
 		self.arret=False
 		self.robot.v=(cs.RAYON_DES_ROUES_CM/2)*(cs.V_ANGULAIRE_G+0)

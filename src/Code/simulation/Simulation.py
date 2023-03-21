@@ -136,3 +136,4 @@ class Simulation(Thread) :
           print("posy roue gauche= ",self.getPosRoueY())
           print("posx roue droite= ",self.getPosRoueDroiteX()) 
           print("posy roue droite= ",self.getPosRoueDroiteY())
+          print("angle = ",self.angle)
