@@ -90,7 +90,6 @@ class IA_tourner:
 		self.robot.new_orientation=0
 		self.arret=False
 		self.a=0
-		self.simulation.angle=0
 		self.a_voulu=a_voulue
 		self.t0 = 0
 	
