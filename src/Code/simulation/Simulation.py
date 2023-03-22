@@ -11,7 +11,7 @@ from threading import Thread
 
 
 class Simulation(Thread) : 
-    def __init__ (self, robot,terrain,dt,pos_x=0,pos_y=0,r=0,angle=0) :
+    def __init__ (self, robot,terrain,dt,pos_x=200,pos_y=250,r=0,angle=0) :
       """     
 	:param robot : Robot utilisé
 	:param terrain : Terrain utilisé
@@ -62,6 +62,7 @@ class Simulation(Thread) :
         if (self.pos_x<=self.terrain.WIDTH_MIN) or (self.pos_y<=self.terrain.HEIGHT_MIN) or (self.pos_x>=self.terrain.WIDTH_MAX) or (self.pos_y>=self.terrain.HEIGHT_MAX):
             print("Collision détectée : arret d'urgence")
             print("mur")
+            print("cloisiooooooooooooooooon  $*$*$***",self.pos_x,self.pos_y)
             return True
         for obstacle in self.terrain.liste_obstacle: #pour chaque obstacle
             d=np.sqrt((self.pos_x-obstacle.x)**2+(self.pos_y-obstacle.y)**2) #distance euclidienne entre le robot et l'obstacle
@@ -94,7 +95,7 @@ class Simulation(Thread) :
     def getPosRoueDroiteY(self):
         return self.getPosRoueDroite()[1]
     
-    def nouvelle_position2(self,duree):
+    def nouvelle_position(self,duree):
         """
 	:param duree : duree passee depuis le dernier calcul de la position
         Doit etre appelé apres la methode bouger() pour pouvoir mettre a jours les 
@@ -129,7 +130,7 @@ class Simulation(Thread) :
           return 
        #   self.robot=None
       else :
-          self.nouvelle_position2(self._ITemps)
+          self.nouvelle_position(self._ITemps)
           #print("posx=",self.pos_x)
           #print("pos_y=",self.pos_y)
           #print("posx roue gauche= ",self.getPosRoueX())

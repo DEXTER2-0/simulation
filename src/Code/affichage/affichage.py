@@ -24,8 +24,8 @@ class Affichage(Thread):
 		pygame.init()
 		self.terrain = terrain
 		self.robot=robot
-		self._trace = pygame.surface.Surface((self.terrain.WIDTH_MAX , self.terrain.HEIGHT_MAX))
-		self._screen = pygame.display.set_mode((self.terrain.WIDTH_MAX , self.terrain.HEIGHT_MAX))
+		self._trace = pygame.surface.Surface(((self.terrain.WIDTH_MAX*2)+self.robot.rayonDuRobotCm*2 , (self.terrain.HEIGHT_MAX*2)+self.robot.rayonDuRobotCm*2))
+		self._screen = pygame.display.set_mode(((self.terrain.WIDTH_MAX*2)+self.robot.rayonDuRobotCm*2, (self.terrain.HEIGHT_MAX*2)+self.robot.rayonDuRobotCm*2))
 		self._screen.fill((255, 255, 255))
 		self._trace.fill((255, 255, 255))
 		self.fps = fps 
