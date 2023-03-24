@@ -60,8 +60,8 @@ class IA_avancer :
 		self.robot.setMotorDps(cs.V_ANGULAIRE_G,cs.V_ANGULAIRE_D)
 		self.fonctionne=True
 		self.arret=False
-		self.robot.v=(cs.RAYON_DES_ROUES_CM*0.01/2)*(cs.V_ANGULAIRE_G*(360/(2*pi))+cs.V_ANGULAIRE_D*(360/(2*pi)))
-		self.robot.new_orientation=(cs.RAYON_DES_ROUES_CM/cs.RAYON_ROBOT_CM)*((cs.V_ANGULAIRE_G*(360/(2/pi))-cs.V_ANGULAIRE_D*(360/(2*pi)))
+		self.robot.v=((cs.RAYON_DES_ROUES_CM*0.01)/2)*(cs.V_ANGULAIRE_G*(360/(2*pi))+cs.V_ANGULAIRE_D*(360/(2*pi)))
+		self.robot.new_orientation=(cs.RAYON_DES_ROUES_CM/cs.RAYON_ROBOT_CM)*(cs.V_ANGULAIRE_G*(360/(2*pi))-cs.V_ANGULAIRE_D*(360/(2*pi)))
 
 	def step(self):
 		if self.arret:
@@ -101,7 +101,7 @@ class IA_tourner:
 		self.robot.setMotorDps(cs.V_ANGULAIRE_G,-cs.V_ANGULAIRE_D)
 		self.fonctionne=True
 		self.arret=False
-		self.robot.v=(cs.RAYON_DES_ROUES_CM*0.01/2)*(cs.V_ANGULAIRE_G*(360/(2*pi))+0)
+		self.robot.v=((cs.RAYON_DES_ROUES_CM*0.01)/2)*(cs.V_ANGULAIRE_G*(360/(2*pi))+0)
 		self.robot.new_orientation=(cs.RAYON_DES_ROUES_CM/cs.RAYON_ROBOT_CM)*(cs.V_ANGULAIRE_G*(360/(2*pi)))
 		
 
