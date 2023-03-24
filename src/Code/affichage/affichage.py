@@ -2,7 +2,6 @@ from threading import Thread
 import time 
 from math import *
 import pygame 
-import os
 
 
 #colors 
@@ -71,7 +70,6 @@ class Affichage(Thread):
 
 		for obs in self.simulation.terrain.getListeObstacles():
 			pygame.draw.circle(self._trace, RED, (obs.x + self._screen.get_size()[0]/2, obs.y + self._screen.get_size()[0]/2), obs.longueur)
-		#os.chdir(os.path.dirname(os.path.abspath(__file__)))
 		#im1 = pygame.image.load("robot.png").convert_alpha()
 		#im1 = pygame.transform.scale(im1, (im1.get_width()/10 * self.robot.rayonDuRobotCm, im1.get_height()/10 * self.robot.rayonDuRobotCm))
 			#im2 = pygame.transform.rotate(im1, degrees(self.simulation.getangle()))
