@@ -108,7 +108,7 @@ class IA_tourner:
 	def step(self):
 		if self.arret:
 			return
-		if (self.a<=(self.a_voulu/2)-10):
+		if (self.a<=self.a_voulu):
 			self.dt=time.time()-self.t0
 			self.a+=self.trad.getangle(dt)
 		else:
