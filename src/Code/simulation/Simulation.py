@@ -2,7 +2,6 @@ from Code.simulation import constantes as cs
 import time as time #pour pouvoir controler le temps de la boucle while True
 import numpy as np
 from math import *
-import logging
 from threading import Thread
 
 class Simulation(Thread) : 
