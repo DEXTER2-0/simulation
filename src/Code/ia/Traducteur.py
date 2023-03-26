@@ -6,6 +6,7 @@ class Traducteur :
         self.robot_reel = robot_reel
         self.robot_sim = robot_sim
 
+
 class Traducteur_Simulation:
     def __init__(self,simulation,robot):
         self.simulation=simulation
@@ -16,6 +17,9 @@ class Traducteur_Simulation:
 
     def getangle(self,dt):
         return dt*cs.cs.V_ANGULAIRE_G
+    
+    def resetangle(self):
+        self.angle=0
 
 
 class Traducteur_Realite:
@@ -27,3 +31,6 @@ class Traducteur_Realite:
     
     def getangle(self,dt):
         return dt*self.robot.get_motor_position()
+    
+    def resetangle(self):
+        self.robot.offset_motor_encoder(port, offset)
