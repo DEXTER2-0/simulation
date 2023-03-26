@@ -41,6 +41,7 @@ class Traducteur_Realite:
         return dt*self.robot.get_motor_position()*360*#taille de la roue en m
     
     def resetdistance(self,dt):
+        self.robot.offset_motor_encoder(port, offset)
 
     def getangle(self,dt):
         return dt*self.robot.get_motor_position()
