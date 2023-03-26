@@ -1,4 +1,5 @@
 from Code.simulation import constantes as cs
+from Code.simulation.Robot import Robot
 
 class Traducteur :
     def __init__ (self,simulation,robot_reel,robot_sim):
