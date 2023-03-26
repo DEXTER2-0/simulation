@@ -47,6 +47,8 @@ class IA_avancer :
 		:param d_voulue : ditance voulue à effectuer en m
 		"""
 		self.trad=traducteur
+		self.trad.calcul_v(0,0)
+		self.trad.calcul_new_orientation(0,0)
 		self.arret=False	
 		self.d=self.trad.resetdistance()
 		self.d_voulue=d_voulue
@@ -84,8 +86,8 @@ class IA_tourner:
 		:param robot : Robot utilisé
 		"""
 		self.trad=traducteur
-		self.trad.v=0
-		self.trad.new_orientation=0
+		self.trad.calcul_v(0,0)
+		self.trad.calcul_new_orientation(0,0)
 		self.arret=False
 		self.a=self.trad.resetangle()
 		self.a_voulu=a_voulue
@@ -99,8 +101,8 @@ class IA_tourner:
 		self.trad.setMotorDps(cs.V_ANGULAIRE_G,-cs.V_ANGULAIRE_D)
 		self.fonctionne=True
 		self.arret=False
-		self.trad.v=((cs.RAYON_DES_ROUES_CM*0.01)/2)*(cs.V_ANGULAIRE_G*(360/(2*pi))+0)
-		self.trad.new_orientation=(cs.RAYON_DES_ROUES_CM/cs.RAYON_ROBOT_CM)*(cs.V_ANGULAIRE_G*(360/(2*pi)))
+		self.trad.calcul_v(cs.V_ANGULAIRE_G,0)
+		self.trad.calcul_new_orientation(cs.V_ANGULAIRE_G,0)
 		
 
 	def step(self):
@@ -111,15 +113,14 @@ class IA_tourner:
 			self.a+=self.trad.getangle(dt)
 		else:
 			self.stop()
-			print("orientation : ",self.trad.new_orientation)
 			self.a=0
 	
 	def stop(self):
 		self.trad.setMotorDps(0,0)
 		self.fonctionne=False
 		self.arret=True
-		self.trad.v=0
-		self.trad.new_orientation=0
+		self.trad.calcul_v(0,0)
+		self.trad.calcul_new_orientation(0,0)
 		self.arret=True
 
 class IA_eviter:
