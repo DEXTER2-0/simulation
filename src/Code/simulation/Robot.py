@@ -38,7 +38,7 @@ class Roue :
 	def __init__ (self, taille_cm, vMaxDegParSec) :
 		"""
 		:param taille_cm : taille de la roue en cm
-		:param vMaxTourParSec : vitesse maximale possible pour les roues en rad/s
+		:param vMaxDegParSec : vitesse maximale possible pour les roues en deg/s
 		"""
 		self.taille_cm = taille_cm
 		self.vMaxDegParSec = vMaxDegParSec
