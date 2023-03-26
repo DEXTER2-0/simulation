@@ -52,7 +52,7 @@ class IA_avancer :
 		self.d=0
 		self.d_voulue=d_voulue
 		self.t0=0
-		
+
 	def start(self):
 		"""
 		"""
@@ -90,7 +90,7 @@ class IA_tourner:
 		self.robot.v=0
 		self.robot.new_orientation=0
 		self.arret=False
-		self.a=0
+		self.a=self.resetangle()
 		self.a_voulu=a_voulue
 		self.t0 = 0
 	
@@ -112,7 +112,7 @@ class IA_tourner:
 		if (self.a<=(self.a_voulu/2)-10):
 			self.dt=time.time()-self.t0
 			self.simulation.angle+=(self.dt*cs.V_ANGULAIRE_G)
-			self.a+=(self.dt*cs.V_ANGULAIRE_G)
+			self.a+=self.getangle(dt)
 		else:
 			self.stop()
 			print("ANNNNNGGGLGLLLLLEEEEEE =",self.simulation.angle)
