@@ -122,11 +122,14 @@ class IA_tourner:
 		self.arret=True
 
 class IA_eviter:
-	def __init__ (self,robot,IA_avancer,IA_tourner,d_evitement) :
+	def __init__ (self,traducteur,IA_avancer,IA_tourner,d_evitement) :
 		"""
-		:param robot : Robot utilisé
+		:param traducteur : traducteur utilise
+		:param IA_avancer : IA qui donne les ordres pour avancer
+		:param IA_tourner : IA qui donne les ordres pour tourner
+		:param d_evitement : distance voulue entre l'obstacle et le robot lors de l'evitement
 		"""
-		self.robot = robot
+		self.trad=traducteur
 		self.avancer=IA_avancer
 		self.tourner=IA_tourner
 		self.arret=False
@@ -134,16 +137,13 @@ class IA_eviter:
 
 	
 	def start(self):
-		"""
-		:param d_evitement : distance voulue entre l'obstacle et le robot lors de l'évitement
-		"""
 		self.avancer.start()
 
 	
 	def step(self):
-		if(self.robot.capteur<=self.d_evitement) and (self.tourner.arret):
+		if(self.trad.capteur()<=self.d_evitement) and (self.tourner.arret):
 			self.tourner.start()
-		elif(self.robot.capteur<=self.d_evitement) and (self.tourner.fonctionne):
+		elif(self.trad.capteur()<=self.d_evitement) and (self.tourner.fonctionne):
 			self.tourner.step()
 		elif(self.avancer.arret) and (self.tourner.arret):
 			self.avancer.start()
