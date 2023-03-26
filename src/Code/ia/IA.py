@@ -1,5 +1,3 @@
-#from Code.simulation.Robot import Robot
-#from simulation import Obstacle
 from math import *
 from Code.simulation import constantes as cs
 from . import Traducteur
