@@ -1,3 +1,5 @@
+from Code.simulation import constantes as cs
+
 class Traducteur :
     def __init__ (self,simulation,robot_reel,robot_sim):
         self.simulation=simulation
@@ -13,7 +15,7 @@ class Traducteur_Simulation:
         self.robot.setMotorDps(v_gauche,v_droite)
 
     def getangle(self,dt,v):
-        return dt*v
+        return dt*cs.cs.V_ANGULAIRE_G
 
 
 class Traducteur_Realite:
