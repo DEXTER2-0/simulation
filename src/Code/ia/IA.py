@@ -80,16 +80,16 @@ class IA_avancer :
 		self.trad.new_orientation=0
 
 class IA_tourner:
-	def __init__(self, robot,a_voulue,simulation) :
+	def __init__(self,traducteur,a_voulue,simulation) :
 		"""
 		:param robot : Robot utilisé
 		"""
 		self.simulation=simulation
-		self.robot = robot
-		self.robot.v=0
-		self.robot.new_orientation=0
+		self.trad=traducteur
+		self.trad.v=0
+		self.trad.new_orientation=0
 		self.arret=False
-		self.a=self.resetangle()
+		self.a=self.trad.resetangle()
 		self.a_voulu=a_voulue
 		self.t0 = 0
 	
@@ -98,11 +98,11 @@ class IA_tourner:
 		:param a_voulu : angle voulu à effectuer en deg
 		"""
 		self.t0=time.time()
-		self.robot.setMotorDps(cs.V_ANGULAIRE_G,-cs.V_ANGULAIRE_D)
+		self.trad.setMotorDps(cs.V_ANGULAIRE_G,-cs.V_ANGULAIRE_D)
 		self.fonctionne=True
 		self.arret=False
-		self.robot.v=((cs.RAYON_DES_ROUES_CM*0.01)/2)*(cs.V_ANGULAIRE_G*(360/(2*pi))+0)
-		self.robot.new_orientation=(cs.RAYON_DES_ROUES_CM/cs.RAYON_ROBOT_CM)*(cs.V_ANGULAIRE_G*(360/(2*pi)))
+		self.trad.v=((cs.RAYON_DES_ROUES_CM*0.01)/2)*(cs.V_ANGULAIRE_G*(360/(2*pi))+0)
+		self.trad.new_orientation=(cs.RAYON_DES_ROUES_CM/cs.RAYON_ROBOT_CM)*(cs.V_ANGULAIRE_G*(360/(2*pi)))
 		
 
 	def step(self):
@@ -111,19 +111,19 @@ class IA_tourner:
 		if (self.a<=(self.a_voulu/2)-10):
 			self.dt=time.time()-self.t0
 			self.simulation.angle+=(self.dt*cs.V_ANGULAIRE_G)
-			self.a+=self.getangle(dt)
+			self.a+=self.trad.getangle(dt)
 		else:
 			self.stop()
 			print("ANNNNNGGGLGLLLLLEEEEEE =",self.simulation.angle)
-			print("orientation : ",self.robot.new_orientation)
+			print("orientation : ",self.trad.new_orientation)
 			self.a=0
 	
 	def stop(self):
-		self.robot.setMotorDps(0,0)
+		self.trad.setMotorDps(0,0)
 		self.fonctionne=False
 		self.arret=True
-		self.robot.v=0
-		self.robot.new_orientation=0
+		self.trad.v=0
+		self.trad.new_orientation=0
 		self.arret=True
 
 class IA_eviter:
