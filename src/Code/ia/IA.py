@@ -40,16 +40,16 @@ class IA(Thread):
 
 
 class IA_avancer :
-	def __init__ (self, robot,d_voulue) :
+	def __init__ (self,traducteur,d_voulue) :
 		"""
 		:param robot : Robot utilisé
 		:param d_voulue : ditance voulue à effectuer en m
 		"""
-		self.robot = robot
+		self.trad=traducteur
 		self.v=0
 		self.new_orientation=0
 		self.arret=False	
-		self.d=self.resetdistance()
+		self.d=self.trad.resetdistance()
 		self.d_voulue=d_voulue
 		self.t0=0
 
@@ -57,27 +57,27 @@ class IA_avancer :
 		"""
 		"""
 		self.t0=time.time()
-		self.robot.setMotorDps(cs.V_ANGULAIRE_G,cs.V_ANGULAIRE_D)
+		self.trad.setMotorDps(cs.V_ANGULAIRE_G,cs.V_ANGULAIRE_D)
 		self.fonctionne=True
 		self.arret=False
-		self.robot.v=((cs.RAYON_DES_ROUES_CM*0.01)/2)*(cs.V_ANGULAIRE_G*(360/(2*pi))+cs.V_ANGULAIRE_D*(360/(2*pi)))
-		self.robot.new_orientation=(cs.RAYON_DES_ROUES_CM/cs.RAYON_ROBOT_CM)*(cs.V_ANGULAIRE_G*(360/(2*pi))-cs.V_ANGULAIRE_D*(360/(2*pi)))
+		self.trad.v=((cs.RAYON_DES_ROUES_CM*0.01)/2)*(cs.V_ANGULAIRE_G*(360/(2*pi))+cs.V_ANGULAIRE_D*(360/(2*pi)))
+		self.trad.new_orientation=(cs.RAYON_DES_ROUES_CM/cs.RAYON_ROBOT_CM)*(cs.V_ANGULAIRE_G*(360/(2*pi))-cs.V_ANGULAIRE_D*(360/(2*pi)))
 
 	def step(self):
 		if self.arret:
 			return
 		if (self.d<self.d_voulue):
 			self.dt=time.time()-self.t0
-			self.d+=self.getdistance(dt)
+			self.d+=self.trad.getdistance(dt)
 		else:
 			self.stop()
 	
 	def stop(self):
-		self.robot.setMotorDps(0,0)
+		self.trad.setMotorDps(0,0)
 		self.fonctionne=False
 		self.arret=True
-		self.robot.v=0
-		self.robot.new_orientation=0
+		self.trad.v=0
+		self.trad.new_orientation=0
 
 class IA_tourner:
 	def __init__(self, robot,a_voulue,simulation) :
