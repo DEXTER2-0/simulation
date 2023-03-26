@@ -6,6 +6,11 @@ from threading import Thread
 
 class IA(Thread):
 	def __init__(self,traducteur,list_ia,dt):
+		"""
+		:param traducteur : traducteur utilise
+		:param list_ia : liste des ia utilisees
+		:param dt : temps ecoule depuis le dernier calcul
+		"""
 		super(IA, self).__init__()
 		self.list_ia=list_ia
 		self.dt = dt
@@ -18,10 +23,12 @@ class IA(Thread):
 			self._lastTime = time.time()    # on sauvegarde l'instant du run 
 			time.sleep(self.dt)     #on fait un sleep de dt afin de calculer l'intervalle de temps
 			self._ITemps = time.time() - self._lastTime   #on calcule l'intervalle de temps 
-			self.step() #on met à jour la simulation 
+			self.step() #on met a jour la simulation 
            
 	def step(self):
-		""" met à jour la simulation selon le temps écoulé """
+		"""
+		met a jour la simulation selon le temps ecoule
+		"""
 		if self.list_ia[self.ia_actuel].arret:
 			self.ia_actuel+=1
 			if self.ia_actuel>= 0 and self.ia_actuel <len(self.list_ia):
@@ -35,14 +42,11 @@ class IA(Thread):
 		else:
 			self.list_ia[self.ia_actuel].step()
 			
-
-
-
 class IA_avancer :
 	def __init__ (self,traducteur,d_voulue) :
 		"""
-		:param robot : Robot utilisé
-		:param d_voulue : ditance voulue à effectuer en m
+		:param traducteur : traducteur utilise
+		:param d_voulue : ditance voulue a effectuer en m
 		"""
 		self.trad=traducteur
 		self.trad.calcul_v(0,0)
@@ -53,8 +57,6 @@ class IA_avancer :
 		self.t0=0
 
 	def start(self):
-		"""
-		"""
 		self.t0=time.time()
 		self.trad.setMotorDps(cs.V_ANGULAIRE_G,cs.V_ANGULAIRE_D)
 		self.fonctionne=True
@@ -67,7 +69,7 @@ class IA_avancer :
 			return
 		if (self.d<self.d_voulue):
 			self.dt=time.time()-self.t0
-			self.d+=self.trad.getdistance(dt)
+			self.d+=self.trad.getdistance(self.dt)
 		else:
 			self.stop()
 	
@@ -79,22 +81,20 @@ class IA_avancer :
 		self.trad.calcul_new_orientation(0,0)
 
 class IA_tourner:
-	def __init__(self,traducteur,a_voulue) :
+	def __init__(self,traducteur,a_voulu) :
 		"""
-		:param robot : Robot utilisé
+		:param traducteur : traducteur utilise
+		:param a_voulue : angle voulu a effectuer en deg
 		"""
 		self.trad=traducteur
 		self.trad.calcul_v(0,0)
 		self.trad.calcul_new_orientation(0,0)
 		self.arret=False
 		self.a=self.trad.resetangle()
-		self.a_voulu=a_voulue
+		self.a_voulu=a_voulu
 		self.t0 = 0
 	
 	def start(self):
-		"""
-		:param a_voulu : angle voulu à effectuer en deg
-		"""
 		self.t0=time.time()
 		self.trad.setMotorDps(cs.V_ANGULAIRE_G,-cs.V_ANGULAIRE_D)
 		self.fonctionne=True
@@ -108,7 +108,7 @@ class IA_tourner:
 			return
 		if (self.a<=self.a_voulu):
 			self.dt=time.time()-self.t0
-			self.a+=self.trad.getangle(dt)
+			self.a+=self.trad.getangle(self.dt)
 		else:
 			self.stop()
 			self.a=0
