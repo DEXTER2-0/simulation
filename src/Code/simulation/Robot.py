@@ -1,5 +1,3 @@
-#!/usr/bin/python
-# -*- coding: latin-1 -*-
 from Code.simulation import constantes as cs
 from math import pi,sqrt,sin,cos
 
@@ -54,17 +52,6 @@ class Roue :
 		self.vMaxDegParSec = vMaxDegParSec
 		self.vDegParSec = 0
 
-	def __str__ (self) :
-		"""
-		Fonction de redéfinition de la methode print(monInstance)
-		""" 
-		res = "Roue de taille " + str(self.taille_cm) + " cm"
-		if self.vDegParSec == 0: # Si la roue est à l'arret
-			res += " est à l'arret" 
-
-		else : # Si la roue tourne
-			res += " roule à " + str(self.vDegParSec) + "tour/seconde"
-		return res
 	
 ####------------------------ Capteur_de_distance --------------------------##
 
