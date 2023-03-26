@@ -4,7 +4,7 @@ RAYON_ROBOT_CM=10 #en cm
 ###--------------- PROPRIETE ROUE ---------------------------###
 RAYON_DES_ROUES_CM=3 #en cm
 
-#VITESSE_MAX_DEG_PAR_SEC= 1
+VITESSE_MAX_DEG_PAR_SEC= 20
 V_ANGULAIRE_G = 12 #deg/s
 V_ANGULAIRE_D = 12 #deg/s
 

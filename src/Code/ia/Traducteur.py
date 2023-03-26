@@ -82,7 +82,7 @@ class Traducteur_Realite:
         """
         :param dt : temps ecoule depuis le dernier calcul
         """
-        return dt*self.robot.get_motor_position()*360*#taille de la roue en m
+        return dt*self.robot.get_motor_position()*360#*taille de la roue en m
     
     def resetdistance(self):
         self.robot.offset_motor_encoder(port, offset)
