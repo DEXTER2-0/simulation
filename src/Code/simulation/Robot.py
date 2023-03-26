@@ -58,8 +58,9 @@ class Capteur_de_distance :
     
     def distance(self,x,y,obstacle):
         """
-        Fonction prenant en paramètre le robot et l'obstacle afin de calculer leur distance 
-        (racine carrée des carré des différences entre les positions selon x et selon y) et la retourner.
+        :param x : abscisse du robot
+        :param y : ordonnee du robot
+        :param obstacle : obstacle avec lequel la distance est calculee
         """
         xr = x
         yr = y
@@ -70,16 +71,16 @@ class Capteur_de_distance :
     def senseur_de_distance(self,pos_x,pos_y,angle_robot,le_pas,l_obstacle):
         """
         Aide page 16 du td2
-        Suppose que la liste d'obstac le sont des cercles
-        l_obstacle : est une liste d'obstacle
-        pos_y et pos_y : permettent de récuperer les coordonnée actuelles du robot
-        angle : permet au capteur de savoir dans quelle direction lancer le laser
-        le_pas : permet de couper en plusieurs morceaux la distance avant de rencontrer un obstacle 
+        on suppose que les obstacles sont des cercles
+        :param l_obstacle : liste d'obstacles
+        :param pos_y : abscisse du robot
+        :param pos_y : ordonnee du robot
+        :param angle : permet au capteur de savoir dans quelle direction lancer le laser
+        :param le_pas : permet de couper en plusieurs morceaux la distance avant de rencontrer un obstacle 
         """
         k=0
         x = pos_x
         y = pos_y
-
         print("Distance Captable = ",self.distanceCaptable)
         while k*le_pas < self.distanceCaptable :
             x = x + cos(angle_robot) * le_pas #Lance le laser dans la bonne direction
