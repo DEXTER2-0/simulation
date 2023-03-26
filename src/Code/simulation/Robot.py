@@ -19,12 +19,6 @@ class Robot :
 		self.rayonDuRobotCm = rayonDuRobotCm
 		self.v = 0
 		self.new_orientation = 0
-		#self.pos_x = pos_x
-		#self.pos_y = pos_y
-        #self.robot = robot
-		#self.r=r
-        #self.angle = angle
-		# l = 2*rayon du robot
 		self.l=l*2*rayonDuRobotCm	
 
 	def setMotorDps(self, ANG_G, ANG_D):
