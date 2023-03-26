@@ -29,6 +29,8 @@ class Traducteur_Simulation:
     def resetangle(self):
         self.angle=0
 
+    def calcul_v(self):
+        self.robot.v=((cs.RAYON_DES_ROUES_CM*0.01)/2)*(cs.V_ANGULAIRE_G*(360/(2*pi))+cs.V_ANGULAIRE_D*(360/(2*pi)))
 
 class Traducteur_Realite:
     def __init__(self,robot):
