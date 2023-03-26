@@ -52,11 +52,12 @@ class IA_avancer :
 		self.d=0
 		self.d_voulue=d_voulue
 		self.t0=0
+		
 	def start(self):
 		"""
 		"""
 		self.t0=time.time()
-		self.d=0
+		self.d=self.resetdistance()
 		self.robot.setMotorDps(cs.V_ANGULAIRE_G,cs.V_ANGULAIRE_D)
 		self.fonctionne=True
 		self.arret=False
@@ -68,7 +69,7 @@ class IA_avancer :
 			return
 		if (self.d<self.d_voulue):
 			self.dt=time.time()-self.t0
-			self.d+=self.dt*cs.V_ANGULAIRE_G*cs.RAYON_ROBOT_CM*0.01*360 #vitesse convertie en m/s
+			self.d+=self.getdistance(dt)
 		else:
 			self.stop()
 	
