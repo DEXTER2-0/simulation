@@ -39,22 +39,3 @@ class Obstacle :
 													
 		return false
 
-
-
-	def __str__ (self) : 
-		"""
-		Fonction de redefinition de la méthode print(Instance)
-		"""
-		if(self.type == 'mur'):
-			res="le mur de ",len(self.longueur)," * ",len(self.largeur)," cm."
-		else:
-			res="Obstacle à la position : " + str(self.x) + " , "+ str(self.y) 
-			if(self.type == 'cercle'):
-				res+="  est un cercle de rayon " + str(self.rayon) + "  cm"
-			else :
-				if self.longueur == self.largeur :
-					res+="  est un carré de longueur : "+ str(self.longueur)
-				else : 
-					res+=" est un rectangle de longueur : " + str(self.longueur) + "  et de largeur : " + str(self.largeur) 
-		return res
-
