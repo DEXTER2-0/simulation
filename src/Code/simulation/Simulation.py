@@ -8,9 +8,9 @@ from threading import Thread
 class Simulation(Thread) : 
     def __init__ (self, robot,terrain,dt,pos_x=0,pos_y=0,r=0,angle=0) :
       """     
-	:param robot : Robot utilisé
-	:param terrain : Terrain utilisé
-	:param duree_boucle : duree de simulation
+	:param robot : Robot utilise
+	:param terrain : Terrain utilise
+	:param dt : duree de simulation
    """
       super(Simulation, self).__init__()
       self.robot = robot
@@ -21,9 +21,6 @@ class Simulation(Thread) :
       self.r=r
       self.angle = radians(angle)
       self.capteurOn = False
-	      #coordonnées du dernier point capté par le capteur de distance 
-      self.lastX = 0  
-      self.lastY=0
         #self.obs1 = Obstacle(6,2,2)
         #self.obs2 = Obstacle(3,4,7)
     
@@ -32,20 +29,15 @@ class Simulation(Thread) :
           
     def collision(self):
         """
-        Suppose objet est cercle
+        on suppose que tout objet est un cercle
         """
         if(self.robot == None):
               return False
         if (self.pos_x<=self.terrain.WIDTH_MIN) or (self.pos_y<=self.terrain.HEIGHT_MIN) or (self.pos_x>=self.terrain.WIDTH_MAX) or (self.pos_y>=self.terrain.HEIGHT_MAX):
-            print("Collision détectée : arret d'urgence")
-            print("mur")
             return True
         for obstacle in self.terrain.liste_obstacle: #pour chaque obstacle
             d=np.sqrt((self.pos_x-obstacle.x)**2+(self.pos_y-obstacle.y)**2) #distance euclidienne entre le robot et l'obstacle
             if(d<=(self.robot.rayonDuRobotCm+obstacle.longueur)): # collision de deux cercles
-                print("Collision détectée : arret d'urgence")
-                print("la valeur d = ",d)
-                print("Obstacles")
                 return True
             #elif (d<=(self.ia.robot.rayon)): # collision d'un cercle et d'un rectangle A COMPLETER
              #   self.ia.robot.arret_urgence()
@@ -53,29 +45,31 @@ class Simulation(Thread) :
 
     def nouvelle_position(self,duree):
         """
-	:param duree : duree passee depuis le dernier calcul de la position
-        Doit etre appelé apres la methode bouger() pour pouvoir mettre a jours les 
-        oordonées du robot ainsi que son angle d'orientation					                      
+	    :param duree : duree passee depuis le dernier calcul de la position
+        met a jours les coordonees du robot ainsi que son angle d'orientation					                      
         """
-
         self.pos_x = self.pos_x + self.robot.v * cos(self.angle)*duree
         self.pos_y = self.pos_y + self.robot.v * sin(self.angle)*duree
         self.angle = self.angle + self.robot.new_orientation * duree
 
     def run(self):
-      "le step de la simulation "
+      """
+      le step de la simulation
+      """
       self.encours= True
       while self.encours:   #tant qu'on run 
          self._lastTime = time.time()    # on sauvegarde l'instant du run 
          time.sleep(self.dt)     #on fait un sleep de dt afin de calculer l'intervalle de temps 
          self._ITemps = time.time() - self._lastTime   #on calcule l'intervalle de temps 
-         self.update() #on met à jour la simulation 
+         self.update() #on met a jour la simulation 
 		
     def stop(self):
         self.encours = False
             
     def update(self):
-      """ met à jour la simulation selon le temps écoulé """
+      """
+      met a jour la simulation selon le temps ecoule
+      """
       if self.collision() :
           print("COOOOLISIONNNNN ")
           self.stop()
