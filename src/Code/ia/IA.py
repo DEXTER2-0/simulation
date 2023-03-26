@@ -47,8 +47,6 @@ class IA_avancer :
 		:param d_voulue : ditance voulue à effectuer en m
 		"""
 		self.trad=traducteur
-		self.v=0
-		self.new_orientation=0
 		self.arret=False	
 		self.d=self.trad.resetdistance()
 		self.d_voulue=d_voulue
@@ -61,8 +59,8 @@ class IA_avancer :
 		self.trad.setMotorDps(cs.V_ANGULAIRE_G,cs.V_ANGULAIRE_D)
 		self.fonctionne=True
 		self.arret=False
-		self.trad.v=((cs.RAYON_DES_ROUES_CM*0.01)/2)*(cs.V_ANGULAIRE_G*(360/(2*pi))+cs.V_ANGULAIRE_D*(360/(2*pi)))
-		self.trad.new_orientation=(cs.RAYON_DES_ROUES_CM/cs.RAYON_ROBOT_CM)*(cs.V_ANGULAIRE_G*(360/(2*pi))-cs.V_ANGULAIRE_D*(360/(2*pi)))
+		self.trad.calcul_v(cs.V_ANGULAIRE_G,cs.V_ANGULAIRE_D)
+		self.trad.calcul_new_orientation(cs.V_ANGULAIRE_G,cs.V_ANGULAIRE_D)
 
 	def step(self):
 		if self.arret:
@@ -77,8 +75,8 @@ class IA_avancer :
 		self.trad.setMotorDps(0,0)
 		self.fonctionne=False
 		self.arret=True
-		self.trad.v=0
-		self.trad.new_orientation=0
+		self.trad.calcul_v(0,0)
+		self.trad.calcul_new_orientation(0,0)
 
 class IA_tourner:
 	def __init__(self,traducteur,a_voulue) :
