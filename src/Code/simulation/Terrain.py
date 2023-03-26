@@ -18,4 +18,3 @@ class Terrain:
         
         def getObstacle(self,i):
             return self.liste_obstacle[i]
-
