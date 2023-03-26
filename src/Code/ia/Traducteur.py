@@ -19,6 +19,9 @@ class Traducteur_Simulation:
         self.distance+=dt*cs.V_ANGULAIRE_G*cs.RAYON_ROBOT_CM*0.01*360
         return self.distance
 
+    def resetdistance(self):
+        self.distance=0
+
     def getangle(self,dt):
         self.angle+=dt*cs.cs.V_ANGULAIRE_G
         return self.angle
