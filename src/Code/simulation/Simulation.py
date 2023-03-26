@@ -74,25 +74,6 @@ class Simulation(Thread) :
              #   self.ia.robot.arret_urgence()
         return False
 
-    def getPosRoueGauche(self):
-        """
-        :returns: un tuple contenant la position absolue de la roue gauche
-        """
-        return (cos(self.angle + pi/2) * self.robot.rayonDuRobotCm + self.pos_x, sin(self.angle + pi/2) * self.robot.rayonDuRobotCm + self.pos_y)
-
-    def getPosRoueDroite(self):
-        """
-        :returns: un tuple contenant la position absolue de la roue droite
-        """
-        return (cos(self.angle - pi/2) * self.r + self.pos_x, sin(self.angle - pi/2) * self.r + self.pos_y)
-    def getPosRoueX(self):
-        return self.getPosRoueGauche()[0]
-    def getPosRoueY(self):
-        return self.getPosRoueGauche()[1]
-    def getPosRoueDroiteX(self):
-        return self.getPosRoueDroite()[0]
-    def getPosRoueDroiteY(self):
-        return self.getPosRoueDroite()[1]
     
     def nouvelle_position2(self,duree):
         """
@@ -127,13 +108,6 @@ class Simulation(Thread) :
           print("COOOOLISIONNNNN ")
           self.stop()
           return 
-       #   self.robot=None
       else :
           self.nouvelle_position2(self._ITemps)
-          #print("posx=",self.pos_x)
-          #print("pos_y=",self.pos_y)
-          #print("posx roue gauche= ",self.getPosRoueX())
-          #print("posy roue gauche= ",self.getPosRoueY())
-          #print("posx roue droite= ",self.getPosRoueDroiteX()) 
-          #print("posy roue droite= ",self.getPosRoueDroiteY())
           print("angle = ",self.angle)
