@@ -37,7 +37,11 @@ class Traducteur_Realite:
     def setMotorDps(self,v_gauche,v_droit):
         self.robot.set_motor_dps(port,v_gauche)
     
+    def getdistance(self,dt):
+        return dt*self.robot.get_motor_position()*360*#taille de la roue en m
     
+    def resetdistance(self,dt):
+
     def getangle(self,dt):
         return dt*self.robot.get_motor_position()
     
