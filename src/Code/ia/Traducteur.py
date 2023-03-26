@@ -2,6 +2,11 @@ from Code.simulation import constantes as cs
 
 class Traducteur :
     def __init__ (self,simulation,robot_reel,robot_sim):
+        """
+        :param simulation : simulation utilisee
+        :param robot_reel : robot reel utilise
+        :param robot_sim : robot simule utilise
+        """
         self.simulation=simulation
         self.robot_reel = robot_reel
         self.robot_sim = robot_sim
@@ -9,13 +14,24 @@ class Traducteur :
 
 class Traducteur_Simulation:
     def __init__(self,simulation,robot):
+        """
+        :param simualtion : simulation utilisee
+        :param robot : robot utilise
+        """
         self.simulation=simulation
         self.robot=robot
     
     def setMotorDps(self,v_gauche,v_droite):
+        """
+        :param v_gauche : vitesse de la roue gauche en deg/s
+        :param v_droite : vitesse de la roue droite en deg/s
+        """
         self.robot.setMotorDps(v_gauche,v_droite)
     
     def getdistance(self,dt):
+        """
+        :param dt : temps ecoule depuis le dernier calcul
+        """
         self.distance+=dt*cs.V_ANGULAIRE_G*cs.RAYON_ROBOT_CM*0.01*360
         return self.distance
 
@@ -23,6 +39,9 @@ class Traducteur_Simulation:
         self.distance=0
 
     def getangle(self,dt):
+        """
+        :param dt : temps ecoule depuis le dernier calcul
+        """
         self.angle+=dt*cs.cs.V_ANGULAIRE_G
         return self.angle
     
@@ -30,9 +49,17 @@ class Traducteur_Simulation:
         self.angle=0
 
     def calcul_v(self,v_g,v_d):
+        """
+        :param v_g : vitesse de la roue gauche en deg/s
+        :param v_d : vitesse de la roue droite en deg/s
+        """
         self.robot.v=((cs.RAYON_DES_ROUES_CM*0.01)/2)*(v_g*(360/(2*pi))+v_d*(360/(2*pi)))
     
     def calcul_new_orientation(self,v_g,v_d):
+        """
+        :param v_g : vitesse de la roue gauche en deg/s
+        :param v_d : vitesse de la roue droite en deg/s
+        """
         self.robot.w=(cs.RAYON_DES_ROUES_CM/cs.RAYON_ROBOT_CM)*(v_g*(360/(2*pi))-v_d*(360/(2*pi)))
 
 class Traducteur_Realite:
