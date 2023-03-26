@@ -63,7 +63,7 @@ class Simulation(Thread) :
         return False
 
     
-    def nouvelle_position2(self,duree):
+    def nouvelle_position(self,duree):
         """
 	:param duree : duree passee depuis le dernier calcul de la position
         Doit etre appelé apres la methode bouger() pour pouvoir mettre a jours les 
@@ -97,5 +97,5 @@ class Simulation(Thread) :
           self.stop()
           return 
       else :
-          self.nouvelle_position2(self._ITemps)
+          self.nouvelle_position(self._ITemps)
           print("angle = ",self.angle)
