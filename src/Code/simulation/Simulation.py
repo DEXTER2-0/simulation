@@ -40,19 +40,7 @@ class Simulation(Thread) :
 
     def getangle(self):
         return self.angle
-    
-    def capterDistance(self,robot):
-      Distance=0
-      Vect0=(cos(self.angle))
-      Vect1=sin(-self.angle)
-      RayonCoord=(self.pos_x + Vect0 * robot.rayonDuRobotCm,self.pos_y + Vect1 * robot.rayonDuRobotCm)
-      for i in range(0,len(self.terrain.getListeObstacles())):
-            if self.terrain.getObstacle(i).Capte(RayonCoord[0] , RayonCoord[1]):
-               self.SensorOn= True
-               self.newPos_x = RayonCoord[0]	
-      
-      
-      
+          
     def collision(self):
         """
         Suppose objet est cercle
