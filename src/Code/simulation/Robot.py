@@ -2,20 +2,21 @@ from Code.simulation import constantes as cs
 from math import pi,sqrt,sin,cos
 
 class Robot :
-	def __init__ (self, rayonRouesCm,rayonDuRobotCm,vMaxDegParSec,l=1) :
+	def __init__ (self, rayonRouesCm,rayonDuRobotCm,vMaxDegParSec,distance_captable,l=1) :
 		"""
 		:param rayonRouesCm : rayon des roues en cm
 		:param rayonDuRobotCm : rayon du cercle dans lequel s'inscrit le robot en cm
-		:param capteur : Capteur utilisé
+		:param capteur : Capteur utilise
 		:param vMaxRadParSec : vitesse maximale possible pour les roues en rad/s
-		Cette fonction instancie deux roues de la même taille et de même vitesse maximale, ainsi qu'un capteur de position
+        :param distance_captable : distance maximale que le capteur peut calculer
+		Cette fonction instancie deux roues de la meme taille et de meme vitesse maximale, ainsi qu'un capteur de position
 		"""
 		assert(rayonRouesCm > 0)# Ne peut pas avoir un rayon < 0
 		assert(vMaxDegParSec > 0) # Ne peut pavoir une vitesse max < 0
 		assert(rayonDuRobotCm > 0) # Ne peut pas avoir un rayon < 0
 		self.roue_gauche = Roue(rayonRouesCm, vMaxDegParSec)
 		self.roue_droite = Roue(rayonRouesCm, vMaxDegParSec)
-		#self.capteurDistance = Capteur_de_distance(capteur)
+		self.capteurDistance = Capteur_de_distance(distance_captable)
 		self.rayonDuRobotCm = rayonDuRobotCm
 		self.v = 0
 		self.new_orientation = 0
@@ -24,10 +25,10 @@ class Robot :
 	def setMotorDps(self, ANG_G, ANG_D):
 		"""
 		cette methode suppose que les deux roues possede le meme rayon
-		ANG_G prend une vitesse angulaire pour la roue gauche
-		ANG_D prend une vitesse angulaire pour la roue droite
+		:param ANG_G : vitesse en deg/s pour la roue gauche
+		:param ANG_D : vitesse deg/s pour la roue droite
+        cette methode donne la vitesse demandee aux roues
 		"""
-		#Donne l'information aux roues de la vitesse en rad/s de la vitesse qu'elles doivent avoir
 		self.roue_gauche.vDegParSec = ANG_G
 		self.roue_droite.vDegParSec = ANG_D
 	
