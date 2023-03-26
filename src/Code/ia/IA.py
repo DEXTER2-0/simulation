@@ -2,6 +2,7 @@
 #from simulation import Obstacle
 from math import *
 from Code.simulation import constantes as cs
+from . import Traducteur
 import time as time
 from threading import Thread
 
