@@ -1,18 +1,17 @@
-import logging
 class Obstacle :
 
 	def __init__ (self, *args) :
 		""" 
-		Fonction d'initialisation prenant en paramètre:
-			: 2 arguments : création un obstacle de type mur 
-			: 3 arguments : création un obstacle de type cercle
-			: 4 arguments : création un obstacle de type rectangle
+		Fonction d'initialisation prenant en parametre:
+			: 2 arguments : creation un obstacle de type mur 
+			: 3 arguments : creation un obstacle de type cercle
+			: 4 arguments : creation un obstacle de type rectangle
 		"""
 		if (len(args)<3 |len(args)>4 ):
 			if(len(args)<3):
-				logging.debug("error : il faut au moins 3 arguments")
+				return
 			else:
-				logging.debug("error : il faut au plus 4 arguments")
+				return
 		elif len(args)==3 :
 			self.longueur = args[0]
 			self.largeur = args[0]
