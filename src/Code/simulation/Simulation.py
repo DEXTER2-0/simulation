@@ -1,14 +1,9 @@
-#import Robot
 from Code.simulation import constantes as cs
-#import Terrain
-import time as time#pour pouvoir controler le temps de la boucle while True
+import time as time #pour pouvoir controler le temps de la boucle while True
 import numpy as np
 from math import *
 import logging
 from threading import Thread
-#logging.basicConfig(filename='Simulation.log', filemode='w', level=logging.DEBUG)
-
-
 
 class Simulation(Thread) : 
     def __init__ (self, robot,terrain,dt,pos_x=0,pos_y=0,r=0,angle=0) :
@@ -29,15 +24,9 @@ class Simulation(Thread) :
 	      #coordonnées du dernier point capté par le capteur de distance 
       self.lastX = 0  
       self.lastY=0
-
-
-    
-	
         #self.obs1 = Obstacle(6,2,2)
         #self.obs2 = Obstacle(3,4,7)
     
-
-
     def getangle(self):
         return self.angle
           
@@ -62,7 +51,6 @@ class Simulation(Thread) :
              #   self.ia.robot.arret_urgence()
         return False
 
-    
     def nouvelle_position(self,duree):
         """
 	:param duree : duree passee depuis le dernier calcul de la position
@@ -74,8 +62,6 @@ class Simulation(Thread) :
         self.pos_y = self.pos_y + self.robot.v * sin(self.angle)*duree
         self.angle = self.angle + self.robot.new_orientation * duree
 
-
-	
     def run(self):
       "le step de la simulation "
       self.encours= True
@@ -88,8 +74,6 @@ class Simulation(Thread) :
     def stop(self):
         self.encours = False
             
-
-
     def update(self):
       """ met à jour la simulation selon le temps écoulé """
       if self.collision() :
