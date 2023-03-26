@@ -1,5 +1,6 @@
 from Code.simulation import constantes as cs
 from Code.simulation.Robot import Robot
+from math import pi
 
 class Traducteur :
     def __init__ (self,simulation,robot_reel,robot_sim):
