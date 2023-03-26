@@ -14,6 +14,10 @@ class Traducteur_Simulation:
     
     def setMotorDps(self,v_gauche,v_droite):
         self.robot.setMotorDps(v_gauche,v_droite)
+    
+    def getdistance(self,dt):
+        self.distance+=dt*cs.V_ANGULAIRE_G*cs.RAYON_ROBOT_CM*0.01*360
+        return self.distance
 
     def getangle(self,dt):
         self.angle+=dt*cs.cs.V_ANGULAIRE_G
@@ -29,6 +33,7 @@ class Traducteur_Realite:
     
     def setMotorDps(self,v_gauche,v_droit):
         self.robot.set_motor_dps(port,v_gauche)
+    
     
     def getangle(self,dt):
         return dt*self.robot.get_motor_position()
