@@ -27,13 +27,10 @@ class Robot :
 		ANG_G prend une vitesse angulaire pour la roue gauche
 		ANG_D prend une vitesse angulaire pour la roue droite
 		"""
-		# vitesse moyenn du robot
-		
 		#Donne l'information aux roues de la vitesse en rad/s de la vitesse qu'elles doivent avoir
 		self.roue_gauche.vDegParSec = ANG_G
 		self.roue_droite.vDegParSec = ANG_D
-
-		
+	
 ####------------------------ ROUE --------------------------##
 
 class Roue :
@@ -46,7 +43,6 @@ class Roue :
 		self.vMaxDegParSec = vMaxDegParSec
 		self.vDegParSec = 0
 
-	
 ####------------------------ Capteur_de_distance --------------------------##
 
 from math import pi,sqrt,sin,cos
@@ -58,7 +54,6 @@ class Capteur_de_distance :
        :param distanceCaptable : distance maximale captable possible
        """
        self.distanceCaptable=distanceCaptable
-    
     
     def distance(self,x,y,obstacle):
         """
@@ -100,12 +95,4 @@ class Capteur_de_distance :
                     return sqrt((x-pos_x)**2+(y-pos_y)**2)-cs.RAYON_ROBOT_CM
             k +=1
         logging.debug("**** Rien à l'horizon ****")
-        return self.distanceCaptable-cs.RAYON_ROBOT_CM
-	
-
-
-
-
-
-
-      
+        return self.distanceCaptable-cs.RAYON_ROBOT_CM     
