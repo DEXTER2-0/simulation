@@ -49,7 +49,7 @@ class IA_avancer :
 		self.v=0
 		self.new_orientation=0
 		self.arret=False	
-		self.d=0
+		self.d=self.resetdistance()
 		self.d_voulue=d_voulue
 		self.t0=0
 
@@ -57,7 +57,6 @@ class IA_avancer :
 		"""
 		"""
 		self.t0=time.time()
-		self.d=self.resetdistance()
 		self.robot.setMotorDps(cs.V_ANGULAIRE_G,cs.V_ANGULAIRE_D)
 		self.fonctionne=True
 		self.arret=False
