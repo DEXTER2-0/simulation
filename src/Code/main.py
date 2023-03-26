@@ -13,7 +13,7 @@ obstacle4 = obs.Obstacle(10,20,40)
 liste_obstacle = [obstacle4]
 
 #initialise le robot
-Dexter=rb.Robot(cs.RAYON_DES_ROUES_CM,10,cs.VITESSE_MAX_DEG_PAR_SEC)
+Dexter=rb.Robot(cs.RAYON_DES_ROUES_CM,10,cs.VITESSE_MAX_DEG_PAR_SEC,cs.DISTANCE_CAPTABLE)
 
 #initialise le terrain
 Terrain=ter.Terrain(-300,cs.WIDTH,-300,cs.HEIGHT, liste_obstacle)
