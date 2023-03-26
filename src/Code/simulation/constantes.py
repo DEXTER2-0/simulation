@@ -5,8 +5,8 @@ RAYON_ROBOT_CM=10 #en cm
 RAYON_DES_ROUES_CM=3 #en cm
 
 #VITESSE_MAX_DEG_PAR_SEC= 1
-V_ANGULAIRE_G = 12 #°/s
-V_ANGULAIRE_D = 12 #°/s
+V_ANGULAIRE_G = 12 #deg/s
+V_ANGULAIRE_D = 12 #deg/s
 
 ###--------------- PROPRIETE CAPTEUR_DISTANCE ----------------###
 DISTANCE_MIN_ARRET = 5 #en metre (mais faudra mettre en en cm)
