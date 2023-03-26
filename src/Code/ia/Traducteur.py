@@ -64,23 +64,44 @@ class Traducteur_Simulation:
 
 class Traducteur_Realite:
     def __init__(self,robot):
+        """
+        :param robot : robot utilise
+        """
         self.robot=robot
     
     def setMotorDps(self,v_gauche,v_droit):
+        """
+        :param v_gauche : vitesse de la roue gauche en deg/s
+        :param v_droite : vitesse de la roue droite en deg/s
+        """
         self.robot.set_motor_dps(port,v_gauche)
     
     def getdistance(self,dt):
+        """
+        :param dt : temps ecoule depuis le dernier calcul
+        """
         return dt*self.robot.get_motor_position()*360*#taille de la roue en m
     
-    def resetdistance(self,dt):
+    def resetdistance(self):
         self.robot.offset_motor_encoder(port, offset)
 
     def getangle(self,dt):
+        """
+        :param dt : temps ecoule depuis le dernier calcul
+        """
         return dt*self.robot.get_motor_position()
     
     def resetangle(self):
         self.robot.offset_motor_encoder(port, offset)
     
     #def calcul_v(self,v_g,v_d):
+    #    """
+    #    :param v_g : vitesse de la roue gauche en deg/s
+    #    :param v_d : vitesse de la roue droite en deg/s
+    #    """
 
     #def calcul_new_orientation(self,v_g,v_d):
+    #    """
+    #    :param v_g : vitesse de la roue gauche en deg/s
+    #    :param v_d : vitesse de la roue droite en deg/s
+    #    """
