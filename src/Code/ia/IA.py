@@ -6,12 +6,12 @@ import time as time
 from threading import Thread
 
 class IA(Thread):
-	def __init__(self,robot,list_ia,dt):
+	def __init__(self,traducteur,list_ia,dt):
 		super(IA, self).__init__()
 		self.list_ia=list_ia
 		self.dt = dt
 		self.ia_actuel=-1
-		self.robot=robot
+		self.trad=traducteur
 
 	def run(self):
 		self.encours = True
