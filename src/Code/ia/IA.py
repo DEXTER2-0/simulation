@@ -81,11 +81,10 @@ class IA_avancer :
 		self.trad.new_orientation=0
 
 class IA_tourner:
-	def __init__(self,traducteur,a_voulue,simulation) :
+	def __init__(self,traducteur,a_voulue) :
 		"""
 		:param robot : Robot utilisé
 		"""
-		self.simulation=simulation
 		self.trad=traducteur
 		self.trad.v=0
 		self.trad.new_orientation=0
@@ -111,11 +110,9 @@ class IA_tourner:
 			return
 		if (self.a<=(self.a_voulu/2)-10):
 			self.dt=time.time()-self.t0
-			self.simulation.angle+=(self.dt*cs.V_ANGULAIRE_G)
 			self.a+=self.trad.getangle(dt)
 		else:
 			self.stop()
-			print("ANNNNNGGGLGLLLLLEEEEEE =",self.simulation.angle)
 			print("orientation : ",self.trad.new_orientation)
 			self.a=0
 	
