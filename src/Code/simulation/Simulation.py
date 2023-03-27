@@ -18,7 +18,7 @@ class Simulation(Thread) :
       self.pos_x=pos_x
       self.pos_y=pos_y
       self.r=r
-      self.angle = radians(angle)
+      self.angle = angle
       self.capteurOn = False
         #self.obs1 = Obstacle(6,2,2)
         #self.obs2 = Obstacle(3,4,7)
@@ -76,3 +76,5 @@ class Simulation(Thread) :
       else :
           self.nouvelle_position(self._ITemps)
           print("angle = ",self.angle)
+          print("pos x = ",self.pos_x)
+          print("pos y = ",self.pos_y)

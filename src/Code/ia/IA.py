@@ -52,7 +52,7 @@ class IA_avancer :
 		self.trad.calcul_v(0,0)
 		self.trad.calcul_new_orientation(0,0)
 		self.arret=False	
-		self.d=self.trad.resetdistance()
+		self.trad.resetdistance()
 		self.d_voulue=d_voulue
 		self.t0=0
 
@@ -67,11 +67,12 @@ class IA_avancer :
 	def step(self):
 		if self.arret:
 			return
-		if (self.d<self.d_voulue):
+		if (self.trad.distance<self.d_voulue):
 			self.dt=time.time()-self.t0
-			self.d+=self.trad.getdistance(self.dt)
+			self.trad.getdistance(self.dt)
 		else:
 			self.stop()
+			self.trad.resetdistance()
 	
 	def stop(self):
 		self.trad.setMotorDps(0,0)
@@ -90,7 +91,7 @@ class IA_tourner:
 		self.trad.calcul_v(0,0)
 		self.trad.calcul_new_orientation(0,0)
 		self.arret=False
-		self.a=self.trad.resetangle()
+		self.trad.resetangle()
 		self.a_voulu=a_voulu
 		self.t0 = 0
 	
@@ -106,12 +107,12 @@ class IA_tourner:
 	def step(self):
 		if self.arret:
 			return
-		if (self.a<=self.a_voulu):
+		if (self.trad.angle<=self.a_voulu):
 			self.dt=time.time()-self.t0
-			self.a+=self.trad.getangle(self.dt)
+			self.trad.getangle(self.dt)
 		else:
 			self.stop()
-			self.a=0
+			self.trad.resetangle()
 	
 	def stop(self):
 		self.trad.setMotorDps(0,0)

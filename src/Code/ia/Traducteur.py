@@ -22,6 +22,8 @@ class Traducteur_Simulation:
         """
         self.simulation=simulation
         self.robot=robot
+        self.distance=0
+        self.angle=0
     
     def setMotorDps(self,v_gauche,v_droite):
         """
@@ -35,7 +37,6 @@ class Traducteur_Simulation:
         :param dt : temps ecoule depuis le dernier calcul
         """
         self.distance+=dt*cs.V_ANGULAIRE_G*cs.RAYON_ROBOT_CM*0.01*360
-        return self.distance
 
     def resetdistance(self):
         self.distance=0
@@ -44,8 +45,7 @@ class Traducteur_Simulation:
         """
         :param dt : temps ecoule depuis le dernier calcul
         """
-        self.angle+=dt*cs.cs.V_ANGULAIRE_G
-        return self.angle
+        self.angle+=dt*cs.V_ANGULAIRE_G
     
     def resetangle(self):
         self.angle=0
@@ -62,7 +62,7 @@ class Traducteur_Simulation:
         :param v_g : vitesse de la roue gauche en deg/s
         :param v_d : vitesse de la roue droite en deg/s
         """
-        self.robot.w=(cs.RAYON_DES_ROUES_CM/cs.RAYON_ROBOT_CM)*(v_g*(360/(2*pi))-v_d*(360/(2*pi)))
+        self.robot.new_orientation=(cs.RAYON_DES_ROUES_CM/cs.RAYON_ROBOT_CM)*(v_g*(360/(2*pi))-v_d*(360/(2*pi)))
 
 class Traducteur_Realite:
     def __init__(self,robot):
