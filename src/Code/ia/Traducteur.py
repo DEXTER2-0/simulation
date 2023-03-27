@@ -13,7 +13,6 @@ class Traducteur :
         self.robot_reel = robot_reel
         self.robot_sim = robot_sim
 
-
 class Traducteur_Simulation:
     def __init__(self,simulation,robot):
         """
@@ -24,6 +23,9 @@ class Traducteur_Simulation:
         self.robot=robot
         self.distance=0
         self.angle=0
+    
+    def stopSim(self):
+        self.simulation.stop()
     
     def setMotorDps(self,v_gauche,v_droite):
         """
