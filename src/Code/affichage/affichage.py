@@ -3,7 +3,6 @@ import time
 from math import *
 import pygame 
 
-
 #colors 
 BLACK = (0, 0, 0, 255)
 WHITE = (255, 255, 255, 255)
@@ -13,11 +12,15 @@ GREEN = (0, 255, 0)
 YELLOW = (255, 255, 0)
 AUTRE = (235, 152, 135)
 
-
 class Affichage(Thread):
 	def __init__(self, simulation,terrain,robot,fps):
-		""" Constructeur de la classe affichage """
-
+		""" 
+		Constructeur de la classe affichage
+		:param simulation : simulation choisie
+		:param terrain : terrain choisi
+		:param robot : robot choisi
+		:param fps :
+		"""
 		super(Affichage, self).__init__()
 		self.simulation = simulation
 		pygame.init()
@@ -29,50 +32,38 @@ class Affichage(Thread):
 		self._trace.fill((255, 255, 255))
 		self.fps = fps 
 
-
-	
-
 	def run(self):
-		""" 	Cette boucle permet d'actualiser l'affichage a chaque pas de temps   """
-
+		""" 	
+		Cette boucle permet d'actualiser l'affichage a chaque pas de temps   
+		"""
 		self.encours= True
-
 		while self.encours : 
 			self.update(self.fps)
 			time.sleep(1./self.fps)
+		pygame.quit()
 	
-
-
 	def events(self) :
-		""" sert a recuperer les evenements """
-
+		""" 
+		sert a recuperer les evenements 
+		"""
 		for event in pygame.event.get() : 
 			if event.type == pygame.QUIT:
 				pygame.quit()
 				exit(0)
 			elif event.type == pygame.KEYDOWN :
-				self.pressed[event.key] = True
-			elif event.type == pygame.KEYUP : 
-				self.pressed[event.key] = False 
-
-
+				if event.key in [pygame.K_ESCAPE, pygame.K_q]:
+					self.encours = False
 
 	def update(self,fps):
-
-		""" Permet de réafficher et de redessiner le robot et les obstacles """
-
+		""" 
+		Permet de reafficher et de redessiner le robot et les obstacles 
+		:param fps :
+		"""
 		#dessiner la balise : 
-
 		self._screen.blit(self._trace, (0, 0))
 		#dessiner les obstacles : 
-
-
-
 		for obs in self.simulation.terrain.getListeObstacles():
 			pygame.draw.circle(self._trace, RED, (obs.x + self._screen.get_size()[0]/2, obs.y + self._screen.get_size()[0]/2), obs.longueur)
 		pygame.draw.circle(self._trace, GREEN, (self.simulation.pos_x + self._trace.get_size()[0]/2, self.simulation.pos_y + self._trace.get_size()[0]/2),self.robot.rayonDuRobotCm)
 		pygame.display.update()
 		self.events()
-
-		
-
