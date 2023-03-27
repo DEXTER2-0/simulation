@@ -20,8 +20,6 @@ class Simulation(Thread) :
       self.r=r
       self.angle = angle
       self.capteurOn = False
-        #self.obs1 = Obstacle(6,2,2)
-        #self.obs2 = Obstacle(3,4,7)
     
     def getangle(self):
         return self.angle
