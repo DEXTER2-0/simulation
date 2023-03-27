@@ -14,31 +14,31 @@ class IA(Thread):
 		super(IA, self).__init__()
 		self.list_ia=list_ia
 		self.dt = dt
-		self.ia_actuel=-1
+		self.ia_actuel=0
 		self.trad=traducteur
 
 	def run(self):
 		self.encours = True
+		self.list_ia[self.ia_actuel].start()
 		while self.encours:   #tant qu'on run 
 			self._lastTime = time.time()    # on sauvegarde l'instant du run 
 			time.sleep(self.dt)     #on fait un sleep de dt afin de calculer l'intervalle de temps
 			self._ITemps = time.time() - self._lastTime   #on calcule l'intervalle de temps 
-			self.step() #on met a jour la simulation 
+			self.step() #on met a jour la simulation
+		self.trad.stopSim()
            
 	def step(self):
 		"""
 		met a jour la simulation selon le temps ecoule
 		"""
 		if self.list_ia[self.ia_actuel].arret:
+			self.list_ia[self.ia_actuel].stop()
 			self.ia_actuel+=1
-			if self.ia_actuel>= 0 and self.ia_actuel <len(self.list_ia):
-				self.list_ia[self.ia_actuel].stop()
 			if self.ia_actuel>=len(self.list_ia):
 				self.ia_actuel=0
 				self.encours=False
 				return
 			self.list_ia[self.ia_actuel].start()
-			
 		else:
 			self.list_ia[self.ia_actuel].step()
 			
@@ -68,7 +68,9 @@ class IA_avancer :
 		if self.arret:
 			return
 		if (self.trad.distance<self.d_voulue):
-			self.dt=time.time()-self.t0
+			t=time.time()
+			self.dt=t-self.t0
+			self.t0=t
 			self.trad.getdistance(self.dt)
 		else:
 			self.stop()
@@ -108,7 +110,9 @@ class IA_tourner:
 		if self.arret:
 			return
 		if (self.trad.angle<=self.a_voulu):
-			self.dt=time.time()-self.t0
+			t=time.time()
+			self.dt=t-self.t0
+			self.t0=t
 			self.trad.getangle(self.dt)
 		else:
 			self.stop()
