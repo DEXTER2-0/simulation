@@ -1,5 +1,5 @@
 ###--------------- PROPRIETE ROBOT -------------------------###
-RAYON_ROBOT_CM=10 #en cm
+RAYON_ROBOT_CM=5 #en cm
 
 ###--------------- PROPRIETE ROUE ---------------------------###
 RAYON_DES_ROUES_CM=3 #en cm

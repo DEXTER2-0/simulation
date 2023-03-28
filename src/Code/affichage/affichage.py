@@ -38,8 +38,8 @@ class Affichage(Thread):
 		super(Affichage, self).__init__()
 		self.simulation = simulation
 		pygame.init()
-		self._trace = pygame.surface.Surface((self.terrain.WIDTH_MAX , self.terrain.HEIGHT_MAX))
-		self._screen = pygame.display.set_mode((self.terrain.WIDTH_MAX , self.terrain.HEIGHT_MAX))
+		self._trace = pygame.surface.Surface((self.simulation.terrain.WIDTH_MAX , self.simulation.terrain.HEIGHT_MAX))
+		self._screen = pygame.display.set_mode((self.simulation.terrain.WIDTH_MAX , self.simulation.terrain.HEIGHT_MAX))
 		self._screen.fill((255, 255, 255))
 		self._trace.fill((255, 255, 255))
 		self.fps = fps
@@ -57,7 +57,7 @@ class Affichage(Thread):
 		"""
 		self.encours= True
 		while self.encours : 
-			self.update(self.fps)
+			self.update()
 			self.clock.tick(self.fps)
 		pygame.quit()
 	

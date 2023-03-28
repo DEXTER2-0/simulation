@@ -147,9 +147,9 @@ class IA_eviter:
 		t=time.time()
 		self.dt=t-self.t0
 		self.t0=t
-		if(self.trad.capteur(dt)<=self.d_evitement) and (self.tourner.arret):
+		if(self.trad.capteur(self.dt)<=self.d_evitement) and (self.tourner.arret):
 			self.tourner.start()
-		elif(self.trad.capteur(dt)<=self.d_evitement) and (self.tourner.fonctionne):
+		elif(self.trad.capteur(self.dt)<=self.d_evitement) and (self.tourner.fonctionne):
 			self.tourner.step()
 		elif(self.avancer.arret) and (self.tourner.arret):
 			self.avancer.start()
