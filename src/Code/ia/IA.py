@@ -105,7 +105,6 @@ class IA_tourner:
 		self.trad.calcul_v(cs.V_ANGULAIRE_G,0)
 		self.trad.calcul_new_orientation(cs.V_ANGULAIRE_G,0)
 		
-
 	def step(self):
 		if self.arret:
 			return
@@ -140,15 +139,17 @@ class IA_eviter:
 		self.arret=False
 		self.d_evitement=d_evitement
 
-	
 	def start(self):
 		self.avancer.start()
+		self.t0=time.time()
 
-	
 	def step(self):
-		if(self.trad.capteur()<=self.d_evitement) and (self.tourner.arret):
+		t=time.time()
+		self.dt=t-self.t0
+		self.t0=t
+		if(self.trad.capteur(dt)<=self.d_evitement) and (self.tourner.arret):
 			self.tourner.start()
-		elif(self.trad.capteur()<=self.d_evitement) and (self.tourner.fonctionne):
+		elif(self.trad.capteur(dt)<=self.d_evitement) and (self.tourner.fonctionne):
 			self.tourner.step()
 		elif(self.avancer.arret) and (self.tourner.arret):
 			self.avancer.start()
