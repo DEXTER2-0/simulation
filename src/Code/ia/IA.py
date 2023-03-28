@@ -177,3 +177,8 @@ class IA_conditionnelle:
 
 	def start(self):
 		self.IA_base.start()
+	
+	def stop(self):
+		self.IA_base.stop()
+		self.IA_alt.stop()
+		self.arret=True
