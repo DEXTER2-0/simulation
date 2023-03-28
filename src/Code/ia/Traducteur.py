@@ -66,7 +66,7 @@ class Traducteur_Simulation:
         """
         self.robot.new_orientation=(cs.RAYON_DES_ROUES_CM/cs.RAYON_ROBOT_CM)*(v_g*(360/(2*pi))-v_d*(360/(2*pi)))
 
-    def capteur(dt):
+    def capteur(self,dt):
         """
         :param dt : temps ecoule depuis le dernier calcul
         """
