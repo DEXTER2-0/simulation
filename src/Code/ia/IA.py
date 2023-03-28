@@ -160,3 +160,5 @@ class IA_eviter:
 		self.avancer.stop()
 		self.tourner.stop()
 		self.arret=True
+
+class IA_conditionnelle:
