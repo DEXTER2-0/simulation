@@ -12,8 +12,22 @@ GREEN = (0, 255, 0)
 YELLOW = (255, 255, 0)
 AUTRE = (235, 152, 135)
 
+class CircSprite(pygame.sprite.Sprite):
+    """
+    Représente le sprite d'un cercle
+    """
+    def __init__(self, color, pos, rayon, t):
+        super().__init__()
+        self.type = t # Debug information
+        self.image = pygame.Surface([2*rayon, 2*rayon])
+        self.image.fill(WHITE)
+        self.image.set_colorkey(WHITE)
+        # TODO: Will be modified later to support other types of obstacles
+        pygame.draw.circle(self.image, color, (rayon, rayon), rayon)
+        self.rect = self.image.get_rect(center=pos)
+
 class Affichage(Thread):
-	def __init__(self, simulation,terrain,robot,fps):
+	def __init__(self, simulation,fps):
 		""" 
 		Constructeur de la classe affichage
 		:param simulation : simulation choisie
@@ -24,13 +38,18 @@ class Affichage(Thread):
 		super(Affichage, self).__init__()
 		self.simulation = simulation
 		pygame.init()
-		self.terrain = terrain
-		self.robot=robot
 		self._trace = pygame.surface.Surface((self.terrain.WIDTH_MAX , self.terrain.HEIGHT_MAX))
 		self._screen = pygame.display.set_mode((self.terrain.WIDTH_MAX , self.terrain.HEIGHT_MAX))
 		self._screen.fill((255, 255, 255))
 		self._trace.fill((255, 255, 255))
-		self.fps = fps 
+		self.fps = fps
+		self.mid = self.simulation.terrain.WIDTH_MAX / 2
+		self.sprites = pygame.sprite.Group()
+		self.robot = CircSprite(GREEN, (self.simulation.pos_x + self.mid, self.simulation.pos_y + self.mid), self.simulation.robot.rayonDuRobotCm, "Robot")
+		self.sprites.add(self.robot)
+		for obs in self.simulation.terrain.getListeObstacles():
+			self.sprites.add(CircSprite(RED, (obs.x + self.mid, obs.y + self.mid), obs.longueur, "Obstacle"))
+		self.clock = pygame.time.Clock()
 
 	def run(self):
 		""" 	
@@ -39,7 +58,7 @@ class Affichage(Thread):
 		self.encours= True
 		while self.encours : 
 			self.update(self.fps)
-			time.sleep(1./self.fps)
+			self.clock.tick(self.fps)
 		pygame.quit()
 	
 	def events(self) :
@@ -48,22 +67,19 @@ class Affichage(Thread):
 		"""
 		for event in pygame.event.get() : 
 			if event.type == pygame.QUIT:
-				pygame.quit()
-				exit(0)
+				self.running = False
 			elif event.type == pygame.KEYDOWN :
 				if event.key in [pygame.K_ESCAPE, pygame.K_q]:
 					self.encours = False
 
-	def update(self,fps):
-		""" 
-		Permet de reafficher et de redessiner le robot et les obstacles 
-		:param fps :
+	def update(self):
 		"""
-		#dessiner la balise : 
-		self._screen.blit(self._trace, (0, 0))
-		#dessiner les obstacles : 
-		for obs in self.simulation.terrain.getListeObstacles():
-			pygame.draw.circle(self._trace, RED, (obs.x + self._screen.get_size()[0]/2, obs.y + self._screen.get_size()[0]/2), obs.longueur)
-		pygame.draw.circle(self._trace, GREEN, (self.simulation.pos_x + self._trace.get_size()[0]/2, self.simulation.pos_y + self._trace.get_size()[0]/2),self.robot.rayonDuRobotCm)
-		pygame.display.update()
+        Met à jour la position des sprites
+        """
+		self.robot.rect.x = self.simulation.pos_x + self.mid
+		self.robot.rect.y = self.simulation.pos_y + self.mid
+		self.sprites.update()
+		self._screen.fill(WHITE)
+		self.sprites.draw(self._screen)
+		pygame.display.flip()
 		self.events()
