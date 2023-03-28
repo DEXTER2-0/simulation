@@ -162,3 +162,15 @@ class IA_eviter:
 		self.arret=True
 
 class IA_conditionnelle:
+	def __init__(self,traducteur,IA_base,IA_alternative,condition):
+		"""
+		:param traducteur : traducteur utilise
+		:param IA_base : IA avant que la condition soit satisfaite
+		:param IA_alternative : IA apres que la condition soit satisfaite
+		:param condition : condition qui declenche le changement d'IA
+		"""
+		self.trad=traducteur
+		self.IA_base=IA_base
+		self.IA_alt=IA_alternative
+		self.condition=condition
+		self.arret=False
