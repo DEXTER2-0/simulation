@@ -55,6 +55,7 @@ class IA_avancer :
 		self.trad.resetdistance()
 		self.d_voulue=d_voulue
 		self.t0=0
+		self.fonctionne=False
 
 	def start(self):
 		self.t0=time.time()
@@ -68,6 +69,7 @@ class IA_avancer :
 		if self.arret:
 			return
 		if (self.trad.distance<self.d_voulue):
+			print("d=",self.trad.distance)
 			t=time.time()
 			self.dt=t-self.t0
 			self.t0=t
@@ -96,6 +98,7 @@ class IA_tourner:
 		self.trad.resetangle()
 		self.a_voulu=a_voulu
 		self.t0 = 0
+		self.fonctionne=False
 	
 	def start(self):
 		self.t0=time.time()
@@ -123,7 +126,7 @@ class IA_tourner:
 		self.arret=True
 		self.trad.calcul_v(0,0)
 		self.trad.calcul_new_orientation(0,0)
-		self.arret=True
+
 
 class IA_eviter:
 	def __init__ (self,traducteur,IA_avancer,IA_tourner,d_evitement) :

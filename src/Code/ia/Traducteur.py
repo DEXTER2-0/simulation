@@ -38,7 +38,7 @@ class Traducteur_Simulation:
         """
         :param dt : temps ecoule depuis le dernier calcul
         """
-        self.distance+=dt*cs.V_ANGULAIRE_G*cs.RAYON_ROBOT_CM*0.01*360
+        self.distance+=(dt*cs.V_ANGULAIRE_G*cs.RAYON_ROBOT_CM*0.01)/360
 
     def resetdistance(self):
         self.distance=0
@@ -57,20 +57,20 @@ class Traducteur_Simulation:
         :param v_g : vitesse de la roue gauche en deg/s
         :param v_d : vitesse de la roue droite en deg/s
         """
-        self.robot.v=((cs.RAYON_DES_ROUES_CM*0.01)/2)*(v_g*(360/(2*pi))+v_d*(360/(2*pi)))
+        self.robot.v=(cs.RAYON_DES_ROUES_CM*0.01/2)*(v_g*((2*pi)/360)+v_d*((2*pi)/360))
     
     def calcul_new_orientation(self,v_g,v_d):
         """
         :param v_g : vitesse de la roue gauche en deg/s
         :param v_d : vitesse de la roue droite en deg/s
         """
-        self.robot.new_orientation=(cs.RAYON_DES_ROUES_CM/cs.RAYON_ROBOT_CM)*(v_g*(360/(2*pi))-v_d*(360/(2*pi)))
+        self.robot.new_orientation=((cs.RAYON_DES_ROUES_CM*0.01)/(cs.RAYON_ROBOT_CM*0.01))*(v_g*((2*pi)/360)-v_d*((2*pi)/360))
 
     def capteur(self,dt):
         """
         :param dt : temps ecoule depuis le dernier calcul
         """
-        self.robot.senseur_de_distance(self.simulation.pos_x,self.simulation.pos_y,self.simulation.angle_robot,dt,self.simulation.terrain.liste_obstacle)
+        return self.robot.capteurDistance.senseur_de_distance(self.simulation.pos_x,self.simulation.pos_y,self.simulation.angle,dt,self.simulation.terrain.liste_obstacle)
 
 class Traducteur_Realite:
     def __init__(self,robot):
