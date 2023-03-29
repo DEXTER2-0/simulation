@@ -1,6 +1,7 @@
 from Code.simulation import constantes as cs
 from Code.simulation.Robot import Robot
 from math import pi
+import time as time
 
 class Traducteur :
     def __init__ (self,simulation,robot_reel,robot_sim):
@@ -23,6 +24,7 @@ class Traducteur_Simulation:
         self.robot=robot
         self.distance=0
         self.angle=0
+        self.t0
     
     def stopSim(self):
         self.simulation.stop()
@@ -34,42 +36,39 @@ class Traducteur_Simulation:
         """
         self.robot.setMotorDps(v_gauche,v_droite)
     
-    def getdistance(self,dt):
-        """
-        :param dt : temps ecoule depuis le dernier calcul
-        """
+    def reset_v_new_orientation(self):
+        self.robot.reset_v()
+        self.robot.reset_new_orientation()
+    
+    def set_v_new_orientation(self):
+        self.robot.calcul_v()
+        self.robot.calcul_new_orientattion()
+
+    def reset_t0(self):
+        self.t0=time.time()
+
+    def getdistance(self): #INITIALISATION DE T0 méthode reset et get?
+        t=time.time()
+        dt=t-self.t0
+        self.t0=t
         self.distance+=(dt*cs.V_ANGULAIRE_G*cs.RAYON_ROBOT_CM*0.01)/360
 
     def resetdistance(self):
         self.distance=0
 
-    def getangle(self,dt):
-        """
-        :param dt : temps ecoule depuis le dernier calcul
-        """
+    def getangle(self):
+        t=time.time()
+        dt=t-self.t0
+        self.t0=t
         self.angle+=dt*cs.V_ANGULAIRE_G
     
     def resetangle(self):
         self.angle=0
-
-    def calcul_v(self,v_g,v_d):
-        """
-        :param v_g : vitesse de la roue gauche en deg/s
-        :param v_d : vitesse de la roue droite en deg/s
-        """
-        self.robot.v=(cs.RAYON_DES_ROUES_CM*0.01/2)*(v_g*((2*pi)/360)+v_d*((2*pi)/360))
     
-    def calcul_new_orientation(self,v_g,v_d):
-        """
-        :param v_g : vitesse de la roue gauche en deg/s
-        :param v_d : vitesse de la roue droite en deg/s
-        """
-        self.robot.new_orientation=((cs.RAYON_DES_ROUES_CM*0.01)/(cs.RAYON_ROBOT_CM*0.01))*(v_g*((2*pi)/360)-v_d*((2*pi)/360))
-
-    def capteur(self,dt):
-        """
-        :param dt : temps ecoule depuis le dernier calcul
-        """
+    def capteur(self):
+        t=time.time()
+        dt=t-self.t0
+        self.t0=t
         return self.robot.capteurDistance.senseur_de_distance(self.simulation.pos_x,self.simulation.pos_y,self.simulation.angle,dt,self.simulation.terrain.liste_obstacle)
 
 class Traducteur_Realite:

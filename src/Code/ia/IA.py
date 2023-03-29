@@ -1,7 +1,6 @@
 from math import *
 from Code.simulation import constantes as cs
 from . import Traducteur
-import time as time
 from threading import Thread
 
 class IA(Thread):
@@ -13,17 +12,13 @@ class IA(Thread):
 		"""
 		super(IA, self).__init__()
 		self.list_ia=list_ia
-		self.dt = dt
 		self.ia_actuel=0
 		self.trad=traducteur
 
 	def run(self):
 		self.encours = True
 		self.list_ia[self.ia_actuel].start()
-		while self.encours:   #tant qu'on run 
-			self._lastTime = time.time()    # on sauvegarde l'instant du run 
-			time.sleep(self.dt)     #on fait un sleep de dt afin de calculer l'intervalle de temps
-			self._ITemps = time.time() - self._lastTime   #on calcule l'intervalle de temps 
+		while self.encours:   #tant qu'on run  
 			self.step() #on met a jour la simulation
 		self.trad.stopSim()
            
@@ -43,37 +38,31 @@ class IA(Thread):
 			self.list_ia[self.ia_actuel].step()
 			
 class IA_avancer :
-	def __init__ (self,traducteur,d_voulue) :
+	def __init__ (self,traducteur,d_voulue,vitesse_angulaire) :
 		"""
 		:param traducteur : traducteur utilise
 		:param d_voulue : ditance voulue a effectuer en m
 		"""
 		self.trad=traducteur
-		self.trad.calcul_v(0,0)
-		self.trad.calcul_new_orientation(0,0)
-		self.arret=False	
+		self.arret=False
 		self.trad.resetdistance()
 		self.d_voulue=d_voulue
-		self.t0=0
 		self.fonctionne=False
+		self.trad.reset_v_new_orientation()
+		self.v_a=vitesse_angulaire
 
 	def start(self):
-		self.t0=time.time()
-		self.trad.setMotorDps(cs.V_ANGULAIRE_G,cs.V_ANGULAIRE_D)
+		self.trad.setMotorDps(self.v_a,self.v_a)
 		self.fonctionne=True
 		self.arret=False
-		self.trad.calcul_v(cs.V_ANGULAIRE_G,cs.V_ANGULAIRE_D)
-		self.trad.calcul_new_orientation(cs.V_ANGULAIRE_G,cs.V_ANGULAIRE_D)
+		self.trad.reset_t0()
+		self.trad.set_v_new_orientation()
 
 	def step(self):
 		if self.arret:
 			return
 		if (self.trad.distance<self.d_voulue):
-			print("d=",self.trad.distance)
-			t=time.time()
-			self.dt=t-self.t0
-			self.t0=t
-			self.trad.getdistance(self.dt)
+			self.trad.getdistance(self)
 		else:
 			self.stop()
 			self.trad.resetdistance()
@@ -82,39 +71,33 @@ class IA_avancer :
 		self.trad.setMotorDps(0,0)
 		self.fonctionne=False
 		self.arret=True
-		self.trad.calcul_v(0,0)
-		self.trad.calcul_new_orientation(0,0)
+		self.trad.reset_v_new_orientation()
 
 class IA_tourner:
-	def __init__(self,traducteur,a_voulu) :
+	def __init__(self,traducteur,a_voulu,vitesse_angulaire) :
 		"""
 		:param traducteur : traducteur utilise
 		:param a_voulue : angle voulu a effectuer en deg
 		"""
 		self.trad=traducteur
-		self.trad.calcul_v(0,0)
-		self.trad.calcul_new_orientation(0,0)
 		self.arret=False
 		self.trad.resetangle()
 		self.a_voulu=a_voulu
-		self.t0 = 0
 		self.fonctionne=False
+		self.trad.reset_v_new_orientation()
+		self.v_a=vitesse_angulaire
 	
 	def start(self):
-		self.t0=time.time()
-		self.trad.setMotorDps(cs.V_ANGULAIRE_G,-cs.V_ANGULAIRE_D)
+		self.trad.setMotorDps(self.v_a,0)
 		self.fonctionne=True
 		self.arret=False
-		self.trad.calcul_v(cs.V_ANGULAIRE_G,0)
-		self.trad.calcul_new_orientation(cs.V_ANGULAIRE_G,0)
+		self.trad.reset_t0()
+		self.trad.set_v_new_orientation()
 		
 	def step(self):
 		if self.arret:
 			return
 		if (self.trad.angle<=self.a_voulu):
-			t=time.time()
-			self.dt=t-self.t0
-			self.t0=t
 			self.trad.getangle(self.dt)
 		else:
 			self.stop()
@@ -124,9 +107,7 @@ class IA_tourner:
 		self.trad.setMotorDps(0,0)
 		self.fonctionne=False
 		self.arret=True
-		self.trad.calcul_v(0,0)
-		self.trad.calcul_new_orientation(0,0)
-
+		self.trad.reset_v_new_orientation()
 
 class IA_eviter:
 	def __init__ (self,traducteur,IA_avancer,IA_tourner,d_evitement) :
@@ -144,15 +125,12 @@ class IA_eviter:
 
 	def start(self):
 		self.avancer.start()
-		self.t0=time.time()
+		self.trad.reset_t0()
 
 	def step(self):
-		t=time.time()
-		self.dt=t-self.t0
-		self.t0=t
-		if(self.trad.capteur(self.dt)<=self.d_evitement) and (self.tourner.arret):
+		if(self.trad.capteur()<=self.d_evitement) and (self.tourner.arret):
 			self.tourner.start()
-		elif(self.trad.capteur(self.dt)<=self.d_evitement) and (self.tourner.fonctionne):
+		elif(self.trad.capteur()<=self.d_evitement) and (self.tourner.fonctionne):
 			self.tourner.step()
 		elif(self.avancer.arret) and (self.tourner.arret):
 			self.avancer.start()

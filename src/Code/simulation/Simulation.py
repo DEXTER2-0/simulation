@@ -5,7 +5,7 @@ from math import *
 from threading import Thread
 
 class Simulation(Thread) : 
-    def __init__ (self, robot,terrain,dt,pos_x=0,pos_y=0,r=0,angle=0) :
+    def __init__ (self, robot,terrain,dt) :
       """     
 	:param robot : Robot utilise
 	:param terrain : Terrain utilise
@@ -15,16 +15,9 @@ class Simulation(Thread) :
       self.robot = robot
       self.terrain = terrain
       self.dt = dt
-      self.pos_x=pos_x
-      self.pos_y=pos_y
-      self.r=r
-      self.angle = angle
       self.capteurOn = False
-    
-    def getangle(self):
-        return self.angle
-          
-    def collision(self):
+
+    def collision(self): #PROBLEME x et y dans robot donc plus de self.pos_x
         """
         on suppose que tout objet est un cercle
         """
@@ -40,14 +33,8 @@ class Simulation(Thread) :
              #   self.ia.robot.arret_urgence()
         return False
 
-    def nouvelle_position(self,duree):
-        """
-	    :param duree : duree passee depuis le dernier calcul de la position
-        met a jours les coordonees du robot ainsi que son angle d'orientation					                      
-        """
-        self.pos_x = self.pos_x + self.robot.v * cos(self.angle)*duree
-        self.pos_y = self.pos_y + self.robot.v * sin(self.angle)*duree
-        self.angle = self.angle + self.robot.new_orientation * duree
+    def get_pos(self,robot):
+        return robot.calcul_x(),robot.calcul_y()
 
     def run(self):
       """
@@ -72,7 +59,4 @@ class Simulation(Thread) :
           self.stop()
           return 
       else :
-          self.nouvelle_position(self._ITemps)
-          print("angle = ",self.angle)
-          print("pos x = ",self.pos_x)
-          print("pos y = ",self.pos_y)
+          self.get_pos(self.robot)
