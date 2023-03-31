@@ -16,6 +16,18 @@ class Point:
         """
         return sqrt((self.x - p2.x)**2 + (self.y - p2.y)**2)
 
+    def rotation(self, centre, angle):
+        """
+        :param centre: centre de la rotation
+        :param angle: angle de la rotation
+        """
+        distance = self.distance(centre)
+        vect_src = Vecteur(centre, self)
+        angle_vect_dest = Vecteur.get_vect_from_angle(0).angle_sign(vect_src) + angle
+        vect_dest = Vecteur.get_vect_from_angle(angle_vect_dest)
+        self.x = centre.x + vect_dest.vect[0] * distance
+        self.y = centre.y + vect_dest.vect[1] * distance
+
 class Vecteur:
     def __init__(self, p1, p2):
         """
