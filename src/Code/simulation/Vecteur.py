@@ -52,7 +52,7 @@ class Vecteur:
             return Vecteur(Point(0, 0), Point(self.vect[0] * v2, self.vect[1] * v2))
         return self.vect[0] * v2.vect[0] + self.vect[1] * v2.vect[1]
 
-    def get_vect_from_angle(self,angle):
+    def get_vect_from_angle(angle):
         """
         :param angle: angle
         Vecteur direction depuis un angle
