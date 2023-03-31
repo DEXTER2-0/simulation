@@ -60,5 +60,5 @@ class Vecteur:
         angle = radians(angle)
         return Vecteur(Point(0, 0), Point(round(cos(angle), 2), round(sin(angle), 2)))
 
-     def pointer_vers(self):
+    def pointer_vers(self):
         return Point(self.vect[0], self.vect[1])
