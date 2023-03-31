@@ -9,6 +9,14 @@ class Point:
         self.x = x
         self.y = y
     
+    def __add__(self, p2):
+        """
+        :param p2: deuxieme point
+        """
+        if isinstance(p2, Vecteur): # Application d'un vecteur à un point
+            return Point(self.x + p2.vect[0], self.y + p2.vect[1])
+        return Point(self.x + p2.x, self.y + p2.y)
+    
     def distance(self, p2):
         """
         :param p2: deuxième point
@@ -36,6 +44,14 @@ class Vecteur:
         """
         self.vect = (p2.x - p1.x, p2.y - p1.y)
     
+    def __mul__(self, v2):
+        """
+        :param v2: deuxieme vecteur
+        """
+        if not isinstance(v2, Vecteur): # Mutiplicaiton par un scalaire
+            return Vecteur(Point(0, 0), Point(self.vect[0] * v2, self.vect[1] * v2))
+        return self.vect[0] * v2.vect[0] + self.vect[1] * v2.vect[1]
+
     def get_vect_from_angle(self,angle):
         """
         :param angle: angle
@@ -43,3 +59,6 @@ class Vecteur:
         """
         angle = radians(angle)
         return Vecteur(Point(0, 0), Point(round(cos(angle), 2), round(sin(angle), 2)))
+
+     def pointer_vers(self):
+        return Point(self.vect[0], self.vect[1])

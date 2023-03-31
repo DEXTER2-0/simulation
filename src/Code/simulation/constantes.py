@@ -1,8 +1,12 @@
+from math import pi
+
 ###--------------- PROPRIETE ROBOT -------------------------###
 RAYON_ROBOT_CM=5 #en cm
 
 ###--------------- PROPRIETE ROUE ---------------------------###
 RAYON_DES_ROUES_CM=3 #en cm
+DIAMETRE_ROUES=RAYON_DES_ROUES_CM*2
+CIRCONFERENCE_ROUES=DIAMETRE_ROUES*pi
 
 VITESSE_MAX_DEG_PAR_SEC= 20
 V_ANGULAIRE_G = 12 #deg/s
