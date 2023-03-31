@@ -1,8 +1,9 @@
 from Code.simulation import constantes as cs
+from Code.simulation import Vecteur as vect
 from math import pi,sqrt,sin,cos
 
 class Robot :
-    def __init__ (self, rayonRouesCm,rayonDuRobotCm,vMaxDegParSec,distance_captable,x,y,angle,l=1,) :
+    def __init__ (self, rayonRouesCm,rayonDuRobotCm,vMaxDegParSec,distance_captable,x,y,angle,centre,l=1) :
         """
         :param rayonRouesCm : rayon des roues en cm
         :param rayonDuRobotCm : rayon du cercle dans lequel s'inscrit le robot en cm
@@ -18,12 +19,11 @@ class Robot :
         self.roue_droite = Roue(rayonRouesCm, vMaxDegParSec)
         self.capteurDistance = Capteur_de_distance(distance_captable)
         self.rayonDuRobotCm = rayonDuRobotCm
-        self.v = 0
-        self.new_orientation = 0
-        self.x=x
-        self.y=y
-        self.angle=angle
         self.l=l*2*rayonDuRobotCm
+        self.centre=centre
+        self.vec=vect.Vecteur.get_vect_from_angle(0)
+        self.pos_roue_g=0
+        self.pos_roue_d=0
 
     def setMotorDps(self, ANG_G, ANG_D):
         """
@@ -35,37 +35,12 @@ class Robot :
         self.roue_gauche.vDegParSec = ANG_G
         self.roue_droite.vDegParSec = ANG_D
     
-    def cacul_x(self,duree):
-        self.x += self.v * cos(self.angle)*duree
-        return self.x
-    
-    def calcul_y(self,duree):
-        self.y += self.v * cos(self.angle)*duree
-        return self.y
-    
-    def calcul_angle(self,duree):
-        self.angle += self.robot.new_orientation * duree
-    
-    def reset_v(self):
-        self.v=0
+    def stop(self):
+        self.setMotorDps(0,0)
 
-    def calcul_v(self):
-        """
-        :param v_g : vitesse de la roue gauche en deg/s
-        :param v_d : vitesse de la roue droite en deg/s
-        """
-        self.v=(cs.RAYON_DES_ROUES_CM*0.01/2)*(v_g*((2*pi)/360)+v_d*((2*pi)/360))
-    
-    def reset_new_orientation(self):
-        self.new_orientation=0
+    def get_pos_roues(self):
+        return self.pos_roue_g, self.pos_roue_d
 
-    def calcul_new_orientation(self,v_g,v_d):
-        """
-        :param v_g : vitesse de la roue gauche en deg/s
-        :param v_d : vitesse de la roue droite en deg/s
-        """
-        self.robot.new_orientation=((cs.RAYON_DES_ROUES_CM*0.01)/(cs.RAYON_ROBOT_CM*0.01))*(v_g*((2*pi)/360)-v_d*((2*pi)/360))
-    
 ####------------------------ ROUE --------------------------##
 
 class Roue :
