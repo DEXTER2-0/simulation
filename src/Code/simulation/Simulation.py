@@ -5,17 +5,19 @@ from math import *
 from threading import Thread
 
 class Simulation(Thread) : 
-    def __init__ (self, robot,terrain,dt) :
-      """     
-	:param robot : Robot utilise
-	:param terrain : Terrain utilise
-	:param dt : duree de simulation
-   """
-      super(Simulation, self).__init__()
-      self.robot = robot
-      self.terrain = terrain
-      self.dt = dt
-      self.capteurOn = False
+    def __init__ (self, robot,terrain,fps) :
+        """     
+	    :param robot : Robot utilise
+	    :param terrain : Terrain utilise
+	    :param dt : duree de simulation
+        """
+        super(Simulation, self).__init__()
+        self.robot = robot
+        self.terrain = terrain
+        self.fps = fps
+        self.capteurOn = False
+        self.encours= True
+        self.t_1=time.datetime.now()
 
     def collision(self): #PROBLEME x et y dans robot donc plus de self.pos_x
         """
@@ -33,19 +35,13 @@ class Simulation(Thread) :
              #   self.ia.robot.arret_urgence()
         return False
 
-    def get_pos(self,robot):
-        return robot.calcul_x(),robot.calcul_y()
-
     def run(self):
       """
       le step de la simulation
       """
-      self.encours= True
       while self.encours:   #tant qu'on run 
-         self._lastTime = time.time()    # on sauvegarde l'instant du run 
-         time.sleep(self.dt)     #on fait un sleep de dt afin de calculer l'intervalle de temps 
-         self._ITemps = time.time() - self._lastTime   #on calcule l'intervalle de temps 
-         self.update() #on met a jour la simulation 
+        self.update() #on met a jour la simulation 
+        time.sleep(1/self.fps)
 		
     def stop(self):
         self.encours = False
@@ -54,6 +50,17 @@ class Simulation(Thread) :
       """
       met a jour la simulation selon le temps ecoule
       """
+      t0=time.datetime.now()
+      dt=(t0-self.t_1).total_seconds()
+      self.t_1=t0
+      if self.robot.roue_gauche.vDegParSec==0 and self.robot.roue_gauche.vDegParSec==0 :
+          return
+      if self.robot.roue_gauche.vDegParSec==self.robot.roue_gauche.vDegParSec :
+          angle=dt*self.robot.roue_gauche.vDegParSec
+          self.robot.pos_roue_g+=angle
+          self.robot.pos_roue_d+=angle
+          
+          return
       if self.collision() :
           print("COOOOLISIONNNNN ")
           self.stop()
