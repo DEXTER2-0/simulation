@@ -59,7 +59,9 @@ class Simulation(Thread) :
           angle=dt*self.robot.roue_gauche.vDegParSec
           self.robot.pos_roue_g+=angle
           self.robot.pos_roue_d+=angle
-          
+          k,r=divmod(angle,360)
+          distance=k*cs.CIRCONFERENCE_ROUES+(r*cs.CIRCONFERENCE_ROUES)/360
+          self.robot.centre+=(self.robot.vec*distance).pointer_vers()
           return
       if self.collision() :
           print("COOOOLISIONNNNN ")
