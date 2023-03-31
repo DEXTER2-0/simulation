@@ -1,5 +1,7 @@
 setup.py
 Code/__init__.py
+Code/main.py
+Code/test.py
 Code/TestScript/TestGraphique.py
 Code/TestScript/TestSimulation.py
 Code/TestScript/__init__.py
@@ -10,8 +12,8 @@ Code/TestScript/testUnit_obstacle.py
 Code/TestScript/testUnit_robot.py
 Code/TestScript/testUnit_roue.py
 Code/TestScript/testUnit_terrain.py
-Code/affichage/Graphique.py
 Code/affichage/__init__.py
+Code/affichage/affichage.py
 Code/ia/IA.py
 Code/ia/Traducteur.py
 Code/ia/__init__.py
@@ -19,6 +21,7 @@ Code/simulation/Obstacle.py
 Code/simulation/Robot.py
 Code/simulation/Simulation.py
 Code/simulation/Terrain.py
+Code/simulation/Vecteur.py
 Code/simulation/__init__.py
 Code/simulation/constantes.py
 Dexter.egg-info/PKG-INFO
