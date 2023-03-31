@@ -92,7 +92,7 @@ class Capteur_de_distance :
         while k*le_pas < self.distanceCaptable :
             x = x + cos(angle_robot) * le_pas #Lance le laser dans la bonne direction
             y = y + sin(angle_robot) * le_pas #Lance le laser dans la bonne direction
-            print("x =",x,"y =",y)
+            #print("x =",x,"y =",y)
             # Verification si les coordonees du laser se trouve dans un obstacle(cercle)
             for i in range(len(l_obstacle)) :
                 obstacle = l_obstacle[i]
@@ -101,5 +101,5 @@ class Capteur_de_distance :
                     print("boucle : ",sqrt((x-pos_x)**2+(y-pos_y)**2) - cs.RAYON_ROBOT_CM)
                     return sqrt((x-pos_x)**2+(y-pos_y)**2) - cs.RAYON_ROBOT_CM
             k +=1
-        print("fin fct : ",self.distanceCaptable)
+        print("fin fct : ",self.distanceCaptable- cs.RAYON_ROBOT_CM)
         return self.distanceCaptable - cs.RAYON_ROBOT_CM
