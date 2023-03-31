@@ -1,6 +1,6 @@
 class Obstacle :
 
-	def __init__ (self, args, type, pos) :
+	def __init__ (self, type, pos,args) :
 		""" 
 		Fonction d'initialisation prenant en parametre:
 			: type : si type = 0 c'est un mur 
