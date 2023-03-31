@@ -2,6 +2,8 @@ from threading import Thread
 import time 
 from math import *
 import pygame 
+import logging
+from copy import deepcopy
 
 #colors 
 BLACK = (0, 0, 0, 255)
