@@ -1,15 +1,15 @@
-#!/usr/bin/python
-# -*- coding: latin-1 -*-
 from Code.simulation import constantes as cs
+from Code.simulation import Vecteur as vect
 from math import pi,sqrt,sin,cos
 
 class Robot :
-	def __init__ (self, rayonRouesCm,rayonDuRobotCm,vMaxDegParSec,l=1) :
+	def __init__ (self, rayonRouesCm,rayonDuRobotCm,vMaxDegParSec,centre,l=1) :
 		"""
 		:param rayonRouesCm : rayon des roues en cm
 		:param rayonDuRobotCm : rayon du cercle dans lequel s'inscrit le robot en cm
 		:param capteur : Capteur utilisé
 		:param vMaxRadParSec : vitesse maximale possible pour les roues en rad/s
+		:param centre : point du centre du robot
 		Cette fonction instancie deux roues de la même taille et de même vitesse maximale, ainsi qu'un capteur de position
 		"""
 		assert(rayonRouesCm > 0)# Ne peut pas avoir un rayon < 0
@@ -19,15 +19,10 @@ class Robot :
 		self.roue_droite = Roue(rayonRouesCm, vMaxDegParSec)
 		#self.capteurDistance = Capteur_de_distance(capteur)
 		self.rayonDuRobotCm = rayonDuRobotCm
-		self.v = 0
-		self.new_orientation = 0
-		#self.pos_x = pos_x
-		#self.pos_y = pos_y
-        #self.robot = robot
-		#self.r=r
-        #self.angle = angle
-		# l = 2*rayon du robot
-		self.l=l*2*rayonDuRobotCm	
+		self.l=l*2*rayonDuRobotCm
+		self.centre=centre
+		self.vec=vect.Vecteur.get_vect_from_angle(0)
+		self.update()
 
 	def setMotorDps(self, ANG_G, ANG_D):
 		"""
