@@ -15,20 +15,6 @@ GREEN = (0, 255, 0)
 YELLOW = (255, 255, 0)
 AUTRE = (235, 152, 135)
 
-class CircSprite(pygame.sprite.Sprite):
-    """
-    Représente le sprite d'un cercle
-    """
-    def __init__(self, color, pos, rayon, t):
-        super().__init__()
-        self.type = t # Debug information
-        self.image = pygame.Surface([2*rayon, 2*rayon])
-        self.image.fill(WHITE)
-        self.image.set_colorkey(WHITE)
-        # TODO: Will be modified later to support other types of obstacles
-        pygame.draw.circle(self.image, color, (rayon, rayon), rayon)
-        self.rect = self.image.get_rect(center=pos)
-
 class Affichage(Thread):
 	def __init__(self, simulation,fps):
 		""" 
