@@ -71,7 +71,7 @@ class Simulation(Thread) :
           self.robot.update()
           return
       if self.robot.roue_droite.vDegParSec==0 and self.robot.roue_gauche.vDegParSec!=0 : # tourne avec seulement la roue gauche
-          mil=vect.Point.milieu(self.robot.cote_bas_gauche,self.robot.cote_bas_droit)
+          mil=vect.Point.milieu(self.robot.cote_haut_gauche,self.robot.cote_haut_droit)
           angle=dt*self.robot.roue_gauche.vDegParSec
           self.robot.pos_roue_g+=angle
           k,r=divmod(angle,360)
