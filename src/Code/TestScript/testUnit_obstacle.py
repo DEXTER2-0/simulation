@@ -20,10 +20,14 @@ class TestObstacle(unittest.TestCase):
         self.assertEqual(self.obs1.largeur,6)
         self.assertNotEqual(self.obs1.largeur,self.obs1.longueur)   
         self.assertEqual(self.obs1.pos[0], 5)
-        self.assertEqual(self.obs1.pos[0], 5)
-        #self.assertEqual(self.obs2.longueur,3)
-        #self.assertEqual(self.obs2.largeur,3)
+        self.assertEqual(self.obs1.pos[1], 3)
+        
+        #tester pour l'objet de type cercle 
+        self.assertEqual(self.obs2.type,1)
+        self.assertEqual(self.obs2.rayon,5)
+        self.assertEqual(self.obs2.pos[0],1)
+        self.assertEqual(self.obs2.pos[1],4)
 
     if __name__ == '__main__':
         unittest.main()
-#pour tester -> python3 .m unittest nom_de_simulation .nomdefichier -v
+#pour tester -> python3 -m unittest nomdefichier -v
