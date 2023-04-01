@@ -62,3 +62,10 @@ class Vecteur:
 
     def pointer_vers(self):
         return Point(self.vect[0], self.vect[1])
+    
+    def milieu(p1,p2):
+        """
+        :param p1: premier point
+        :param p2: deuxieme point
+        """
+        return Point((p1.x+p2.x)/2,(p1.y+p2.y)/2)
