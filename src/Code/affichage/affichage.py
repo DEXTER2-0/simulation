@@ -78,11 +78,14 @@ class Affichage(Thread):
 	def update(self):
 		"""
         Met à jour la position des sprites
-        """
-		self.robot.rect.x = self.simulation.pos_x + self.mid
-		self.robot.rect.y = self.simulation.pos_y + self.mid
-		self.sprites.update()
-		self._screen.fill(WHITE)
-		self.sprites.draw(self._screen)
+      """
+		x,y=self.simulation.robot.center.x,self.simulation.robot.center.y
+		self.old_pos.append((x,y))
+		self.disp.fill(WHITE)
+		for obs in self.simulation.terrain.listesobstacle :
+			obs.draw(self.disp)
+		for pos in self.old_pos :
+			pygame.draw.circle(self.disp,RED,pos,2)
+		pygame.draw.circle(self.disp,BLUE,(x,y),self.simulation.robot.rayonDuRobotCm//10)
 		pygame.display.flip()
 		self.events()

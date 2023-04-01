@@ -1,4 +1,8 @@
+import pygame
+
 class Obstacle :
+
+
 
 	def __init__ (self, type, pos,args) :
 		""" 
@@ -18,5 +22,12 @@ class Obstacle :
 		else :
 			self.longueur = args[0]
 			self.largeur = args[1]
+	def draw(self,disp):
+		if self.type == 0 :
+			pygame.draw.line(disp, self.pos, self.end)
+		elif self.type == 1 :
+			pygame.draw.circle(disp, self.pos, self.rayon)
+		else :
+			pygame.draw.rect(disp,pygame.Rect(self.pos,(self.longueur,self.largeur)))
 
 	
