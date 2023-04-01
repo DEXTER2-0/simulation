@@ -9,7 +9,8 @@ class TestObstacle(unittest.TestCase):
         """
         self.obs1 = Obstacle(2, (5, 3),(5, 6)) #création d'un obstacle du type rectangle
         self.obs2 = Obstacle(1,(1,4),5) #création d'un obstacle du type cercle
-        self.obs3 = Obstacle(0,(0,0),200)
+        self.obs3 = Obstacle(0,(0,0),(0,200))
+        
     def test_init(self):
         """
         Permet de tester si les objects sont bien initialisés  
@@ -27,6 +28,12 @@ class TestObstacle(unittest.TestCase):
         self.assertEqual(self.obs2.rayon,5)
         self.assertEqual(self.obs2.pos[0],1)
         self.assertEqual(self.obs2.pos[1],4)
+
+        #tester pour le mur 
+        self.assertEqual(self.obs3.type,0)
+        self.assertEqual(self.obs3.end,200)
+        self.assertEqual(self.obs3.pos[0],self.obs3.pos[1])
+
 
     if __name__ == '__main__':
         unittest.main()
