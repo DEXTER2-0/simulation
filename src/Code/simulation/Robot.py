@@ -40,6 +40,16 @@ class Robot :
 
     def get_pos_roues(self):
         return self.pos_roue_g, self.pos_roue_d
+    
+    def update(self):
+        """
+        Mets a jour les coordonnes du robot
+        """
+        vec_normal=vect.Vecteur(vect.Point(0,0),vect.Point(-self.vec.vect[1],self.vec.vect[0]))
+        self.cote_haut_gauche=vect.Point(self.centre.x-(cs.RAYON_DES_ROUES//2)*self.vec.vect[0])-(cs.RAYON_DES_ROUES_CM//2)*vec_normal.vect[0],self.centre.y-(cs.RAYON_DES_ROUES_CM//2*self.vec*vect[1]-(cs.RAYYON_DES_ROUES_CM//2)*vec_normal.vect[1])
+        self.cote_bas_gauche=vect.Point(self.centre.x-(cs.RAYON_DES_ROUES//2)*self.vec.vect[0])+(cs.RAYON_DES_ROUES_CM//2)*vec_normal.vect[0],self.centre.y-(cs.RAYON_DES_ROUES_CM//2*self.vec*vect[1]+(cs.RAYYON_DES_ROUES_CM//2)*vec_normal.vect[1])
+        self.cote_haut_droite=vect.Point(self.centre.x+(cs.RAYON_DES_ROUES//2)*self.vec.vect[0])-(cs.RAYON_DES_ROUES_CM//2)*vec_normal.vect[0],self.centre.y+(cs.RAYON_DES_ROUES_CM//2*self.vec*vect[1]-(cs.RAYYON_DES_ROUES_CM//2)*vec_normal.vect[1])
+        self.cote_bas_gauche=vect.Point(self.centre.x+(cs.RAYON_DES_ROUES//2)*self.vec.vect[0])+(cs.RAYON_DES_ROUES_CM//2)*vec_normal.vect[0],self.centre.y+(cs.RAYON_DES_ROUES_CM//2*self.vec*vect[1]+(cs.RAYYON_DES_ROUES_CM//2)*vec_normal.vect[1])
 
 ####------------------------ ROUE --------------------------##
 
