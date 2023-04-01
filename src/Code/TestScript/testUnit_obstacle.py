@@ -9,7 +9,7 @@ class TestObstacle(unittest.TestCase):
         """
         self.obs1 = Obstacle(2, (5, 3),(5, 6)) #création d'un obstacle du type rectangle
         self.obs2 = Obstacle(1,(1,4),5) #création d'un obstacle du type cercle
-        
+        self.obs3 = Obstacle(0,(0,0),200)
     def test_init(self):
         """
         Permet de tester si les objects sont bien initialisés  
