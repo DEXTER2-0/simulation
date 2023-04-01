@@ -3,7 +3,7 @@ from Code.simulation import Vecteur as vect
 from math import pi,sqrt,sin,cos
 
 class Robot :
-    def __init__ (self, rayonRouesCm,rayonDuRobotCm,vMaxDegParSec,distance_captable,centre,l=1) :
+    def __init__ (self, rayonRouesCm,rayonDuRobotCm,vMaxDegParSec,distance_captable,px,py,l=1) :
         """
         :param rayonRouesCm : rayon des roues en cm
         :param rayonDuRobotCm : rayon du cercle dans lequel s'inscrit le robot en cm
@@ -20,7 +20,7 @@ class Robot :
         self.capteurDistance = Capteur_de_distance(distance_captable)
         self.rayonDuRobotCm = rayonDuRobotCm
         self.l=l*2*rayonDuRobotCm
-        self.centre=centre
+        self.centre=vect.Point(px,py)
         self.vec=vect.Vecteur.get_vect_from_angle(0)
         self.pos_roue_g=0
         self.pos_roue_d=0
@@ -46,10 +46,10 @@ class Robot :
         Mets a jour les coordonnes du robot
         """
         vec_normal=vect.Vecteur(vect.Point(0,0),vect.Point(-self.vec.vect[1],self.vec.vect[0]))
-        self.cote_haut_gauche=vect.Point(self.centre.x-(cs.RAYON_DES_ROUES//2)*self.vec.vect[0])-(cs.RAYON_DES_ROUES_CM//2)*vec_normal.vect[0],self.centre.y-(cs.RAYON_DES_ROUES_CM//2*self.vec*vect[1]-(cs.RAYYON_DES_ROUES_CM//2)*vec_normal.vect[1])
-        self.cote_bas_gauche=vect.Point(self.centre.x-(cs.RAYON_DES_ROUES//2)*self.vec.vect[0])+(cs.RAYON_DES_ROUES_CM//2)*vec_normal.vect[0],self.centre.y-(cs.RAYON_DES_ROUES_CM//2*self.vec*vect[1]+(cs.RAYYON_DES_ROUES_CM//2)*vec_normal.vect[1])
-        self.cote_haut_droite=vect.Point(self.centre.x+(cs.RAYON_DES_ROUES//2)*self.vec.vect[0])-(cs.RAYON_DES_ROUES_CM//2)*vec_normal.vect[0],self.centre.y+(cs.RAYON_DES_ROUES_CM//2*self.vec*vect[1]-(cs.RAYYON_DES_ROUES_CM//2)*vec_normal.vect[1])
-        self.cote_bas_gauche=vect.Point(self.centre.x+(cs.RAYON_DES_ROUES//2)*self.vec.vect[0])+(cs.RAYON_DES_ROUES_CM//2)*vec_normal.vect[0],self.centre.y+(cs.RAYON_DES_ROUES_CM//2*self.vec*vect[1]+(cs.RAYYON_DES_ROUES_CM//2)*vec_normal.vect[1])
+        self.cote_haut_gauche=vect.Point(self.centre.x-(cs.RAYON_DES_ROUES_CM//2)*self.vec.vect[0])-(cs.RAYON_DES_ROUES_CM//2)*vec_normal.vect[0],self.centre.y-(cs.RAYON_DES_ROUES_CM//2*self.vec*vect[1]-(cs.RAYON_DES_ROUES_CM//2)*vec_normal.vect[1])
+        self.cote_bas_gauche=vect.Point(self.centre.x-(cs.RAYON_DES_ROUES_CM//2)*self.vec.vect[0])+(cs.RAYON_DES_ROUES_CM//2)*vec_normal.vect[0],self.centre.y-(cs.RAYON_DES_ROUES_CM//2*self.vec*vect[1]+(cs.RAYON_DES_ROUES_CM//2)*vec_normal.vect[1])
+        self.cote_haut_droite=vect.Point(self.centre.x+(cs.RAYON_DES_ROUES_CM//2)*self.vec.vect[0])-(cs.RAYON_DES_ROUES_CM//2)*vec_normal.vect[0],self.centre.y+(cs.RAYON_DES_ROUES_CM//2*self.vec*vect[1]-(cs.RAYON_DES_ROUES_CM//2)*vec_normal.vect[1])
+        self.cote_bas_gauche=vect.Point(self.centre.x+(cs.RAYON_DES_ROUES_CM//2)*self.vec.vect[0])+(cs.RAYON_DES_ROUES_CM//2)*vec_normal.vect[0],self.centre.y+(cs.RAYON_DES_ROUES_CM//2*self.vec*vect[1]+(cs.RAYON_DES_ROUES_CM//2)*vec_normal.vect[1])
 
 ####------------------------ ROUE --------------------------##
 
