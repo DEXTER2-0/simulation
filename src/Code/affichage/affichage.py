@@ -3,6 +3,7 @@ import time
 from math import *
 import pygame 
 import logging
+from Code.simulation import constantes as cs
 from copy import deepcopy
 
 #colors 
@@ -40,18 +41,12 @@ class Affichage(Thread):
 		super(Affichage, self).__init__()
 		self.simulation = simulation
 		pygame.init()
-		self._trace = pygame.surface.Surface((self.simulation.terrain.WIDTH_MAX , self.simulation.terrain.HEIGHT_MAX))
-		self._screen = pygame.display.set_mode((self.simulation.terrain.WIDTH_MAX , self.simulation.terrain.HEIGHT_MAX))
-		self._screen.fill((255, 255, 255))
-		self._trace.fill((255, 255, 255))
+		self.disp = pygame.display.set_mode((cs.WIDTH, cs.HEIGHT))
+		self.disp.fill(cs.WHITE)
 		self.fps = fps
-		self.mid = self.simulation.terrain.WIDTH_MAX / 2
-		self.sprites = pygame.sprite.Group()
-		self.robot = CircSprite(GREEN, (self.simulation.pos_x + self.mid, self.simulation.pos_y + self.mid), self.simulation.robot.rayonDuRobotCm, "Robot")
-		self.sprites.add(self.robot)
-		for obs in self.simulation.terrain.getListeObstacles():
-			self.sprites.add(CircSprite(RED, (obs.x + self.mid, obs.y + self.mid), obs.longueur, "Obstacle"))
+		self.old_pos=[]
 		self.clock = pygame.time.Clock()
+		logging.info("Affichage cree")
 
 	def run(self):
 		""" 	
@@ -62,6 +57,8 @@ class Affichage(Thread):
 			self.update()
 			self.clock.tick(self.fps)
 		pygame.quit()
+		self.simulation.stop()
+		logging.info("Affichage terminé")
 	
 	def events(self) :
 		""" 
@@ -69,10 +66,14 @@ class Affichage(Thread):
 		"""
 		for event in pygame.event.get() : 
 			if event.type == pygame.QUIT:
-				self.running = False
+				self.encours = False
 			elif event.type == pygame.KEYDOWN :
-				if event.key in [pygame.K_ESCAPE, pygame.K_q]:
+				if event.key in [pygame.K_ESCAPE, pygame.K_q]: #Quit
 					self.encours = False
+				if event.key in [pygame.K_d]: 
+					logging.debug(f"List of sprites :")
+					for sprite in self.sprites:
+						logging.debug(f"\t{sprite.type} : {{{sprite.rect.x},{sprite.rect.y}}}")
 
 	def update(self):
 		"""
