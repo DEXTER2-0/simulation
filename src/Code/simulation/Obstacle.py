@@ -22,12 +22,11 @@ class Obstacle :
 		else :
 			self.longueur = args[0]
 			self.largeur = args[1]
-	def draw(self,disp):
+	def draw(self,disp,couleur):
 		if self.type == 0 :
-			pygame.draw.line(disp, self.pos, self.end)
+			pygame.draw.line(disp,couleur ,self.pos, self.end)
 		elif self.type == 1 :
-			pygame.draw.circle(disp, self.pos, self.rayon)
-		else :
-			pygame.draw.rect(disp,pygame.Rect(self.pos,(self.longueur,self.largeur)))
-
+			pygame.draw.circle(disp,couleur ,self.pos, self.rayon)
+		else:
+			pygame.draw.rect(disp, couleur, (self.pos, (self.longueur, self.largeur)))
 	

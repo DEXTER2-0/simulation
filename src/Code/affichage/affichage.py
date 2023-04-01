@@ -60,6 +60,7 @@ class Affichage(Thread):
 					logging.debug(f"List of sprites :")
 					for sprite in self.sprites:
 						logging.debug(f"\t{sprite.type} : {{{sprite.rect.x},{sprite.rect.y}}}")
+		
 
 	def update(self):
 		"""
@@ -69,7 +70,7 @@ class Affichage(Thread):
 		self.old_pos.append((x,y))
 		self.disp.fill(WHITE)
 		for obs in self.simulation.terrain.listesobstacle :
-			obs.draw(self.disp)
+			obs.draw(self.disp,RED)
 		for pos in self.old_pos :
 			pygame.draw.circle(self.disp,RED,pos,2)
 		pygame.draw.circle(self.disp,BLUE,(x,y),self.simulation.robot.rayonDuRobotCm//10)
