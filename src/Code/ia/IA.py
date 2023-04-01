@@ -2,9 +2,11 @@ from math import *
 from Code.simulation import constantes as cs
 from . import Traducteur
 from threading import Thread
+import logging
+import time
 
 class IA(Thread):
-	def __init__(self,traducteur,list_ia,dt):
+	def __init__(self,list_ia,fps):
 		"""
 		:param traducteur : traducteur utilise
 		:param list_ia : liste des ia utilisees
@@ -13,20 +15,24 @@ class IA(Thread):
 		super(IA, self).__init__()
 		self.list_ia=list_ia
 		self.ia_actuel=0
-		self.trad=traducteur
+		self.fps=fps
+
+		logging.info("IA cree")
 
 	def run(self):
 		self.encours = True
 		self.list_ia[self.ia_actuel].start()
 		while self.encours:   #tant qu'on run  
 			self.step() #on met a jour la simulation
-		self.trad.stopSim()
+			time.sleep(1./self.fps)
+		logging.info("IA stoper")
            
 	def step(self):
 		"""
 		met a jour la simulation selon le temps ecoule
 		"""
 		if self.list_ia[self.ia_actuel].arret:
+			logging.debug(f"Actuel : {self.ia_actuel}")
 			self.list_ia[self.ia_actuel].stop()
 			self.ia_actuel+=1
 			if self.ia_actuel>=len(self.list_ia):
@@ -38,21 +44,21 @@ class IA(Thread):
 			self.list_ia[self.ia_actuel].step()
 			
 class IA_avancer :
-	def __init__ (self,traducteur,d_voulue,vitesse_angulaire) :
+	def __init__ (self,traducteur,distance_voulue,vitesse) :
 		"""
 		:param traducteur : traducteur utilise
 		:param d_voulue : ditance voulue a effectuer en m
 		"""
 		self.trad=traducteur
 		self.arret=False
-		self.trad.resetdistance()
-		self.d_voulue=d_voulue
-		self.fonctionne=False
-		self.trad.reset_v_new_orientation()
-		self.v_a=vitesse_angulaire
+		self.distance=distance_voulue
+		self.distance_effectue=0
+		self.vitesse=vitesse
+		self.encours=False
 
 	def start(self):
-		self.trad.setMotorDps(self.v_a,self.v_a)
+		self.encours = True
+		self.trad.stop()
 		self.fonctionne=True
 		self.arret=False
 		self.trad.reset_t0()

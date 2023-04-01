@@ -22,6 +22,8 @@ class Obstacle :
 		else :
 			self.longueur = args[0]
 			self.largeur = args[1]
+
+			
 	def draw(self,disp,couleur):
 		if self.type == 0 :
 			pygame.draw.line(disp,couleur ,self.pos, self.end)
