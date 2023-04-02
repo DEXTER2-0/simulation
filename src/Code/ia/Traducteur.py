@@ -53,8 +53,8 @@ class Traducteur_Simulation:
     def get_rayon_roue(self):
         return self.robot.rayon_roue
 
-    def reset(self):
-        self.distance=0
+    def reset(self,roue):
+        self.distance=self.robot.get_pos_roues()[roue]
         self.angle=0
         self.robot.setMotorDps(0,0)
     
