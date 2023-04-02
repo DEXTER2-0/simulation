@@ -19,7 +19,7 @@ class Simulation(Thread) :
         self.fps = fps
         self.capteurOn = False
         self.encours= True
-        self.t_1=datetime.now()
+        self.t_1=None
 
     def collision(self): #PROBLEME x et y dans robot donc plus de self.pos_x
         """
@@ -53,6 +53,8 @@ class Simulation(Thread) :
       """
       met a jour la simulation selon le temps ecoule
       """
+      if self.t_1 is None:
+          self.t_1=datetime.now()
       t0=datetime.now()
       dt=(t0-self.t_1).total_seconds()
       self.t_1=t0
