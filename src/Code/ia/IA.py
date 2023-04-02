@@ -14,7 +14,7 @@ class IA(Thread):
 		"""
 		super(IA, self).__init__()
 		self.list_ia=list_ia
-		self.ia_actuel=0
+		self.ia_actuel=-1
 		self.fps=fps
 
 		logging.info("IA cree")
@@ -31,8 +31,8 @@ class IA(Thread):
 		"""
 		met a jour la simulation selon le temps ecoule
 		"""
-		if self.list_ia[self.ia_actuel].arret:
-			logging.debug(f"Actuel : {self.ia_actuel}")
+		if not self.list_ia[self.ia_actuel].encours:
+			logging.debug(f"Actuel : {self.ia_actuel+1}")
 			self.list_ia[self.ia_actuel].stop()
 			self.ia_actuel+=1
 			if self.ia_actuel>=len(self.list_ia):
@@ -103,7 +103,7 @@ class IA_tourner:
 			vitesse/=2
 		if self.distance_effectue>self.distance *3/4:
 			vitesse/=2
-		self.trad.tourne(vitesse)
+		self.trad.tourne(self.orientation,vitesse)
 	
 	def stop(self):
 		self.trad.stop()

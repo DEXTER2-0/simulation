@@ -28,7 +28,7 @@ class Affichage(Thread):
 		self.simulation = simulation
 		pygame.init()
 		self.disp = pygame.display.set_mode((cs.WIDTH, cs.HEIGHT))
-		self.disp.fill(cs.WHITE)
+		self.disp.fill(WHITE)
 		self.fps = fps
 		self.old_pos=[]
 		self.clock = pygame.time.Clock()
@@ -66,10 +66,10 @@ class Affichage(Thread):
 		"""
         Met à jour la position des sprites
       """
-		x,y=self.simulation.robot.center.x,self.simulation.robot.center.y
+		x,y=self.simulation.robot.centre.x,self.simulation.robot.centre.y
 		self.old_pos.append((x,y))
 		self.disp.fill(WHITE)
-		for obs in self.simulation.terrain.listesobstacle :
+		for obs in self.simulation.terrain.liste_obstacle :
 			obs.draw(self.disp,RED)
 		for pos in self.old_pos :
 			pygame.draw.circle(self.disp,RED,pos,2)

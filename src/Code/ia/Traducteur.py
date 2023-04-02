@@ -24,7 +24,7 @@ class Traducteur_Simulation:
         self.robot=robot
         self.distance=0
         self.angle=0
-        self.t0
+        self.t0=0
     
     def stopSim(self):
         self.simulation.stop()
@@ -44,7 +44,7 @@ class Traducteur_Simulation:
         dt=t-self.t0
         self.t0=t
         k,r=divmod(dt,360)
-        self.distance+=k*cs.RAYON_ROBOT_CM+(r*cs.RAYON_DES_ROUES_CM)/360
+        return k*cs.RAYON_ROBOT_CM+(r*cs.RAYON_DES_ROUES_CM)/360
 
     def resetdistance(self):
         self.distance=0
@@ -65,17 +65,17 @@ class Traducteur_Simulation:
         return self.robot.capteurDistance.senseur_de_distance(self.simulation.pos_x,self.simulation.pos_y,self.simulation.angle,dt,self.simulation.terrain.liste_obstacle)
     
     def avance(self,speed):
-        self.robot.set_motor_dps(speed,speed)
+        self.robot.setMotorDps(speed,speed)
 
     def tourne(self,orientation,speed):
         if orientation == 0:#gauche
-            self.robot.set_motor_dps(speed,0)
+            self.robot.setMotorDps(speed,0)
         else:#droite
-            self.robot.set_motor_dps(0,speed)
+            self.robot.setMotorDps(0,speed)
 
 
     def stop(self):
-        self.robot.set_motor_dps(0,0)
+        self.robot.setMotorDps(0,0)
     
     def get_rayon_roue(self):
         return self.robot.rayon_roue
