@@ -36,6 +36,12 @@ class Point:
         self.x = centre.x + vect_dest.vect[0] * distance
         self.y = centre.y + vect_dest.vect[1] * distance
 
+    def __str__(self):
+        """
+        :rtype: str
+        """
+        return "({}, {})".format(self.x, self.y)
+
 class Vecteur:
     def __init__(self, p1, p2):
         """
