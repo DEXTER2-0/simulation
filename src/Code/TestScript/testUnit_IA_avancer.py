@@ -21,6 +21,11 @@ class test_IA_avancer(unittest.TestCase):
 
     def test_postion_robot_apres_avancement(self):
         self.ia_avance.start()
+        self.simulation.start()
         if self.ia_avance.encours == False:
-            assert
-
+            self.assertGreaterEqual(self.robot.centre.x,9)
+        
+        
+    if __name__ == '__main__':
+        print("MMAAINN")
+        unittest.main()
