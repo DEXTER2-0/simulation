@@ -16,21 +16,23 @@ class Robot :
         assert(vMaxDegParSec > 0) # Ne peut pavoir une vitesse max < 0
         assert(rayonDuRobotCm > 0) # Ne peut pas avoir un rayon < 0
         self.rayon_roue=rayonDuRobotCm
-        self.roue_gauche = Roue(self.rayon_roue, vMaxDegParSec)
-        self.roue_droite = Roue(self.rayon_roue, vMaxDegParSec)
+        self.gspeed = 0
+        self.dspeed = 0
+        self.roue_gauche = Roue(self.rayon_roue, self.gspeed)
+        self.roue_droite = Roue(self.rayon_roue, self.dspeed)
         self.capteurDistance = Capteur_de_distance(distance_captable)
         self.rayonDuRobotCm = rayonDuRobotCm
         self.l=l*2*rayonDuRobotCm
         self.centre=vect.Point(px,py)
         self.vec=vect.Vecteur.get_vect_from_angle(0)
-        self.gspeed = 0
-        self.dspeed = 0
+        self.update()
+        
         self.MOTOR_GAUCHE = 1
         self.MOTOR_DROIT = 2
         self.pos_roue_g=0
         self.pos_roue_d=0
 
-    def set_motor_dps(self, port, dps):
+    def setMotorDps(self, port, dps):
         """
         :param int port: Moteur
         :param float dps: Vitesse
@@ -43,11 +45,6 @@ class Robot :
             self.dspeed = dps
             self.gspeed = dps
     
-    def stop(self):
-        """
-        Arrête le robot
-        """
-        self.set_motor_dps(self.MOTOR_GAUCHE + self.MOTOR_DROIT, 0)
 
     def get_pos_roues(self):
         return self.pos_roue_g, self.pos_roue_d

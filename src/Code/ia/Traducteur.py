@@ -15,16 +15,20 @@ class Traducteur :
         self.robot_sim = robot_sim
 
 class Traducteur_Simulation:
-    def __init__(self,simulation,robot):
+    def __init__(self,robot):
         """
         :param simualtion : simulation utilisee
         :param robot : robot utilise
         """
-        self.simulation=simulation
         self.robot=robot
-        self.distance=0
-        self.angle=0
-        self.t0=0
+        self.liste={}
+
+    def debut(self,ref,port):
+        """
+        :param ref : start
+        :param port : port utilise
+        """
+        self.liste[ref]=self.robot.get_pos_roues()[port]
     
     def stopSim(self):
         self.simulation.stop()
@@ -39,12 +43,15 @@ class Traducteur_Simulation:
     def reset_t0(self):
         self.t0=time.time()
 
-    def getdistance(self): #INITIALISATION DE T0 méthode reset et get?
-        t=time.time()
-        dt=t-self.t0
-        self.t0=t
-        k,r=divmod(dt,360)
-        return k*cs.RAYON_ROBOT_CM+(r*cs.RAYON_DES_ROUES_CM)/360
+    def getdistance(self,ref,port): #INITIALISATION DE T0 méthode reset et get?
+        diff = self.robot.get_pos_roues()[port] - self.liste[ref]
+
+        self.liste[ref] = self.robot.get_pos_roues()[port]
+
+        # Distance parcourue
+        k, r = divmod(diff, 360)
+
+        return k * cs.RAYON_DES_ROUES_CM + (r * cs.RAYON_DES_ROUES_CM) / 360
 
     def resetdistance(self):
         self.distance=0
@@ -65,17 +72,19 @@ class Traducteur_Simulation:
         return self.robot.capteurDistance.senseur_de_distance(self.simulation.pos_x,self.simulation.pos_y,self.simulation.angle,dt,self.simulation.terrain.liste_obstacle)
     
     def avance(self,speed):
-        self.robot.setMotorDps(speed,speed)
+        self.robot.setMotorDps(self.robot.MOTOR_GAUCHE+self.robot.MOTOR_DROIT,speed)
 
     def tourne(self,orientation,speed):
         if orientation == 0:#gauche
-            self.robot.setMotorDps(speed,0)
+            self.robot.setMotorDps(self.robot.MOTOR_GAUCHE, 0)
+            self.robot.setMotorDps(self.robot.MOTOR_DROIT,speed)
         else:#droite
-            self.robot.setMotorDps(0,speed)
+            self.robot.setMotorDps(self.robot.MOTOR_GAUCHE, speed)
+            self.robot.setMotorDps(self.robot.MOTOR_DROIT,0)
 
 
     def stop(self):
-        self.robot.setMotorDps(0,0)
+       self.robot.setMotorDps(self.robot.MOTOR_GAUCHE+self.robot.MOTOR_DROIT,0)
     
     def get_rayon_roue(self):
         return self.robot.rayon_roue

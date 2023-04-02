@@ -23,7 +23,7 @@ if __name__=='__main__':
     #commandes pour que le robot tourne
     Simu=simu.Simulation(Dexter,Terrain,120)
     #initialisation le traducteur 
-    trad = tr.Traducteur_Simulation(Simu,Dexter)
+    trad = tr.Traducteur_Simulation(Dexter)
     IA_tourne = ia.IA_tourner(trad,90,120,0)
     #commandes pour que le robot avance
     IA_avance = ia.IA_avancer(trad,10,100)

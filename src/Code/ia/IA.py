@@ -58,12 +58,13 @@ class IA_avancer :
 	def start(self):
 		self.encours = True
 		self.trad.stop()
+		self.trad.debut(self,0)
 		self.distance_effectue=0
 
 	def step(self):
 		if not self.encours:
 			return
-		self.distance_effectue+=self.trad.getdistance()
+		self.distance_effectue+=self.trad.getdistance(self,0)
 		if (self.distance_effectue>=self.distance):
 			self.stop()
 			return
@@ -90,12 +91,13 @@ class IA_tourner:
 	def start(self):
 		
 		self.encours=True
+		self.trad.debut(self,self.orientation)
 
 		
 	def step(self):
 		if not self.encours:
 			return
-		self.distance_effectue+=self.trad.getdistance()
+		self.distance_effectue+=self.trad.getdistance(self,self.orientation)
 		if (self.distance_effectue>=self.distance):
 			self.stop()
 		vitesse=self.v_a
