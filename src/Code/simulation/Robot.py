@@ -23,21 +23,31 @@ class Robot :
         self.l=l*2*rayonDuRobotCm
         self.centre=vect.Point(px,py)
         self.vec=vect.Vecteur.get_vect_from_angle(0)
+        self.gspeed = 0
+        self.dspeed = 0
+        self.MOTOR_GAUCHE = 1
+        self.MOTOR_DROIT = 2
         self.pos_roue_g=0
         self.pos_roue_d=0
 
-    def setMotorDps(self, ANG_G, ANG_D):
+    def set_motor_dps(self, port, dps):
         """
-        cette methode suppose que les deux roues possede le meme rayon
-        :param ANG_G : vitesse en deg/s pour la roue gauche
-        :param ANG_D : vitesse deg/s pour la roue droite
-        cette methode donne la vitesse demandee aux roues
+        :param int port: Moteur
+        :param float dps: Vitesse
         """
-        self.roue_gauche.vDegParSec = ANG_G
-        self.roue_droite.vDegParSec = ANG_D
+        if port == self.MOTOR_GAUCHE:
+            self.gspeed = dps
+        elif port == self.MOTOR_DROIT:
+            self.dspeed = dps
+        elif port == self.MOTOR_GAUCHE + self.MOTOR_DROIT:
+            self.dspeed = dps
+            self.gspeed = dps
     
     def stop(self):
-        self.setMotorDps(0,0)
+        """
+        Arrête le robot
+        """
+        self.set_motor_dps(self.MOTOR_GAUCHE + self.MOTOR_DROIT, 0)
 
     def get_pos_roues(self):
         return self.pos_roue_g, self.pos_roue_d
