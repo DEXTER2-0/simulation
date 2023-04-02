@@ -50,7 +50,6 @@ class IA_avancer :
 		:param d_voulue : ditance voulue a effectuer en m
 		"""
 		self.trad=traducteur
-		self.arret=False
 		self.distance=distance_voulue
 		self.distance_effectue=0
 		self.vitesse=vitesse
@@ -59,61 +58,56 @@ class IA_avancer :
 	def start(self):
 		self.encours = True
 		self.trad.stop()
-		self.fonctionne=True
-		self.arret=False
-		self.trad.reset_t0()
-		self.trad.set_v_new_orientation()
+		self.distance_effectue=0
 
 	def step(self):
-		if self.arret:
+		if not self.encours:
 			return
-		if (self.trad.distance<self.d_voulue):
-			self.trad.getdistance(self)
-		else:
+		self.distance_effectue+=self.trad.getdistance()
+		if (self.distance_effectue>=self.distance):
 			self.stop()
-			self.trad.resetdistance()
+			return
+		self.trad.avance(self.vitesse)
 	
 	def stop(self):
-		self.trad.setMotorDps(0,0)
-		self.fonctionne=False
-		self.arret=True
-		self.trad.reset_v_new_orientation()
+		self.trad.stop()
+		self.encours = False
+
 
 class IA_tourner:
-	def __init__(self,traducteur,a_voulu,vitesse_angulaire) :
+	def __init__(self,traducteur,angle_voulu,vitesse_angulaire,orientation) :
 		"""
 		:param traducteur : traducteur utilise
 		:param a_voulue : angle voulu a effectuer en deg
 		"""
+		self.orientation=orientation
 		self.trad=traducteur
-		self.arret=False
-		self.trad.resetangle()
-		self.a_voulu=a_voulu
-		self.fonctionne=False
-		self.trad.reset_v_new_orientation()
+		self.encours=False
+		self.distance=(self.trad.get_rayon_roue() *angle_voulu)/360
+		self.distance_effectue=0
 		self.v_a=vitesse_angulaire
 	
 	def start(self):
-		self.trad.setMotorDps(self.v_a,0)
-		self.fonctionne=True
-		self.arret=False
-		self.trad.reset_t0()
-		self.trad.set_v_new_orientation()
+		
+		self.encours=True
+
 		
 	def step(self):
-		if self.arret:
+		if not self.encours:
 			return
-		if (self.trad.angle<=self.a_voulu):
-			self.trad.getangle(self.dt)
-		else:
+		self.distance_effectue+=self.trad.getdistance()
+		if (self.distance_effectue>=self.distance):
 			self.stop()
-			self.trad.resetangle()
+		vitesse=self.v_a
+		if self.distance_effectue>self.distance/2:
+			vitesse/=2
+		if self.distance_effectue>self.distance *3/4:
+			vitesse/=2
+		self.trad.tourne(vitesse)
 	
 	def stop(self):
-		self.trad.setMotorDps(0,0)
-		self.fonctionne=False
-		self.arret=True
-		self.trad.reset_v_new_orientation()
+		self.trad.stop()
+		self.encours=False
 
 class IA_eviter:
 	def __init__ (self,traducteur,IA_avancer,IA_tourner,d_evitement) :

@@ -15,8 +15,9 @@ class Robot :
         assert(rayonRouesCm > 0)# Ne peut pas avoir un rayon < 0
         assert(vMaxDegParSec > 0) # Ne peut pavoir une vitesse max < 0
         assert(rayonDuRobotCm > 0) # Ne peut pas avoir un rayon < 0
-        self.roue_gauche = Roue(rayonRouesCm, vMaxDegParSec)
-        self.roue_droite = Roue(rayonRouesCm, vMaxDegParSec)
+        self.rayon_roue=rayonDuRobotCm
+        self.roue_gauche = Roue(self.rayon_roue, vMaxDegParSec)
+        self.roue_droite = Roue(self.rayon_roue, vMaxDegParSec)
         self.capteurDistance = Capteur_de_distance(distance_captable)
         self.rayonDuRobotCm = rayonDuRobotCm
         self.l=l*2*rayonDuRobotCm
