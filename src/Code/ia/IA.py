@@ -14,7 +14,7 @@ class IA(Thread):
 		"""
 		super(IA, self).__init__()
 		self.list_ia=list_ia
-		self.ia_actuel=-1
+		self.ia_actuel=0
 		self.fps=fps
 
 		logging.info("IA cree")
@@ -32,7 +32,7 @@ class IA(Thread):
 		met a jour la simulation selon le temps ecoule
 		"""
 		if not self.list_ia[self.ia_actuel].encours:
-			logging.debug(f"Actuel : {self.ia_actuel+1}")
+			logging.debug(f"Actuel : {self.ia_actuel}")
 			self.list_ia[self.ia_actuel].stop()
 			self.ia_actuel+=1
 			if self.ia_actuel>=len(self.list_ia):
@@ -57,13 +57,13 @@ class IA_avancer :
 
 	def start(self):
 		self.encours = True
-		self.trad.stop()
+		self.trad.reset(0)
 		self.distance_effectue=0
 
 	def step(self):
 		if not self.encours:
 			return
-		self.distance_effectue+=self.trad.getdistance()
+		self.distance_effectue+=self.trad.getdistance(0)
 		if (self.distance_effectue>=self.distance):
 			self.stop()
 			return
@@ -88,14 +88,14 @@ class IA_tourner:
 		self.v_a=vitesse_angulaire
 	
 	def start(self):
-		
+		self.trad.reset(self.orientation)
 		self.encours=True
 
 		
 	def step(self):
 		if not self.encours:
 			return
-		self.distance_effectue+=self.trad.getdistance()
+		self.distance_effectue+=self.trad.getdistance(self.orientation)
 		if (self.distance_effectue>=self.distance):
 			self.stop()
 		vitesse=self.v_a
@@ -125,7 +125,6 @@ class IA_eviter:
 
 	def start(self):
 		self.avancer.start()
-		self.trad.reset_t0()
 
 	def step(self):
 		if(self.trad.capteur()<=self.d_evitement) and (self.tourner.arret):

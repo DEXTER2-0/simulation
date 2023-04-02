@@ -20,49 +20,23 @@ class Traducteur_Simulation:
         :param simualtion : simulation utilisee
         :param robot : robot utilise
         """
-        self.simulation=simulation
         self.robot=robot
         self.distance=0
-        self.angle=0
-        self.t0 = 0
     
     def stopSim(self):
         self.simulation.stop()
-    
-    def setMotorDps(self,v_gauche,v_droite):
-        """
-        :param v_gauche : vitesse de la roue gauche en deg/s
-        :param v_droite : vitesse de la roue droite en deg/s
-        """
-        self.robot.setMotorDps(v_gauche,v_droite)
-
-    def reset_t0(self):
-        self.t0=time.time()
 
     def getdistance(self): #INITIALISATION DE T0 méthode reset et get?
         t=time.time()
         dt=t-self.t0
         self.t0=t
         self.distance+=(dt*cs.V_ANGULAIRE_G*cs.RAYON_ROBOT_CM*0.01)/360
-
-    def resetdistance(self):
-        self.distance=0
-
-    def getangle(self):
-        t=time.time()
-        dt=t-self.t0
-        self.t0=t
-        self.angle+=dt*cs.V_ANGULAIRE_G
-    
-    def resetangle(self):
-        self.angle=0
     
     def capteur(self):
         t=time.time()
         dt=t-self.t0
         self.t0=t
         return self.robot.capteurDistance.senseur_de_distance(self.simulation.pos_x,self.simulation.pos_y,self.simulation.angle,dt,self.simulation.terrain.liste_obstacle)
-
 
     def avance(self,speed):
         self.robot.setMotorDps(speed,speed)
@@ -73,12 +47,22 @@ class Traducteur_Simulation:
         else:#droite
             self.robot.setMotorDps(0,speed)
 
-
     def stop(self):
         self.robot.setMotorDps(0,0)
 
     def get_rayon_roue(self):
         return self.robot.rayon_roue
+
+    def reset(self):
+        self.distance=0
+        self.angle=0
+        self.robot.setMotorDps(0,0)
+    
+    def getdistance(self,roue):
+        dif=self.robot.get_pos_roues()[roue]-self.distance
+        self.distance=self.robot.get_pos_roues()[roue]
+        k,r=divmod(dif,360)
+        return k*self.robot.rayon_roue+(r*self.robot.rayon_roue)/360
 
 class Traducteur_Realite:
     def __init__(self,robot):
