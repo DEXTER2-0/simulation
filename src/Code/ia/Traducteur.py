@@ -36,14 +36,6 @@ class Traducteur_Simulation:
         """
         self.robot.setMotorDps(v_gauche,v_droite)
     
-    def reset_v_new_orientation(self):
-        self.robot.reset_v()
-        self.robot.reset_new_orientation()
-    
-    def set_v_new_orientation(self):
-        self.robot.calcul_v()
-        self.robot.calcul_new_orientattion()
-
     def reset_t0(self):
         self.t0=time.time()
 
@@ -51,7 +43,8 @@ class Traducteur_Simulation:
         t=time.time()
         dt=t-self.t0
         self.t0=t
-        self.distance+=(dt*cs.V_ANGULAIRE_G*cs.RAYON_ROBOT_CM*0.01)/360
+        k,r=divmod(dt,360)
+        self.distance+=k*cs.RAYON_ROBOT_CM+(r*cs.RAYON_DES_ROUES_CM)/360
 
     def resetdistance(self):
         self.distance=0
