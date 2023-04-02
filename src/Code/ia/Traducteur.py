@@ -79,9 +79,8 @@ class Traducteur_Simulation:
             self.robot.setMotorDps(self.robot.MOTOR_GAUCHE, 0)
             self.robot.setMotorDps(self.robot.MOTOR_DROIT,speed)
         else:#droite
-            self.robot.setMotorDps(self.robot.MOTOR_GAUCHE, speed)
-            self.robot.setMotorDps(self.robot.MOTOR_DROIT,0)
-
+            self.robot.setMotorDps(self.robot.MOTOR_GAUCHE,0)
+            self.robot.setMotorDps(self.robot.MOTOR_DROIT, speed)
 
     def stop(self):
        self.robot.setMotorDps(self.robot.MOTOR_GAUCHE+self.robot.MOTOR_DROIT,0)

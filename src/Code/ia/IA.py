@@ -102,7 +102,7 @@ class IA_avancer(Strat) :
 
 
 class IA_tourner(Strat):
-	def __init__(self,traducteur,angle_voulu,vitesse_angulaire,orientation) :
+	def __init__(self,traducteur,angle_voulu,orientation) :
 		"""
 		:param traducteur : traducteur utilise
 		:param a_voulue : angle voulu a effectuer en deg
@@ -112,7 +112,7 @@ class IA_tourner(Strat):
 		self.encours=False
 		self.distance=(cs.RAYON_DES_ROUES_CM *angle_voulu)/360
 		self.distance_effectue=0
-		self.v_a=vitesse_angulaire
+		self.v_a=cs.V_ANGULAIRE_G
 	
 	def start(self):
 		
@@ -129,7 +129,7 @@ class IA_tourner(Strat):
 		vitesse=self.v_a
 		if self.distance_effectue>self.distance/2:
 			vitesse/=2
-		if self.distance_effectue>self.distance *3/4:
+		if self.distance_effectue>self.distance * 3/4:
 			vitesse/=2
 		self.trad.tourne(self.orientation,vitesse)
 

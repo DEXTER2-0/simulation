@@ -61,8 +61,10 @@ class Simulation(Thread) :
           print("COOOOLISIONNNNN ")
           self.stop()
           return 
+      
       if self.robot.gspeed==0 and self.robot.dspeed==0 : # a l'arret
           return None
+      
       if self.robot.gspeed==self.robot.dspeed : # ligne droite
           angle=dt*self.robot.gspeed
           k,r=divmod(angle,360)
@@ -74,22 +76,24 @@ class Simulation(Thread) :
           self.robot.centre+=(self.robot.vec*distance).pointer_vers()
           self.robot.update()
           return None
+      
+
       if self.robot.gspeed==0 and self.robot.dspeed!=0 : # tourne avec seulement la roue gauche
           mil=vect.Vecteur.milieu(self.robot.cote_haut_gauche,self.robot.cote_haut_droite)
           angle=dt*self.robot.dspeed
-          self.robot.pos_roue_g+=angle
+          self.robot.pos_roue_d+=angle
           
       if self.robot.dspeed==0 and self.robot.gspeed!=0 : # tourner avec seulement la roue droite
           mil=vect.Vecteur.milieu(self.robot.cote_bas_gauche,self.robot.cote_bas_droite)
-          angle=dt*self.gspeed
-          self.robot.pos_roue_d+=angle
+          angle=dt*self.robot.gspeed
+          self.robot.pos_roue_g+=angle
 
 
       k,r=divmod(angle,360)
       distance=k*cs.CIRCONFERENCE_ROUES+(r*cs.CIRCONFERENCE_ROUES)/360
       anle=distance*180/(pi*cs.DIAMETRE_ROUES)
       
-      if self.robot.dspeed == 0 and self.robot.gspeed != 0:
+      if self.robot.gspeed == 0 and self.robot.dspeed != 0:
             angle = -angle
 
 

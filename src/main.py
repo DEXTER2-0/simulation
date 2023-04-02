@@ -17,7 +17,7 @@ if __name__=='__main__':
     obstacle4 = obs.Obstacle(1,(400,400),10)
     liste_obstacle = [obstacle4]
     #initialise le robot
-    Dexter=rb.Robot(50,50)
+    Dexter=rb.Robot(100,100)
     #initialise le terrain
     Terrain=ter.Terrain(-300,cs.WIDTH,-300,cs.HEIGHT, liste_obstacle)
     #commandes pour que le robot tourne
@@ -27,11 +27,11 @@ if __name__=='__main__':
 
     test = []
     for i in range(4):
-        strat_tourne = ia.IA_tourner(trad, 90,cs.V_ANGULAIRE_D,0)
+        strat_tourne = ia.IA_tourner(trad, 90,1)
         strat_avance = ia.IA_avancer(trad, 10, 100)
         test.append(strat_avance)
         test.append(strat_tourne)
-    IA_tourne = ia.IA_tourner(trad,90,120,0)
+    IA_tourne = ia.IA_tourner(trad,90,0)
     #commandes pour que le robot avance
     IA_avance = ia.IA_avancer(trad,10,100)
     Affichage=af.Affichage(Simu,60)
