@@ -4,6 +4,7 @@ from . import Traducteur
 from threading import Thread
 import logging
 import time
+from abc import abstractmethod
 
 class IA(Thread):
 	def __init__(self,list_ia,fps):
@@ -14,7 +15,7 @@ class IA(Thread):
 		"""
 		super(IA, self).__init__()
 		self.list_ia=list_ia
-		self.ia_actuel=-1
+		self.ia_actuel=0
 		self.fps=fps
 
 		logging.info("IA cree")
@@ -42,40 +43,65 @@ class IA(Thread):
 			self.list_ia[self.ia_actuel].start()
 		else:
 			self.list_ia[self.ia_actuel].step()
+
+class Strat(object):
+    """
+    Classe abstraite représentant une stratégie
+    """
+
+    def __init__(self, traducteur):
+        self.trad = traducteur
+
+        self.encours = False
+
+    def start(self) -> None:
+        self.encours = True
+
+    def stop(self) -> None:
+        self.trad.stop()
+        self.encours = False
+
+    @abstractmethod
+    def step(self):
+        pass
 			
-class IA_avancer :
+class IA_avancer(Strat) :
 	def __init__ (self,traducteur,distance_voulue,vitesse) :
 		"""
 		:param traducteur : traducteur utilise
 		:param d_voulue : ditance voulue a effectuer en m
 		"""
-		self.trad=traducteur
+		super().__init__(traducteur)
 		self.distance=distance_voulue
 		self.distance_effectue=0
+
 		self.vitesse=vitesse
-		self.encours=False
 
 	def start(self):
-		self.encours = True
+		"""
+		Override
+		"""
+
+		super().start()
 		self.trad.stop()
+
 		self.trad.debut(self,0)
 		self.distance_effectue=0
 
 	def step(self):
 		if not self.encours:
 			return
+		
 		self.distance_effectue+=self.trad.getdistance(self,0)
-		if (self.distance_effectue>=self.distance):
+
+		if self.distance_effectue>=self.distance:
 			self.stop()
 			return
 		self.trad.avance(self.vitesse)
 	
-	def stop(self):
-		self.trad.stop()
-		self.encours = False
 
 
-class IA_tourner:
+class IA_tourner(Strat):
 	def __init__(self,traducteur,angle_voulu,vitesse_angulaire,orientation) :
 		"""
 		:param traducteur : traducteur utilise
@@ -84,13 +110,13 @@ class IA_tourner:
 		self.orientation=orientation
 		self.trad=traducteur
 		self.encours=False
-		self.distance=(self.trad.get_rayon_roue() *angle_voulu)/360
+		self.distance=(cs.RAYON_DES_ROUES_CM *angle_voulu)/360
 		self.distance_effectue=0
 		self.v_a=vitesse_angulaire
 	
 	def start(self):
 		
-		self.encours=True
+		super().start()
 		self.trad.debut(self,self.orientation)
 
 		
@@ -106,10 +132,7 @@ class IA_tourner:
 		if self.distance_effectue>self.distance *3/4:
 			vitesse/=2
 		self.trad.tourne(self.orientation,vitesse)
-	
-	def stop(self):
-		self.trad.stop()
-		self.encours=False
+
 
 class IA_eviter:
 	def __init__ (self,traducteur,IA_avancer,IA_tourner,d_evitement) :

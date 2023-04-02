@@ -31,7 +31,7 @@ class Point:
         """
         distance = self.distance(centre)
         vect_src = Vecteur(centre, self)
-        angle_vect_dest = Vecteur.get_vect_from_angle(0).angle_sign(vect_src) + angle
+        angle_vect_dest = Vecteur.get_vect_from_angle(0).signe_angle(vect_src) + angle
         vect_dest = Vecteur.get_vect_from_angle(angle_vect_dest)
         self.x = centre.x + vect_dest.vect[0] * distance
         self.y = centre.y + vect_dest.vect[1] * distance
@@ -90,7 +90,7 @@ class Vecteur:
         Retourne l'angle signe entre les deux vecteurs
         """
         ang = self.angle(v2)
-        return ang if self.sign(v2) >= 0 else - ang
+        return ang if self.signe(v2) >= 0 else - ang
 
     def milieu(p1,p2):
         """

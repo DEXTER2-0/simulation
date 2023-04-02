@@ -19,6 +19,7 @@ class Simulation(Thread) :
         self.fps = fps
         self.capteurOn = False
         self.encours= True
+        self.angle_fait=0
         self.t_1=datetime.now()
 
     def collision(self): #PROBLEME x et y dans robot donc plus de self.pos_x
@@ -31,7 +32,7 @@ class Simulation(Thread) :
             return True
         for obstacle in self.terrain.liste_obstacle: #pour chaque obstacle
             d=np.sqrt((self.robot.centre.x-obstacle.pos[0])**2+(self.robot.centre.y-obstacle.pos[1])**2) #distance euclidienne entre le robot et l'obstacle
-            if(d<=(self.robot.rayonDuRobotCm+obstacle.rayon)): # collision de deux cercles
+            if(d<=(cs.RAYON_ROBOT_CM+obstacle.rayon)): # collision de deux cercles
                 return True
             #elif (d<=(self.robot.rayonDuRobotCm+obstacle.longeur)): # collision d'un cercle et d'un rectangle A COMPLETER
             #    return True
@@ -60,32 +61,39 @@ class Simulation(Thread) :
           print("COOOOLISIONNNNN ")
           self.stop()
           return 
-      if self.robot.roue_gauche.vDegParSec==0 and self.robot.roue_gauche.vDegParSec==0 : # a l'arret
-          return
-      if self.robot.roue_gauche.vDegParSec==self.robot.roue_gauche.vDegParSec : # ligne droite
-          angle=dt*self.robot.roue_gauche.vDegParSec
-          self.robot.pos_roue_g+=angle
-          self.robot.pos_roue_d+=angle
+      if self.robot.gspeed==0 and self.robot.dspeed==0 : # a l'arret
+          return None
+      if self.robot.gspeed==self.robot.dspeed : # ligne droite
+          angle=dt*self.robot.gspeed
           k,r=divmod(angle,360)
           distance=k*cs.CIRCONFERENCE_ROUES+(r*cs.CIRCONFERENCE_ROUES)/360
+          self.robot.pos_roue_g+=angle
+          self.robot.pos_roue_d+=angle
+          
+          
           self.robot.centre+=(self.robot.vec*distance).pointer_vers()
           self.robot.update()
-          return
-      if self.robot.roue_droite.vDegParSec==0 and self.robot.roue_gauche.vDegParSec!=0 : # tourne avec seulement la roue gauche
-          mil=vect.Point.milieu(self.robot.cote_haut_gauche,self.robot.cote_haut_droit)
-          angle=dt*self.robot.roue_gauche.vDegParSec
+          return None
+      if self.robot.gspeed==0 and self.robot.dspeed!=0 : # tourne avec seulement la roue gauche
+          mil=vect.Vecteur.milieu(self.robot.cote_haut_gauche,self.robot.cote_haut_droite)
+          angle=dt*self.robot.dspeed
           self.robot.pos_roue_g+=angle
-          k,r=divmod(angle,360)
-          distance=k*cs.CIRCONFERENCE_ROUES+(r*cs.CIRCONFERENCE_ROUES)/360
-          angle=distance*180/(pi*cs.DIAMETRE_ROUES)
-          angle=-angle
-      if self.robot.roue_gauche.vDegParSec==0 and self.robot.roue_droite.vDegParSec!=0 : # tourner avec seulement la roue droite
-          mil=vect.Point.milieu(self.robot.cote_bas_gauche,self.robot.cote_bas_droite)
-          angle=dt*self.robot.roue_droite.vDegParSec
+          
+      if self.robot.dspeed==0 and self.robot.gspeed!=0 : # tourner avec seulement la roue droite
+          mil=vect.Vecteur.milieu(self.robot.cote_bas_gauche,self.robot.cote_bas_droite)
+          angle=dt*self.gspeed
           self.robot.pos_roue_d+=angle
-          k,r=divmod(angle,360)
-          distance=k*cs.CIRCONFERENCE_ROUES+(r*cs.CIRCONFERENCE_ROUES)/360
-          angle=distance*180/(pi*cs.DIAMETRE_ROUES)
+
+
+      k,r=divmod(angle,360)
+      distance=k*cs.CIRCONFERENCE_ROUES+(r*cs.CIRCONFERENCE_ROUES)/360
+      anle=distance*180/(pi*cs.DIAMETRE_ROUES)
+      
+      if self.robot.dspeed == 0 and self.robot.gspeed != 0:
+            angle = -angle
+
+
+
       self.angle_fait+=angle
       self.robot.vec=vect.Vecteur.get_vect_from_angle(self.angle_fait)
       self.robot.centre.rotation(mil,angle)

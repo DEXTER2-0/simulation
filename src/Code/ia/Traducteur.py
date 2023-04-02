@@ -86,8 +86,6 @@ class Traducteur_Simulation:
     def stop(self):
        self.robot.setMotorDps(self.robot.MOTOR_GAUCHE+self.robot.MOTOR_DROIT,0)
     
-    def get_rayon_roue(self):
-        return self.robot.rayon_roue
 
 class Traducteur_Realite:
     def __init__(self,robot):
