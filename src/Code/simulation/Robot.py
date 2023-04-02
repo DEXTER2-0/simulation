@@ -25,6 +25,7 @@ class Robot :
         self.vec=vect.Vecteur.get_vect_from_angle(0)
         self.pos_roue_g=0
         self.pos_roue_d=0
+        self.update()
 
     def setMotorDps(self, ANG_G, ANG_D):
         """
