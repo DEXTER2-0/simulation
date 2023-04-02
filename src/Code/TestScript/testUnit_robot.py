@@ -13,6 +13,8 @@ class TestRobot(unittest.TestCase):
         """
 
         self.r1 = r.Robot(c.RAYON_DES_ROUES_CM,c.RAYON_ROBOT_CM,c.VITESSE_MAX_DEG_PAR_SEC,c.DISTANCE_CAPTABLE)
+        self.terrain = t.Terrain(-100,c.WIDTH,-100,c.HEIGHT,[])
+        self.simulation = s.Simulation(self.r1,self.terrain,260)
 
     def test_init(self):
         self.assertEqual(self.r1.roue_gauche.taille_cm,3)
@@ -27,6 +29,8 @@ class TestRobot(unittest.TestCase):
         self.r1.setMotorDps(c.V_ANGULAIRE_G,c.V_ANGULAIRE_D)
         self.assertEqual(self.r1.roue_gauche.vDegParSec,c.V_ANGULAIRE_G)
         self.assertEqual(self.r1.roue_droite.vDegParSec,c.V_ANGULAIRE_D)
+        self.simulation.update()
+        
 
     def test_update(self):
         self.r1.update()
@@ -39,7 +43,7 @@ class TestRobot(unittest.TestCase):
         self.assertEqual(self.r1.cote_haut_droite.y,(self.r1.centre.y+(c.RAYON_DES_ROUES_CM//2*self.r1.vec.vect[1]-(c.RAYON_DES_ROUES_CM//2)*vec_normal.vect[1])))
         self.assertEqual(self.r1.cote_bas_droite.x,((self.r1.centre.x+(c.RAYON_DES_ROUES_CM//2)*self.r1.vec.vect[0])+(c.RAYON_DES_ROUES_CM//2)*vec_normal.vect[0]))
         self.assertEqual(self.r1.cote_bas_droite.y,(self.r1.centre.y+(c.RAYON_DES_ROUES_CM//2*self.r1.vec.vect[1]+(c.RAYON_DES_ROUES_CM//2)*vec_normal.vect[1])))
-        #self.assertEqual(self.r1.cote_bas_droite)
+
     if __name__ == '__main__':
         unittest.main()
 

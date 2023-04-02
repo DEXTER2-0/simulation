@@ -27,10 +27,10 @@ class Simulation(Thread) :
         """
         if(self.robot == None):
               return False
-        if (self.robot.centre[0]<=self.terrain.WIDTH_MIN) or (self.robot.centre[1]<=self.terrain.HEIGHT_MIN) or (self.robot.centre[0]>=self.terrain.WIDTH_MAX) or (self.robot.centre[1]>=self.terrain.HEIGHT_MAX):
+        if (self.robot.centre.x<=self.terrain.WIDTH_MIN) or (self.robot.centre.y<=self.terrain.HEIGHT_MIN) or (self.robot.centre.x>=self.terrain.WIDTH_MAX) or (self.robot.centre.y>=self.terrain.HEIGHT_MAX):
             return True
         for obstacle in self.terrain.liste_obstacle: #pour chaque obstacle
-            d=np.sqrt((self.robot.centre[0]-obstacle.pos[0])**2+(self.robot.centre[1]-obstacle.pos[1])**2) #distance euclidienne entre le robot et l'obstacle
+            d=np.sqrt((self.robot.centre.x-obstacle.pos[0])**2+(self.robot.centre.y-obstacle.pos[1])**2) #distance euclidienne entre le robot et l'obstacle
             if(d<=(self.robot.rayonDuRobotCm+obstacle.rayon)): # collision de deux cercles
                 return True
             #elif (d<=(self.robot.rayonDuRobotCm+obstacle.longeur)): # collision d'un cercle et d'un rectangle A COMPLETER
