@@ -107,9 +107,10 @@ class IA_tourner(Strat):
 		:param traducteur : traducteur utilise
 		:param a_voulue : angle voulu a effectuer en deg
 		"""
+		if orientation not in [0, 1]:
+			orientation = 1
 		self.orientation=orientation
 		self.trad=traducteur
-		self.encours=False
 		self.distance=(cs.RAYON_DES_ROUES_CM *angle_voulu)/360
 		self.distance_effectue=0
 		self.v_a=cs.V_ANGULAIRE_G

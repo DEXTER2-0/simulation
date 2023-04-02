@@ -31,7 +31,7 @@ if __name__=='__main__':
         strat_avance = ia.IA_avancer(trad, 10, 100)
         test.append(strat_avance)
         test.append(strat_tourne)
-    IA_tourne = ia.IA_tourner(trad,90,0)
+    IA_tourne = ia.IA_tourner(trad,90,1)
     #commandes pour que le robot avance
     IA_avance = ia.IA_avancer(trad,10,100)
     Affichage=af.Affichage(Simu,60)
