@@ -4,7 +4,6 @@ from math import *
 import pygame 
 import logging
 from Code.simulation import constantes as cs
-from copy import deepcopy
 
 #colors 
 BLACK = (0, 0, 0, 255)
@@ -20,8 +19,6 @@ class Affichage(Thread):
 		""" 
 		Constructeur de la classe affichage
 		:param simulation : simulation choisie
-		:param terrain : terrain choisi
-		:param robot : robot choisi
 		:param fps :
 		"""
 		super(Affichage, self).__init__()
@@ -57,10 +54,7 @@ class Affichage(Thread):
 				if event.key in [pygame.K_ESCAPE, pygame.K_q]: #Quit
 					self.encours = False
 				if event.key in [pygame.K_d]: 
-					logging.debug(f"List of sprites :")
-					for sprite in self.sprites:
-						logging.debug(f"\t{sprite.type} : {{{sprite.rect.x},{sprite.rect.y}}}")
-		
+					logging.debug(f"Robot :{self.simulation.robot.centre}")
 
 	def update(self):
 		"""
