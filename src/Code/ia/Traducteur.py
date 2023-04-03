@@ -84,11 +84,7 @@ class Traducteur_Simulation:
         self.angle=0
         self.robot.setMotorDps(0,0)
     
-    def getdistance(self,roue):
-        dif=self.robot.get_pos_roues()[roue]-self.distance
-        self.distance=self.robot.get_pos_roues()[roue]
-        k,r=divmod(dif,360)
-        return k*self.robot.rayon_roue+(r*self.robot.rayon_roue)/360
+
 
 class Traducteur_Realite:
     def __init__(self,robot):
