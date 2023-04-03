@@ -32,6 +32,7 @@ class Robot :
         self.MOTOR_DROIT = 2
         self.pos_roue_g=0
         self.pos_roue_d=0
+        self.dessin=False
 
     def setMotorDps(self, port, dps):
         """
@@ -59,6 +60,9 @@ class Robot :
         self.cote_bas_gauche=vect.Point(self.centre.x-(cs.RAYON_DES_ROUES_CM//2)*self.vec.vect[0]+(cs.RAYON_DES_ROUES_CM//2)*vec_normal.vect[0],self.centre.y-(cs.RAYON_DES_ROUES_CM//2)*self.vec.vect[1]+(cs.RAYON_DES_ROUES_CM//2)*vec_normal.vect[1])
         self.cote_haut_droite=vect.Point(self.centre.x+(cs.RAYON_DES_ROUES_CM//2)*self.vec.vect[0]-(cs.RAYON_DES_ROUES_CM//2)*vec_normal.vect[0],self.centre.y+(cs.RAYON_DES_ROUES_CM//2)*self.vec.vect[1]-(cs.RAYON_DES_ROUES_CM//2)*vec_normal.vect[1])
         self.cote_bas_droite=vect.Point(self.centre.x+(cs.RAYON_DES_ROUES_CM//2)*self.vec.vect[0]+(cs.RAYON_DES_ROUES_CM//2)*vec_normal.vect[0],self.centre.y+(cs.RAYON_DES_ROUES_CM//2)*self.vec.vect[1]+(cs.RAYON_DES_ROUES_CM//2)*vec_normal.vect[1])
+
+    def dessine(self,b):
+        self.dessin=b
 
 ####------------------------ ROUE --------------------------##
 

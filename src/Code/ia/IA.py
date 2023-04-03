@@ -64,7 +64,29 @@ class Strat(object):
     @abstractmethod
     def step(self):
         pass
-			
+
+class IA_hexagonale(Strat):
+	def __init__(self,traducteur,IA_liste):
+		self.encours=False
+		self.trad=traducteur
+		self.liste=IA_liste
+		self.nb_cote=0
+
+	def start(self):
+		self.encours=True
+
+	def step(self):
+		if nb_cote<6:
+			if nb_cote%2==0:
+				self.trad.robot.dessine(True)
+			else:
+				self.trad.robot.dessine(False)
+			self.liste
+			self.nb_cote+=1
+	
+	def stop(self):
+		self.encours=False
+
 class IA_avancer(Strat) :
 	def __init__ (self,traducteur,distance_voulue,vitesse) :
 		"""

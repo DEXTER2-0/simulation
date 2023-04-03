@@ -14,23 +14,37 @@ if __name__=='__main__':
     FORMAT = "[%(levelname)s] %(message)s"
     logging.basicConfig(format=FORMAT, level=logging.DEBUG)
     #cree les obstacles
-    obstacle4 = obs.Obstacle(1,(400,400),10)
-    liste_obstacle = [obstacle4]
+    obstacle1 = obs.Obstacle(1,(50,50),10)
+    obstacle2 = obs.Obstacle(1,(50,550),10)
+    obstacle3 = obs.Obstacle(1,(550,50),10)
+    obstacle4 = obs.Obstacle(1,(550,550),10)
+    liste_obstacle = [obstacle1,obstacle2,obstacle3,obstacle4]
     #initialise le robot
-    Dexter=rb.Robot(100,100)
+    Dexter=rb.Robot(300,300)
     #initialise le terrain
     Terrain=ter.Terrain(-300,cs.WIDTH,-300,cs.HEIGHT, liste_obstacle)
     #commandes pour que le robot tourne
     Simu=simu.Simulation(Dexter,Terrain,120)
     #initialisation le traducteur 
     trad = tr.Traducteur_Simulation(Dexter)
-
     test = []
-    for i in range(4):
-        strat_tourne = ia.IA_tourner(trad, 90,1)
-        strat_avance = ia.IA_avancer(trad, 10, 100)
-        test.append(strat_avance)
-        test.append(strat_tourne)
+    def hexagone():
+        for i in range(6):
+            if (i%2)==0:
+                Dexter.dessine(True)
+                print(Dexter.dessin)
+                strat_tourne = ia.IA_tourner(trad, 60,1)
+                strat_avance = ia.IA_avancer(trad, 10, 100)
+                test.append(strat_avance)
+                test.append(strat_tourne)
+            elif(i%2==1):
+                Dexter.dessine(False)
+                print(Dexter.dessin)
+                strat_tourne = ia.IA_tourner(trad, 60,1)
+                strat_avance = ia.IA_avancer(trad, 10, 100)
+                test.append(strat_avance)
+                test.append(strat_tourne)
+    hexagone()
     IA_tourne = ia.IA_tourner(trad,90,1)
     #commandes pour que le robot avance
     IA_avance = ia.IA_avancer(trad,10,100)
