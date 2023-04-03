@@ -75,7 +75,7 @@ if __name__=='__main__':
     def ligne():
         while Dexter.pos_roue_g<cs.WIDTH:
             alternance()
-    ligne()
+    #ligne()
     IA_tourne = ia.IA_tourner(trad,90,1)
     #commandes pour que le robot avance
     IA_avance = ia.IA_avancer(trad,10,100)

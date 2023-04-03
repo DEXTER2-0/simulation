@@ -31,7 +31,7 @@ Question 2.3 :
 changements dans main.py
 execution : main.py
 
-Question 2.4 :
+Question 2.4 : non finie
 changements dans main.py
 execution : main.py
 """
