@@ -30,7 +30,25 @@ if __name__=='__main__':
     Affichage=af.Affichage(Simu,60)
     #IA_evite = ia.IA_eviter(trad,IA_avance,IA_tourne,10)
     #IA = ia.IA(trad,[IA_tourne],0.01)
-    IA = ia.IA([IA_avance,IA_tourne,IA_avance],120)
+    
+    #IA = ia.IA([IA_avance,IA_tourne,IA_avance],120)
+
+    liste_hexagone = []
+    ia_tourne45 = ia.IA_tourner(trad,45,120,0)
+    liste_hexagone.append(ia_tourne45)
+    ia_avance = ia.IA_avancer(trad,10,100)
+    liste_hexagone.append(ia_avance)
+    ia_tourne90 = ia.IA_tourner(trad,90,120,1)
+    liste_hexagone.append(ia_tourne90)
+    liste_hexagone.append(ia_avance)
+    liste_hexagone.append(ia_tourne45)
+    liste_hexagone.append(ia_avance)
+    liste_hexagone.append(ia_tourne90)
+    liste_hexagone.append(ia_avance)
+    liste_hexagone.append(ia_tourne90)
+    liste_hexagone.append(ia_avance)
+    IA_hexagone = ia.IA(liste_hexagone,120)
+
     #IA = ia.IA(Dexter,[IA_evite],0.01)
     Affichage.start()
     Simu.start()
