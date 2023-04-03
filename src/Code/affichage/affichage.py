@@ -13,7 +13,7 @@ RED = (255, 0, 0)
 GREEN = (0, 255, 0)
 YELLOW = (255, 255, 0)
 AUTRE = (235, 152, 135)
-
+ORANGE = (255,65,0)
 class CircSprite(pygame.sprite.Sprite):
     """
     Représente le sprite d'un cercle
@@ -48,9 +48,15 @@ class Affichage(Thread):
 		self.mid = self.simulation.terrain.WIDTH_MAX / 2
 		self.sprites = pygame.sprite.Group()
 		self.robot = CircSprite(GREEN, (self.simulation.pos_x + self.mid, self.simulation.pos_y + self.mid), self.simulation.robot.rayonDuRobotCm, "Robot")
+	
 		self.sprites.add(self.robot)
+		#question 1.3 
+		if self.simulation.robot.dessine :
+			
+			self.draw_line(self._screen,BLACK,self.simulation.pos_x,self.simulation.pos_y)
 		for obs in self.simulation.terrain.getListeObstacles():
-			self.sprites.add(CircSprite(RED, (obs.x + self.mid, obs.y + self.mid), obs.longueur, "Obstacle"))
+		#question 1.2
+			self.sprites.add(CircSprite(ORANGE, (obs.x + self.mid, obs.y + self.mid), obs.longueur, "Obstacle"))
 		self.clock = pygame.time.Clock()
 
 	def run(self):

@@ -141,6 +141,119 @@ class IA_eviter:
 		self.avancer.stop()
 		self.tourner.stop()
 		self.arret=True
+#question 1.4
+class IA_HEXAGONE:
+	def __init__(self,traducteur,vitesse_angulaire,d_voulue):
+		self.trad = traducteur
+		self.avancer=IA_avancer(traducteur,d_voulue,vitesse_angulaire)
+		self.tourner=IA_tourner(traducteur,120,vitesse_angulaire)
+		self.arrete=False
+		self.nbarrete=0
+		
+	
+	def start(self):
+		self.avancer.start()
+		self.trad.reset_t0()
+		
+	
+	def step(self):
+	
+		if self.avance.arret and not self.arrete :
+			self.tourner.start()
+		if self.tourner.arret: 
+			self.nbarrete+=1
+			if self.nbarrete < 6:
+			self.avancer.start()
+		if self.nbarrete == 6 :
+			self.arrete = True 
+
+	def stop(self):
+		self.avancer.stop()
+		self.tourner.stop()
+		self.arrete = True 
+
+	
+
+#question 2.1 :
+class IA_UN:
+	def __init__(self,traducteur , vitesse_angulaire,a_voulu):
+		self.traducteur = traducteur 
+		self.avancer = IA_avancer(traducteur , 100, vitesse_angulaire)
+		self.tourner = IA_tourner(traducteur , 45 , vitesse_angulaire) 
+		self.fini = False
+
+	
+	def start(self):
+		self.tourner.start()
+		self.avancer.start()	
+		
+		
+
+	
+
+	def step():
+		if not self.fini :
+			self.tourner.step()
+			if self.tourner.arret : 
+				self.avancer.step()
+			if self.avancer.arret :
+				self.fini = True 
+	
+	def stop():
+		self.avancer.stop()
+		self.tourner.stop()
+
+
+class IA_zero :
+	def __init__(self,traducteur , a_voulue = 90 , vitesse_angulaire , d_voulue1 = 40, d_voulue2 = 80):
+		self.traducteur = traducteur 
+		self.avancer1 = IA_avancer(traducteur , d_voulue1 , vitesse_angulaire)
+		self.avancer2 = IA_avancer(traducteur n d_voulue2, vitesse_angulaire)
+		self.tourner= IA_tourner(traducteur , a_voulue , vitesse_angulaire)
+	
+
+	def start(self):
+		self.avancer1.start()
+
+	
+
+	def step():#pas fini 
+		if self.avancer1.arret  :
+			if self.tourner.stop : 
+				self.tourner.start()
+		if self.tourner.arret and self.avancer1.arret :
+			self.avancer2.start()
+			if self.avancer2.arret : 
+				self.tourner.start()
+
+		
+	def stop():
+		self.avancerr.stop()
+		self.tourner.stop()
+
+class IA_zero_un :
+	def __init__(self , traducteur , zero , un ):
+		self.traducteur = traducteur 
+		self.zero = zero 
+		self.un = un 
+		self.largeur = self.traducteur.simulation.terrain.WIDTH_MAX
+		self.parcouru = 0
+	
+	def start(self):
+		self.zero.start()
+		self.un.start()
+	
+
+	def step():
+		if self.parcouru < self.largeur :
+			if self.un.arret :
+				self.zero.start()
+			else : 
+				self.un.start()
+
+			
+		
+
 
 class IA_conditionnelle:
 	def __init__(self,traducteur,IA_base,IA_alternative,condition):

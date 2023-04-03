@@ -40,6 +40,11 @@ class Robot :
 
     def get_pos_roues(self):
         return self.pos_roue_g, self.pos_roue_d
+	
+    def dessine(b):
+	    robot.dessine = b
+
+
 
 ####------------------------ ROUE --------------------------##
 
