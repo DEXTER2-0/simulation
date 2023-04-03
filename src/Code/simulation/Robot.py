@@ -3,7 +3,7 @@ from Code.simulation import Vecteur as vect
 from math import pi,sqrt,sin,cos
 
 class Robot :
-    def __init__ (self, rayonRouesCm,rayonDuRobotCm,vMaxDegParSec,distance_captable,px=0,py=0,l=1) :
+    def __init__ (self,px=0,py=0,) :
         """
         :param rayonRouesCm : rayon des roues en cm
         :param rayonDuRobotCm : rayon du cercle dans lequel s'inscrit le robot en cm
@@ -12,33 +12,41 @@ class Robot :
         :param distance_captable : distance maximale que le capteur peut calculer
         Cette fonction instancie deux roues de la meme taille et de meme vitesse maximale, ainsi qu'un capteur de position
         """
-        assert(rayonRouesCm > 0)# Ne peut pas avoir un rayon < 0
-        assert(vMaxDegParSec > 0) # Ne peut pavoir une vitesse max < 0
-        assert(rayonDuRobotCm > 0) # Ne peut pas avoir un rayon < 0
-        self.rayon_roue=rayonDuRobotCm
-        self.roue_gauche = Roue(self.rayon_roue, vMaxDegParSec)
-        self.roue_droite = Roue(self.rayon_roue, vMaxDegParSec)
-        self.capteurDistance = Capteur_de_distance(distance_captable)
-        self.rayonDuRobotCm = rayonDuRobotCm
-        self.l=l*2*rayonDuRobotCm
         self.centre=vect.Point(px,py)
+        #assert(rayonRouesCm > 0)# Ne peut pas avoir un rayon < 0
+        #assert(vMaxDegParSec > 0) # Ne peut pavoir une vitesse max < 0
+        #assert(rayonDuRobotCm > 0) # Ne peut pas avoir un rayon < 0
+        #self.rayon_roue=rayonDuRobotCm
+     
+        #self.roue_gauche = Roue(self.rayon_roue, self.gspeed)
+        #self.roue_droite = Roue(self.rayon_roue, self.dspeed)
+        #self.capteurDistance = Capteur_de_distance(distance_captable)
+        #self.rayonDuRobotCm = rayonDuRobotCm
+        #self.l=l*2*rayonDuRobotCm
+        
         self.vec=vect.Vecteur.get_vect_from_angle(0)
+        self.update()
+        self.gspeed = 0
+        self.dspeed = 0
+        self.MOTOR_GAUCHE = 1
+        self.MOTOR_DROIT = 2
         self.pos_roue_g=0
         self.pos_roue_d=0
         self.update()
 
-    def setMotorDps(self, ANG_G, ANG_D):
+    def setMotorDps(self, port, dps):
         """
-        cette methode suppose que les deux roues possede le meme rayon
-        :param ANG_G : vitesse en deg/s pour la roue gauche
-        :param ANG_D : vitesse deg/s pour la roue droite
-        cette methode donne la vitesse demandee aux roues
+        :param int port: Moteur
+        :param float dps: Vitesse
         """
-        self.roue_gauche.vDegParSec = ANG_G
-        self.roue_droite.vDegParSec = ANG_D
+        if port == self.MOTOR_GAUCHE:
+            self.gspeed = dps
+        elif port == self.MOTOR_DROIT:
+            self.dspeed = dps
+        elif port == self.MOTOR_GAUCHE + self.MOTOR_DROIT:
+            self.dspeed = dps
+            self.gspeed = dps
     
-    def stop(self):
-        self.setMotorDps(0,0)
 
     def get_pos_roues(self):
         return self.pos_roue_g, self.pos_roue_d
@@ -48,10 +56,10 @@ class Robot :
         Mets a jour les coordonnes du robot
         """
         vec_normal=vect.Vecteur(vect.Point(0,0),vect.Point(-self.vec.vect[1],self.vec.vect[0]))
-        self.cote_haut_gauche=vect.Point(((self.centre.x-(cs.RAYON_DES_ROUES_CM//2)*self.vec.vect[0])-(cs.RAYON_DES_ROUES_CM//2)*vec_normal.vect[0]),(self.centre.y -(cs.RAYON_DES_ROUES_CM//2*self.vec.vect[1]-(cs.RAYON_DES_ROUES_CM//2)*vec_normal.vect[1])))
-        self.cote_bas_gauche=vect.Point(((self.centre.x-(cs.RAYON_DES_ROUES_CM//2)*self.vec.vect[0])+(cs.RAYON_DES_ROUES_CM//2)*vec_normal.vect[0]),(self.centre.y-(cs.RAYON_DES_ROUES_CM//2*self.vec.vect[1]+(cs.RAYON_DES_ROUES_CM//2)*vec_normal.vect[1])))
-        self.cote_haut_droite=vect.Point(((self.centre.x+(cs.RAYON_DES_ROUES_CM//2)*self.vec.vect[0])-(cs.RAYON_DES_ROUES_CM//2)*vec_normal.vect[0]),(self.centre.y+(cs.RAYON_DES_ROUES_CM//2*self.vec.vect[1]-(cs.RAYON_DES_ROUES_CM//2)*vec_normal.vect[1])))
-        self.cote_bas_droite=vect.Point(((self.centre.x+(cs.RAYON_DES_ROUES_CM//2)*self.vec.vect[0])+(cs.RAYON_DES_ROUES_CM//2)*vec_normal.vect[0]),(self.centre.y+(cs.RAYON_DES_ROUES_CM//2*self.vec.vect[1]+(cs.RAYON_DES_ROUES_CM//2)*vec_normal.vect[1])))
+        self.cote_haut_gauche=vect.Point(self.centre.x-(cs.RAYON_DES_ROUES_CM//2)*self.vec.vect[0]-(cs.RAYON_DES_ROUES_CM//2)*vec_normal.vect[0],self.centre.y -(cs.RAYON_DES_ROUES_CM//2)*self.vec.vect[1]-(cs.RAYON_DES_ROUES_CM//2)*vec_normal.vect[1])
+        self.cote_bas_gauche=vect.Point(self.centre.x-(cs.RAYON_DES_ROUES_CM//2)*self.vec.vect[0]+(cs.RAYON_DES_ROUES_CM//2)*vec_normal.vect[0],self.centre.y-(cs.RAYON_DES_ROUES_CM//2)*self.vec.vect[1]+(cs.RAYON_DES_ROUES_CM//2)*vec_normal.vect[1])
+        self.cote_haut_droite=vect.Point(self.centre.x+(cs.RAYON_DES_ROUES_CM//2)*self.vec.vect[0]-(cs.RAYON_DES_ROUES_CM//2)*vec_normal.vect[0],self.centre.y+(cs.RAYON_DES_ROUES_CM//2)*self.vec.vect[1]-(cs.RAYON_DES_ROUES_CM//2)*vec_normal.vect[1])
+        self.cote_bas_droite=vect.Point(self.centre.x+(cs.RAYON_DES_ROUES_CM//2)*self.vec.vect[0]+(cs.RAYON_DES_ROUES_CM//2)*vec_normal.vect[0],self.centre.y+(cs.RAYON_DES_ROUES_CM//2)*self.vec.vect[1]+(cs.RAYON_DES_ROUES_CM//2)*vec_normal.vect[1])
 
 ####------------------------ ROUE --------------------------##
 

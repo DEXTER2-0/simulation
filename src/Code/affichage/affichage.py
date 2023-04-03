@@ -67,6 +67,8 @@ class Affichage(Thread):
 			obs.draw(self.disp,RED)
 		for pos in self.old_pos :
 			pygame.draw.circle(self.disp,RED,pos,2)
-		pygame.draw.circle(self.disp,BLUE,(x,y),10)
+
+		pygame.draw.circle(self.disp,BLUE,(x,y),cs.RAYON_ROBOT_CM//10)
+
 		pygame.display.flip()
 		self.events()
