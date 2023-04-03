@@ -73,7 +73,7 @@ if __name__=='__main__':
         IA = ia.IA(test3, 120) #zero
     alternance()
     def ligne():
-        while Dexter.pos_roue_gauche<cs.WIDTH:
+        while Dexter.pos_roue_g<cs.WIDTH:
             alternance()
     ligne()
     IA_tourne = ia.IA_tourner(trad,90,1)
