@@ -32,7 +32,7 @@ class Robot :
         self.MOTOR_DROIT = 2
         self.pos_roue_g=0
         self.pos_roue_d=0
-        self.dessin=False
+        self.dessin=True
 
     def setMotorDps(self, port, dps):
         """

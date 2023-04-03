@@ -44,16 +44,45 @@ if __name__=='__main__':
                 strat_avance = ia.IA_avancer(trad, 10, 100)
                 test.append(strat_avance)
                 test.append(strat_tourne)
-    hexagone()
+    #hexagone()
+    test2=[]
+    def un():
+        strat_tourne=ia.IA_tourner(trad,90,1)
+        strat_avance=ia.IA_avancer(trad,20,100)
+        test2.append(strat_tourne)
+        test2.append(strat_avance)
+    un()
+    test3=[]
+    def zero():
+        c=0
+        while c<4:
+            if (c%2==0):
+                strat_tourne=ia.IA_tourner(trad,90,1)
+                strat_avance=ia.IA_avancer(trad,20,100)
+                test3.append(strat_tourne)
+                test3.append(strat_avance)
+            else:
+                strat_tourne=ia.IA_tourner(trad,90,1)
+                strat_avance=ia.IA_avancer(trad,5,100)
+                test3.append(strat_tourne)
+                test3.append(strat_avance)
+            c+=1
+    zero()
+    def alternance():
+        IA=ia.IA(test2,120) #un
+        IA = ia.IA(test3, 120) #zero
+    alternance()
+    def ligne():
+        while Dexter.pos_roue_gauche<cs.WIDTH:
+            alternance()
+    ligne()
     IA_tourne = ia.IA_tourner(trad,90,1)
     #commandes pour que le robot avance
     IA_avance = ia.IA_avancer(trad,10,100)
     Affichage=af.Affichage(Simu,60)
-    #IA_evite = ia.IA_eviter(trad,IA_avance,IA_tourne,10)
-    #IA = ia.IA(trad,[IA_tourne],0.01)
-    #IA = ia.IA([IA_tourne,IA_avance],120)
-    #IA = ia.IA(Dexter,[IA_evite],0.01)
-    IA = ia.IA(test, 120)
+    #IA=ia.IA(test,120) hexagone
+    IA=ia.IA(test2,120) #un
+    IA = ia.IA(test3, 120) #zero
     Affichage.start()
     Simu.start()
     IA.start()
