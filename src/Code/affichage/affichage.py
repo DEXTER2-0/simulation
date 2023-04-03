@@ -13,9 +13,10 @@ RED = (255, 0, 0)
 GREEN = (0, 255, 0)
 YELLOW = (255, 255, 0)
 AUTRE = (235, 152, 135)
+ORANGE  =(255,165,0)
 
 class Affichage(Thread):
-	def __init__(self, simulation,fps):
+	def __init__(self, simulation,fps,b0):
 		""" 
 		Constructeur de la classe affichage
 		:param simulation : simulation choisie
@@ -28,6 +29,7 @@ class Affichage(Thread):
 		self.disp.fill(WHITE)
 		self.fps = fps
 		self.old_pos=[]
+		self.b0 = b0
 		self.clock = pygame.time.Clock()
 		logging.info("Affichage cree")
 
@@ -55,6 +57,12 @@ class Affichage(Thread):
 					self.encours = False
 				if event.key in [pygame.K_d]: 
 					logging.debug(f"Robot :{self.simulation.robot.centre}")
+	def dessine(self,b0):
+		"""dessiner une trace quand il est abaissé 
+		true : trace activé 
+		false : trace déacitvé 
+		"""
+		return b0
 
 	def update(self):
 		"""
@@ -64,9 +72,14 @@ class Affichage(Thread):
 		self.old_pos.append((x,y))
 		self.disp.fill(WHITE)
 		for obs in self.simulation.terrain.liste_obstacle :
-			obs.draw(self.disp,RED)
+			obs.draw(self.disp,ORANGE)
+		
 		for pos in self.old_pos :
-			pygame.draw.circle(self.disp,RED,pos,2)
+			if self.dessine(self.b0) == True :
+				pygame.draw.circle(self.disp,RED,pos,2)
+				now = pos
+
+	
 
 		pygame.draw.circle(self.disp,BLUE,(x,y),cs.RAYON_ROBOT_CM//10)
 

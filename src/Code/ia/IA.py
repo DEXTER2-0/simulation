@@ -125,16 +125,20 @@ class IA_tourner(Strat):
 	def step(self):
 		if not self.encours:
 			return
-
 		self.distance_effectue+=self.trad.getdistance(self,self.orientation)
 		if (self.distance_effectue>=self.distance):
 			self.stop()
+			self.turned = True
 		vitesse=self.v_a
 		if self.distance_effectue>self.distance/2:
 			vitesse/=2
 		if self.distance_effectue>self.distance * 3/4:
 			vitesse/=2
 		self.trad.tourne(self.orientation,vitesse)
+		
+
+			
+			
 
 
 class IA_eviter:
@@ -169,6 +173,80 @@ class IA_eviter:
 		self.tourner.stop()
 		self.arret=True
 
+class IA_1(Strat): 
+	def __init__ (self,traducteur,ia_avance,ia_tourne) :
+		"""
+		:param traducteur : traducteur utilise
+		:param d_voulue : ditance voulue a effectuer en m
+		"""
+		self.trad= traducteur
+		self.avance = ia_avance
+		self.tourne = ia_tourne
+
+	def start(self):
+		"""
+		Override
+		"""
+
+		super().start()
+		self.trad.stop()
+
+		self.trad.debut(self,0)
+		self.distance_effectue=0
+		self.tourne.start()
+		self.avance.start()
+
+	def step(self):
+
+		self.tourne.distance_effectue+=self.tourne.trad.getdistance(self,self.tourne.orientation)
+		if (self.tourne.distance_effectue>=self.tourne.distance):
+			self.stop()
+			self.turned = True
+		vitesse=self.tourne.v_a
+		if self.tourne.distance_effectue>self.tourne.distance/2:
+			vitesse/=2
+		if self.tourne.distance_effectue>self.tourne.distance * 3/4:
+			vitesse/=2
+		self.tourne.trad.tourne(self.orientation,vitesse)
+		
+
+		if self.avance.distance_effectue>=self.avance.distance:
+			self.avance.stop()
+			return
+		self.trad.avance(self.vitesse)
+	
+		
+
+class IA_0(Strat): 
+	def __init__ (self,traducteur,ia_avance,ia_tourne) :
+		"""
+		:param traducteur : traducteur utilise
+		:param d_voulue : ditance voulue a effectuer en m
+		"""
+		self.trad= traducteur
+		self.avance = ia_avance
+		self.tourne = ia_tourne
+
+	def start(self):
+		"""
+		Override
+		"""
+
+		super().start()
+		self.trad.stop()
+
+		self.trad.debut(self,0)
+		self.distance_effectue=0
+
+	def step(self):
+		self.tourne.start()
+		self.avance.start()
+
+		self.tourne.step()
+		done = True
+		if(done==True ):
+			self.avance.step()
+	
 class IA_conditionnelle:
 	def __init__(self,traducteur,IA_base,IA_alternative,condition):
 		"""
