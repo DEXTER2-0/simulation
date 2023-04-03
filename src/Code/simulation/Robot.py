@@ -3,7 +3,7 @@ from Code.simulation import Vecteur as vect
 from math import pi,sqrt,sin,cos
 
 class Robot :
-    def __init__ (self, rayonRouesCm,rayonDuRobotCm,vMaxDegParSec,distance_captable,px=0,py=0,l=1) :
+    def __init__ (self, rayonRouesCm,rayonDuRobotCm,vMaxDegParSec,distance_captable,px=0,py=0,l=1,b = True) :
         """
         :param rayonRouesCm : rayon des roues en cm
         :param rayonDuRobotCm : rayon du cercle dans lequel s'inscrit le robot en cm
@@ -26,6 +26,12 @@ class Robot :
         self.pos_roue_g=0
         self.pos_roue_d=0
         self.update()
+        self.b = b
+
+    def dessine(self,b):
+        self.b = b
+        return b
+    
 
     def setMotorDps(self, ANG_G, ANG_D):
         """

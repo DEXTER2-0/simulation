@@ -43,6 +43,7 @@ class Traducteur_Simulation:
 
     def tourne(self,orientation,speed):
         if orientation == 0:#gauche
+            print("tourne")
             self.robot.setMotorDps(speed,0)
         else:#droite
             self.robot.setMotorDps(0,speed)

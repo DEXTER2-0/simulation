@@ -14,10 +14,10 @@ if __name__=='__main__':
     FORMAT = "[%(levelname)s] %(message)s"
     logging.basicConfig(format=FORMAT, level=logging.DEBUG)
     #cree les obstacles
-    obstacle4 = obs.Obstacle(1,(400,400),10)
-    liste_obstacle = [obstacle4]
+    obstacle4 = obs.Obstacle(1,(10,10),10)
+    liste_obstacle = [obstacle4,obs.Obstacle(1,(270,270),10),obs.Obstacle(1,(270,10),10),obs.Obstacle(1,(10,270),10)]
     #initialise le robot
-    Dexter=rb.Robot(cs.RAYON_DES_ROUES_CM,cs.RAYON_ROBOT_CM,cs.VITESSE_MAX_DEG_PAR_SEC,cs.DISTANCE_CAPTABLE,50,50)
+    Dexter=rb.Robot(cs.RAYON_DES_ROUES_CM,cs.RAYON_ROBOT_CM,cs.VITESSE_MAX_DEG_PAR_SEC,cs.DISTANCE_CAPTABLE,150,150)
     #initialise le terrain
     Terrain=ter.Terrain(-300,cs.WIDTH,-300,cs.HEIGHT, liste_obstacle)
     #commandes pour que le robot tourne
@@ -30,7 +30,7 @@ if __name__=='__main__':
     Affichage=af.Affichage(Simu,60)
     #IA_evite = ia.IA_eviter(trad,IA_avance,IA_tourne,10)
     #IA = ia.IA(trad,[IA_tourne],0.01)
-    IA = ia.IA([IA_tourne,IA_avance],120)
+    IA = ia.IA([IA_avance,IA_tourne,IA_avance],120)
     #IA = ia.IA(Dexter,[IA_evite],0.01)
     Affichage.start()
     Simu.start()

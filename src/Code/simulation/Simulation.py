@@ -71,6 +71,7 @@ class Simulation(Thread) :
           k,r=divmod(angle,360)
           distance=k*cs.CIRCONFERENCE_ROUES+(r*cs.CIRCONFERENCE_ROUES)/360
           self.robot.centre+=(self.robot.vec*distance).pointer_vers()
+          print("LIGNE D -> angle Simulation =",angle)
           self.robot.update()
           return
       if self.robot.roue_droite.vDegParSec==0 and self.robot.roue_gauche.vDegParSec!=0 : # tourne avec seulement la roue gauche
@@ -89,6 +90,9 @@ class Simulation(Thread) :
           distance=k*cs.CIRCONFERENCE_ROUES+(r*cs.CIRCONFERENCE_ROUES)/360
           angle=distance*180/(pi*cs.DIAMETRE_ROUES)
       self.angle_fait+=angle
+      print("angle Simulation =",angle)
+      print("angle_fait Simulation =",self.angle_fait)
       self.robot.vec=vect.Vecteur.get_vect_from_angle(self.angle_fait)
       self.robot.centre.rotation(mil,angle)
+
       self.robot.update()
