@@ -18,13 +18,13 @@ if __name__=='__main__':
     emet=emeteur()
     #q1-1-----------------------------------
     #cree les obstacles
-    obstacle4 = obs.Obstacle(1,(550,550),10)
+    """ obstacle4 = obs.Obstacle(1,(550,550),10)
 
     
     obstacle1 = obs.Obstacle(1,(50,550),10)
     obstacle2 = obs.Obstacle(1,(550,50),10)
     obstacle3 = obs.Obstacle(1,(50,50),10)
-    #liste_obstacle = [obstacle4,obstacle2,obstacle1,obstacle3]
+    liste_obstacle = [obstacle4,obstacle2,obstacle1,obstacle3]"""
       #initialise le robot
 
     Dexter=rb.Robot(True,emet,400,400)
@@ -32,14 +32,14 @@ if __name__=='__main__':
     
 
     #q1-2---------------------------------------
-    #ajout dans l'affichage la couleur orange et modifier la fonction update pour la mettre en orange
+    """ajout dans l'affichage la couleur orange et modifier la fonction update pour la mettre en orange"""
    #q1-3---------------------------------------
-   #ajout de la fonction dessine
+    """ajout de la fonction dessine"""
    #1-4 
    # fait la strategie
     trad = tr.Traducteur_Simulation(Dexter)
     test = []
-    #for i in range(6):
+    """for i in range(6):
       #strat_tourne = ia.IA_tourner(trad, 60,1)
       #strat_avance = ia.IA_avancer(trad, 10, 100)
       #if i==3 :
@@ -49,7 +49,7 @@ if __name__=='__main__':
       #test.append(strat_avance)
       #test.append(strat_tourne)
    
-   #IA = ia.IA(test, 120)
+   #IA = ia.IA(test, 120)"""
 
    #2-1-----------------------------
 
