@@ -84,6 +84,7 @@ class Traducteur_Simulation:
         self.angle=0
         self.robot.setMotorDps(0,0)
     
+    
 
 
 class Traducteur_Realite:

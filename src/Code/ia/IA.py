@@ -199,3 +199,6 @@ class IA_conditionnelle:
 		self.IA_base.stop()
 		self.IA_alt.stop()
 		self.arret=True
+
+
+	#q2-1

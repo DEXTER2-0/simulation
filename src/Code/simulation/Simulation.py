@@ -1,13 +1,15 @@
 from Code.simulation import constantes as cs
 from Code.simulation import Vecteur as vect
+from Code.simulation.Vecteur import Point
 import time as time #pour pouvoir controler le temps de la boucle while True
 from datetime import datetime
 import numpy as np
 from math import *
 from threading import Thread
+import random
 
 class Simulation(Thread) : 
-    def __init__ (self, robot,terrain,fps) :
+    def __init__ (self, robot,terrain,emet,fps) :
         """     
 	    :param robot : Robot utilise
 	    :param terrain : Terrain utilise
@@ -22,6 +24,7 @@ class Simulation(Thread) :
 
         self.angle_fait=0
         self.t_1=datetime.now()
+        self.emet=emet
 
 
     def collision(self): #PROBLEME x et y dans robot donc plus de self.pos_x
@@ -40,6 +43,11 @@ class Simulation(Thread) :
             #    return True
             
         return False
+    
+    def emet(self):
+        obs=(1,self.emet.pos,self.rayon)
+        
+        self.terrain.liste_ostacle.append(obs)
 
     def run(self):
       """
@@ -106,3 +114,10 @@ class Simulation(Thread) :
       self.robot.vec=vect.Vecteur.get_vect_from_angle(self.angle_fait)
       self.robot.centre.rotation(mil,angle)
       self.robot.update()
+
+class emeteur:
+    def __init__(self):
+        self.x=random.randint(0,600)
+        self.y=random.randint(0,600)
+        self.rayon=random.randint(0,10)
+        self.pos=vect.Point(self.x,self.y)

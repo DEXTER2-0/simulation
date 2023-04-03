@@ -104,3 +104,10 @@ class Vecteur:
         :param p2: deuxieme point
         """
         return Point((p1.x+p2.x)/2,(p1.y+p2.y)/2)
+
+    def distance(self, p2):
+        """
+        :param p2: deuxième point
+        Distance entre les deux points
+        """
+        return sqrt((self.x - p2.x)**2 + (self.y - p2.y)**2)
