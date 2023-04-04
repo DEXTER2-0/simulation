@@ -63,7 +63,7 @@ class Simulation(Thread) :
       dt=(t0-self.t_1).total_seconds()
       self.t_1=t0
       if self.collision() :
-          logging.info("Collision")
+          logging.debug("Collision")
           self.stop()
           return 
       
