@@ -5,6 +5,7 @@ from datetime import datetime
 import numpy as np
 from math import *
 from threading import Thread
+import logging
 
 class Simulation(Thread) : 
     def __init__ (self, robot,terrain,fps) :
@@ -62,7 +63,7 @@ class Simulation(Thread) :
       dt=(t0-self.t_1).total_seconds()
       self.t_1=t0
       if self.collision() :
-          print("COOOOLISIONNNNN ")
+          logging.info("Collision")
           self.stop()
           return 
       

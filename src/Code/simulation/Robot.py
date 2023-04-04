@@ -1,6 +1,7 @@
 from Code.simulation import constantes as cs
 from Code.simulation import Vecteur as vect
 from math import pi,sqrt,sin,cos
+import logging
 
 class Robot :
     def __init__ (self,px=0,py=0,) :
@@ -118,8 +119,8 @@ class Capteur_de_distance :
                 obstacle = l_obstacle[i]
                 # Si a un moment le laser se trouve dans un obstacle
                 if(self.distance(x,y,obstacle)) <= obstacle.rayon : #obstacle.longueur car dans obstacle attribut longueur m
-                    print("boucle : ",sqrt((x-pos_x)**2+(y-pos_y)**2) - cs.RAYON_ROBOT_CM)
+                    logging. basicConfig()("boucle : ",sqrt((x-pos_x)**2+(y-pos_y)**2) - cs.RAYON_ROBOT_CM)
                     return sqrt((x-pos_x)**2+(y-pos_y)**2) - cs.RAYON_ROBOT_CM
             k +=1
-        print("fin fct : ",self.distanceCaptable- cs.RAYON_ROBOT_CM)
+        logging. basicConfig()("fin fct : ",self.distanceCaptable- cs.RAYON_ROBOT_CM)
         return self.distanceCaptable - cs.RAYON_ROBOT_CM
