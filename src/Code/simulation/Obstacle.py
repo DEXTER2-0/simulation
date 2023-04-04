@@ -1,60 +1,34 @@
-#coding: utf-8
-import logging
+import pygame
+
 class Obstacle :
 
-	def __init__ (self, *args) :
-		""" 
-		Fonction d'initialisation prenant en paramètre:
-			: 2 arguments : création un obstacle de type mur 
-			: 3 arguments : création un obstacle de type cercle
-			: 4 arguments : création un obstacle de type rectangle
 
+
+	def __init__ (self, type, pos,args) :
+		""" 
+		Fonction d'initialisation prenant en parametre:
+			: type : si type = 0 c'est un mur 
+						type = 1 c'est un cercle
+						type = 2 c'est un rectangle 
+			: pos  : positon de l'obstacle (une liste de 2 éléments ) 
+			: args : pour definir la longueur et largeur
 		"""
-		if (len(args)<3 |len(args)>4 ):
-			if(len(args)<3):
-				logging.debug("error : il faut au moins 3 arguments")
-			else:
-				logging.debug("error : il faut au plus 4 arguments")
-		
-		elif len(args)==3 :
-			self.longueur = args[0]
-			self.largeur = args[0]
-			self.type = 'cercle'
-			self.x = args[1]
-			self.y = args[2]
+		self.pos = pos
+		self.type = type 
+		if type == 0 :
+			self.end = args 
+		elif type == 1 :
+			self.rayon = args
 		else :
 			self.longueur = args[0]
 			self.largeur = args[1]
-			self.type = 'rectangle'
-			self.x = args[2]
-			self.y = args[3]
-	
 
-
-
-
-	def capte(self,x,y):
-		if(np.sqrt( (self.x - x )**2 + (self.y-y)**2) <= 0):
-			return true
-													
-		return false
-
-
-
-	def __str__ (self) : 
-		"""
-		Fonction de redefinition de la méthode print(Instance)
-		"""
-		if(self.type == 'mur'):
-			res="le mur de ",len(self.longueur)," * ",len(self.largeur)," cm."
+			
+	def draw(self,disp,couleur):
+		if self.type == 0 :
+			pygame.draw.line(disp,couleur ,self.pos, self.end)
+		elif self.type == 1 :
+			pygame.draw.circle(disp,couleur ,self.pos, self.rayon)
 		else:
-			res="Obstacle à la position : " + str(self.x) + " , "+ str(self.y) 
-			if(self.type == 'cercle'):
-				res+="  est un cercle de rayon " + str(self.rayon) + "  cm"
-			else :
-				if self.longueur == self.largeur :
-					res+="  est un carré de longueur : "+ str(self.longueur)
-				else : 
-					res+=" est un rectangle de longueur : " + str(self.longueur) + "  et de largeur : " + str(self.largeur) 
-		return res
-
+			pygame.draw.rect(disp, couleur, (self.pos, (self.longueur, self.largeur)))
+	

@@ -1,140 +1,109 @@
-#import Robot
 from Code.simulation import constantes as cs
-#import Terrain
-import time as time#pour pouvoir controler le temps de la boucle while True
+from Code.simulation import Vecteur as vect
+import time as time #pour pouvoir controler le temps de la boucle while True
+from datetime import datetime
 import numpy as np
 from math import *
-import logging
 from threading import Thread
-#logging.basicConfig(filename='Simulation.log', filemode='w', level=logging.DEBUG)
-
-
+import logging
 
 class Simulation(Thread) : 
-    def __init__ (self, robot,terrain,dt,pos_x=200,pos_y=250,r=0,angle=0) :
-      """     
-	:param robot : Robot utilisé
-	:param terrain : Terrain utilisé
-	:param duree_boucle : duree de simulation
-   """
-      super(Simulation, self).__init__()
-      self.robot = robot
-      self.terrain = terrain
-      self.dt = dt
-      self.pos_x=pos_x
-      self.pos_y=pos_y
-      self.r=r
-      self.angle = radians(angle)
-      self.capteurOn = False
-	      #coordonnées du dernier point capté par le capteur de distance 
-      self.lastX = 0  
-      self.lastY=0
-
-
-    
-	
-        #self.obs1 = Obstacle(6,2,2)
-        #self.obs2 = Obstacle(3,4,7)
-    
-
-
-    def getangle(self):
-        return self.angle
-    
-    def capterDistance(self,robot):
-      Distance=0
-      Vect0=(cos(self.angle))
-      Vect1=sin(-self.angle)
-      RayonCoord=(self.pos_x + Vect0 * robot.rayonDuRobotCm,self.pos_y + Vect1 * robot.rayonDuRobotCm)
-      for i in range(0,len(self.terrain.getListeObstacles())):
-            if self.terrain.getObstacle(i).Capte(RayonCoord[0] , RayonCoord[1]):
-               self.SensorOn= True
-               self.newPos_x = RayonCoord[0]	
-      
-      
-      
-    def collision(self):
+    def __init__ (self, robot,terrain,fps) :
+        """     
+	    :param robot : Robot utilise
+	    :param terrain : Terrain utilise
+	    :param dt : duree de simulation
         """
-        Suppose objet est cercle
+        super(Simulation, self).__init__()
+        self.robot = robot
+        self.terrain = terrain
+        self.fps = fps
+        self.capteurOn = False
+        self.encours= True
+
+        self.angle_fait=0
+        self.t_1=datetime.now()
+
+
+    def collision(self): #PROBLEME x et y dans robot donc plus de self.pos_x
+        """
+        on suppose que tout objet est un cercle
         """
         if(self.robot == None):
               return False
-        if (self.pos_x<=self.terrain.WIDTH_MIN) or (self.pos_y<=self.terrain.HEIGHT_MIN) or (self.pos_x>=self.terrain.WIDTH_MAX) or (self.pos_y>=self.terrain.HEIGHT_MAX):
-            print("Collision détectée : arret d'urgence")
-            print("mur")
-            print("cloisiooooooooooooooooon  $*$*$***",self.pos_x,self.pos_y)
+        if (self.robot.centre.x<=self.terrain.WIDTH_MIN) or (self.robot.centre.y<=self.terrain.HEIGHT_MIN) or (self.robot.centre.x>=self.terrain.WIDTH_MAX) or (self.robot.centre.y>=self.terrain.HEIGHT_MAX):
             return True
         for obstacle in self.terrain.liste_obstacle: #pour chaque obstacle
-            d=np.sqrt((self.pos_x-obstacle.x)**2+(self.pos_y-obstacle.y)**2) #distance euclidienne entre le robot et l'obstacle
-            if(d<=(self.robot.rayonDuRobotCm+obstacle.longueur)): # collision de deux cercles
-                print("Collision détectée : arret d'urgence")
-                print("la valeur d = ",d)
-                print("Obstacles")
+            d=np.sqrt((self.robot.centre.x-obstacle.pos[0])**2+(self.robot.centre.y-obstacle.pos[1])**2) #distance euclidienne entre le robot et l'obstacle
+            if(d<=(cs.RAYON_ROBOT_CM+obstacle.rayon)): # collision de deux cercles
                 return True
-            #elif (d<=(self.ia.robot.rayon)): # collision d'un cercle et d'un rectangle A COMPLETER
-             #   self.ia.robot.arret_urgence()
+            #elif (d<=(self.robot.rayonDuRobotCm+obstacle.longeur)): # collision d'un cercle et d'un rectangle A COMPLETER
+            #    return True
+            
         return False
 
-    def getPosRoueGauche(self):
-        """
-        :returns: un tuple contenant la position absolue de la roue gauche
-        """
-        return (cos(self.angle + pi/2) * self.robot.rayonDuRobotCm + self.pos_x, sin(self.angle + pi/2) * self.robot.rayonDuRobotCm + self.pos_y)
-
-    def getPosRoueDroite(self):
-        """
-        :returns: un tuple contenant la position absolue de la roue droite
-        """
-        return (cos(self.angle - pi/2) * self.r + self.pos_x, sin(self.angle - pi/2) * self.r + self.pos_y)
-    def getPosRoueX(self):
-        return self.getPosRoueGauche()[0]
-    def getPosRoueY(self):
-        return self.getPosRoueGauche()[1]
-    def getPosRoueDroiteX(self):
-        return self.getPosRoueDroite()[0]
-    def getPosRoueDroiteY(self):
-        return self.getPosRoueDroite()[1]
-    
-    def nouvelle_position(self,duree):
-        """
-	:param duree : duree passee depuis le dernier calcul de la position
-        Doit etre appelé apres la methode bouger() pour pouvoir mettre a jours les 
-        oordonées du robot ainsi que son angle d'orientation					                      
-        """
-
-        self.pos_x = self.pos_x + self.robot.v * cos(self.angle)*duree
-        self.pos_y = self.pos_y + self.robot.v * sin(self.angle)*duree
-        self.angle = self.angle + self.robot.new_orientation * duree
-
-
-	
     def run(self):
-      "le step de la simulation "
-      self.encours= True
+      """
+      le step de la simulation
+      """
       while self.encours:   #tant qu'on run 
-         self._lastTime = time.time()    # on sauvegarde l'instant du run 
-         time.sleep(self.dt)     #on fait un sleep de dt afin de calculer l'intervalle de temps 
-         self._ITemps = time.time() - self._lastTime   #on calcule l'intervalle de temps 
-         self.update() #on met à jour la simulation 
+        self.update() #on met a jour la simulation 
+        time.sleep(1/self.fps)
 		
     def stop(self):
         self.encours = False
             
-
-
     def update(self):
-      """ met à jour la simulation selon le temps écoulé """
+      """
+      met a jour la simulation selon le temps ecoule
+      """
+      if self.t_1 is None:
+          self.t_1=datetime.now()
+      t0=datetime.now()
+      dt=(t0-self.t_1).total_seconds()
+      self.t_1=t0
       if self.collision() :
-          print("COOOOLISIONNNNN ")
+          logging.debug("Collision")
           self.stop()
           return 
-       #   self.robot=None
-      else :
-          self.nouvelle_position(self._ITemps)
-          #print("posx=",self.pos_x)
-          #print("pos_y=",self.pos_y)
-          #print("posx roue gauche= ",self.getPosRoueX())
-          #print("posy roue gauche= ",self.getPosRoueY())
-          #print("posx roue droite= ",self.getPosRoueDroiteX()) 
-          #print("posy roue droite= ",self.getPosRoueDroiteY())
-          print("angle = ",self.angle)
+      
+      if self.robot.gspeed==0 and self.robot.dspeed==0 : # a l'arret
+          return None
+      
+      if self.robot.gspeed==self.robot.dspeed : # ligne droite
+          angle=dt*self.robot.gspeed
+          k,r=divmod(angle,360)
+          distance=k*cs.CIRCONFERENCE_ROUES+(r*cs.CIRCONFERENCE_ROUES)/360
+          self.robot.pos_roue_g+=angle
+          self.robot.pos_roue_d+=angle
+          
+          
+          self.robot.centre+=(self.robot.vec*distance).pointer_vers()
+          self.robot.update()
+          return None
+      
+
+      if self.robot.gspeed==0 and self.robot.dspeed!=0 : # tourne avec seulement la roue gauche
+          mil=vect.Vecteur.milieu(self.robot.cote_haut_gauche,self.robot.cote_haut_droite)
+          angle=dt*self.robot.dspeed
+          self.robot.pos_roue_d+=angle
+          
+      if self.robot.dspeed==0 and self.robot.gspeed!=0 : # tourner avec seulement la roue droite
+          mil=vect.Vecteur.milieu(self.robot.cote_bas_gauche,self.robot.cote_bas_droite)
+          angle=dt*self.robot.gspeed
+          self.robot.pos_roue_g+=angle
+
+
+      k,r=divmod(angle,360)
+      distance=k*cs.CIRCONFERENCE_ROUES+(r*cs.CIRCONFERENCE_ROUES)/360
+      anle=distance*180/(pi*cs.DIAMETRE_ROUES)
+      
+      if self.robot.gspeed == 0 and self.robot.dspeed != 0:
+            angle = -angle
+
+
+
+      self.angle_fait+=angle
+      self.robot.vec=vect.Vecteur.get_vect_from_angle(self.angle_fait)
+      self.robot.centre.rotation(mil,angle)
+      self.robot.update()

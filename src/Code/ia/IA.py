@@ -1,155 +1,163 @@
-#from Code.simulation.Robot import Robot
-#from simulation import Obstacle
 from math import *
 from Code.simulation import constantes as cs
-import time as time
+from . import Traducteur
 from threading import Thread
+import logging
+import time
+from abc import abstractmethod
 
 class IA(Thread):
-	def __init__(self,robot,list_ia,dt):
+	def __init__(self,list_ia,fps):
+		"""
+		:param traducteur : traducteur utilise
+		:param list_ia : liste des ia utilisees
+		:param dt : temps ecoule depuis le dernier calcul
+		"""
 		super(IA, self).__init__()
 		self.list_ia=list_ia
-		self.dt = dt
-		self.ia_actuel=-1
-		self.robot=robot
+		self.ia_actuel=0
+		self.fps=fps
+
+		logging.info("IA cree")
 
 	def run(self):
 		self.encours = True
-		while self.encours:   #tant qu'on run 
-			self._lastTime = time.time()    # on sauvegarde l'instant du run 
-			time.sleep(self.dt)     #on fait un sleep de dt afin de calculer l'intervalle de temps
-			self._ITemps = time.time() - self._lastTime   #on calcule l'intervalle de temps 
-			self.step() #on met à jour la simulation 
+		self.list_ia[self.ia_actuel].start()
+		while self.encours:   #tant qu'on run  
+			self.step() #on met a jour la simulation
+			time.sleep(1./self.fps)
+		logging.info("IA stoper")
            
 	def step(self):
-		""" met à jour la simulation selon le temps écoulé """
-		if self.list_ia[self.ia_actuel].arret:
+		"""
+		met a jour la simulation selon le temps ecoule
+		"""
+		if not self.list_ia[self.ia_actuel].encours:
+			logging.debug(f"Actuel : {self.ia_actuel}")
+			self.list_ia[self.ia_actuel].stop()
 			self.ia_actuel+=1
-			if self.ia_actuel>= 0 and self.ia_actuel <len(self.list_ia):
-				self.list_ia[self.ia_actuel].stop()
 			if self.ia_actuel>=len(self.list_ia):
 				self.ia_actuel=0
 				self.encours=False
 				return
 			self.list_ia[self.ia_actuel].start()
-			
 		else:
 			self.list_ia[self.ia_actuel].step()
+
+class Strat(object):
+    """
+    Classe abstraite représentant une stratégie
+    """
+
+    def __init__(self, traducteur):
+        self.trad = traducteur
+
+        self.encours = False
+
+    def start(self) -> None:
+        self.encours = True
+
+    def stop(self) -> None:
+        self.trad.stop()
+        self.encours = False
+
+    @abstractmethod
+    def step(self):
+        pass
 			
-
-
-
-class IA_avancer :
-	def __init__ (self, robot,d_voulue) :
+class IA_avancer(Strat) :
+	def __init__ (self,traducteur,distance_voulue,vitesse) :
 		"""
-		:param robot : Robot utilisé
-		:param d_voulue : ditance voulue à effectuer en m
+		:param traducteur : traducteur utilise
+		:param d_voulue : ditance voulue a effectuer en m
 		"""
-		self.robot = robot
-		self.v=0
-		self.new_orientation=0
-		self.arret=False	
-		self.d=0
-		self.d_voulue=d_voulue
-		self.t0=0
+		super().__init__(traducteur)
+		self.distance=distance_voulue
+		self.distance_effectue=0
+
+		self.vitesse=vitesse
+
 	def start(self):
 		"""
+		Override
 		"""
-		self.t0=time.time()
-		self.d=0
-		self.robot.setMotorDps(cs.V_ANGULAIRE_G,cs.V_ANGULAIRE_D)
-		self.fonctionne=True
-		self.arret=False
-		self.robot.v=(cs.RAYON_DES_ROUES_CM/2)*(cs.V_ANGULAIRE_G+cs.V_ANGULAIRE_D)
-		self.robot.new_orientation=(cs.RAYON_DES_ROUES_CM/cs.RAYON_ROBOT_CM)*(cs.V_ANGULAIRE_G-cs.V_ANGULAIRE_D)
+
+		super().start()
+		self.trad.stop()
+
+		self.trad.debut(self,0)
+		self.distance_effectue=0
 
 	def step(self):
-		if self.arret:
+		if not self.encours:
 			return
-		if (self.d<self.d_voulue):
-			self.dt=time.time()-self.t0
-			self.d+=self.dt*cs.V_ANGULAIRE_G*cs.RAYON_ROBOT_CM*360 #vitesse convertie en m/s
-		else:
-			self.stop()
-	
-	def stop(self):
-		self.robot.setMotorDps(0,0)
-		self.fonctionne=False
-		self.arret=True
-		self.robot.v=0
-		self.robot.new_orientation=0
-
-class IA_tourner:
-	def __init__(self, robot,a_voulue,simulation) :
-		"""
-		:param robot : Robot utilisé
-		"""
-		self.simulation=simulation
-		self.robot = robot
-		self.robot.v=0
-		self.robot.new_orientation=0
-		self.arret=False
-		self.a=0
-		self.simulation.angle=0
-		self.a_voulu=a_voulue
-		self.t0 = 0
-	
-	def start(self):
-		"""
-		:param a_voulu : angle voulu à effectuer en deg
-		"""
-		self.t0=time.time()
-		self.robot.setMotorDps(cs.V_ANGULAIRE_G,-cs.V_ANGULAIRE_D)
-		self.fonctionne=True
-		self.arret=False
-		self.robot.v=(cs.RAYON_DES_ROUES_CM/2)*(cs.V_ANGULAIRE_G+0)
-		self.robot.new_orientation=(cs.RAYON_DES_ROUES_CM/cs.RAYON_ROBOT_CM)*(cs.V_ANGULAIRE_G)
 		
+		self.distance_effectue+=self.trad.getdistance(self,0)
 
-	def step(self):
-		if self.arret:
-			return
-		if (self.a<=(self.a_voulu/2)-10):
-			self.dt=time.time()-self.t0
-			self.simulation.angle+=radians(self.dt*cs.V_ANGULAIRE_G)
-			self.a+=(self.dt*cs.V_ANGULAIRE_G)
-		else:
+		if self.distance_effectue>=self.distance:
 			self.stop()
-			print("ANNNNNGGGLGLLLLLEEEEEE =",self.simulation.angle)
-			print("orientation : ",self.robot.new_orientation)
-			self.a=0
+			return
+		self.trad.avance(self.vitesse)
 	
-	def stop(self):
-		self.robot.setMotorDps(0,0)
-		self.fonctionne=False
-		self.arret=True
-		self.robot.v=0
-		self.robot.new_orientation=0
-		self.arret=True
+
+
+class IA_tourner(Strat):
+	def __init__(self,traducteur,angle_voulu,orientation) :
+		"""
+		:param traducteur : traducteur utilise
+		:param a_voulue : angle voulu a effectuer en deg
+		"""
+		if orientation not in [0, 1]:
+			orientation = 1
+		self.orientation=orientation
+		self.trad=traducteur
+		self.distance=(cs.RAYON_DES_ROUES_CM *angle_voulu)/360
+		self.distance_effectue=0
+		self.v_a=cs.V_ANGULAIRE_G
+	
+	def start(self):
+		
+		super().start()
+		self.trad.debut(self,self.orientation)
+
+
+		
+	def step(self):
+		if not self.encours:
+			return
+
+		self.distance_effectue+=self.trad.getdistance(self,self.orientation)
+		if (self.distance_effectue>=self.distance):
+			self.stop()
+		vitesse=self.v_a
+		if self.distance_effectue>self.distance/2:
+			vitesse/=2
+		if self.distance_effectue>self.distance * 3/4:
+			vitesse/=2
+		self.trad.tourne(self.orientation,vitesse)
+
 
 class IA_eviter:
-	def __init__ (self,robot,IA_avancer,IA_tourner,d_evitement) :
+	def __init__ (self,traducteur,IA_avancer,IA_tourner,d_evitement) :
 		"""
-		:param robot : Robot utilisé
+		:param traducteur : traducteur utilise
+		:param IA_avancer : IA qui donne les ordres pour avancer
+		:param IA_tourner : IA qui donne les ordres pour tourner
+		:param d_evitement : distance voulue entre l'obstacle et le robot lors de l'evitement
 		"""
-		self.robot = robot
+		self.trad=traducteur
 		self.avancer=IA_avancer
 		self.tourner=IA_tourner
 		self.arret=False
 		self.d_evitement=d_evitement
 
-	
 	def start(self):
-		"""
-		:param d_evitement : distance voulue entre l'obstacle et le robot lors de l'évitement
-		"""
 		self.avancer.start()
 
-	
 	def step(self):
-		if(self.robot.capteur<=self.d_evitement) and (self.tourner.arret):
+		if(self.trad.capteur()<=self.d_evitement) and (self.tourner.arret):
 			self.tourner.start()
-		elif(self.robot.capteur<=self.d_evitement) and (self.tourner.fonctionne):
+		elif(self.trad.capteur()<=self.d_evitement) and (self.tourner.fonctionne):
 			self.tourner.step()
 		elif(self.avancer.arret) and (self.tourner.arret):
 			self.avancer.start()
@@ -161,40 +169,33 @@ class IA_eviter:
 		self.tourner.stop()
 		self.arret=True
 
+class IA_conditionnelle:
+	def __init__(self,traducteur,IA_base,IA_alternative,condition):
+		"""
+		:param traducteur : traducteur utilise
+		:param IA_base : IA avant que la condition soit satisfaite
+		:param IA_alternative : IA apres que la condition soit satisfaite
+		:param condition : condition qui declenche le changement d'IA
+		"""
+		self.trad=traducteur
+		self.IA_base=IA_base
+		self.IA_alt=IA_alternative
+		self.condition=condition
+		self.arret=False
 
-class IA_carre:
-	def __init__ (self,robot,IA_avancer,IA_tourner) :
-		"""
-		:param robot : Robot utilisé
-		"""
-		self.robot = robot
-		self.avancer=IA_avancer
-		self.tourner=IA_tourner
-	
-	def start(self,d_cote):
-		"""
-		:param d_cote : longueur s'un côté du carré en m
-		"""
-		self.cote=d_cote
-		self.avancer.start(self.cote)
-		self.cpta=1 #compteur de cêtés faits
-		self.cptt=0 #compteur d'angles effectués
+	def start(self):
+		self.IA_base.start()
 	
 	def step(self):
-		if self.cpta<=4:
-			if self.avancer.arret and self.cptt<self.cpta:
-				self.tourner.start(90)
-				self.cptt+=1
-			elif self.tourner.fonctionne:
-				self.tourner.step()
-			elif self.tourner.arret and self.avancer.arret:
-				self.avancer.start(self.cote)
-				self.cpta+=1
-			elif self.avancer.fonctionne:
-				self.avancer.step()
+		if self.condition and self.IA_alt.arret:
+			self.IA_base.stop()
+			self.IA_alt.start()
+		elif self.condition and self.IA_alt.fonctionne:
+			self.IA_alt.step()
 		else:
-			self.stop
-
+			self.IA_base.step()
+	
 	def stop(self):
-		self.avancer.stop()
-		self.tourner.stop()
+		self.IA_base.stop()
+		self.IA_alt.stop()
+		self.arret=True

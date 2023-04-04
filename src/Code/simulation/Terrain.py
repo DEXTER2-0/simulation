@@ -5,7 +5,7 @@ class Terrain:
             :param WIDTH_MAX : longueur maximale du terrain
             :param HEIGHT_MIN : largeur minimale du terrain
             :param HEIGHT_MAX : largeur maximale du terrain
-            :param liste_obstacle : liste des obstacles placés sur le terrain
+            :param liste_obstacle : liste des obstacles places sur le terrain
             """
             self.WIDTH_MIN = WIDTH_MIN
             self.WIDTH_MAX = WIDTH_MAX
@@ -18,4 +18,3 @@ class Terrain:
         
         def getObstacle(self,i):
             return self.liste_obstacle[i]
-

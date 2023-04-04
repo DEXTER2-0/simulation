@@ -1,5 +1,5 @@
 import unittest
-from Code.simulation import Obstacle 
+from Code.simulation.Obstacle import Obstacle 
 
 class TestObstacle(unittest.TestCase):
 
@@ -7,15 +7,34 @@ class TestObstacle(unittest.TestCase):
         """
         Permet d'enregistrer tous les attributs de Obstacle
         """
-        self.obs1 = Obstacle(5,6,1,4) #création d'un obstacle du type rectangle
-        self.obs2 = Obstacle(3,5,4) #création d'un obstacle du type cercle
-        self.obs3 = Obstacle(50,50) #création d'un obstacle du type mur 
+        self.obs1 = Obstacle(2, (5, 3),(5, 6)) #création d'un obstacle du type rectangle
+        self.obs2 = Obstacle(1,(1,4),5) #création d'un obstacle du type cercle
+        self.obs3 = Obstacle(0,(0,0),(0,200))
+        
     def test_init(self):
+        """
+        Permet de tester si les objects sont bien initialisés  
+        """
+        #tester pour l'objet de type obstacle
+        self.assertEqual(self.obs1.type,2)
         self.assertEqual(self.obs1.longueur,5)
         self.assertEqual(self.obs1.largeur,6)
-        self.assertEqual(self.obs2.longueur,3)
-        self.assertEqual(self.obs2.largeur,3)
+        self.assertNotEqual(self.obs1.largeur,self.obs1.longueur)   
+        self.assertEqual(self.obs1.pos[0], 5)
+        self.assertEqual(self.obs1.pos[1], 3)
+        
+        #tester pour l'objet de type cercle 
+        self.assertEqual(self.obs2.type,1)
+        self.assertEqual(self.obs2.rayon,5)
+        self.assertEqual(self.obs2.pos[0],1)
+        self.assertEqual(self.obs2.pos[1],4)
+
+        #tester pour le mur 
+        self.assertEqual(self.obs3.type,0)
+        self.assertEqual(self.obs3.end,200)
+        self.assertEqual(self.obs3.pos[0],self.obs3.pos[1])
+
 
     if __name__ == '__main__':
         unittest.main()
-#pour tester -> python3 .m unittest nom_de_simulation .nomdefichier -v
+#pour tester -> python3 -m unittest nomdefichier -v
