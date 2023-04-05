@@ -68,7 +68,7 @@ class Affichage(Thread):
 		for pos in self.old_pos :
 			pygame.draw.circle(self.disp,RED,pos,2)
 
-		pygame.draw.circle(self.disp,BLUE,(x,y),cs.RAYON_ROBOT_CM//10)
+		pygame.draw.circle(self.disp,BLUE,(x,y),cs.RAYON_ROBOT_CM)
 
 		pygame.display.flip()
 		self.events()

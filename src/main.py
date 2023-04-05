@@ -14,12 +14,12 @@ if __name__=='__main__':
     FORMAT = "[%(levelname)s] %(message)s"
     logging.basicConfig(format=FORMAT, level=logging.DEBUG)
     #cree les obstacles
-    obstacle4 = obs.Obstacle(1,(400,400),10)
-    liste_obstacle = [obstacle4]
+    obstacle4 = obs.Obstacle(1,(200,100),10)
+    liste_obstacle = []
     #initialise le robot
     Dexter=rb.Robot(100,100)
     #initialise le terrain
-    Terrain=ter.Terrain(-300,cs.WIDTH,-300,cs.HEIGHT, liste_obstacle)
+    Terrain=ter.Terrain(0,cs.WIDTH,0,cs.HEIGHT, liste_obstacle)
     #commandes pour que le robot tourne
     Simu=simu.Simulation(Dexter,Terrain,120)
     #initialisation le traducteur 
@@ -28,9 +28,9 @@ if __name__=='__main__':
     test = []
     for i in range(4):
         strat_tourne = ia.IA_tourner(trad, 90,1)
-        strat_avance = ia.IA_avancer(trad, 10, 100)
-        test.append(strat_avance)
+        strat_avance = ia.IA_avancer(trad, 100, 100)
         test.append(strat_tourne)
+        test.append(strat_avance)
     IA_tourne = ia.IA_tourner(trad,90,1)
     #commandes pour que le robot avance
     IA_avance = ia.IA_avancer(trad,10,100)
