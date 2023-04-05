@@ -214,6 +214,18 @@ class IA_if:
 		self.ia1 = ia1
 		self.ia2 = ia2
 		self.condition = condition 
+	
+	def start(self):
+		"""
+		"""
+
+	def step(self):
+		"""
+		"""
+
+	def stop(self):
+		"""
+		"""
 
 class IA_while:
 	def __init__(self,traducteur,ia,condition):
@@ -226,6 +238,18 @@ class IA_while:
 		self.trad = traducteur 
 		self.ia = ia
 		self.condition = condition
+	
+	def start(self):
+		"""
+		"""
+
+	def step(self):
+		"""
+		"""
+
+	def stop(self):
+		"""
+		"""
 
 class IA_for:
 	def __init__(self,traducteur,ia,nbIteration):
@@ -240,3 +264,15 @@ class IA_for:
 		self.ia = ia
 		self.nbIte = nbIteration
 		self.i = 0
+
+	def start(self):
+		"""
+		"""
+
+	def step(self):
+		"""
+		"""
+
+	def stop(self):
+		"""
+		"""
