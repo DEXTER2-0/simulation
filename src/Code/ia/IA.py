@@ -199,3 +199,19 @@ class IA_conditionnelle:
 		self.IA_base.stop()
 		self.IA_alt.stop()
 		self.arret=True
+
+class IA_if:
+	def __init__():
+		""""
+		
+		"""
+
+class IA_while:
+	def __init__():
+		"""
+		"""
+
+class IA_for:
+	def __init__():
+		"""
+		"""
