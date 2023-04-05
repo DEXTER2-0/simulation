@@ -201,17 +201,42 @@ class IA_conditionnelle:
 		self.arret=True
 
 class IA_if:
-	def __init__():
-		""""
-		
+	#IA
+	def __init__(self,traducteur,ia1,ia2,condition):
 		"""
+		Initialiser IA_if 
+		:traducteur: traducteur simulation/reel
+		: ia1 : stratégie qu'on utilise si la condition est vérifiée 
+		: ia2 : stratégie qu'on utilise si la condition n'est pas vérifiée
+		: condition : condition if 
+		"""
+		self.trad = traducteur 
+		self.ia1 = ia1
+		self.ia2 = ia2
+		self.condition = condition 
 
 class IA_while:
-	def __init__():
+	def __init__(self,traducteur,ia,condition):
 		"""
+		Initialiser IA_while
+		:traducteur: traducteur simulation/reel
+		: ia : stratégie qu'on utilise tant que la condition est vérifiée 
+		: condition : condition if 
 		"""
+		self.trad = traducteur 
+		self.ia = ia
+		self.condition = condition
 
 class IA_for:
-	def __init__():
+	def __init__(self,traducteur,ia,nbIteration):
 		"""
+		Initialiser IA_for
+		:traducteur: traducteur simulation/reel
+		: ia : stratégie qu'on utilise tant que la condition est vérifiée 
+		: nbIteration : nombre d'itéraiton que l'ia doit effectuer
+		: i : nombre d'itération déjà effectué 
 		"""
+		self.trad = traducteur 
+		self.ia = ia
+		self.nbIte = nbIteration
+		self.i = 0
