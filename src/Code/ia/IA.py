@@ -258,21 +258,32 @@ class IA_for:
 		:traducteur: traducteur simulation/reel
 		: ia : stratégie qu'on utilise tant que la condition est vérifiée 
 		: nbIteration : nombre d'itéraiton que l'ia doit effectuer
-		: i : nombre d'itération déjà effectué 
 		"""
 		self.trad = traducteur 
 		self.ia = ia
 		self.nbIte = nbIteration
-		self.i = 0
 
 	def start(self):
 		"""
+		initialisation de 
+		 : i : nombre d'itération déjà effectué à 0 
 		"""
+		self.i = 0
+		self.ia.start() 
+
 
 	def step(self):
 		"""
 		"""
+		if not self.ia.stop():
+			self.ia.step()
 
 	def stop(self):
 		"""
 		"""
+		if self.ia.stop():
+			self.i= self.i +1 
+			if(self.i >= self.nbIte):
+				return True
+			else :
+				self.ia.start()
