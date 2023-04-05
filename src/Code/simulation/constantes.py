@@ -1,7 +1,7 @@
 from math import pi
 
 ###--------------- PROPRIETE ROBOT -------------------------###
-RAYON_ROBOT_CM=100 #en cm
+RAYON_ROBOT_CM=10 #en cm
 
 ###--------------- PROPRIETE ROUE ---------------------------###
 RAYON_DES_ROUES_CM=30 #en cm

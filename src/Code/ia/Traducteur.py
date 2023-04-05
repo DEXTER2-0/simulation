@@ -52,6 +52,7 @@ class Traducteur_Simulation:
         dt=t-self.t0
         self.t0=t
         self.angle+=dt*cs.V_ANGULAIRE_G
+        print("angle =",self.angle)
     
     def resetangle(self):
         self.angle=0
