@@ -85,7 +85,12 @@ class Traducteur_Simulation:
         self.angle=0
         self.robot.setMotorDps(0,0)
     
-
+    def evaluer_condition(self,condition):
+        """
+        :condition: condition(chaine caractère) à évaluer 
+        vérifier la condition, return True si c'est vérifié, Flase sinon. 
+        """
+        return (eval(condition))
 
 class Traducteur_Realite:
     def __init__(self,robot):

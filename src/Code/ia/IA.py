@@ -137,7 +137,7 @@ class IA_tourner(Strat):
 		self.trad.tourne(self.orientation,vitesse)
 
 
-class IA_eviter:
+class IA_eviter(Strat):
 	def __init__ (self,traducteur,IA_avancer,IA_tourner,d_evitement) :
 		"""
 		:param traducteur : traducteur utilise
@@ -152,9 +152,13 @@ class IA_eviter:
 		self.d_evitement=d_evitement
 
 	def start(self):
+		super().start()
 		self.avancer.start()
 
 	def step(self):
+		if not self.encours:
+			return
+		
 		if(self.trad.capteur()<=self.d_evitement) and (self.tourner.arret):
 			self.tourner.start()
 		elif(self.trad.capteur()<=self.d_evitement) and (self.tourner.fonctionne):
@@ -164,10 +168,6 @@ class IA_eviter:
 		else:
 			self.avancer.step()
 
-	def stop(self):
-		self.avancer.stop()
-		self.tourner.stop()
-		self.arret=True
 
 class IA_conditionnelle:
 	def __init__(self,traducteur,IA_base,IA_alternative,condition):
@@ -201,7 +201,6 @@ class IA_conditionnelle:
 		self.arret=True
 
 class IA_if:
-	#IA
 	def __init__(self,traducteur,ia1,ia2,condition):
 		"""
 		Initialiser IA_if 
@@ -242,14 +241,22 @@ class IA_while:
 	def start(self):
 		"""
 		"""
+		self.ia.start() 
+		pass
 
 	def step(self):
 		"""
 		"""
+		if not self.ia.encours: #reset
+			self.ia.start()
+
+		if self.ia.encours:
+			self.ia.step
 
 	def stop(self):
 		"""
 		"""
+		
 
 class IA_for:
 	def __init__(self,traducteur,ia,nbIteration):
@@ -270,18 +277,19 @@ class IA_for:
 		"""
 		self.i = 0
 		self.ia.start() 
+		pass
 
 
 	def step(self):
 		"""
 		"""
-		if not self.ia.stop():
+		if self.ia.encours:
 			self.ia.step()
 
 	def stop(self):
 		"""
 		"""
-		if self.ia.stop():
+		if not self.ia.encours :
 			self.i= self.i +1 
 			if(self.i >= self.nbIte):
 				return True
