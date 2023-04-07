@@ -26,7 +26,6 @@ class Robot :
         #self.l=l*2*rayonDuRobotCm
         
         self.vec=vect.Vecteur.get_vect_from_angle(0)
-        self.update()
         self.gspeed = 0
         self.dspeed = 0
         self.MOTOR_GAUCHE = 1
@@ -34,6 +33,7 @@ class Robot :
         self.pos_roue_g=0
         self.pos_roue_d=0
         self.update()
+        self.angle_fait=0
 
     def setMotorDps(self, port, dps):
         """
