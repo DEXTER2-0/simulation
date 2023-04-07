@@ -1,5 +1,6 @@
 from Code.simulation import constantes as cs
 from Code.simulation.Robot import Robot
+from Code.simulation.Robot import Capteur_de_distance 
 from math import pi
 import time as time
 
@@ -15,13 +16,16 @@ class Traducteur :
         self.robot_sim = robot_sim
 
 class Traducteur_Simulation:
-    def __init__(self,robot):
+    def __init__(self,robot,simulation):
         """
         :param simualtion : simulation utilisee
         :param robot : robot utilise
         """
         self.robot=robot
         self.liste={}
+        self.t0 = 0
+        self.cap = Capteur_de_distance(cs.DISTANCE_CAPTABLE)
+        self.sim = simulation
 
     def debut(self,ref,port):
         """
@@ -62,7 +66,7 @@ class Traducteur_Simulation:
         t=time.time()
         dt=t-self.t0
         self.t0=t
-        return self.robot.capteurDistance.senseur_de_distance(self.simulation.pos_x,self.simulation.pos_y,self.simulation.angle,dt,self.simulation.terrain.liste_obstacle)
+        return self.cap.senseur_de_distance(self.robot.centre.x,self.robot.centre.y,self.robot.angle_fait,0.01,self.sim.terrain.liste_obstacle)
 
     def avance(self,speed):
         self.robot.setMotorDps(self.robot.MOTOR_GAUCHE+self.robot.MOTOR_DROIT,speed)

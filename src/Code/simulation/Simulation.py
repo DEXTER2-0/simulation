@@ -75,7 +75,7 @@ class Simulation(Thread) :
           distance=k*cs.CIRCONFERENCE_ROUES+(r*cs.CIRCONFERENCE_ROUES)/360
           self.robot.pos_roue_g+=angle
           self.robot.pos_roue_d+=angle
-          print("annggllzezzzzzz",self.robot.angle_fait)
+          #print("annggllzezzzzzz",self.robot.angle_fait)
           
           self.robot.centre+=(self.robot.vec*distance).pointer_vers()
           self.robot.update()
@@ -103,7 +103,7 @@ class Simulation(Thread) :
 
 
       self.robot.angle_fait+=angle
-      print("angleeeeeeeeeeeeeeeeeeeeeee",self.robot.angle_fait)
+      #print("angleeeeeeeeeeeeeeeeeeeeeee",self.robot.angle_fait)
       self.robot.vec=vect.Vecteur.get_vect_from_angle(self.robot.angle_fait)
       self.robot.centre.rotation(mil,angle)
       self.robot.update()

@@ -107,6 +107,7 @@ class Capteur_de_distance :
         :param angle : permet au capteur de savoir dans quelle direction lancer le laser
         :param le_pas : permet de couper en plusieurs morceaux la distance avant de rencontrer un obstacle 
         """
+        print("angllllllllllllllleeeeeeeeeeeee ",angle_robot)
         k=0
         x = pos_x
         y = pos_y
@@ -119,8 +120,10 @@ class Capteur_de_distance :
                 obstacle = l_obstacle[i]
                 # Si a un moment le laser se trouve dans un obstacle
                 if(self.distance(x,y,obstacle)) <= obstacle.rayon : #obstacle.longueur car dans obstacle attribut longueur m
-                    logging. basicConfig()("boucle : ",sqrt((x-pos_x)**2+(y-pos_y)**2) - cs.RAYON_ROBOT_CM)
+                    #logging. basicConfig()("boucle : ",sqrt((x-pos_x)**2+(y-pos_y)**2) - cs.RAYON_ROBOT_CM)
+                    print(sqrt((x-pos_x)**2+(y-pos_y)**2) - cs.RAYON_ROBOT_CM)
                     return sqrt((x-pos_x)**2+(y-pos_y)**2) - cs.RAYON_ROBOT_CM
             k +=1
-        logging. basicConfig()("fin fct : ",self.distanceCaptable- cs.RAYON_ROBOT_CM)
+        #logging. basicConfig()("fin fct : ",self.distanceCaptable- cs.RAYON_ROBOT_CM)
+        print(self.distanceCaptable - cs.RAYON_ROBOT_CM)
         return self.distanceCaptable - cs.RAYON_ROBOT_CM

@@ -14,23 +14,23 @@ if __name__=='__main__':
     FORMAT = "[%(levelname)s] %(message)s"
     logging.basicConfig(format=FORMAT, level=logging.DEBUG)
     #cree les obstacles
-    obstacle4 = obs.Obstacle(1,(200,100),10)
-    liste_obstacle = []
+    obstacle4 = obs.Obstacle(1,(350,300),10)
+    liste_obstacle = [obstacle4]
     #initialise le robot
-    Dexter=rb.Robot(300,300)
+    Dexter=rb.Robot(250,300)
     #initialise le terrain
     Terrain=ter.Terrain(0,cs.WIDTH,0,cs.HEIGHT, liste_obstacle)
     #commandes pour que le robot tourne
     Simu=simu.Simulation(Dexter,Terrain,120)
     #initialisation le traducteur 
-    trad = tr.Traducteur_Simulation(Dexter)
+    trad = tr.Traducteur_Simulation(Dexter,Simu)
 
     test = []
     for i in range(4):
-        #strat_tourne = ia.IA_tourner(trad, 90,0)
-        strat_avance = ia.IA_avancer(trad, 10, 100)
+        
+        strat_evite = ia.IA_eviter(trad,ia.IA_tourner(trad, 90,0),ia.IA_avancer(trad, 400, 100),5)
         #test.append(strat_tourne)
-        test.append(strat_avance)
+        test.append(strat_evite)
 
 
     IA_tourne = ia.IA_tourner(trad,90,1)
@@ -40,9 +40,9 @@ if __name__=='__main__':
     Affichage=af.Affichage(Simu,60)
     #IA_evite = ia.IA_eviter(trad,I_avance,IA_tourne,10)
     #IA = ia.IA(trad,[IA_tourne],0.01)
-    IA = ia.IA([ia_avance,IA_tourne,IA_avance],120)
+    #IA = ia.IA([ia_avance,IA_tourne,IA_avance],120)
     #IA = ia.IA(Dexter,[IA_evite],0.01)
-    #IA = ia.IA(test, 120)
+    IA = ia.IA(test, 120)
     Affichage.start()
     Simu.start()
     IA.start()
