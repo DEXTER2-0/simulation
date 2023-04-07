@@ -101,7 +101,7 @@ class Simulation(Thread) :
             angle = -angle
 
 
-
+      self.robot.capteur(self.terrain.liste_obstacle)
       self.robot.angle_fait+=angle
       #print("angleeeeeeeeeeeeeeeeeeeeeee",self.robot.angle_fait)
       self.robot.vec=vect.Vecteur.get_vect_from_angle(self.robot.angle_fait)

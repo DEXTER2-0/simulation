@@ -68,6 +68,7 @@ class Traducteur_Simulation:
         self.t0=t
         return self.cap.senseur_de_distance(self.robot.centre.x,self.robot.centre.y,self.robot.angle_fait,0.01,self.sim.terrain.liste_obstacle)
 
+
     def avance(self,speed):
         self.robot.setMotorDps(self.robot.MOTOR_GAUCHE+self.robot.MOTOR_DROIT,speed)
 

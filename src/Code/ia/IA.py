@@ -23,11 +23,11 @@ class IA(Thread):
     def run(self):
         self.encours = True
         self.list_ia[self.ia_actuel].start()
-        while self.encours:   #tant qu'on run  
+        while self.encours:   #tant qu'on run
             self.step() #on met a jour la simulation
             time.sleep(1./self.fps)
         logging.info("IA stoper")
-           
+
     def step(self):
         """
         met a jour la simulation selon le temps ecoule
@@ -63,7 +63,7 @@ class Strat(object):
     @abstractmethod
     def step(self):
         pass
-            
+
 class IA_avancer(Strat) :
     def __init__ (self,traducteur,distance_voulue,vitesse) :
         """
@@ -75,6 +75,7 @@ class IA_avancer(Strat) :
         self.distance_effectue=0
 
         self.vitesse=vitesse
+        self.encours=False
 
     def start(self):
         """
@@ -83,6 +84,7 @@ class IA_avancer(Strat) :
 
         super().start()
         self.trad.stop()
+        self.encours=True
 
         self.trad.debut(self,0)
         self.distance_effectue=0
@@ -90,14 +92,20 @@ class IA_avancer(Strat) :
     def step(self):
         if not self.encours:
             return
-        
+
         self.distance_effectue+=self.trad.getdistance(self,0)
 
         if self.distance_effectue>=self.distance:
             self.stop()
+            
             return
         self.trad.avance(self.vitesse)
-    
+
+    def stop(self) :
+        self.trad.stop()
+        print("i am stopped")
+        self.encours = False		
+
 
 
 class IA_tourner(Strat):
@@ -113,14 +121,15 @@ class IA_tourner(Strat):
         self.distance=(cs.RAYON_DES_ROUES_CM *angle_voulu)/360
         self.distance_effectue=0
         self.v_a=cs.V_ANGULAIRE_G
-    
+        self.encours=False
+
     def start(self):
-        
+
         super().start()
         self.trad.debut(self,self.orientation)
 
 
-        
+
     def step(self):
         if not self.encours:
             return
@@ -134,7 +143,56 @@ class IA_tourner(Strat):
         if self.distance_effectue>self.distance * 3/4:
             vitesse/=2
         self.trad.tourne(self.orientation,vitesse)
+    def stop(self) :
+        self.trad.stop()
+        print("i am stopped")
+        self.encours = False
 
+class IAConditionnel(Strat):
+    def __init__(self, traducteur, ia_avance, ia_tourne):
+        """
+        :param traducteur: traducteur utilisé
+        :param ia_avance: IA d'avancement
+        :param ia_tourne: IA de rotation
+        :param condition: condition pour choisir l'IA à utiliser
+        """
+        super().__init__(traducteur)
+        self.ia_avance = ia_avance
+        self.ia_tourne = ia_tourne
+        self.encours = False
+
+    def start(self):
+        """
+        Override
+        """
+        super().start()
+        self.trad.stop()
+        self.encours = True
+
+        if self.trad.capteur()<10:
+            print("touuuuuuuuuuurne")
+            self.ia_tourne.start()
+        else:
+            print("avance")
+            self.ia_avance.start()
+
+    def step(self):
+        if not self.encours:
+            return
+
+        if self.trad.capteur()<10:
+            self.ia_tourne.step()
+            if not self.ia_tourne.encours:
+                self.stop()
+        else:
+            self.ia_avance.step()
+            if not self.ia_avance.encours:
+                self.stop()
+
+    def stop(self):
+        self.trad.stop()
+        print("I am stopped")
+        self.encours = False
 
 class IA_eviter(Strat):
     def __init__ (self,traducteur,IA_avancer,IA_tourner,d_evitement) :
@@ -152,30 +210,25 @@ class IA_eviter(Strat):
         self.cpt =0
 
     def start(self):
-        super().start()
-        self.avancer.start()
+        super().start()		
 
     def step(self):
         if not self.encours:
             return
         if(self.cpt < 1):
-
             if(self.trad.capteur()<=self.d_evitement) and ( not self.tourner.encours):
                 self.tourner.start()
-
-            elif(self.trad.capteur()<=self.d_evitement) and (self.tourner.encours):
+            if(self.trad.capteur()<=self.d_evitement) and (self.tourner.encours):
                 self.tourner.step()
-                if(not self.tourner.encours):
-                    self.tourner.stop()
-                    self.cpt += 1
-
-        elif(not self.avancer.encours) and ( not self.tourner.encours):
-            self.avancer.start()
+        
         else:
-            self.avancer.step()
+            if(not self.avancer.encours) and ( not self.tourner.encours):
+                self.avancer.start()
+            else:
+                self.avancer.step()
+        self.cpt+=1	
 
-
-class IA_conditionnelle:
+class IA_conditionnelle2:
     def __init__(self,traducteur,IA_base,IA_alternative,condition):
         """
         :param traducteur : traducteur utilise
@@ -191,7 +244,7 @@ class IA_conditionnelle:
 
     def start(self):
         self.IA_base.start()
-    
+
     def step(self):
         if self.condition and self.IA_alt.arret:
             self.IA_base.stop()
@@ -200,7 +253,7 @@ class IA_conditionnelle:
             self.IA_alt.step()
         else:
             self.IA_base.step()
-    
+
     def stop(self):
         self.IA_base.stop()
         self.IA_alt.stop()
@@ -209,17 +262,17 @@ class IA_conditionnelle:
 class IA_if:
     def __init__(self,traducteur,ia1,ia2,condition):
         """
-        Initialiser IA_if 
+        Initialiser IA_if
         :traducteur: traducteur simulation/reel
-        : ia1 : stratégie qu'on utilise si la condition est vérifiée 
+        : ia1 : stratégie qu'on utilise si la condition est vérifiée
         : ia2 : stratégie qu'on utilise si la condition n'est pas vérifiée
-        : condition : condition if 
+        : condition : condition if
         """
-        self.trad = traducteur 
+        self.trad = traducteur
         self.ia1 = ia1
         self.ia2 = ia2
-        self.condition = condition 
-    
+        self.condition = condition
+
     def start(self):
         """
         """
@@ -237,17 +290,17 @@ class IA_while:
         """
         Initialiser IA_while
         :traducteur: traducteur simulation/reel
-        : ia : stratégie qu'on utilise tant que la condition est vérifiée 
-        : condition : condition if 
+        : ia : stratégie qu'on utilise tant que la condition est vérifiée
+        : condition : condition if
         """
-        self.trad = traducteur 
+        self.trad = traducteur
         self.ia = ia
         self.condition = condition
-    
+
     def start(self):
         """
         """
-        self.ia.start() 
+        self.ia.start()
         pass
 
     def step(self):
@@ -262,27 +315,27 @@ class IA_while:
     def stop(self):
         """
         """
-        
+
 
 class IA_for:
     def __init__(self,traducteur,ia,nbIteration):
         """
         Initialiser IA_for
         :traducteur: traducteur simulation/reelgit
-        : ia : stratégie qu'on utilise tant que la condition est vérifiée 
+        : ia : stratégie qu'on utilise tant que la condition est vérifiée
         : nbIteration : nombre d'itéraiton que l'ia doit effectuer
         """
-        self.trad = traducteur 
+        self.trad = traducteur
         self.ia = ia
         self.nbIte = nbIteration
 
     def start(self):
         """
-        initialisation de 
-         : i : nombre d'itération déjà effectué à 0 
+        initialisation de
+         : i : nombre d'itération déjà effectué à 0
         """
         self.i = 0
-        self.ia.start() 
+        self.ia.start()
         pass
 
 
@@ -296,7 +349,7 @@ class IA_for:
         """
         """
         if not self.ia.encours :
-            self.i= self.i +1 
+            self.i= self.i +1
             if(self.i >= self.nbIte):
                 return True
             else :

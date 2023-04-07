@@ -24,11 +24,15 @@ if __name__=='__main__':
     Simu=simu.Simulation(Dexter,Terrain,120)
     #initialisation le traducteur 
     trad = tr.Traducteur_Simulation(Dexter,Simu)
+    def condition():
+        if trad.capteur()>10:
+            return False
+        return True
 
     test = []
     for i in range(4):
         
-        strat_evite = ia.IA_eviter(trad,ia.IA_tourner(trad, 90,0),ia.IA_avancer(trad, 400, 100),5)
+        strat_evite = ia.IAConditionnel(trad,ia.IA_avancer(trad, 400, 100),ia.IA_tourner(trad, 90,0))
         #test.append(strat_tourne)
         test.append(strat_evite)
 

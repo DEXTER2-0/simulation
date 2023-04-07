@@ -21,7 +21,7 @@ class Robot :
      
         #self.roue_gauche = Roue(self.rayon_roue, self.gspeed)
         #self.roue_droite = Roue(self.rayon_roue, self.dspeed)
-        #self.capteurDistance = Capteur_de_distance(distance_captable)
+        
         #self.rayonDuRobotCm = rayonDuRobotCm
         #self.l=l*2*rayonDuRobotCm
         
@@ -34,7 +34,15 @@ class Robot :
         self.pos_roue_d=0
         self.update()
         self.angle_fait=0
+        self.capteurDistance=Capteur_de_distance(10)
+        
 
+
+    def capteur(self,obs):
+        """
+        :return: distance entre le robot et l'obstacle le plus proche
+        """
+        return self.capteurDistance.senseur_de_distance(self.centre.x,self.centre.y,self.angle_fait,0.01,obs)
     def setMotorDps(self, port, dps):
         """
         :param int port: Moteur
@@ -107,6 +115,8 @@ class Capteur_de_distance :
         :param angle : permet au capteur de savoir dans quelle direction lancer le laser
         :param le_pas : permet de couper en plusieurs morceaux la distance avant de rencontrer un obstacle 
         """
+        print("posxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",pos_x)
+        print("posyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",pos_y)
         print("angllllllllllllllleeeeeeeeeeeee ",angle_robot)
         k=0
         x = pos_x
