@@ -3,7 +3,6 @@ import time
 from math import *
 import pygame 
 import logging
-from Code.simulation import constantes as cs
 
 #colors 
 BLACK = (0, 0, 0, 255)
@@ -15,7 +14,7 @@ YELLOW = (255, 255, 0)
 AUTRE = (235, 152, 135)
 
 class Affichage(Thread):
-	def __init__(self, simulation,fps):
+	def __init__(self, simulation,fps,width,height):
 		""" 
 		Constructeur de la classe affichage
 		:param simulation : simulation choisie
@@ -24,7 +23,7 @@ class Affichage(Thread):
 		super(Affichage, self).__init__()
 		self.simulation = simulation
 		pygame.init()
-		self.disp = pygame.display.set_mode((cs.WIDTH, cs.HEIGHT))
+		self.disp = pygame.display.set_mode((width,height))
 		self.disp.fill(WHITE)
 		self.fps = fps
 		self.old_pos=[]
@@ -41,7 +40,7 @@ class Affichage(Thread):
 			self.clock.tick(self.fps)
 		pygame.quit()
 		self.simulation.stop()
-		logging.info("Affichage terminé")
+		logging.info("Affichage termine")
 	
 	def events(self) :
 		""" 
@@ -58,7 +57,7 @@ class Affichage(Thread):
 
 	def update(self):
 		"""
-        Met à jour la position des sprites
+        Met a jour la position des sprites
       """
 		x,y=self.simulation.robot.centre.x,self.simulation.robot.centre.y
 		self.old_pos.append((x,y))
@@ -68,7 +67,7 @@ class Affichage(Thread):
 		for pos in self.old_pos :
 			pygame.draw.circle(self.disp,RED,pos,2)
 
-		pygame.draw.circle(self.disp,BLUE,(x,y),cs.RAYON_ROBOT_CM)
+		pygame.draw.circle(self.disp,BLUE,(x,y),self.simulation.robot.rayonRobotCm)
 
 		pygame.display.flip()
 		self.events()
