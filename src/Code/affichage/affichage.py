@@ -19,6 +19,8 @@ class Affichage(Thread):
 		Constructeur de la classe affichage
 		:param simulation : simulation choisie
 		:param fps :
+		:param width : longueur du terrain de simulation
+		:param height : largeur du terrain de simulation
 		"""
 		super(Affichage, self).__init__()
 		self.simulation = simulation
