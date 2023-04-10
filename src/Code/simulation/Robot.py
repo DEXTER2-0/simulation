@@ -13,7 +13,7 @@ class Robot :
         Cette fonction instancie deux roues de la meme taille et de meme vitesse maximale, ainsi qu'un capteur de position
         """
         self.centre=vect.Point(px,py)
-        self.rayon_roue=rayonRouesCm
+        self.rayonRouesCm=rayonRouesCm
         self.rayonDuRobotCm = rayonDuRobotCm
         #self.roue_gauche = Roue(self.rayon_roue, self.gspeed)
         #self.roue_droite = Roue(self.rayon_roue, self.dspeed)
@@ -27,8 +27,8 @@ class Robot :
         self.pos_roue_d=0
         self.update()
         self.angle_fait=0
-        self.d_capatble=distance_captable
-        self.capteurDistance=Capteur_de_distance(self.d_capatble)
+        self.d_captable=distance_captable
+        self.capteurDistance=Capteur_de_distance(self.d_captable,self.rayonDuRobotCm)
         
     def capteur(self,obs):
         """
@@ -79,10 +79,11 @@ class Roue :
 from math import pi,sqrt,sin,cos
 
 class Capteur_de_distance :
-    def __init__(self, distanceCaptable) :
+    def __init__(self, distanceCaptable,rayon_robot) :
        """
        :param distanceCaptable : distance maximale captable possible
        """
+       self.rayonDuRobotCm=rayon_robot
        self.distanceCaptable=distanceCaptable+self.rayonDuRobotCm
     
     def distance(self,x,y,obstacle):

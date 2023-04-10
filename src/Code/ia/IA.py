@@ -45,7 +45,7 @@ class IA(Thread):
 
 class Strat(object):
     """
-    Classe abstraite représentant une stratégie
+    Classe abstraite representant une strategie
     """
     def __init__(self, traducteur):
         self.trad = traducteur
@@ -117,9 +117,9 @@ class IA_tourner(Strat):
             orientation = 1
         self.orientation=orientation
         self.trad=traducteur
-        self.distance=(self.rayonRouesCm *angle_voulu)/360
+        self.distance=(self.trad.robot.rayonRouesCm *angle_voulu)/360
         self.distance_effectue=0
-        self.v_a=self.robot.gspeed
+        self.v_a=self.trad.robot.gspeed
         self.encours=False
 
     def start(self):

@@ -23,7 +23,7 @@ class Traducteur_Simulation:
         self.robot=robot
         self.liste={}
         self.t0 = 0
-        self.cap = Capteur_de_distance(self.robot.d_captable)
+        self.cap = Capteur_de_distance(self.robot.d_captable,self.robot.rayonDuRobotCm)
         self.sim = simulation
 
     def debut(self,ref,port):
@@ -41,7 +41,7 @@ class Traducteur_Simulation:
         self.liste[ref] = self.robot.get_pos_roues()[port]
         # Distance parcourue
         k, r = divmod(diff, 360)
-        return k * self.rayonRouesCm + (r * self.rayonRouesCm) / 360
+        return k * self.robot.rayonRouesCm + (r * self.robot.rayonRouesCm) / 360
 
     def resetdistance(self):
         self.distance=0
