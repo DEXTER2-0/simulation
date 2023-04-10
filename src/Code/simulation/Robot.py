@@ -108,25 +108,25 @@ class Capteur_de_distance :
         :param angle : permet au capteur de savoir dans quelle direction lancer le laser
         :param le_pas : permet de couper en plusieurs morceaux la distance avant de rencontrer un obstacle 
         """
-        print("posxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",pos_x)
-        print("posyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",pos_y)
-        print("angllllllllllllllleeeeeeeeeeeee ",angle_robot)
+        # ("posxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",pos_x)
+        # ("posyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",pos_y)
+        # ("angllllllllllllllleeeeeeeeeeeee ",angle_robot)
         k=0
         x = pos_x
         y = pos_y
         while k*le_pas < self.distanceCaptable :
             x = x + cos(angle_robot) * le_pas #Lance le laser dans la bonne direction
             y = y + sin(angle_robot) * le_pas #Lance le laser dans la bonne direction
-            #print("x =",x,"y =",y)
+            # ("x =",x,"y =",y)
             # Verification si les coordonees du laser se trouve dans un obstacle(cercle)
             for i in range(len(l_obstacle)) :
                 obstacle = l_obstacle[i]
                 # Si a un moment le laser se trouve dans un obstacle
                 if(self.distance(x,y,obstacle)) <= obstacle.rayon : #obstacle.longueur car dans obstacle attribut longueur m
                     #logging. basicConfig()("boucle : ",sqrt((x-pos_x)**2+(y-pos_y)**2) - self.rayonDuRobotCm)
-                    print(sqrt((x-pos_x)**2+(y-pos_y)**2) - self.rayonDuRobotCm)
+                    # (sqrt((x-pos_x)**2+(y-pos_y)**2) - self.rayonDuRobotCm)
                     return sqrt((x-pos_x)**2+(y-pos_y)**2) - self.rayonDuRobotCm
             k +=1
         #logging. basicConfig()("fin fct : ",self.distanceCaptable- self.rayonDuRobotCm)
-        print(self.distanceCaptable - self.rayonDuRobotCm)
+        # (self.distanceCaptable - self.rayonDuRobotCm)
         return self.distanceCaptable - self.rayonDuRobotCm

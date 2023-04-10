@@ -51,7 +51,6 @@ class Traducteur_Simulation:
         dt=t-self.t0
         self.t0=t
         self.angle+=dt*self.robot.gspeed
-        print("angle =",self.angle)
     
     def resetangle(self):
         self.angle=0

@@ -56,7 +56,7 @@ class Strat(object):
 
     def stop(self) -> None:
         self.trad.stop()
-        print("i am stopped")
+        # ("i am stopped")
         self.encours = False
 
     @abstractmethod
@@ -102,13 +102,13 @@ class IA_avancer(Strat) :
 
     def stop(self) :
         self.trad.stop()
-        print("i am stopped")
+        # ("i am stopped")
         self.encours = False		
 
 
 
 class IA_tourner(Strat):
-    def __init__(self,traducteur,angle_voulu,orientation) :
+    def __init__(self,traducteur,angle_voulu,orientation,vitesse) :
         """
         :param traducteur : traducteur utilise
         :param a_voulue : angle voulu a effectuer en deg
@@ -119,14 +119,13 @@ class IA_tourner(Strat):
         self.trad=traducteur
         self.distance=(self.trad.robot.rayonRouesCm *angle_voulu)/360
         self.distance_effectue=0
-        self.v_a=self.trad.robot.gspeed
+        self.v_a=vitesse#self.trad.robot.gspeed
         self.encours=False
 
     def start(self):
 
         super().start()
         self.trad.debut(self,self.orientation)
-
 
 
     def step(self):
@@ -142,9 +141,10 @@ class IA_tourner(Strat):
         if self.distance_effectue>self.distance * 3/4:
             vitesse/=2
         self.trad.tourne(self.orientation,vitesse)
+
     def stop(self) :
         self.trad.stop()
-        print("i am stopped")
+        # ("i am stopped")
         self.encours = False
 
 class IAConditionnel(Strat):
@@ -169,20 +169,18 @@ class IAConditionnel(Strat):
         self.encours = True
 
         if self.trad.capteur()<10:
-            print("touuuuuuuuuuurne")
             self.ia_tourne.start()
         else:
-            print("avance")
             self.ia_avance.start()
 
     def step(self):
         if not self.encours:
             return
-
-        if self.trad.capteur()<10:
+        if self.trad.capteur()<15 and self.ia_avance.encours:
+            self.ia_avance.stop()
+            self.ia_tourne.start()
+        elif self.ia_tourne.encours:
             self.ia_tourne.step()
-            if not self.ia_tourne.encours:
-                self.stop()
         else:
             self.ia_avance.step()
             if not self.ia_avance.encours:
@@ -190,7 +188,7 @@ class IAConditionnel(Strat):
 
     def stop(self):
         self.trad.stop()
-        print("I am stopped")
+        # ("I am stopped")
         self.encours = False
 
 class IA_eviter(Strat):
