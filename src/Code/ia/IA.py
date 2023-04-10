@@ -1,5 +1,4 @@
 from math import *
-from Code.simulation import constantes as cs
 from . import Traducteur
 from threading import Thread
 import logging
@@ -118,9 +117,9 @@ class IA_tourner(Strat):
             orientation = 1
         self.orientation=orientation
         self.trad=traducteur
-        self.distance=(cs.RAYON_DES_ROUES_CM *angle_voulu)/360
+        self.distance=(self.rayonRouesCm *angle_voulu)/360
         self.distance_effectue=0
-        self.v_a=cs.V_ANGULAIRE_G
+        self.v_a=self.robot.gspeed
         self.encours=False
 
     def start(self):

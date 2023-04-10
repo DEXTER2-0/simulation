@@ -1,4 +1,3 @@
-from Code.simulation import constantes as cs
 from Code.simulation.Robot import Robot
 from Code.simulation.Robot import Capteur_de_distance 
 from math import pi
@@ -24,7 +23,7 @@ class Traducteur_Simulation:
         self.robot=robot
         self.liste={}
         self.t0 = 0
-        self.cap = Capteur_de_distance(cs.DISTANCE_CAPTABLE)
+        self.cap = Capteur_de_distance(self.robot.d_captable)
         self.sim = simulation
 
     def debut(self,ref,port):
@@ -34,19 +33,15 @@ class Traducteur_Simulation:
         """
         self.liste[ref]=self.robot.get_pos_roues()[port]
 
-    
     def stopSim(self):
         self.simulation.stop()
 
-    def getdistance(self,ref,port): #INITIALISATION DE T0 méthode reset et get?
+    def getdistance(self,ref,port): #INITIALISATION DE T0 methode reset et get?
         diff = self.robot.get_pos_roues()[port] - self.liste[ref]
-
         self.liste[ref] = self.robot.get_pos_roues()[port]
-
         # Distance parcourue
         k, r = divmod(diff, 360)
-
-        return k * cs.RAYON_DES_ROUES_CM + (r * cs.RAYON_DES_ROUES_CM) / 360
+        return k * self.rayonRouesCm + (r * self.rayonRouesCm) / 360
 
     def resetdistance(self):
         self.distance=0
@@ -55,19 +50,17 @@ class Traducteur_Simulation:
         t=time.time()
         dt=t-self.t0
         self.t0=t
-        self.angle+=dt*cs.V_ANGULAIRE_G
+        self.angle+=dt*self.robot.gspeed
         print("angle =",self.angle)
     
     def resetangle(self):
         self.angle=0
 
-    
     def capteur(self):
         t=time.time()
         dt=t-self.t0
         self.t0=t
         return self.cap.senseur_de_distance(self.robot.centre.x,self.robot.centre.y,self.robot.angle_fait,0.01,self.sim.terrain.liste_obstacle)
-
 
     def avance(self,speed):
         self.robot.setMotorDps(self.robot.MOTOR_GAUCHE+self.robot.MOTOR_DROIT,speed)
@@ -83,8 +76,6 @@ class Traducteur_Simulation:
     def stop(self):
        self.robot.setMotorDps(self.robot.MOTOR_GAUCHE+self.robot.MOTOR_DROIT,0)
     
-
-
     def reset(self,roue):
         self.distance=self.robot.get_pos_roues()[roue]
         self.angle=0
@@ -92,8 +83,8 @@ class Traducteur_Simulation:
     
     def evaluer_condition(self,condition):
         """
-        :condition: condition(chaine caractère) à évaluer 
-        vérifier la condition, return True si c'est vérifié, Flase sinon. 
+        :condition: condition(chaine caractere) a evaluer 
+        verifier la condition, return True si c'est verifie, Flase sinon. 
         """
         return (eval(condition))
 
@@ -129,18 +120,6 @@ class Traducteur_Realite:
     def resetangle(self):
         self.robot.offset_motor_encoder(port, offset)
     
-    #def calcul_v(self,v_g,v_d):
-    #    """
-    #    :param v_g : vitesse de la roue gauche en deg/s
-    #    :param v_d : vitesse de la roue droite en deg/s
-    #    """
-
-    #def calcul_new_orientation(self,v_g,v_d):
-    #    """
-    #    :param v_g : vitesse de la roue gauche en deg/s
-    #    :param v_d : vitesse de la roue droite en deg/s
-    #    """
-
     #def capteur(dt):
     #    """
     #    :param dt : temps ecoule depuis le dernier calcul
