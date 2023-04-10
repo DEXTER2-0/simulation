@@ -1,4 +1,3 @@
-from Code.simulation import constantes as cs
 from Code.simulation import Vecteur as vect
 import time as time #pour pouvoir controler le temps de la boucle while True
 from datetime import datetime
@@ -20,9 +19,7 @@ class Simulation(Thread) :
         self.fps = fps
         self.capteurOn = False
         self.encours= True
-        
         self.t_1=datetime.now()
-
 
     def collision(self): #PROBLEME x et y dans robot donc plus de self.pos_x
         """
@@ -34,11 +31,10 @@ class Simulation(Thread) :
             return True
         for obstacle in self.terrain.liste_obstacle: #pour chaque obstacle
             d=np.sqrt((self.robot.centre.x-obstacle.pos[0])**2+(self.robot.centre.y-obstacle.pos[1])**2) #distance euclidienne entre le robot et l'obstacle
-            if(d<=(cs.RAYON_ROBOT_CM+obstacle.rayon)): # collision de deux cercles
+            if(d<=(self.rayonDuRobotCm+obstacle.rayon)): # collision de deux cercles
                 return True
             #elif (d<=(self.robot.rayonDuRobotCm+obstacle.longeur)): # collision d'un cercle et d'un rectangle A COMPLETER
             #    return True
-            
         return False
 
     def run(self):
@@ -72,16 +68,14 @@ class Simulation(Thread) :
       if self.robot.gspeed==self.robot.dspeed : # ligne droite
           angle=dt*self.robot.gspeed
           k,r=divmod(angle,360)
-          distance=k*cs.CIRCONFERENCE_ROUES+(r*cs.CIRCONFERENCE_ROUES)/360
+          distance=k*self.robot.rayonRouesCm*2*pi+(r*self.robot.rayonRouesCm*2*pi)/360
           self.robot.pos_roue_g+=angle
           self.robot.pos_roue_d+=angle
           #print("annggllzezzzzzz",self.robot.angle_fait)
-          
           self.robot.centre+=(self.robot.vec*distance).pointer_vers()
           self.robot.update()
           return None
       
-
       if self.robot.gspeed==0 and self.robot.dspeed!=0 : # tourne avec seulement la roue gauche
           mil=vect.Vecteur.milieu(self.robot.cote_haut_gauche,self.robot.cote_haut_droite)
           angle=dt*self.robot.dspeed
@@ -92,14 +86,12 @@ class Simulation(Thread) :
           angle=dt*self.robot.gspeed
           self.robot.pos_roue_g+=angle
 
-
       k,r=divmod(angle,360)
-      distance=k*cs.CIRCONFERENCE_ROUES+(r*cs.CIRCONFERENCE_ROUES)/360
-      anle=distance*180/(pi*cs.DIAMETRE_ROUES)
+      distance=k*self.robot.rayonRouesCm*2*pi+(r*self.robot.rayonRouesCm*2*pi)/360
+      anle=distance*180/(pi*self.robot.rayonRouesCm*2)
       
       if self.robot.gspeed == 0 and self.robot.dspeed != 0:
             angle = -angle
-
 
       self.robot.capteur(self.terrain.liste_obstacle)
       self.robot.angle_fait+=angle

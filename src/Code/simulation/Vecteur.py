@@ -4,7 +4,7 @@ class Point:
     def __init__(self, x, y):
         """
         :param x: abscisse du point
-        :param y: ordonnée du point
+        :param y: ordonnee du point
         """
         self.x = x
         self.y = y
@@ -13,13 +13,13 @@ class Point:
         """
         :param p2: deuxieme point
         """
-        if isinstance(p2, Vecteur): # Application d'un vecteur à un point
+        if isinstance(p2, Vecteur): # Application d'un vecteur a un point
             return Point(self.x + p2.vect[0], self.y + p2.vect[1])
         return Point(self.x + p2.x, self.y + p2.y)
     
     def distance(self, p2):
         """
-        :param p2: deuxième point
+        :param p2: deuxieme point
         Distance entre les deux points
         """
         return sqrt((self.x - p2.x)**2 + (self.y - p2.y)**2)

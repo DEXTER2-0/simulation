@@ -1,10 +1,9 @@
-from Code.simulation import constantes as cs
 from Code.simulation import Vecteur as vect
 from math import pi,sqrt,sin,cos
 import logging
 
 class Robot :
-    def __init__ (self,px=0,py=0,) :
+    def __init__ (self,rayonRouesCm,rayonDuRobotCm,px=0,py=0) :
         """
         :param rayonRouesCm : rayon des roues en cm
         :param rayonDuRobotCm : rayon du cercle dans lequel s'inscrit le robot en cm
@@ -14,17 +13,11 @@ class Robot :
         Cette fonction instancie deux roues de la meme taille et de meme vitesse maximale, ainsi qu'un capteur de position
         """
         self.centre=vect.Point(px,py)
-        #assert(rayonRouesCm > 0)# Ne peut pas avoir un rayon < 0
-        #assert(vMaxDegParSec > 0) # Ne peut pavoir une vitesse max < 0
-        #assert(rayonDuRobotCm > 0) # Ne peut pas avoir un rayon < 0
-        #self.rayon_roue=rayonDuRobotCm
-     
+        self.rayon_roue=rayonRouesCm
+        self.rayonDuRobotCm = rayonDuRobotCm
         #self.roue_gauche = Roue(self.rayon_roue, self.gspeed)
         #self.roue_droite = Roue(self.rayon_roue, self.dspeed)
-        
-        #self.rayonDuRobotCm = rayonDuRobotCm
         #self.l=l*2*rayonDuRobotCm
-        
         self.vec=vect.Vecteur.get_vect_from_angle(0)
         self.gspeed = 0
         self.dspeed = 0
@@ -36,13 +29,12 @@ class Robot :
         self.angle_fait=0
         self.capteurDistance=Capteur_de_distance(10)
         
-
-
     def capteur(self,obs):
         """
         :return: distance entre le robot et l'obstacle le plus proche
         """
         return self.capteurDistance.senseur_de_distance(self.centre.x,self.centre.y,self.angle_fait,0.01,obs)
+    
     def setMotorDps(self, port, dps):
         """
         :param int port: Moteur
@@ -56,7 +48,6 @@ class Robot :
             self.dspeed = dps
             self.gspeed = dps
     
-
     def get_pos_roues(self):
         return self.pos_roue_g, self.pos_roue_d
     
@@ -65,10 +56,10 @@ class Robot :
         Mets a jour les coordonnes du robot
         """
         vec_normal=vect.Vecteur(vect.Point(0,0),vect.Point(-self.vec.vect[1],self.vec.vect[0]))
-        self.cote_haut_gauche=vect.Point(self.centre.x-(cs.RAYON_DES_ROUES_CM//2)*self.vec.vect[0]-(cs.RAYON_DES_ROUES_CM//2)*vec_normal.vect[0],self.centre.y -(cs.RAYON_DES_ROUES_CM//2)*self.vec.vect[1]-(cs.RAYON_DES_ROUES_CM//2)*vec_normal.vect[1])
-        self.cote_bas_gauche=vect.Point(self.centre.x-(cs.RAYON_DES_ROUES_CM//2)*self.vec.vect[0]+(cs.RAYON_DES_ROUES_CM//2)*vec_normal.vect[0],self.centre.y-(cs.RAYON_DES_ROUES_CM//2)*self.vec.vect[1]+(cs.RAYON_DES_ROUES_CM//2)*vec_normal.vect[1])
-        self.cote_haut_droite=vect.Point(self.centre.x+(cs.RAYON_DES_ROUES_CM//2)*self.vec.vect[0]-(cs.RAYON_DES_ROUES_CM//2)*vec_normal.vect[0],self.centre.y+(cs.RAYON_DES_ROUES_CM//2)*self.vec.vect[1]-(cs.RAYON_DES_ROUES_CM//2)*vec_normal.vect[1])
-        self.cote_bas_droite=vect.Point(self.centre.x+(cs.RAYON_DES_ROUES_CM//2)*self.vec.vect[0]+(cs.RAYON_DES_ROUES_CM//2)*vec_normal.vect[0],self.centre.y+(cs.RAYON_DES_ROUES_CM//2)*self.vec.vect[1]+(cs.RAYON_DES_ROUES_CM//2)*vec_normal.vect[1])
+        self.cote_haut_gauche=vect.Point(self.centre.x-(self.rayonRouesCm//2)*self.vec.vect[0]-(self.rayonRouesCm//2)*vec_normal.vect[0],self.centre.y -(self.rayonRouesCm//2)*self.vec.vect[1]-(self.rayonRouesCm//2)*vec_normal.vect[1])
+        self.cote_bas_gauche=vect.Point(self.centre.x-(self.rayonRouesCm//2)*self.vec.vect[0]+(self.rayonRouesCm//2)*vec_normal.vect[0],self.centre.y-(self.rayonRouesCm//2)*self.vec.vect[1]+(self.rayonRouesCm//2)*vec_normal.vect[1])
+        self.cote_haut_droite=vect.Point(self.centre.x+(self.rayonRouesCm//2)*self.vec.vect[0]-(self.rayonRouesCm//2)*vec_normal.vect[0],self.centre.y+(self.rayonRouesCm//2)*self.vec.vect[1]-(self.rayonRouesCm//2)*vec_normal.vect[1])
+        self.cote_bas_droite=vect.Point(self.centre.x+(self.rayonRouesCm//2)*self.vec.vect[0]+(self.rayonRouesCm//2)*vec_normal.vect[0],self.centre.y+(self.rayonRouesCm//2)*self.vec.vect[1]+(self.rayonRouesCm//2)*vec_normal.vect[1])
 
 ####------------------------ ROUE --------------------------##
 
@@ -91,7 +82,7 @@ class Capteur_de_distance :
        """
        :param distanceCaptable : distance maximale captable possible
        """
-       self.distanceCaptable=distanceCaptable+cs.RAYON_ROBOT_CM
+       self.distanceCaptable=distanceCaptable+self.rayonDuRobotCm
     
     def distance(self,x,y,obstacle):
         """
@@ -130,10 +121,10 @@ class Capteur_de_distance :
                 obstacle = l_obstacle[i]
                 # Si a un moment le laser se trouve dans un obstacle
                 if(self.distance(x,y,obstacle)) <= obstacle.rayon : #obstacle.longueur car dans obstacle attribut longueur m
-                    #logging. basicConfig()("boucle : ",sqrt((x-pos_x)**2+(y-pos_y)**2) - cs.RAYON_ROBOT_CM)
-                    print(sqrt((x-pos_x)**2+(y-pos_y)**2) - cs.RAYON_ROBOT_CM)
-                    return sqrt((x-pos_x)**2+(y-pos_y)**2) - cs.RAYON_ROBOT_CM
+                    #logging. basicConfig()("boucle : ",sqrt((x-pos_x)**2+(y-pos_y)**2) - self.rayonDuRobotCm)
+                    print(sqrt((x-pos_x)**2+(y-pos_y)**2) - self.rayonDuRobotCm)
+                    return sqrt((x-pos_x)**2+(y-pos_y)**2) - self.rayonDuRobotCm
             k +=1
-        #logging. basicConfig()("fin fct : ",self.distanceCaptable- cs.RAYON_ROBOT_CM)
-        print(self.distanceCaptable - cs.RAYON_ROBOT_CM)
-        return self.distanceCaptable - cs.RAYON_ROBOT_CM
+        #logging. basicConfig()("fin fct : ",self.distanceCaptable- self.rayonDuRobotCm)
+        print(self.distanceCaptable - self.rayonDuRobotCm)
+        return self.distanceCaptable - self.rayonDuRobotCm
