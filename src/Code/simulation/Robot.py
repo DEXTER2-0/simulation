@@ -52,16 +52,28 @@ class Robot :
     def get_pos_roues(self):
         return self.pos_roue_g, self.pos_roue_d
     
+    def cotehg(self):
+        self.cote_haut_gauche=vect.Point(self.centre.x-(self.rayonRouesCm//2)*self.vec.vect[0]-(self.rayonRouesCm//2)*vec_normal.vect[0],self.centre.y -(self.rayonRouesCm//2)*self.vec.vect[1]-(self.rayonRouesCm//2)*vec_normal.vect[1])
+
+    def cotebg(self):
+        self.cote_bas_gauche=vect.Point(self.centre.x-(self.rayonRouesCm//2)*self.vec.vect[0]+(self.rayonRouesCm//2)*vec_normal.vect[0],self.centre.y-(self.rayonRouesCm//2)*self.vec.vect[1]+(self.rayonRouesCm//2)*vec_normal.vect[1])
+
+    def cotehd(self):
+        self.cote_haut_droite=vect.Point(self.centre.x+(self.rayonRouesCm//2)*self.vec.vect[0]-(self.rayonRouesCm//2)*vec_normal.vect[0],self.centre.y+(self.rayonRouesCm//2)*self.vec.vect[1]-(self.rayonRouesCm//2)*vec_normal.vect[1])
+
+    def cotebd(self):
+        self.cote_bas_droite=vect.Point(self.centre.x+(self.rayonRouesCm//2)*self.vec.vect[0]+(self.rayonRouesCm//2)*vec_normal.vect[0],self.centre.y+(self.rayonRouesCm//2)*self.vec.vect[1]+(self.rayonRouesCm//2)*vec_normal.vect[1])
+
     def update(self):
         """
         Mets a jour les coordonnes du robot
         """
         vec_normal=vect.Vecteur(vect.Point(0,0),vect.Point(-self.vec.vect[1],self.vec.vect[0]))
-        self.cote_haut_gauche=vect.Point(self.centre.x-(self.rayonRouesCm//2)*self.vec.vect[0]-(self.rayonRouesCm//2)*vec_normal.vect[0],self.centre.y -(self.rayonRouesCm//2)*self.vec.vect[1]-(self.rayonRouesCm//2)*vec_normal.vect[1])
-        self.cote_bas_gauche=vect.Point(self.centre.x-(self.rayonRouesCm//2)*self.vec.vect[0]+(self.rayonRouesCm//2)*vec_normal.vect[0],self.centre.y-(self.rayonRouesCm//2)*self.vec.vect[1]+(self.rayonRouesCm//2)*vec_normal.vect[1])
-        self.cote_haut_droite=vect.Point(self.centre.x+(self.rayonRouesCm//2)*self.vec.vect[0]-(self.rayonRouesCm//2)*vec_normal.vect[0],self.centre.y+(self.rayonRouesCm//2)*self.vec.vect[1]-(self.rayonRouesCm//2)*vec_normal.vect[1])
-        self.cote_bas_droite=vect.Point(self.centre.x+(self.rayonRouesCm//2)*self.vec.vect[0]+(self.rayonRouesCm//2)*vec_normal.vect[0],self.centre.y+(self.rayonRouesCm//2)*self.vec.vect[1]+(self.rayonRouesCm//2)*vec_normal.vect[1])
-
+        self.cotehg()
+        self.cotebg()
+        self.cotehd()
+        self.cotebd()
+        
 ####------------------------ ROUE --------------------------##
 
 class Roue :
