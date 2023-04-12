@@ -14,6 +14,12 @@ class Traitement_image: #traitement d'image afin de savoir si la balise entiere 
         self.image=None
         self.balise=None
     
+    def couleurs_balise(): #description des couleurs de la balise
+        BLUE = (0, 0, 255)
+        RED = (255, 0, 0)
+        GREEN = (0, 255, 0)
+        YELLOW = (255, 255, 0)
+
 class Decision:
     def __init__(self,robot,traducteur):
         self.robot=robot
