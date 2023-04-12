@@ -119,7 +119,5 @@ class Traducteur_Realite:
     def resetangle(self):
         self.robot.offset_motor_encoder(port, offset)
     
-    #def capteur(dt):
-    #    """
-    #    :param dt : temps ecoule depuis le dernier calcul
-    #    """
+ 
+
