@@ -119,19 +119,4 @@ class Traducteur_Realite:
     def resetangle(self):
         self.robot.offset_motor_encoder(port, offset)
     
-    #def calcul_v(self,v_g,v_d):
-    #    """
-    #    :param v_g : vitesse de la roue gauche en deg/s
-    #    :param v_d : vitesse de la roue droite en deg/s
-    #    """
-
-    #def calcul_new_orientation(self,v_g,v_d):
-    #    """
-    #    :param v_g : vitesse de la roue gauche en deg/s
-    #    :param v_d : vitesse de la roue droite en deg/s
-    #    """
-
-    #def capteur(dt):
-    #    """
-    #    :param dt : temps ecoule depuis le dernier calcul
-    #    """
+ 
