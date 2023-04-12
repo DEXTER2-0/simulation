@@ -1,5 +1,4 @@
 from Code.simulation.Robot import Robot
-from Code.simulation.Robot import Capteur_de_distance 
 from math import pi
 import time as time
 
@@ -12,7 +11,7 @@ class Traducteur_Simulation:
         self.robot=robot
         self.liste={}
         self.t0 = 0
-        self.cap = Capteur_de_distance(self.robot.d_captable,self.robot.rayonDuRobotCm)
+        self.cap = self.robot.capteurDistance
         self.sim = simulation
 
     def debut(self,ref,port):
