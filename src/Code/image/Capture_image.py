@@ -1,4 +1,5 @@
 from PIL import Image
+from ia import IA as ia 
 import cv2
 
 class Capture_image:
@@ -23,7 +24,7 @@ class Traitement_image: #traitement d'image afin de savoir si la balise entiere 
 class Decision:
     def __init__(self,robot,traducteur):
         self.robot=robot
-        self.tourne=IA_tourner(traducteur,10,1,100)
+        self.tourne=ia.IA_tourner(traducteur,10,1,100)
         self.cap=Capture_image(self.robot)
         self.trait=Traitement_image()
         self.encours=True
