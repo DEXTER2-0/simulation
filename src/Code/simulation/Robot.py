@@ -36,7 +36,7 @@ class Robot :
         """
         return self.capteurDistance.senseur_de_distance(self.centre.x,self.centre.y,self.angle_fait,0.01,obs)
     
-    def setMotorDps(self, port, dps):
+    def set_motor_dps(self, port, dps):
         """
         :param int port: Moteur
         :param float dps: Vitesse
@@ -49,7 +49,7 @@ class Robot :
             self.dspeed = dps
             self.gspeed = dps
     
-    def get_pos_roues(self):
+    def get_moteur_position(self):
         return self.pos_roue_g, self.pos_roue_d
     
     def cotehg(self,vec_normal):
