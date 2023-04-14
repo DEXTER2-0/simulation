@@ -1,5 +1,4 @@
 from Code.simulation.Robot import Robot
-from Code.simulation.Robot import Capteur_de_distance 
 from math import pi
 import time as time
 
