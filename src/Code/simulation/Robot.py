@@ -49,7 +49,7 @@ class Robot :
             self.dspeed = dps
             self.gspeed = dps
     
-    def get_moteur_position(self):
+    def get_motor_position(self):
         return self.pos_roue_g, self.pos_roue_d
     
     def cotehg(self,vec_normal):
