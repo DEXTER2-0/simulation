@@ -28,7 +28,11 @@ class Traducteur(object):
         k, r = divmod(diff, 360)
         return k * self.robot.rayonRouesCm + (r * self.robot.rayonRouesCm) / 360
 
-    #gestion capteur
+    def capteur(self):
+        if self.getdistance()==8190:
+            return
+        else:
+            return self.getdistance()*10
 
     def avance(self, speed):
         """
