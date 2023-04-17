@@ -1,0 +1,10 @@
+-Tout est bien organisé mis à part les constantes qu'il faut encore nettoyer .
+-Remplacer les attributs  cote-bas-gauche , cote-bas-droit , cote-haut-gauche , cote-haut-droit par des properties .
+-La dépendance entre entre le calcul du centre du robot et celui des positions des roues , on peut calculer l'un en ayant l'autre .
+-Le robot ne peut pas tourner sur lui-meme.
+-code complexe mais qui marche quand meme.
+-Travailler sur les strategies avancées : IA_conditionnelle , IA_evite .
+-Elaborer un traducteur reel et faire les modifications necessaires sur le proxy virtuel .
+-Le robot n'evite pas les murs .
+-Commencer à travailler sur le traitement d'images .
+-Il ne faut pas stopper le robot quand on stoppe l'IA.
