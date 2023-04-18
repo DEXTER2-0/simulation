@@ -6,9 +6,10 @@ class Traducteur(object):
     """
     """
 
-    def __init__(self, robot):
+    def __init__(self, robot,est_simulation):
         self.robot = robot
         self.ref_list = {}
+        self.is_simu=est_simulation
 
     def debut(self, ref, port):
         """
@@ -29,10 +30,16 @@ class Traducteur(object):
         return k * self.robot.rayonRouesCm + (r * self.robot.rayonRouesCm) / 360
 
     def capteur(self):
-        if self.getdistance()==8190:
-            return
+        if self.is_simu:
+            t=time.time()
+            dt=t-self.t0
+            self.t0=t
+            return self.robot.capteurDistance.senseur_de_distance(self.robot.centre.x,self.robot.centre.y,self.robot.angle_fait,0.01,self.sim.terrain.liste_obstacle)
         else:
-            return self.getdistance()*10
+            if self.getdistance()==8190:
+                return 800
+            else:
+                return self.getdistance()/10
 
     def avance(self, speed):
         """
@@ -44,16 +51,12 @@ class Traducteur(object):
         """
         Arrête le robot
         """
-        self.robot.set_motor_dps(self.robot.MOTOR_GAUCHE+self.robot.MOTOR_DROIT,0)
+        self.robot.set_motor_dps(self.robot.MOTOR_LEFT+self.robot.MOTOR_RIGHT,0)
 
-    def tourne(self, side, speed):
-        """
-        :param int side: Côté
-        :param float speed: Vitesse
-        """
-        if side == 0:
-            self.robot.set_motor_dps(self.robot.MOTOR_LEFT, 0)
-            self.robot.set_motor_dps(self.robot.MOTOR_RIGHT, speed)
-        else:
+    def tourne(self,orientation,speed):
+        if orientation == 0:#gauche
             self.robot.set_motor_dps(self.robot.MOTOR_RIGHT, 0)
-            self.robot.set_motor_dps(self.robot.MOTOR_LEFT, speed)
+            self.robot.set_motor_dps(self.robot.MOTOR_LEFT,speed)
+        elif orientation==1 : #droite
+            self.robot.set_motor_dps(self.robot.MOTOR_LEFT,0)
+            self.robot.set_motor_dps(self.robot.MOTOR_RIGHT, speed)

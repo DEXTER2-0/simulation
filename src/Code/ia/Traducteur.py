@@ -19,14 +19,14 @@ class Traducteur_Simulation:
         :param ref : start
         :param port : port utilise
         """
-        self.liste[ref]=self.robot.get_pos_roues()[port]
+        self.liste[ref]=self.robot.get_motor_position()[port]
 
     def stopSim(self):
         self.simulation.stop()
 
     def getdistance(self,ref,port): #INITIALISATION DE T0 methode reset et get?
-        diff = self.robot.get_pos_roues()[port] - self.liste[ref]
-        self.liste[ref] = self.robot.get_pos_roues()[port]
+        diff = self.robot.get_motor_position()[port] - self.liste[ref]
+        self.liste[ref] = self.robot.get_motor_position()[port]
         # Distance parcourue
         k, r = divmod(diff, 360)
         return k * self.robot.rayonRouesCm + (r * self.robot.rayonRouesCm) / 360
@@ -38,16 +38,16 @@ class Traducteur_Simulation:
         return self.cap.senseur_de_distance(self.robot.centre.x,self.robot.centre.y,self.robot.angle_fait,0.01,self.sim.terrain.liste_obstacle)
 
     def avance(self,speed):
-        self.robot.setMotorDps(self.robot.MOTOR_GAUCHE+self.robot.MOTOR_DROIT,speed)
+        self.robot.set_motor_dps(self.robot.MOTOR_LEFT+self.robot.MOTOR_RIGHT,speed)
 
     def tourne(self,orientation,speed):
         if orientation == 0:#gauche
-            self.robot.setMotorDps(self.robot.MOTOR_DROIT, 0)
-            self.robot.setMotorDps(self.robot.MOTOR_GAUCHE,speed)
+            self.robot.set_motor_dps(self.robot.MOTOR_RIGHT, 0)
+            self.robot.set_motor_dps(self.robot.MOTOR_LEFT,speed)
         elif orientation==1 : #droite
-            self.robot.setMotorDps(self.robot.MOTOR_GAUCHE,0)
-            self.robot.setMotorDps(self.robot.MOTOR_DROIT, speed)
+            self.robot.set_motor_dps(self.robot.MOTOR_LEFT,0)
+            self.robot.set_motor_dps(self.robot.MOTOR_RIGHT, speed)
 
     def stop(self):
-       self.robot.setMotorDps(self.robot.MOTOR_GAUCHE+self.robot.MOTOR_DROIT,0)
+       self.robot.set_motor_dps(self.robot.MOTOR_LEFT+self.robot.MOTOR_RIGHT,0)
     

@@ -21,8 +21,8 @@ class Robot :
         self.vec=vect.Vecteur.get_vect_from_angle(0)
         self.gspeed = 0
         self.dspeed = 0
-        self.MOTOR_GAUCHE = 1
-        self.MOTOR_DROIT = 2
+        self.MOTOR_LEFT = 1
+        self.MOTOR_RIGHT = 2
         self.pos_roue_g=0
         self.pos_roue_d=0
         self.update()
@@ -41,11 +41,11 @@ class Robot :
         :param int port: Moteur
         :param float dps: Vitesse
         """
-        if port == self.MOTOR_GAUCHE:
+        if port == self.MOTOR_LEFT:
             self.gspeed = dps
-        elif port == self.MOTOR_DROIT:
+        elif port == self.MOTOR_RIGHT:
             self.dspeed = dps
-        elif port == self.MOTOR_GAUCHE + self.MOTOR_DROIT:
+        elif port == self.MOTOR_LEFT + self.MOTOR_RIGHT:
             self.dspeed = dps
             self.gspeed = dps
     
