@@ -6,10 +6,12 @@ class Traducteur(object):
     """
     """
 
-    def __init__(self, robot,est_simulation):
+    def __init__(self, robot,simulation,est_simulation):
         self.robot = robot
         self.ref_list = {}
+        self.sim=simulation
         self.is_simu=est_simulation
+        self.t0 = 0
 
     def debut(self, ref, port):
         """
