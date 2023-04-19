@@ -1,2 +1,2 @@
 from . import IA
-from . import Traducteur
+from . import Traducteur_proxy

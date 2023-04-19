@@ -1,4 +1,3 @@
-from Code.simulation.Robot import Robot
 from math import pi
 import time as time
 
@@ -38,10 +37,10 @@ class Traducteur(object):
             self.t0=t
             return self.robot.capteurDistance.senseur_de_distance(self.robot.centre.x,self.robot.centre.y,self.robot.angle_fait,0.01,self.sim.terrain.liste_obstacle)
         else:
-            if self.getdistance()==8190:
+            if self.robot.getdistance()==8190:
                 return 800
             else:
-                return self.getdistance()/10
+                return self.robot.getdistance()/10
 
     def avance(self, speed):
         """

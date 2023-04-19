@@ -1,7 +1,6 @@
 from Code.simulation import Simulation  as simu
 from Code.simulation import constantes as cs
 from Code.simulation  import Obstacle as obs
-from Code.ia import Traducteur as tr
 from Code.ia import Traducteur_proxy as proxy
 from Code.ia  import IA as ia
 from Code.affichage import affichage as af

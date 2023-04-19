@@ -1,5 +1,4 @@
 from math import *
-from . import Traducteur
 from threading import Thread
 import logging
 import time
