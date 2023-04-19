@@ -1,4 +1,5 @@
 from Code.TestScript import balise
+import cv2
 
 def couleurs_balise(couleur): #description des couleurs de la balise
     if couleur=="BLEU":

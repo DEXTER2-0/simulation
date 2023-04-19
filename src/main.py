@@ -15,7 +15,7 @@ if __name__=='__main__':
     logging.basicConfig(format=FORMAT, level=logging.DEBUG)
     #cree les obstacles
     obstacle4 = obs.Obstacle(1,(350,300),10)
-    liste_obstacle = [obstacle4]
+    liste_obstacle = []
     #initialise le robot
     Dexter=rb.Robot(cs.RAYON_DES_ROUES_CM,cs.RAYON_ROBOT_CM,cs.DISTANCE_CAPTABLE,250,300)
     #initialise le terrain
@@ -24,7 +24,7 @@ if __name__=='__main__':
     Simu=simu.Simulation(Dexter,Terrain,120)
     #initialisation le traducteur 
     #trad = tr.Traducteur_Simulation(Dexter,Simu)
-    trad=proxy.Traducteur(Dexter,Simu,True)
+    trad=proxy.Traducteur(Dexter,Simu,False)
     def condition():
         if trad.capteur()>10:
             return False
@@ -41,13 +41,13 @@ if __name__=='__main__':
     #commandes pour que le robot avance
     IA_avance = ia.IA_avancer(trad,10,100)
     #test.append(IA_avance)
-    test2=[IA_tourne]
+    test2=[IA_avance]
     Affichage=af.Affichage(Simu,60,cs.WIDTH,cs.HEIGHT)
     #IA_evite = ia.IA_eviter(trad,I_avance,IA_tourne,10)
     #IA = ia.IA(trad,[IA_tourne],0.01)
     #IA = ia.IA([ia_avance,IA_tourne,IA_avance],120)
     #IA = ia.IA(Dexter,[IA_evite],0.01)
     IA = ia.IA(test,120)
-    Affichage.start()
-    Simu.start()
+    #Affichage.start()
+    #Simu.start()
     IA.start()
