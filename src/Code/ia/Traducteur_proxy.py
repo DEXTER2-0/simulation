@@ -19,7 +19,7 @@ class Traducteur(object):
         """
         self.ref_list[ref] = self.robot.get_motor_position()[port]
 
-    def getdistance(self, ref, port):
+    def get_distance(self, ref, port):
         """
         :param int port:
         Distance parcourue pour la strat
@@ -37,10 +37,12 @@ class Traducteur(object):
             self.t0=t
             return self.robot.capteurDistance.senseur_de_distance(self.robot.centre.x,self.robot.centre.y,self.robot.angle_fait,0.01,self.sim.terrain.liste_obstacle)
         else:
-            if self.robot.getdistance()==8190:
+            if self.robot.get_distance()==8190:
                 return 800
             else:
-                return self.robot.getdistance()/10
+                return self.robot.get_distance()/10
+    def tester_distance(self):
+        return self.robot.get_distance()
 
     def avance(self, speed):
         """

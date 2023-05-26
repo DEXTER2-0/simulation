@@ -88,10 +88,13 @@ class IA_avancer(Strat) :
         self.distance_effectue=0
 
     def step(self):
+        print(self.trad.capteur())
+        if self.trad.capteur() < 7 :
+            self.stop() #Car / par 10
         if not self.encours:
             return
 
-        self.distance_effectue+=self.trad.getdistance(self,0)
+        self.distance_effectue+=self.trad.get_distance(self,0)
 
         if self.distance_effectue>=self.distance:
             self.stop()
@@ -131,14 +134,14 @@ class IA_tourner(Strat):
         if not self.encours:
             return
 
-        self.distance_effectue+=self.trad.getdistance(self,self.orientation)
+        self.distance_effectue+=self.trad.get_distance(self,self.orientation)
         if (self.distance_effectue>=self.distance):
             self.stop()
         vitesse=self.v_a
         if self.distance_effectue>self.distance/2:
-            vitesse/=2
-        if self.distance_effectue>self.distance * 3/4:
-            vitesse/=2
+             vitesse/=2
+        #if self.distance_effectue>self.distance * 3/4:
+        #    vitesse/=2
         self.trad.tourne(self.orientation,vitesse)
 
     def stop(self) :
