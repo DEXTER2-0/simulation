@@ -15,9 +15,6 @@ class Robot :
         self.centre=vect.Point(px,py)
         self.rayonRouesCm=rayonRouesCm
         self.rayonDuRobotCm = rayonDuRobotCm
-        #self.roue_gauche = Roue(self.rayon_roue, self.gspeed)
-        #self.roue_droite = Roue(self.rayon_roue, self.dspeed)
-        #self.l=l*2*rayonDuRobotCm
         self.vec=vect.Vecteur.get_vect_from_angle(0)
         self.gspeed = 0
         self.dspeed = 0
@@ -74,18 +71,6 @@ class Robot :
         self.cotehd(vec_normal)
         self.cotebd(vec_normal)
         
-####------------------------ ROUE --------------------------##
-
-class Roue :
-    def __init__ (self, taille_cm, vMaxDegParSec) :
-        """
-        :param taille_cm : taille de la roue en cm
-        :param vMaxDegParSec : vitesse maximale possible pour les roues en deg/s
-        """
-        self.taille_cm = taille_cm
-        self.vMaxDegParSec = vMaxDegParSec
-        self.vDegParSec = 0
-
 ####------------------------ Capteur_de_distance --------------------------##
 
 from math import pi,sqrt,sin,cos
