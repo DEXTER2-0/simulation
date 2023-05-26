@@ -6,9 +6,9 @@ from Code.ia  import IA as ia
 from Code.affichage import affichage as af
 from Code.simulation  import Terrain as ter
 from Code.ia.robot2IN013 import Robot2IN013 
-from Code.image.Capture_image import Capt as ci
-from Code.image.Capture_image import Traitement_image as ti
-from Code.image.Capture_image import Decision as di
+from Code.image import Capt 
+from Code.image import Traitement_image as ti
+from Code.image import Decision as di
 from math import radians
 from time import time as time
 import logging
@@ -29,7 +29,7 @@ if __name__=='__main__':
     #initialisation le traducteur 
     #trad = tr.Traducteur_Simulation(Dexter,Simu)
     trad=proxy.Traducteur(Dexter,Simu,False)
-    cam = ci.Capture(Dexter)
+    cam = Capt(Dexter)
     tim = ti.Traitement_image()
     des = di.Decision(Dexter,trad)
 

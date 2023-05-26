@@ -1,3 +1,3 @@
 from . import Capt
-from . import Traitement_image
-from . import Decision
+from .Capture_image import Traitement_image
+from .Capture_image import Decision
