@@ -1,6 +1,7 @@
 from Code.ia import IA as ia 
 import cv2
 import numpy as np
+from PIL import Image
 
 class Capt:
     def __init__(self,robot):
@@ -18,12 +19,10 @@ class Traitement_image: #traitement d'image afin de savoir si la balise entiere 
     def upload(self,image):
         self.image = image 
 
-    # à vérifier !!!
-    def convertion_png(self,input,output): #convertir le tableau numpy à 3 dimension en image.png 
-        image_array = input.astype(np.uint8) 
-        cv2.imwrite(output, image_array)
-        return output
-
+    def convertion_png(self,chemin): #convertir le tableau numpy à 3 dimension en image.png 
+        image= self.image
+        Image.fromarray(image).save(chemin)
+        return image
     
     def couleurs_balise(self,couleur): #description des couleurs de la balise
         if couleur=="BLEU":
@@ -58,7 +57,7 @@ class Decision:
     def __init__(self,robot,traducteur):
         self.robot=robot
         self.tourne=ia.IA_tourner(traducteur,10,1,100)
-        self.cap=Cap(self.robot)
+        self.cap=Capt(self.robot)
         self.trait=Traitement_image()
         self.encours=True
     
