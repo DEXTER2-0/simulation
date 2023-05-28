@@ -6,9 +6,9 @@ from Code.ia  import IA as ia
 from Code.affichage import affichage as af
 from Code.simulation  import Terrain as ter
 from Code.ia.robot2IN013 import Robot2IN013 
-from Code.image.Capture_image import Cap as ci
-from Code.image.Capture_image import Traitement_image as ti
-from Code.image.Capture_image import Decision as di
+from Code.image import Capt
+from Code.image.Capture_image import Traitement_image 
+from Code.image import Decision 
 from math import radians
 from time import time as time
 import logging
@@ -28,9 +28,9 @@ if __name__=='__main__':
     #initialisation le traducteur 
     #trad = tr.Traducteur_Simulation(Dexter,Simu)
     trad=proxy.Traducteur(Dexter,Simu,False)
-    cam = ci.Capture(Dexter)
-    tim = ti.Traitement_image()
-    des = di.Decision(Dexter,trad)
+    cam = Capt(Dexter)
+    tim = Traitement_image()
+    des = Decision(Dexter,trad)
 
 
     def condition():
@@ -55,6 +55,14 @@ if __name__=='__main__':
     #IA = ia.IA(trad,[IA_tourne],0.01)
     #IA = ia.IA([ia_avance,IA_tourne,IA_avance],120)
     #IA = ia.IA(Dexter,[IA_evite],0.01)
+
+    #------------------------------ Pour le traitement d'image -------------------------
+    Dexter._start_recording()
+    cam.update()
+    tim.upload(cam.image)
+    tim.convertion_png(tim.image,"/home/warintara/Bureau/robot2/src/Code/1.jpg")
+    #-----------------------------------------------------------------------------------
+
     IA = ia.IA(test,120)
     #Affichage.start()
     #Simu.start()
