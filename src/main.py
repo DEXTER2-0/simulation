@@ -60,7 +60,7 @@ if __name__=='__main__':
     Dexter._start_recording()
     cam.update()
     tim.upload(cam.image)
-    tim.convertion_png(tim.image,"/home/warintara/Bureau/robot2/src/Code/1.jpg")
+    tim.convertion_png(tim.image,"~/Bureau/robot2/src/Code/1.jpg")
     #-----------------------------------------------------------------------------------
 
     IA = ia.IA(test,120)
