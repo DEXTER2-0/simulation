@@ -23,25 +23,18 @@ if __name__=='__main__':
     #initialise le robot
     Dexter=rb.Robot(cs.RAYON_DES_ROUES_CM,cs.RAYON_ROBOT_CM,cs.DISTANCE_CAPTABLE)
     #initialise le terrain
-    Terrain=ter.Terrain(0,cs.WIDTH,0,cs.HEIGHT, liste_obstacle)
+    Terrain=ter.Terrain(-(cs.WIDTH),cs.WIDTH,-(cs.HEIGHT),cs.HEIGHT, liste_obstacle)
     #commandes pour que le robot tourne
     Simu=simu.Simulation(Dexter,Terrain,120)
     #initialisation le traducteur 
     #trad = tr.Traducteur_Simulation(Dexter,Simu)
     trad=proxy.Traducteur(Dexter,Simu,True)
-
-
-    def condition():
-        if trad.capteur()>10:
-            return False
-        return True
-
     test = []
-    #for i in range(4):
-    strat_avance = ia.IA_avancer(trad,100,490)
-    #strat_tourne = ia.IA_tourner(trad,300,1,1000)
-    test.append(strat_avance)
-    #test.append(strat_tourne)
+    for i in range(4):
+        strat_avance = ia.IA_avancer(trad,20,490)
+        strat_tourne = ia.IA_tourner(trad,90,1,100)
+        test.append(strat_avance)
+        test.append(strat_tourne)
 
     IA_tourne = ia.IA_tourner(trad,90,1,100)
     #commandes pour que le robot avance

@@ -3,7 +3,7 @@ from math import pi,sqrt,sin,cos
 import logging
 
 class Robot :
-    def __init__ (self,rayonRouesCm,rayonDuRobotCm,distance_captable,px=0,py=0) :
+    def __init__ (self,rayonRouesCm,rayonDuRobotCm,distance_captable,px=200,py=200) :
         """
         :param rayonRouesCm : rayon des roues en cm
         :param rayonDuRobotCm : rayon du cercle dans lequel s'inscrit le robot en cm
@@ -20,8 +20,8 @@ class Robot :
         self.dspeed = 0
         self.MOTOR_LEFT = 1
         self.MOTOR_RIGHT = 2
-        self.pos_roue_g=0
-        self.pos_roue_d=0
+        self.pos_roue_g=200
+        self.pos_roue_d=200
         self.update()
         self.angle_fait=0
         self.d_captable=distance_captable
