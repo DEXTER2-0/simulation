@@ -4,7 +4,7 @@ from math import pi
 RAYON_ROBOT_CM=10 #en cm
 
 ###--------------- PROPRIETE ROUE ---------------------------###
-RAYON_DES_ROUES_CM=30 #en cm
+RAYON_DES_ROUES_CM=5 #en cm
 DIAMETRE_ROUES=RAYON_DES_ROUES_CM*2
 CIRCONFERENCE_ROUES=DIAMETRE_ROUES*pi
 

@@ -120,11 +120,15 @@ class IA_tourner(Strat):
             orientation = 1
         self.orientation=orientation
         self.trad=traducteur
-        self.distance=(self.trad.robot.rayonRouesCm *angle_voulu)/360
         self.distance_effectue=0
         self.v_a=vitesse#self.trad.robot.gspeed
         self.encours=False
 
+        if self.trad.is_simu == False : 
+            self.distance = (self.trad.robot.rayonRouesCm * angle_voulu)/360 * 3.33
+        else :
+            self.distance=(self.trad.robot.rayonRouesCm *angle_voulu)/360
+            
     def start(self):
 
         super().start()
@@ -145,6 +149,8 @@ class IA_tourner(Strat):
         #    vitesse/=2
         self.trad.tourne(self.orientation,vitesse)
 
+
+            
     def stop(self) :
         self.trad.stop()
         # ("i am stopped")
