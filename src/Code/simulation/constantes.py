@@ -13,7 +13,7 @@ V_ANGULAIRE_G = 120#deg/s
 V_ANGULAIRE_D = 120 #deg/s
 
 ###--------------- PROPRIETE CAPTEUR_DISTANCE ----------------###
-DISTANCE_MIN_ARRET = 5 #en metre (mais faudra mettre en en cm)
+DISTANCE_MIN_ARRET = 7 #en metre (mais faudra mettre en en cm)
 DISTANCE_CAPTABLE = 15
 
 ###--------------- PROPRIETE TERRAIN -------------------------###

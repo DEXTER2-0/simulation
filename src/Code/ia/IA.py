@@ -2,6 +2,7 @@ from math import *
 from threading import Thread
 import logging
 import time
+from Code.simulation import constantes as cs
 from abc import abstractmethod
 
 class IA(Thread):
@@ -89,7 +90,7 @@ class IA_avancer(Strat) :
 
     def step(self):
         print(self.trad.capteur())
-        if self.trad.capteur() < 7 :
+        if self.trad.capteur() < cs.DISTANCE_MIN_ARRET :
             self.stop() #Car / par 10
         if not self.encours:
             return
