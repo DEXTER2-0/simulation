@@ -37,13 +37,14 @@ if __name__=='__main__':
         if trad.capteur()>10:
             return False
         return True
-
+    #commandes pour que le robot fasse un carre
     test = []
-    #for i in range(4):
-    strat_avance = ia.IA_avancer(trad,100,490)
-    #strat_tourne = ia.IA_tourner(trad,300,1,1000)
-    test.append(strat_avance)
-    #test.append(strat_tourne)
+    for i in range(4):
+        strat_avance = ia.IA_avancer(trad,100,490)
+        strat_tourne = ia.IA_tourner(trad,300,1,1000)
+        test.append(strat_avance)
+        test.append(strat_tourne)
+    #-------------------------------
 
     IA_tourne = ia.IA_tourner(trad,90,1,100)
     #commandes pour que le robot avance
