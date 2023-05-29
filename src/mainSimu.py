@@ -31,7 +31,7 @@ if __name__=='__main__':
     trad=proxy.Traducteur(Dexter,Simu,True)
     test = []
     for i in range(4):
-        strat_avance = ia.IA_avancer(trad,20,490)
+        strat_avance = ia.IA_avancer(trad,20,200)
         strat_tourne = ia.IA_tourner(trad,90,1,100)
         test.append(strat_avance)
         test.append(strat_tourne)

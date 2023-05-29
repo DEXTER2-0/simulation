@@ -31,31 +31,19 @@ if __name__=='__main__':
     cam = Capt(Dexter)
     tim = Traitement_image()
     des = Decision(Dexter,trad)
-
-
-    def condition():
-        if trad.capteur()>10:
-            return False
-        return True
     #commandes pour que le robot fasse un carre
     test = []
     for i in range(4):
-        strat_avance = ia.IA_avancer(trad,100,490)
+        strat_avance = ia.IA_avancer(trad,30,200)
         strat_tourne = ia.IA_tourner(trad,300,1,1000)
         test.append(strat_avance)
         test.append(strat_tourne)
     #-------------------------------
-
-    IA_tourne = ia.IA_tourner(trad,90,1,100)
-    #commandes pour que le robot avance
-    IA_avance = ia.IA_avancer(trad,10,300)
+    #commandes pour que le robot avance le plus rapidement d'un mur
+    test2 = []
+    strat_avance2 = ia.IA_avancer(trad,100,490)
+    test2.append(strat_avance2)
     #test.append(IA_avance)
-    test2=[IA_tourne]
-    #Affichage=af.Affichage(Simu,60,cs.WIDTH,cs.HEIGHT)
-    #IA_evite = ia.IA_eviter(trad,I_avance,IA_tourne,10)
-    #IA = ia.IA(trad,[IA_tourne],0.01)
-    #IA = ia.IA([ia_avance,IA_tourne,IA_avance],120)
-    #IA = ia.IA(Dexter,[IA_evite],0.01)
 
     #------------------------------ Pour le traitement d'image -------------------------
     Dexter._start_recording()
@@ -65,6 +53,7 @@ if __name__=='__main__':
     #-----------------------------------------------------------------------------------
 
     IA = ia.IA(test,120)
+    #IA = ia.IA(test2,120)
     #Affichage.start()
     #Simu.start()
     IA.start()
