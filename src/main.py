@@ -37,7 +37,7 @@ if __name__=='__main__':
     test2 = []
     strat_avance2 = ia.IA_avancer(trad,100,490)
     test2.append(strat_avance2)
-    #test.append(IA_avance)
+
 
     #------------------------------ Pour le traitement d'image -------------------------
     #Dexter._start_recording()

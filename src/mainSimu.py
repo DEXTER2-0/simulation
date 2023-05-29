@@ -19,7 +19,7 @@ if __name__=='__main__':
     #initialise le robot
     Dexter=rb.Robot(cs.RAYON_DES_ROUES_CM,cs.RAYON_ROBOT_CM,cs.DISTANCE_CAPTABLE)
     #initialise le terrain
-    Terrain=ter.Terrain(-(cs.WIDTH),cs.WIDTH,-(cs.HEIGHT),cs.HEIGHT, liste_obstacle)
+    Terrain=ter.Terrain(0,cs.WIDTH,0,cs.HEIGHT, liste_obstacle)
     Simu=simu.Simulation(Dexter,Terrain,60)
     #initialisation le traducteur 
     trad=proxy.Traducteur(Dexter,Simu,True)

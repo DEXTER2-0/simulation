@@ -1,5 +1,5 @@
 from Code.simulation import Vecteur as vect
-import time as time #pour pouvoir controler le temps de la boucle while True
+import time as time 
 from datetime import datetime
 import numpy as np
 from math import *
