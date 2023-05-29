@@ -20,8 +20,8 @@ class Robot :
         self.dspeed = 0
         self.MOTOR_LEFT = 1
         self.MOTOR_RIGHT = 2
-        self.pos_roue_g=200
-        self.pos_roue_d=200
+        self.pos_roue_g=0
+        self.pos_roue_d=0
         self.update()
         self.angle_fait=0
         self.d_captable=distance_captable
