@@ -4,16 +4,13 @@ from math import pi
 RAYON_ROBOT_CM=10 #en cm
 
 ###--------------- PROPRIETE ROUE ---------------------------###
-RAYON_DES_ROUES_CM=5 #en cm
-DIAMETRE_ROUES=RAYON_DES_ROUES_CM*2
-CIRCONFERENCE_ROUES=DIAMETRE_ROUES*pi
+RAYON_DES_ROUES_CM=2,5 #en cm
 
-VITESSE_MAX_DEG_PAR_SEC= 200
 V_ANGULAIRE_G = 120#deg/s
 V_ANGULAIRE_D = 120 #deg/s
 
 ###--------------- PROPRIETE CAPTEUR_DISTANCE ----------------###
-DISTANCE_MIN_ARRET = 7 #en metre (mais faudra mettre en en cm)
+DISTANCE_MIN_ARRET = 7 #en cm
 DISTANCE_CAPTABLE = 15
 
 ###--------------- PROPRIETE TERRAIN -------------------------###
