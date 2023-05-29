@@ -14,7 +14,7 @@ if __name__=='__main__':
     FORMAT = "[%(levelname)s] %(message)s"
     logging.basicConfig(format=FORMAT, level=logging.DEBUG)
     #cree les obstacles
-    obstacle4 = obs.Obstacle(1,(400,200),10)
+    obstacle4 = obs.Obstacle(1,(300,200),10)
     liste_obstacle = [obstacle4]
     #initialise le robot
     Dexter=rb.Robot(cs.RAYON_DES_ROUES_CM,cs.RAYON_ROBOT_CM,cs.DISTANCE_CAPTABLE)
@@ -32,15 +32,15 @@ if __name__=='__main__':
         strat_tourne = ia.IA_tourner(trad,90,0,100)
         test.append(strat_avance)
         test.append(strat_tourne)
-
+    strat_evite = ia.IAConditionnel(trad,ia.IA_avancer(trad,400,100),ia.IA_tourner(trad, 90,1,100))
     IA_tourne = ia.IA_tourner(trad,90,1,100)
     #commandes pour que le robot avance le plus proche d'un obstacle 
-    IA_avance = ia.IA_avancer(trad,100,490)
-    test2=[IA_avance]
+    IA_avance = ia.IA_avancer(trad,20,300)
+    test2=[strat_evite,IA_avance]
     
     #-----------------------------------------------------------------------------------
     #IA_Conditionnelle = ia.IAConditionnel(trad,IA_avance,IA_tourne)
-    IA = ia.IA(test,340)
+    IA = ia.IA(test2,340)
     Affichage.start()
     Simu.start()
     IA.start()
