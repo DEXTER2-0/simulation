@@ -1,11 +1,9 @@
-from Code.simulation import Simulation  as simu
-from Code.simulation import constantes as cs
-from Code.simulation  import Obstacle as obs
 from Code.ia import Traducteur_proxy as proxy
 from Code.ia  import IA as ia
-from Code.affichage import affichage as af
-from Code.simulation  import Terrain as ter
 from Code.ia.robot2IN013 import Robot2IN013 
+from Code.simulation import Simulation  as simu
+from Code.simulation import constantes as cs
+from Code.simulation  import Terrain as ter
 from Code.image import Capt
 from Code.image.Capture_image import Traitement_image 
 from Code.image import Decision 
@@ -42,14 +40,12 @@ if __name__=='__main__':
     #test.append(IA_avance)
 
     #------------------------------ Pour le traitement d'image -------------------------
-    Dexter._start_recording()
-    cam.update()
-    tim.upload(cam.image)
-    tim.convertion_png(tim.image,"~/Bureau/robot2/src/Code/1.jpg")
+    #Dexter._start_recording()
+    #cam.update()
+    #tim.upload(cam.image)
+    #tim.convertion_png(tim.image,"~/Bureau/robot2/src/Code/1.jpg")
     #-----------------------------------------------------------------------------------
 
     IA = ia.IA(test,120)
     #IA = ia.IA(test2,120)
-    #Affichage.start()
-    #Simu.start()
     IA.start()

@@ -154,5 +154,46 @@ class IA_tourner(Strat):
             
     def stop(self) :
         self.trad.stop()
-        # ("i am stopped")
         self.encours = False
+class IAConditionnel(Strat):
+    def __init__(self, traducteur, ia_avance, ia_tourne):
+        """
+        :param traducteur: traducteur utilisé
+        :param ia_avance: IA d'avancement
+        :param ia_tourne: IA de rotation
+        """
+        super().__init__(traducteur)
+        self.ia_avance = ia_avance
+        self.ia_tourne = ia_tourne
+        self.encours = False
+
+    def start(self):
+        """
+        Override
+        """
+        super().start()
+        self.trad.stop()
+        self.encours = True
+
+        if self.trad.capteur()<10:
+            self.ia_tourne.start()
+        else:
+            self.ia_avance.start()
+
+    def step(self):
+        if not self.encours:
+            return
+        if self.trad.capteur()<15 and self.ia_avance.encours:
+            self.ia_avance.stop()
+            self.ia_tourne.start()
+        elif self.ia_tourne.encours:
+            self.ia_tourne.step()
+        else:
+            self.ia_avance.step()
+            if not self.ia_avance.encours:
+                self.stop()
+
+    def stop(self):
+        self.trad.stop()
+        self.encours = False
+
