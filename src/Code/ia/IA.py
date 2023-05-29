@@ -89,7 +89,7 @@ class IA_avancer(Strat) :
         self.distance_effectue=0
 
     def step(self):
-        print(self.trad.capteur())
+
         if self.trad.capteur() < cs.DISTANCE_MIN_ARRET :
             self.stop() #Car / par 10
         if not self.encours:
@@ -105,7 +105,7 @@ class IA_avancer(Strat) :
 
     def stop(self) :
         self.trad.stop()
-        # ("i am stopped")
+ 
         self.encours = False		
 
 
@@ -145,8 +145,9 @@ class IA_tourner(Strat):
         vitesse=self.v_a
         if self.distance_effectue>self.distance/2:
              vitesse/=2
-        #if self.distance_effectue>self.distance * 3/4:
-        #    vitesse/=2
+        if self.distance_effectue>self.distance * 3/4:
+            if self.trad.is_simu == True:
+                vitesse/=2
         self.trad.tourne(self.orientation,vitesse)
 
 

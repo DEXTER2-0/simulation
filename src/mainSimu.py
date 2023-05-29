@@ -19,20 +19,20 @@ if __name__=='__main__':
     logging.basicConfig(format=FORMAT, level=logging.DEBUG)
     #cree les obstacles
     obstacle4 = obs.Obstacle(1,(350,300),10)
-    liste_obstacle = []
+    liste_obstacle = [obstacle4]
     #initialise le robot
     Dexter=rb.Robot(cs.RAYON_DES_ROUES_CM,cs.RAYON_ROBOT_CM,cs.DISTANCE_CAPTABLE)
     #initialise le terrain
     Terrain=ter.Terrain(-(cs.WIDTH),cs.WIDTH,-(cs.HEIGHT),cs.HEIGHT, liste_obstacle)
     #commandes pour que le robot tourne
-    Simu=simu.Simulation(Dexter,Terrain,120)
+    Simu=simu.Simulation(Dexter,Terrain,60)
     #initialisation le traducteur 
     #trad = tr.Traducteur_Simulation(Dexter,Simu)
     trad=proxy.Traducteur(Dexter,Simu,True)
     test = []
     for i in range(4):
-        strat_avance = ia.IA_avancer(trad,20,200)
-        strat_tourne = ia.IA_tourner(trad,90,1,100)
+        strat_avance = ia.IA_avancer(trad,20,300)
+        strat_tourne = ia.IA_tourner(trad,90,0,100)
         test.append(strat_avance)
         test.append(strat_tourne)
 
@@ -54,7 +54,7 @@ if __name__=='__main__':
     #tim.convertion_png(tim.image,"~/Bureau/robot2/src/Code/1.jpg")
     #-----------------------------------------------------------------------------------
 
-    IA = ia.IA(test,120)
+    IA = ia.IA(test,60)
     Affichage.start()
     Simu.start()
     IA.start()

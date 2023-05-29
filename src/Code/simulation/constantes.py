@@ -4,7 +4,7 @@ from math import pi
 RAYON_ROBOT_CM=10 #en cm
 
 ###--------------- PROPRIETE ROUE ---------------------------###
-RAYON_DES_ROUES_CM=2.5 #en cm
+RAYON_DES_ROUES_CM=10 #en cm
 
 V_ANGULAIRE_G = 120#deg/s
 V_ANGULAIRE_D = 120 #deg/s

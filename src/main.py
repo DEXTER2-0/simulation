@@ -16,17 +16,13 @@ import logging
 if __name__=='__main__':
     FORMAT = "[%(levelname)s] %(message)s"
     logging.basicConfig(format=FORMAT, level=logging.DEBUG)
-    #cree les obstacles
-    obstacle4 = obs.Obstacle(1,(350,300),10)
-    liste_obstacle = []
     #initialise le robot
     Dexter=Robot2IN013()
     #initialise le terrain
-    Terrain=ter.Terrain(0,cs.WIDTH,0,cs.HEIGHT, liste_obstacle)
+    Terrain=ter.Terrain(0,cs.WIDTH,0,cs.HEIGHT,[])
     #commandes pour que le robot tourne
     Simu=simu.Simulation(Dexter,Terrain,120)
     #initialisation le traducteur 
-    #trad = tr.Traducteur_Simulation(Dexter,Simu)
     trad=proxy.Traducteur(Dexter,Simu,False)
     cam = Capt(Dexter)
     tim = Traitement_image()
@@ -35,7 +31,7 @@ if __name__=='__main__':
     test = []
     for i in range(4):
         strat_avance = ia.IA_avancer(trad,30,200)
-        strat_tourne = ia.IA_tourner(trad,300,1,1000)
+        strat_tourne = ia.IA_tourner(trad,90,1,1000)
         test.append(strat_avance)
         test.append(strat_tourne)
     #-------------------------------
