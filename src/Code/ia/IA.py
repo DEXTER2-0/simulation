@@ -56,7 +56,6 @@ class Strat(object):
 
     def stop(self) -> None:
         self.trad.stop()
-        # ("i am stopped")
         self.encours = False
 
     @abstractmethod
@@ -121,7 +120,7 @@ class IA_tourner(Strat):
         self.orientation=orientation
         self.trad=traducteur
         self.distance_effectue=0
-        self.v_a=vitesse#self.trad.robot.gspeed
+        self.v_a=vitesse
         self.encours=False
 
         if self.trad.is_simu == False : 

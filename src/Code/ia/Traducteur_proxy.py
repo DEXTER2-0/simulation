@@ -57,9 +57,9 @@ class Traducteur(object):
         self.robot.set_motor_dps(self.robot.MOTOR_LEFT+self.robot.MOTOR_RIGHT,0)
 
     def tourne(self,orientation,speed):
-        if orientation == 0:#gauche
+        if orientation == 0:#droite
             self.robot.set_motor_dps(self.robot.MOTOR_RIGHT, 0)
             self.robot.set_motor_dps(self.robot.MOTOR_LEFT,speed)
-        elif orientation==1 : #droite
+        elif orientation==1 : #gauche
             self.robot.set_motor_dps(self.robot.MOTOR_LEFT,0)
             self.robot.set_motor_dps(self.robot.MOTOR_RIGHT, speed)
