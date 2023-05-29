@@ -1,8 +1,8 @@
 from math import *
-from . import Traducteur
 from threading import Thread
 import logging
 import time
+from Code.simulation import constantes as cs
 from abc import abstractmethod
 
 class IA(Thread):
@@ -89,10 +89,13 @@ class IA_avancer(Strat) :
         self.distance_effectue=0
 
     def step(self):
+        print(self.trad.capteur())
+        if self.trad.capteur() < cs.DISTANCE_MIN_ARRET :
+            self.stop() #Car / par 10
         if not self.encours:
             return
 
-        self.distance_effectue+=self.trad.getdistance(self,0)
+        self.distance_effectue+=self.trad.get_distance(self,0)
 
         if self.distance_effectue>=self.distance:
             self.stop()
@@ -117,11 +120,15 @@ class IA_tourner(Strat):
             orientation = 1
         self.orientation=orientation
         self.trad=traducteur
-        self.distance=(self.trad.robot.rayonRouesCm *angle_voulu)/360
         self.distance_effectue=0
         self.v_a=vitesse#self.trad.robot.gspeed
         self.encours=False
 
+        if self.trad.is_simu == False : 
+            self.distance = (self.trad.robot.rayonRouesCm * angle_voulu)/360 * 3.33
+        else :
+            self.distance=(self.trad.robot.rayonRouesCm *angle_voulu)/360
+            
     def start(self):
 
         super().start()
@@ -132,16 +139,18 @@ class IA_tourner(Strat):
         if not self.encours:
             return
 
-        self.distance_effectue+=self.trad.getdistance(self,self.orientation)
+        self.distance_effectue+=self.trad.get_distance(self,self.orientation)
         if (self.distance_effectue>=self.distance):
             self.stop()
         vitesse=self.v_a
         if self.distance_effectue>self.distance/2:
-            vitesse/=2
-        if self.distance_effectue>self.distance * 3/4:
-            vitesse/=2
+             vitesse/=2
+        #if self.distance_effectue>self.distance * 3/4:
+        #    vitesse/=2
         self.trad.tourne(self.orientation,vitesse)
 
+
+            
     def stop(self) :
         self.trad.stop()
         # ("i am stopped")

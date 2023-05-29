@@ -3,7 +3,7 @@ from math import pi,sqrt,sin,cos
 import logging
 
 class Robot :
-    def __init__ (self,rayonRouesCm,rayonDuRobotCm,distance_captable,px=0,py=0) :
+    def __init__ (self,rayonRouesCm,rayonDuRobotCm,distance_captable,px=200,py=200) :
         """
         :param rayonRouesCm : rayon des roues en cm
         :param rayonDuRobotCm : rayon du cercle dans lequel s'inscrit le robot en cm
@@ -15,16 +15,13 @@ class Robot :
         self.centre=vect.Point(px,py)
         self.rayonRouesCm=rayonRouesCm
         self.rayonDuRobotCm = rayonDuRobotCm
-        #self.roue_gauche = Roue(self.rayon_roue, self.gspeed)
-        #self.roue_droite = Roue(self.rayon_roue, self.dspeed)
-        #self.l=l*2*rayonDuRobotCm
         self.vec=vect.Vecteur.get_vect_from_angle(0)
         self.gspeed = 0
         self.dspeed = 0
-        self.MOTOR_GAUCHE = 1
-        self.MOTOR_DROIT = 2
-        self.pos_roue_g=0
-        self.pos_roue_d=0
+        self.MOTOR_LEFT = 1
+        self.MOTOR_RIGHT = 2
+        self.pos_roue_g=200
+        self.pos_roue_d=200
         self.update()
         self.angle_fait=0
         self.d_captable=distance_captable
@@ -36,20 +33,20 @@ class Robot :
         """
         return self.capteurDistance.senseur_de_distance(self.centre.x,self.centre.y,self.angle_fait,0.01,obs)
     
-    def setMotorDps(self, port, dps):
+    def set_motor_dps(self, port, dps):
         """
         :param int port: Moteur
         :param float dps: Vitesse
         """
-        if port == self.MOTOR_GAUCHE:
+        if port == self.MOTOR_LEFT:
             self.gspeed = dps
-        elif port == self.MOTOR_DROIT:
+        elif port == self.MOTOR_RIGHT:
             self.dspeed = dps
-        elif port == self.MOTOR_GAUCHE + self.MOTOR_DROIT:
+        elif port == self.MOTOR_LEFT + self.MOTOR_RIGHT:
             self.dspeed = dps
             self.gspeed = dps
     
-    def get_pos_roues(self):
+    def get_motor_position(self):
         return self.pos_roue_g, self.pos_roue_d
     
     def cotehg(self,vec_normal):
@@ -74,18 +71,6 @@ class Robot :
         self.cotehd(vec_normal)
         self.cotebd(vec_normal)
         
-####------------------------ ROUE --------------------------##
-
-class Roue :
-    def __init__ (self, taille_cm, vMaxDegParSec) :
-        """
-        :param taille_cm : taille de la roue en cm
-        :param vMaxDegParSec : vitesse maximale possible pour les roues en deg/s
-        """
-        self.taille_cm = taille_cm
-        self.vMaxDegParSec = vMaxDegParSec
-        self.vDegParSec = 0
-
 ####------------------------ Capteur_de_distance --------------------------##
 
 from math import pi,sqrt,sin,cos
@@ -120,25 +105,17 @@ class Capteur_de_distance :
         :param angle : permet au capteur de savoir dans quelle direction lancer le laser
         :param le_pas : permet de couper en plusieurs morceaux la distance avant de rencontrer un obstacle 
         """
-        # ("posxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",pos_x)
-        # ("posyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",pos_y)
-        # ("angllllllllllllllleeeeeeeeeeeee ",angle_robot)
         k=0
         x = pos_x
         y = pos_y
         while k*le_pas < self.distanceCaptable :
             x = x + cos(angle_robot) * le_pas #Lance le laser dans la bonne direction
             y = y + sin(angle_robot) * le_pas #Lance le laser dans la bonne direction
-            # ("x =",x,"y =",y)
             # Verification si les coordonees du laser se trouve dans un obstacle(cercle)
             for i in range(len(l_obstacle)) :
                 obstacle = l_obstacle[i]
                 # Si a un moment le laser se trouve dans un obstacle
                 if(self.distance(x,y,obstacle)) <= obstacle.rayon : #obstacle.longueur car dans obstacle attribut longueur m
-                    #logging. basicConfig()("boucle : ",sqrt((x-pos_x)**2+(y-pos_y)**2) - self.rayonDuRobotCm)
-                    # (sqrt((x-pos_x)**2+(y-pos_y)**2) - self.rayonDuRobotCm)
                     return sqrt((x-pos_x)**2+(y-pos_y)**2) - self.rayonDuRobotCm
             k +=1
-        #logging. basicConfig()("fin fct : ",self.distanceCaptable- self.rayonDuRobotCm)
-        # (self.distanceCaptable - self.rayonDuRobotCm)
         return self.distanceCaptable - self.rayonDuRobotCm
