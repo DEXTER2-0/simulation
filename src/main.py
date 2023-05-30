@@ -30,6 +30,7 @@ if __name__=='__main__':
     #-------------------------------
     #commandes pour que le robot avance le plus rapidement d'un mur
     test2 = []
+    strat_evite = ia.IAConditionnel(trad,ia.IA_avancer(trad,cs.DISTANCE_A_PARCOURIR,cs.V_ANGULAIRE),ia.IA_tourner(trad, cs.ANGLE,1,cs.V_ANGULAIRE))
     strat_avance2 = ia.IA_avancer(trad,cs.DISTANCE_A_PARCOURIR,cs.V_ANGULAIRE_MAX)
     test2.append(strat_avance2)
 
